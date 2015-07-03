@@ -5,15 +5,16 @@ import LoginActions from '../actions/LoginActions';
 
 class AuthService {
 
-  login(username, password) {
+  login(email, password) {
     return this.handleAuth(when(request({
       url: LOGIN_URL,
       method: 'POST',
       crossOrigin: true,
       type: 'json',
-      data: {
-        username, password
-      }
+      data: { user: {
+        email: email,
+        password: password
+      }}
     })));
   }
 
@@ -36,7 +37,7 @@ class AuthService {
   handleAuth(loginPromise) {
     return loginPromise
       .then(function(response) {
-        var jwt = response.id_token;
+        var jwt = response.token;
         LoginActions.loginUser(jwt);
         return true;
       });

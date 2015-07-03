@@ -1,14 +1,14 @@
 {
-  "name": "react-browserify-spa-seed",
+  "name": "life",
   "version": "0.0.1",
-  "description": "Seed project for React, Browserify, Rework SPAs",
+  "description": "Create a calendar that shows your entire life in one quick view",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:mgonto/react-browserify-spa-seed.git"
+    "url": "git@github.com:chadoh/life.git"
   },
   "authors": [
-    "Martin Gontovnikas <martin@gon.to> (http://gon.to/)"
+    "Chad Ostrowski <hi@chadoh.com> (http://chadoh.com/)"
   ],
   "browserify": {
     "transform": [

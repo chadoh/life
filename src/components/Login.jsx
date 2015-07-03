@@ -7,16 +7,16 @@ export default class Login extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: '',
+      email: '',
       password: ''
     };
   }
 
   login(e) {
     e.preventDefault();
-    Auth.login(this.state.user, this.state.password)
+    Auth.login(this.state.email, this.state.password)
       .catch(function(err) {
-        alert("There's an error logging in");
+        alert("There was an error logging in");
         console.log("Error logging in", err);
       });
   }
@@ -25,16 +25,16 @@ export default class Login extends React.Component {
     return (
       <div className="login jumbotron center-block">
         <h1>Login</h1>
-        <form role="form">
+        <form role="form" onSubmit={this.login.bind(this)}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
-          <input type="text" valueLink={this.linkState('user')} className="form-control" id="username" placeholder="Username" />
+          <input type="text" valueLink={this.linkState('email')} className="form-control" id="email" placeholder="Email" />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input type="password" valueLink={this.linkState('password')} className="form-control" id="password" ref="password" placeholder="Password" />
         </div>
-        <button type="submit" className="btn btn-default" onClick={this.login.bind(this)}>Submit</button>
+        <button type="submit" className="btn btn-default">Submit</button>
       </form>
     </div>
     );

@@ -17,7 +17,10 @@ var routes = (
   </Route>
 );
 
-var router = Router.create({routes});
+var router = Router.create({
+  routes: routes,
+  location: Router.HistoryLocation
+});
 RouterContainer.set(router);
 
 let jwt = localStorage.getItem('jwt');

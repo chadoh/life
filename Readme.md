@@ -1,6 +1,6 @@
 # Life
 
-A service to quickly make an inspiring chart of your entire life, similar to [Buster Benson's](http://busterbenson.com/) but with emojis on each week.
+A service to quickly make an inspiring chart of your entire life, similar to [Brittany Fork's](http://brittanyforks.com/life/).
 
 Built with [react-flux-jwt-authentication-sample](https://github.com/auth0/react-flux-jwt-authentication-sample) as a starting point.
 

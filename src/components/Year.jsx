@@ -32,7 +32,7 @@ export default class User extends React.Component {
 
   firstWeekEmoji() {
     if (this.props.birthYear === this.props.start.getFullYear()) return emoji.get('baby')
-    else if (this.props.birthYear + 100 === this.props.year) return emoji.get('100')
+    else if (this.props.birthYear + 100 === this.props.start.getFullYear()) return emoji.get('100')
     else return emoji.get('birthday')
   }
 }

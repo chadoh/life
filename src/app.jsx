@@ -1,3 +1,5 @@
+window.jQuery = require('jquery');
+require('bootstrap');
 import React from 'react';
 import Router, {Route} from 'react-router';
 import AuthenticatedApp from './components/AuthenticatedApp'

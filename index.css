@@ -5,10 +5,11 @@
   cursor: pointer;
   width: 1.851851852%; /* 100/54 */
   font-size: 10px;
+  text-align: center;
 }
 
 .week .placeholder {
-  display: block;
+  display: inline-block;
   background-color: #FEF8FC;
   border-radius: 50%;
   width: 8px;

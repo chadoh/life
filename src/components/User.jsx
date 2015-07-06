@@ -1,6 +1,7 @@
 import React from 'react';
 import UserStore from '../stores/UserStore';
-import UserService from '../services/UserService.js';
+import UserService from '../services/UserService';
+import WholeLife from './WholeLife';
 
 export default class User extends React.Component {
   constructor(props) {
@@ -32,9 +33,12 @@ export default class User extends React.Component {
   }
 
   render() {
+    var cal = !this.state.user.born ? '' :
+      <WholeLife user={this.state.user} />
     return (
       <div>
         <h1>{this.state.user.name} <small>A life</small></h1>
+        {cal}
       </div>
     );
   }

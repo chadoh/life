@@ -10,7 +10,6 @@
   font-size: 10px;
   text-align: center;
 }
-
 .week .placeholder {
   display: inline-block;
   background-color: #FEF8FC;
@@ -20,6 +19,9 @@
 }
 .week.past .placeholder {
   background-color: #FAE3E3;
+}
+.week a {
+  text-decoration: none;
 }
 
 /*

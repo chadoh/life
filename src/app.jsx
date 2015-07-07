@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
 import User from './components/User';
+import WeekDetail from './components/WeekDetail';
 import RouterContainer from './services/RouterContainer';
 import LoginActions from './actions/LoginActions';
 
@@ -13,7 +14,9 @@ var routes = (
     <Route name="login" handler={Login}/>
     <Route name="signup" handler={Signup}/>
     <Route name="home" path="/" handler={Home}/>
-    <Route name="user" path="/:slug" handler={User}/>
+    <Route name="user" path="/:slug" handler={User}>
+      <Route name="week" path="week/:start/to/:end" handler={WeekDetail}/>
+    </Route>
   </Route>
 );
 

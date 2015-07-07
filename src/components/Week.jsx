@@ -1,6 +1,8 @@
 import React from 'react';
-import emoji from 'node-emoji';
+import Emoji from 'node-emoji';
 import EventStore from '../stores/EventStore';
+import UserStore from '../stores/UserStore';
+import { Link } from 'react-router';
 
 export default class Week extends React.Component {
   render() {
@@ -15,11 +17,22 @@ export default class Week extends React.Component {
   }
 
   emojiFor(events) {
-    if (events[0]) return (
-      <span data-tooltip={this.props.start.toDateString() + ': ' + events[0].summary}>
-        {emoji.get(events[0].emoji)}
+    let tooltip = this.props.start.toDateString();
+    let emoji = <span className="placeholder"/>;
+    if (events[0]) {
+      tooltip = `${tooltip}: ${events[0].summary}`;
+      emoji = Emoji.get(events[0].emoji);
+    }
+    return (
+      <span data-tooltip={tooltip}>
+        <Link to="week" params={{slug: UserStore.user.slug, start: this.dateParam(this.props.start), end: this.dateParam(this.props.end)}}>
+          {emoji}
+        </Link>
       </span>
     )
-    else return <span className="placeholder" data-tooltip={this.props.start.toDateString()}></span>
+  }
+
+  dateParam(date) {
+    return date.toJSON().split('T')[0]
   }
 }

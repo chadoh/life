@@ -4,6 +4,7 @@ import EventStore from '../stores/EventStore';
 import UserService from '../services/UserService';
 import EventService from '../services/EventService';
 import WholeLife from './WholeLife';
+import { RouteHandler } from 'react-router';
 
 export default class User extends React.Component {
   constructor(props) {
@@ -44,6 +45,7 @@ export default class User extends React.Component {
     return (
       <div>
         <h1>{this.state.user.name} <small>A life</small></h1>
+        <RouteHandler/>
         {cal}
       </div>
     );

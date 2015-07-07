@@ -1,12 +1,9 @@
-window.jQuery = require('jquery');
-require('bootstrap');
 import React from 'react';
 import Router, {Route} from 'react-router';
 import AuthenticatedApp from './components/AuthenticatedApp'
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
-import Quote from './components/Quote';
 import User from './components/User';
 import RouterContainer from './services/RouterContainer';
 import LoginActions from './actions/LoginActions';
@@ -16,7 +13,6 @@ var routes = (
     <Route name="login" handler={Login}/>
     <Route name="signup" handler={Signup}/>
     <Route name="home" path="/" handler={Home}/>
-    <Route name="quote" handler={Quote}/>
     <Route name="user" path="/:slug" handler={User}/>
   </Route>
 );

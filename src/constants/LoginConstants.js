@@ -1,6 +1,6 @@
-var BASE_URL = 'http://localhost:3001/';
+import {BASE_URL} from './BaseConstants';
+
 export default {
-  BASE_URL: BASE_URL,
   LOGIN_URL: BASE_URL + 'users/sign_in',
   SIGNUP_URL: BASE_URL + 'users',
   LOGIN_USER: 'LOGIN_USER',

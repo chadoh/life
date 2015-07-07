@@ -7,7 +7,7 @@ export default class User extends React.Component {
     var end = new Date(start.getFullYear() + 1, start.getMonth(), start.getDate());
     var now = new Date();
     var weeks = [
-      <div className="week past" data-toggle="tooltip" title={start.toDateString()}>
+      <div className="week past" data-tooltip={start.toDateString()}>
         {this.firstWeekEmoji()}
       </div>
     ];
@@ -16,7 +16,7 @@ export default class User extends React.Component {
       if (now > start) classes.push("past")
       else classes.push("future")
       weeks.push(
-        <div key={start} className={classes.join(' ')} data-toggle="tooltip" title={start.toDateString()}>
+        <div key={start} className={classes.join(' ')} data-tooltip={start.toDateString()}>
           <span className="placeholder"></span>
         </div>
       )

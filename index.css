@@ -1,5 +1,8 @@
 @import 'bootstrap';
 
+/*
+ * Week grid
+ */
 .week {
   display: inline-block;
   cursor: pointer;
@@ -17,4 +20,31 @@
 }
 .week.past .placeholder {
   background-color: #FAE3E3;
+}
+
+/*
+ * tooltips
+ */
+[data-tooltip] {
+  display: inline-block;
+  position: relative;
+}
+[data-tooltip]:before {
+  content: attr(data-tooltip);
+  display: none;
+  position: absolute;
+  width: 13.5rem;
+  right: -5.75rem;
+  bottom: 1.5rem;
+  font-size: 1.3rem;
+  background: rgba(0,0,0,0.9);
+  color: white;
+  padding: 0.6rem;
+  border-radius: 2px;
+}
+[data-tooltip]:hover {
+  z-index: 10;
+}
+[data-tooltip]:hover::before {
+  display:block;
 }

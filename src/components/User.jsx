@@ -10,10 +10,6 @@ export default class User extends React.Component {
     this._onChange = this._onChange.bind(this);
   }
 
-  componentDidUpdate() {
-    jQuery("[data-toggle='tooltip']").tooltip();
-  }
-
   componentDidMount() {
     if (!this.state.user.id) {
       UserService.getUser(this.props.params.slug)

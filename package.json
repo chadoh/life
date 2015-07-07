@@ -38,7 +38,6 @@
   "dependencies": {
     "bootstrap": "^3.3.0",
     "flux": "^2.0.1",
-    "jquery": "^2.1.4",
     "jwt-decode": "^1.1.0",
     "node-emoji": "^0.1.0",
     "react": "^0.13",

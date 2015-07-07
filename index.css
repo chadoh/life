@@ -29,22 +29,40 @@
   display: inline-block;
   position: relative;
 }
-[data-tooltip]:before {
+[data-tooltip]:before{
+  content: '';
+  display: none;
+  position: absolute;
+  z-index: 9998;
+  bottom: 20px;
+  left: 0;
+  width: 0;
+  height: 0;
+
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(0,0,0,.72);
+}
+[data-tooltip]:after {
   content: attr(data-tooltip);
   display: none;
   position: absolute;
+  z-index: 9999;
+  bottom: 25px;
+  left: -6.5rem;
   width: 14rem;
-  right: -7rem;
-  bottom: 1.5rem;
+
+  color: #fff;
   font-size: 1.3rem;
-  background: rgba(0,0,0,0.9);
-  color: white;
-  padding: 0.6rem;
+  padding: 0.5rem;
+  text-align: center;
+
+  background: rgba(0,0,0,.72);
   border-radius: 2px;
 }
 [data-tooltip]:hover {
   z-index: 10;
 }
-[data-tooltip]:hover::before {
+[data-tooltip]:hover::before, [data-tooltip]:hover::after {
   display:block;
 }

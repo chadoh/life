@@ -1,6 +1,5 @@
 import React from 'react';
 import Emoji from 'node-emoji';
-import EventStore from '../stores/EventStore';
 import UserStore from '../stores/UserStore';
 import { Link } from 'react-router';
 

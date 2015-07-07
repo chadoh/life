@@ -1,22 +1,17 @@
 import React from 'react';
-import emoji from 'node-emoji';
-import EventStore from '../stores/EventStore';
+import Week from './Week';
 
-export default class User extends React.Component {
+export default class Year extends React.Component {
   render() {
-    var start = this.props.start;
-    var end = new Date(start.getFullYear() + 1, start.getMonth(), start.getDate());
-    var now = new Date();
+    var weekStart = new Date(this.props.start.getTime());
+    var yearEnd = new Date(weekStart.getFullYear() + 1, weekStart.getMonth(), weekStart.getDate());
     var weeks = [];
-    while (start < end) {
-      var classes = ["week"];
-      if (now > start) classes.push("past");
+    while (weekStart < yearEnd) {
+      let weekEnd = this.addDaysTo(weekStart, 7, yearEnd);
       weeks.push(
-        <div key={start} className={classes.join(' ')}>
-          {this.emojiForWeek(start, end)}
-        </div>
+        <Week key={weekStart} start={weekStart} end={weekEnd} events={this.eventsFor(weekStart, weekEnd)}/>
       )
-      start = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 7);
+      weekStart = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + 7);
     }
 
     return (
@@ -26,11 +21,13 @@ export default class User extends React.Component {
     );
   }
 
-  emojiForWeek(weekStart, notAfter) {
-    var events = EventStore.eventsForWeek(weekStart, notAfter);
-    if (events[0]) return <span data-tooltip={weekStart.toDateString() + ': ' + events[0].summary}>
-                            {emoji.get(events[0].emoji)}
-                          </span>
-    else return <span className="placeholder" data-tooltip={weekStart.toDateString()}></span>
+  eventsFor(start, end) {
+    return this.props.events.filter(e => e.date >= start && e.date < end);
+  }
+
+  addDaysTo(date, days, notAfter) {
+    let d = new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
+    if (d < notAfter) return d
+    else return notAfter
   }
 }

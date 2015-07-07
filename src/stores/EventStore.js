@@ -13,11 +13,19 @@ class EventStore extends BaseStore {
   _registerToActions(action) {
     switch(action.actionType) {
       case EVENTS_GET:
+        this._userEvents = this.castDates(action.events);
         this.emitChange();
         break;
       default:
         break;
     };
+  }
+
+  castDates(events) {
+    return events.map(e => {
+      e.date = new Date(e.date.split('-'));
+      return e;
+    })
   }
 
   makeDateFrom(someString) {
@@ -51,9 +59,13 @@ class EventStore extends BaseStore {
     return this._userEvents.concat(this._calculatedEvents());
   }
 
-  eventsForWeek(weekStart, notAfter) {
-    var weekEnd = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + 7);
-    return this.events.filter(e => e.date >= weekStart && e.date <= weekEnd && e.date < notAfter);
+  get eventsByYear() {
+    let grouped = {};
+    this.events.forEach(e => {
+      if (grouped[e.date.getFullYear()]) grouped[e.date.getFullYear()].push(e)
+      else grouped[e.date.getFullYear()] = [e]
+    })
+    return grouped
   }
 }
 

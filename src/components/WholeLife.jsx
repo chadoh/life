@@ -1,17 +1,19 @@
 import React from 'react';
 import Year from './Year';
 
-export default class User extends React.Component {
+export default class WholeLife extends React.Component {
   render() {
     var years = [],
         born = this.props.user.born;
 
     for(var i=0; i<=100; i++) {
+      let year = born.getFullYear() + i;
       years.push(
         <Year
           key={i}
           birthYear={born.getFullYear()}
-          start={new Date(born.getFullYear() + i, born.getMonth(), born.getDate())}
+          events={this.props.events[year]}
+          start={new Date(year, born.getMonth(), born.getDate())}
         />
       )
     }

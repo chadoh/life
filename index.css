@@ -6,7 +6,7 @@
 .week {
   display: inline-block;
   cursor: pointer;
-  width: 1.851851852%; /* 100/54 */
+  width: 1.886792453%; /* 100/53 */
   font-size: 10px;
   text-align: center;
 }
@@ -33,8 +33,8 @@
   content: attr(data-tooltip);
   display: none;
   position: absolute;
-  width: 13.5rem;
-  right: -5.75rem;
+  width: 14rem;
+  right: -6rem;
   bottom: 1.5rem;
   font-size: 1.3rem;
   background: rgba(0,0,0,0.9);

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMixin from 'react-mixin';
 import UserStore from '../stores/UserStore';
 import EventStore from '../stores/EventStore';
 import UserService from '../services/UserService';
@@ -51,3 +52,5 @@ export default class User extends React.Component {
     );
   }
 }
+
+ReactMixin(User.prototype, React.addons.PureRenderMixin);

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMixin from 'react-mixin';
 import Week from './Week';
 
 export default class Year extends React.Component {
@@ -31,3 +32,5 @@ export default class Year extends React.Component {
     else return notAfter
   }
 }
+
+ReactMixin(Year.prototype, React.addons.PureRenderMixin);

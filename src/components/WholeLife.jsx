@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMixin from 'react-mixin';
 import Year from './Year';
 import UserStore from '../stores/UserStore';
 
@@ -25,3 +26,5 @@ export default class WholeLife extends React.Component {
     );
   }
 }
+
+ReactMixin(WholeLife.prototype, React.addons.PureRenderMixin);

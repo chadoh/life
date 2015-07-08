@@ -22,7 +22,7 @@ export default class Year extends React.Component {
   }
 
   eventsFor(start, end) {
-    return this.props.events.filter(e => e.date >= start && e.date < end);
+    return this.props.events.filter(e => e.get('date') >= start && e.get('date') < end);
   }
 
   addDaysTo(date, days, notAfter) {

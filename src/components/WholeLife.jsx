@@ -13,7 +13,7 @@ export default class WholeLife extends React.Component {
         <Year
           key={i}
           birthYear={born.getFullYear()}
-          events={this.props.events[year]}
+          events={this.props.events.get(year)}
           start={new Date(year, born.getMonth(), born.getDate())}
         />
       )

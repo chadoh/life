@@ -25,7 +25,7 @@
     "build-html": "cp index.html build/index.html",
     "watch-js": "watchify --extension=.jsx --extension=.js src/app.jsx -o build/build.js --debug --verbose",
     "watch-css": "nodemon -e css --ignore build/build.css --exec 'rework-npm index.css -o build/build.css'",
-    "watch-html": "nodemon index.html --exec 'cp index.html build/index.html'",
+    "watch-html": "nodemon -e html --ignore build/index.html --exec cp index.html build/index.html",
     "lint-eslint": "eslint .",
     "lint-jscs": "jscs .",
     "lint": "npm run lint-eslint && npm run lint-jscs"

@@ -25,7 +25,7 @@ export default class Week extends React.Component {
     }
     return (
       <span data-tooltip={tooltip}>
-        <Link to="week" params={{slug: UserStore.user.slug, start: this.dateParam(this.props.start), end: this.dateParam(this.props.end)}}>
+        <Link to="week" params={{slug: UserStore.user.get('slug'), start: this.dateParam(this.props.start), end: this.dateParam(this.props.end)}}>
           {emoji}
         </Link>
       </span>

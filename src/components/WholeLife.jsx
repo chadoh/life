@@ -1,10 +1,11 @@
 import React from 'react';
 import Year from './Year';
+import UserStore from '../stores/UserStore';
 
 export default class WholeLife extends React.Component {
   render() {
     var years = [],
-        born = this.props.user.born;
+        born = UserStore.user.get('born');
 
     for(var i=0; i<=100; i++) {
       let year = born.getFullYear() + i;

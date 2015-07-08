@@ -33,21 +33,21 @@ class EventStore extends BaseStore {
   }
 
   _calculatedEvents() {
-    if (UserStore.user.id) return this._userBirthdays()
+    if (UserStore.user.get('id')) return this._userBirthdays()
     else return []
   }
 
   _userBirthdays() {
     var birthdays = [];
-    birthdays.push({ summary: "It's a baby!", emoji: 'baby', date: UserStore.user.born })
+    birthdays.push({ summary: "It's a baby!", emoji: 'baby', date: UserStore.user.get('born') })
     for (var i = 1; i < 100; i++) {
       birthdays.push({
         summary: 'Happy Birthday #' + i,
         emoji: 'birthday',
-        date: this._addYearsTo(UserStore.user.born, i)
+        date: this._addYearsTo(UserStore.user.get('born'), i)
       });
     }
-    birthdays.push({ summary: 'Happy Birthday #100', emoji: '100', date: this._addYearsTo(UserStore.user.born, 100)})
+    birthdays.push({ summary: 'Happy Birthday #100', emoji: '100', date: this._addYearsTo(UserStore.user.get('born'), 100)})
     return birthdays;
   }
 

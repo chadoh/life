@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMixin from 'react-mixin';
 import Week from './Week';
 
 export default class Year extends React.Component {
@@ -22,7 +23,7 @@ export default class Year extends React.Component {
   }
 
   eventsFor(start, end) {
-    return this.props.events.filter(e => e.date >= start && e.date < end);
+    return this.props.events.filter(e => e.get('date') >= start && e.get('date') < end);
   }
 
   addDaysTo(date, days, notAfter) {
@@ -31,3 +32,5 @@ export default class Year extends React.Component {
     else return notAfter
   }
 }
+
+ReactMixin(Year.prototype, React.addons.PureRenderMixin);

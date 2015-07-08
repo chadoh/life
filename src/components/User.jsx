@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMixin from 'react-mixin';
 import UserStore from '../stores/UserStore';
 import EventStore from '../stores/EventStore';
 import UserService from '../services/UserService';
@@ -40,14 +41,16 @@ export default class User extends React.Component {
   }
 
   render() {
-    var cal = !this.state.user.born ? '' :
-      <WholeLife user={this.state.user} events={this.state.events} />
+    var cal = !this.state.user.get('born') ? '' :
+      <WholeLife events={this.state.events} />
     return (
       <div>
-        <h1>{this.state.user.name} <small>A life</small></h1>
+        <h1>{this.state.user.get('name')} <small>A life</small></h1>
         <RouteHandler/>
         {cal}
       </div>
     );
   }
 }
+
+ReactMixin(User.prototype, React.addons.PureRenderMixin);

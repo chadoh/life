@@ -1,19 +1,20 @@
 import {EVENTS_GET} from '../constants/EventConstants';
 import BaseStore from './BaseStore';
 import UserStore from './UserStore';
+import { Map, List, Range } from 'immutable';
 
 class EventStore extends BaseStore {
 
   constructor() {
     super();
     this.subscribe(() => this._registerToActions.bind(this))
-    this._userEvents = [];
+    this._userEvents = List();
   }
 
   _registerToActions(action) {
     switch(action.actionType) {
       case EVENTS_GET:
-        this._userEvents = this.castDates(action.events);
+        this._userEvents = this.makeImmutable(action.events);
         this.emitChange();
         break;
       default:
@@ -21,34 +22,31 @@ class EventStore extends BaseStore {
     };
   }
 
-  castDates(events) {
-    return events.map(e => {
-      e.date = new Date(e.date.split('-'));
-      return e;
-    })
+  makeImmutable(events) {
+    return List(
+      events.map(e => Map(e).update('date', str => new Date(str.split('-')) ))
+    )
   }
 
-  makeDateFrom(someString) {
-    return new Date(someString.split('-').map(x => parseInt(x)))
+  get _calculatedEvents() {
+    return this.userBirthdays
   }
 
-  _calculatedEvents() {
-    if (UserStore.user.id) return this._userBirthdays()
-    else return []
-  }
-
-  _userBirthdays() {
-    var birthdays = [];
-    birthdays.push({ summary: "It's a baby!", emoji: 'baby', date: UserStore.user.born })
-    for (var i = 1; i < 100; i++) {
-      birthdays.push({
-        summary: 'Happy Birthday #' + i,
-        emoji: 'birthday',
-        date: this._addYearsTo(UserStore.user.born, i)
-      });
+  get userBirthdays() {
+    if (!UserStore.user.get('born')) return List();
+    else {
+      if (this._userBirthdays) return this._userBirthdays;
+      this._userBirthdays = this.calculateBirthdays;
+      return this._userBirthdays
     }
-    birthdays.push({ summary: 'Happy Birthday #100', emoji: '100', date: this._addYearsTo(UserStore.user.born, 100)})
-    return birthdays;
+  }
+
+  get calculateBirthdays() {
+    return Range(0,101).map(i => Map({
+      summary: i === 0 ? "It's a baby!" : `Happy Birthday #${i}`,
+      emoji: i === 0 ? "baby" : i === 100 ? "100" : "birthday",
+      date: this._addYearsTo(UserStore.user.get('born'), i)
+    }))
   }
 
   _addYearsTo(date, years) {
@@ -56,16 +54,11 @@ class EventStore extends BaseStore {
   }
 
   get events() {
-    return this._userEvents.concat(this._calculatedEvents());
+    return this._userEvents.concat(this._calculatedEvents);
   }
 
   get eventsByYear() {
-    let grouped = {};
-    this.events.forEach(e => {
-      if (grouped[e.date.getFullYear()]) grouped[e.date.getFullYear()].push(e)
-      else grouped[e.date.getFullYear()] = [e]
-    })
-    return grouped
+    return this.events.groupBy(event => event.get('date').getFullYear());
   }
 }
 

@@ -1,10 +1,12 @@
 import React from 'react';
+import ReactMixin from 'react-mixin';
 import Year from './Year';
+import UserStore from '../stores/UserStore';
 
 export default class WholeLife extends React.Component {
   render() {
     var years = [],
-        born = this.props.user.born;
+        born = UserStore.user.get('born');
 
     for(var i=0; i<=100; i++) {
       let year = born.getFullYear() + i;
@@ -12,7 +14,7 @@ export default class WholeLife extends React.Component {
         <Year
           key={i}
           birthYear={born.getFullYear()}
-          events={this.props.events[year]}
+          events={this.props.events.get(year)}
           start={new Date(year, born.getMonth(), born.getDate())}
         />
       )
@@ -24,3 +26,5 @@ export default class WholeLife extends React.Component {
     );
   }
 }
+
+ReactMixin(WholeLife.prototype, React.addons.PureRenderMixin);

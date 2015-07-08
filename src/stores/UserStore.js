@@ -1,28 +1,24 @@
 import {USER_GET} from '../constants/UserConstants';
 import BaseStore from './BaseStore';
+import { Map } from 'immutable';
 
 class UserStore extends BaseStore {
 
   constructor() {
     super();
     this.subscribe(() => this._registerToActions.bind(this))
-    this._user = {id: null, name: null, email: null, slug: null, born: null};
+    this._user = Map({id: null, name: null, email: null, slug: null, born: null});
   }
 
   _registerToActions(action) {
     switch(action.actionType) {
       case USER_GET:
-        this._user = action.user;
-        this._user.born = this.makeDateFrom(this._user.born);
+        this._user = Map(action.user).update('born', str => new Date(str.split('-')));
         this.emitChange();
         break;
       default:
         break;
     };
-  }
-
-  makeDateFrom(someString) {
-    return new Date(someString.split('-').map(x => parseInt(x)))
   }
 
   get user() {

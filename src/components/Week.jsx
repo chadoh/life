@@ -1,6 +1,6 @@
 import React from 'react';
+import ReactMixin from 'react-mixin';
 import Emoji from 'node-emoji';
-import EventStore from '../stores/EventStore';
 import UserStore from '../stores/UserStore';
 import { Link } from 'react-router';
 
@@ -19,13 +19,13 @@ export default class Week extends React.Component {
   emojiFor(events) {
     let tooltip = this.props.start.toDateString();
     let emoji = <span className="placeholder"/>;
-    if (events[0]) {
-      tooltip = `${tooltip}: ${events[0].summary}`;
-      emoji = Emoji.get(events[0].emoji);
+    if (events.first()) {
+      tooltip = `${tooltip}: ${events.first().get('summary')}`;
+      emoji = Emoji.get(events.first().get('emoji'));
     }
     return (
       <span data-tooltip={tooltip}>
-        <Link to="week" params={{slug: UserStore.user.slug, start: this.dateParam(this.props.start), end: this.dateParam(this.props.end)}}>
+        <Link to="week" params={{slug: UserStore.user.get('slug'), start: this.dateParam(this.props.start), end: this.dateParam(this.props.end)}}>
           {emoji}
         </Link>
       </span>
@@ -36,3 +36,5 @@ export default class Week extends React.Component {
     return date.toJSON().split('T')[0]
   }
 }
+
+ReactMixin(Week.prototype, React.addons.PureRenderMixin);

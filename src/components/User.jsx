@@ -21,12 +21,10 @@ export default class User extends React.Component {
     }
 
     UserStore.addChangeListener(this._onChange);
-    EventStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
     UserStore.removeChangeListener(this._onChange);
-    EventStore.removeChangeListener(this._onChange);
   }
 
   _onChange() {
@@ -34,15 +32,12 @@ export default class User extends React.Component {
   }
 
   getState() {
-    return {
-      user: UserStore.user,
-      events: EventStore.eventsByYear
-    };
+    return {user: UserStore.user};
   }
 
   render() {
     var cal = !this.state.user.get('born') ? '' :
-      <WholeLife events={this.state.events} />
+      <WholeLife />
     return (
       <div>
         <h1>{this.state.user.get('name')} <small>A life</small></h1>

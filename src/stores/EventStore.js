@@ -60,6 +60,10 @@ class EventStore extends BaseStore {
   get eventsByYear() {
     return this.events.groupBy(event => event.get('date').getFullYear());
   }
+
+  eventsFor(start, end) {
+    return this.events.filter(e => e.get('date') >= start && e.get('date') < end);
+  }
 }
 
 export default new EventStore();

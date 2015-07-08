@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import Week from './Week';
+import EventStore from '../stores/EventStore';
 
 export default class Year extends React.Component {
   render() {
@@ -10,7 +11,7 @@ export default class Year extends React.Component {
     while (weekStart < yearEnd) {
       let weekEnd = this.addDaysTo(weekStart, 7, yearEnd);
       weeks.push(
-        <Week key={weekStart} start={weekStart} end={weekEnd} events={this.eventsFor(weekStart, weekEnd)}/>
+        <Week key={weekStart} start={weekStart} end={weekEnd} events={EventStore.eventsFor(weekStart, weekEnd)}/>
       )
       weekStart = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + 7);
     }
@@ -20,10 +21,6 @@ export default class Year extends React.Component {
         {weeks}
       </div>
     );
-  }
-
-  eventsFor(start, end) {
-    return this.props.events.filter(e => e.get('date') >= start && e.get('date') < end);
   }
 
   addDaysTo(date, days, notAfter) {

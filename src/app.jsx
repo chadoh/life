@@ -14,8 +14,8 @@ var routes = (
     <Route name="login" handler={Login}/>
     <Route name="signup" handler={Signup}/>
     <Route name="home" path="/" handler={Home}/>
-    <Route name="user" path="/:slug" handler={User}>
-      <Route name="week" path="week/:start/to/:end" handler={WeekDetail}/>
+    <Route name="user" path="/:slug" handler={User} ignoreScrollBehavior={true}>
+      <Route name="week" path="week/:start/to/:end" handler={WeekDetail} ignoreScrollBehavior={true}/>
     </Route>
   </Route>
 );

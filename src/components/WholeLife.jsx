@@ -3,40 +3,38 @@ import ReactMixin from 'react-mixin';
 import Year from './Year';
 import UserStore from '../stores/UserStore';
 import EventStore from '../stores/EventStore';
-import { Range } from 'immutable';
+import { Range, List } from 'immutable';
 
 export default class WholeLife extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.getState();
-    this._onChange = this._onChange.bind(this);
+    // this.state = this.getState();
+    // this._onChange = this._onChange.bind(this);
   }
 
   componentDidMount() {
-    EventStore.addChangeListener(this._onChange);
+    // EventStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
-    EventStore.removeChangeListener(this._onChange);
+    // EventStore.removeChangeListener(this._onChange);
   }
 
   _onChange() {
-    this.setState(this.getState());
+    // this.setState(this.getState());
   }
 
   getState() {
-    return {events: EventStore.eventsByAge};
+    // return {events: EventStore.events};
   }
 
   render() {
-    var born = UserStore.user.get('born');
-
     var years = Range(0,101).map(i => (
       <Year
         key={i}
-        birthYear={born.getFullYear()}
-        events={this.state.events.get(i)}
-        start={new Date(born.getFullYear() + i, born.getMonth(), born.getDate())}
+        birthDate={UserStore.user.get('born')}
+        events={List()}
+        age={i}
       />
     )).toJS();
     return (

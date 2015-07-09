@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import Week from './Week';
-import { Range } from 'immutable';
+import { Range, List } from 'immutable';
+import EventStore from '../stores/EventStore';
 
 export default class Year extends React.Component {
   render() {
-    let yearEnd = new Date(this.props.start.getFullYear() + 1, this.props.start.getMonth(), this.props.start.getDate());
+    // let start = EventStore.addYearsTo(this.props.birthDate, this.props.age)
+    // let end = EventStore.addYearsTo(this.props.birthDate, this.props.age + 1)
     let weeks = Range(0,53).map(i => {
-      let start = new Date(this.props.start.getFullYear(), this.props.start.getMonth(), this.props.start.getDate() + i*7);
-      let end = this.addDaysTo(start, 7, yearEnd);
       return (
         <Week
           key={i}
-          start={start}
-          end={end}
-          events={this.eventsFor(start, end)}
+          start={this.props.birthDate}
+          end={this.props.birthDate}
+          events={List()}
         />
       )
     }).toJS()

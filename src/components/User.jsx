@@ -17,7 +17,7 @@ export default class User extends React.Component {
   componentDidMount() {
     if (!this.state.user.id) {
       UserService.getUser(this.props.params.slug)
-      EventService.fetchEventsForUser(this.props.params.slug)
+      // EventService.fetchEventsForUser(this.props.params.slug)
     }
 
     UserStore.addChangeListener(this._onChange);

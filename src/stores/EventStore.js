@@ -32,7 +32,7 @@ class EventStore extends BaseStore {
 
   makeImmutable(events) {
     return List(
-      events.map(e => Map(e).update('date', str => new Date(str.split('-')) ))
+      events.map(e => Map(e))
     )
   }
 
@@ -53,20 +53,17 @@ class EventStore extends BaseStore {
     return Range(0,101).map(i => Map({
       summary: i === 0 ? "It's a baby!" : `Happy Birthday #${i}`,
       emoji: i === 0 ? "baby" : i === 100 ? "100" : "birthday",
-      date: this._addYearsTo(UserStore.user.get('born'), i)
+      date: this.addYearsTo(UserStore.user.get('born'), i)
     }))
   }
 
-  _addYearsTo(date, years) {
-    return new Date(date.getFullYear() + years, date.getMonth(), date.getDate())
+  addYearsTo(dateStr, years) {
+    let parts = dateStr.split('-');
+    return `${parseInt(parts[0]) + years}-${parts[1]}-${parts[2]}`
   }
 
   get events() {
     return this._userEvents.concat(this._calculatedEvents);
-  }
-
-  get eventsByAge() {
-    return this.events.groupBy(event => event.get('date').getFullYear() - UserStore.user.get('born').getFullYear())
   }
 
   eventsFor(start, end) {

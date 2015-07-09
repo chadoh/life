@@ -6,9 +6,9 @@ import { Link } from 'react-router';
 
 export default class Week extends React.Component {
   render() {
-    var now = new Date();
+    // var now = new Date();
     var classes = ["week"];
-    if (now > this.props.start) classes.push("past");
+    if ("2015-07-09" > this.props.start) classes.push("past");
     return (
       <div className={classes.join(' ')}>
         {this.emojiFor(this.props.events)}
@@ -17,7 +17,7 @@ export default class Week extends React.Component {
   }
 
   emojiFor(events) {
-    let tooltip = this.props.start.toDateString();
+    let tooltip = this.props.start;
     let emoji = <span className="placeholder"/>;
     if (events.first()) {
       tooltip = `${tooltip}: ${events.first().get('summary')}`;
@@ -25,15 +25,11 @@ export default class Week extends React.Component {
     }
     return (
       <span data-tooltip={tooltip}>
-        <Link to="week" params={{slug: UserStore.user.get('slug'), start: this.dateParam(this.props.start), end: this.dateParam(this.props.end)}}>
+        <Link to="week" params={{slug: UserStore.user.get('slug'), start: this.props.start, end: this.props.end}}>
           {emoji}
         </Link>
       </span>
     )
-  }
-
-  dateParam(date) {
-    return date.toJSON().split('T')[0]
   }
 }
 

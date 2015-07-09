@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import Week from './Week';
-import EventStore from '../stores/EventStore';
+import { Range } from 'immutable';
 
 export default class Year extends React.Component {
   render() {
-    var weekStart = new Date(this.props.start.getTime());
-    var yearEnd = new Date(weekStart.getFullYear() + 1, weekStart.getMonth(), weekStart.getDate());
-    var weeks = [];
-    while (weekStart < yearEnd) {
-      let weekEnd = this.addDaysTo(weekStart, 7, yearEnd);
-      weeks.push(
-        <Week key={weekStart} start={weekStart} end={weekEnd} events={EventStore.eventsFor(weekStart, weekEnd)}/>
+    let yearEnd = new Date(this.props.start.getFullYear() + 1, this.props.start.getMonth(), this.props.start.getDate());
+    let weeks = Range(0,53).map(i => {
+      let start = new Date(this.props.start.getFullYear(), this.props.start.getMonth(), this.props.start.getDate() + i*7);
+      let end = this.addDaysTo(start, 7, yearEnd);
+      return (
+        <Week
+          key={i}
+          start={start}
+          end={end}
+          events={this.eventsFor(start, end)}
+        />
       )
-      weekStart = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + 7);
-    }
+    }).toJS()
 
     return (
       <div>
@@ -23,10 +26,13 @@ export default class Year extends React.Component {
     );
   }
 
+  eventsFor(start, end) {
+    return this.props.events.filter(e => e.get('date') >= start && e.get('date') < end);
+  }
+
   addDaysTo(date, days, notAfter) {
     let d = new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
-    if (d < notAfter) return d
-    else return notAfter
+    return d < notAfter ? d : notAfter
   }
 }
 

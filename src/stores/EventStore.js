@@ -65,8 +65,8 @@ class EventStore extends BaseStore {
     return this._userEvents.concat(this._calculatedEvents);
   }
 
-  get eventsByYear() {
-    return this.events.groupBy(event => event.get('date').getFullYear());
+  get eventsByAge() {
+    return this.events.groupBy(event => event.get('date').getFullYear() - UserStore.user.get('born').getFullYear())
   }
 
   eventsFor(start, end) {

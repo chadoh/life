@@ -1,4 +1,4 @@
-import {EVENTS_GET} from '../constants/EventConstants';
+import {EVENTS_GET, EVENT_CREATE, EVENT_DESTROY} from '../constants/EventConstants';
 import BaseStore from './BaseStore';
 import UserStore from './UserStore';
 import { Map, List, Range } from 'immutable';
@@ -15,6 +15,14 @@ class EventStore extends BaseStore {
     switch(action.actionType) {
       case EVENTS_GET:
         this._userEvents = this.makeImmutable(action.events);
+        this.emitChange();
+        break;
+      case EVENT_CREATE:
+        this._userEvents = this._userEvents.concat(this.makeImmutable([action.event]))
+        this.emitChange();
+        break;
+      case EVENT_DESTROY:
+        this._userEvents = this._userEvents.filter(e => e.get('id') !== action.id)
         this.emitChange();
         break;
       default:

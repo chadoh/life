@@ -9,10 +9,11 @@ export default class Week extends React.Component {
   render() {
     let start = UserStore.dateOf(this.props.age, this.props.weekno);
     return (
-      <Link to="week" data-tooltip={start.toDateString()}
-            params={{slug: UserStore.user.get('slug'), start: start.toISOString().replace(/T.+/, '')}}>
-        {this.props.weekno}
-      </Link>
+      <td data-tooltip={start.toDateString()}>
+        <a href={`week/${start.toISOString().replace(/T.+/, '')}`}>
+          {this.props.weekno}
+        </a>
+      </td>
     )
   }
 

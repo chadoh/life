@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import Emoji from 'node-emoji';
+import UserStore from '../stores/UserStore';
+import LoginStore from '../stores/LoginStore';
 import EventStore from '../stores/EventStore';
 import EventService from '../services/EventService';
 import { Range } from 'immutable';
@@ -13,12 +15,13 @@ export default class WeekDetail extends React.Component {
       summary: '',
       emoji: '',
       date: '',
-      events: []
+      events: null
     };
     this._onChange = this._onChange.bind(this);
   }
 
   componentDidMount() {
+    if (!this.events) this._onChange();
     EventStore.addChangeListener(this._onChange);
   }
 
@@ -30,15 +33,40 @@ export default class WeekDetail extends React.Component {
     this.setState({events: EventStore.eventsFor(this.start, this.end)});
   }
 
+  get authed() {
+    return LoginStore.user && LoginStore.user.id === UserStore.user.get('id')
+  }
   render() {
-    let events = this.state.events.map(event => (
+    let deleteButton = !this.authed ? '' :
+      <td><button onClick={this.deleteEvent.bind(this)} className="btn btn-link">&times;</button></td>
+
+    let events = this.state.events && this.state.events.map(event => (
       <tr key={event.get('id')} data-id={event.get('id')}>
         <td>{Emoji.get(event.get('emoji'))}</td>
         <td>{event.get('summary')}</td>
         <td className="text-muted">{event.get('date').toDateString()}</td>
-        <td><button onClick={this.deleteEvent.bind(this)} className="btn btn-link">&times;</button></td>
+        {deleteButton}
       </tr>
     ));
+
+    let form = !this.authed ? '' :
+      <form role="form" onSubmit={this.addEvent.bind(this)}>
+        <h2>Add a new event</h2>
+        <div className="form-group">
+          <label htmlFor="summary">Summary</label>
+          <input required id="summary" name="summary" className="form-control" type="text" placeholder="Left for Mars" valueLink={this.linkState('summary')} ref="summary"/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="emoji">Emoji</label>
+          <input required id="emoji" name="emoji" className="form-control" type="text" placeholder="milky_way" valueLink={this.linkState('emoji')} />
+          <p className="help-block">Use the names from <a target="_blank" href="http://www.emoji-cheat-sheet.com/">the emoji cheat sheet</a></p>
+        </div>
+        <div className="form-group">
+          <label htmlFor="date">Date</label>
+          <input required id="date" name="date" className="form-control" type="date" min={this.props.params.start} max={this.props.params.end} valueLink={this.linkState('date')} />
+        </div>
+        <button type="submit" className="btn btn-default">Save</button>
+      </form>
 
     return (
       <div className="week-detail-wrap">
@@ -48,23 +76,7 @@ export default class WeekDetail extends React.Component {
           <table className="table">
             {events}
           </table>
-          <h2>Add a new event</h2>
-          <form role="form" onSubmit={this.addEvent.bind(this)}>
-            <div className="form-group">
-              <label htmlFor="summary">Summary</label>
-              <input required id="summary" name="summary" className="form-control" type="text" placeholder="Left for Mars" valueLink={this.linkState('summary')} ref="summary"/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="emoji">Emoji</label>
-              <input required id="emoji" name="emoji" className="form-control" type="text" placeholder="milky_way" valueLink={this.linkState('emoji')} />
-              <p className="help-block">Use the names from <a target="_blank" href="http://www.emoji-cheat-sheet.com/">the emoji cheat sheet</a></p>
-            </div>
-            <div className="form-group">
-              <label htmlFor="date">Date</label>
-              <input required id="date" name="date" className="form-control" type="date" min={this.props.params.start} max={this.props.params.end} valueLink={this.linkState('date')} />
-            </div>
-            <button type="submit" className="btn btn-default">Save</button>
-          </form>
+          {form}
         </aside>
       </div>
     )

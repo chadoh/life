@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import Week from './Week';
 // import UserStore from '../stores/UserStore';
-// import EventStore from '../stores/EventStore';
+import EventStore from '../stores/EventStore';
 
 export default class WholeLife extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ export default class WholeLife extends React.Component {
   render() {
     var weeks = [];
     for(var i = 0; i < 101*52; i++) {
-      weeks.push(<Week key={i} weekno={i} />)
+      weeks.push(<Week key={i} weekno={i} events={EventStore.events[i]} />)
     }
     return (
       <div className="life">

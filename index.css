@@ -15,22 +15,20 @@
 }
 .life a {
   text-decoration: none;
-  background-color: #fef8fc;
+  color: #fef8fc;
   border: 1px solid white;
   width: 1.923076923%; /* 100/52 */
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: block;
+  text-align: center;
 }
 .life a.past {
-  background-color: #fae3e3;
+  color: #fae3e3;
 }
-.life a:before {
+/* .life a:before {
   content: "";
   display: block;
   padding-top: 100%;
-}
+} */
 
 .week {
   display: inline-block;

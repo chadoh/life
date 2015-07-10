@@ -9,7 +9,7 @@ export default class Week extends React.Component {
     let klass = new Date() > start ? 'past' : '';
     return (
       <a className={klass}
-        data-tooltip={start.toDateString()}
+        data-tooltip={this.tooltip(start.toDateString())}
         href={`${UserStore.user.get('slug')}/week/${start.toISOString().replace(/T.+/, '')}`}>
         {this.emoji}
       </a>
@@ -17,7 +17,11 @@ export default class Week extends React.Component {
   }
 
   get emoji() {
-    return this.props.events ? Emoji.get(this.props.events[0].emoji) : ''
+    return this.props.events ? Emoji.get(this.props.events[0].emoji) : "●"
+  }
+
+  tooltip(date) {
+    return this.props.events ? `${date}: ${this.props.events[0].summary}` : date
   }
 }
 

@@ -24,11 +24,6 @@
 .life a.past {
   color: #fae3e3;
 }
-/* .life a:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
-} */
 
 .week {
   display: inline-block;
@@ -57,20 +52,20 @@
 [data-tooltip] {
   position: relative;
 }
-/* [data-tooltip]:before{ /* doesn't work if same element is Week /*
+[data-tooltip]:before{
   content: '';
   display: none;
   position: absolute;
   z-index: 9998;
   bottom: 20px;
-  left: 0;
+  left: 25%;
   width: 0;
   height: 0;
 
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid rgba(0,0,0,.72);
-} */
+}
 [data-tooltip]:after {
   content: attr(data-tooltip);
   display: none;

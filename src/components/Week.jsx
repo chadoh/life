@@ -2,26 +2,27 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import Emoji from 'node-emoji';
 import UserStore from '../stores/UserStore';
+import { Link } from 'react-router';
 
 export default class Week extends React.Component {
   render() {
     let start = UserStore.dateOf(this.props.weekno);
     let klass = new Date() > start ? 'past' : '';
     return (
-      <a className={klass}
+      <Link to="week" className={klass}
         data-tooltip={this.tooltip(start.toDateString())}
-        href={`${UserStore.user.get('slug')}/week/${start.toISOString().replace(/T.+/, '')}`}>
+        params={{slug: UserStore.user.get('slug'), weekno: this.props.weekno}}>
         {this.emoji}
-      </a>
+      </Link>
     )
   }
 
   get emoji() {
-    return this.props.events ? Emoji.get(this.props.events[0].emoji) : "●"
+    return this.props.events ? Emoji.get(this.props.events.first().get('emoji')) : "●"
   }
 
   tooltip(date) {
-    return this.props.events ? `${date}: ${this.props.events[0].summary}` : date
+    return this.props.events ? `${date}: ${this.props.events.first().get('summary')}` : date
   }
 }
 

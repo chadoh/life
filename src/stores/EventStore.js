@@ -1,7 +1,10 @@
 import {EVENTS_GET, EVENT_CREATE, EVENT_DESTROY} from '../constants/EventConstants';
 import BaseStore from './BaseStore';
 import UserStore from './UserStore';
-import { Map, List, Range } from 'immutable';
+import Immutable from 'immutable';
+
+let Map = Immutable.Map,
+    List = Immutable.List;
 
 class EventStore extends BaseStore {
 
@@ -58,7 +61,7 @@ class EventStore extends BaseStore {
         date: this.addYearsTo(UserStore.user.get('born'), i)
       }]
     }
-    return birthdays;
+    return Immutable.fromJS(birthdays);
   }
 
   addYearsTo(dateStr, years) {

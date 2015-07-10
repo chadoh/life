@@ -21,22 +21,6 @@ export default class Week extends React.Component {
   get emoji() {
     return Emoji.get('baby')
   }
-
-  // emojiFor(events) {
-  //   let tooltip = this.props.start;
-  //   let emoji = <span className="placeholder"/>;
-  //   if (events.first()) {
-  //     tooltip = `${tooltip}: ${events.first().get('summary')}`;
-  //     emoji = Emoji.get(events.first().get('emoji'));
-  //   }
-  //   return (
-  //     <span data-tooltip={tooltip}>
-  //       <Link to="week" params={{slug: UserStore.user.get('slug'), start: this.props.start, end: this.props.end}}>
-  //         {emoji}
-  //       </Link>
-  //     </span>
-  //   )
-  // }
 }
 
 ReactMixin(Week.prototype, React.addons.PureRenderMixin);

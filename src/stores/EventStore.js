@@ -50,11 +50,15 @@ class EventStore extends BaseStore {
   }
 
   get calculateBirthdays() {
-    return Range(0,101).map(i => Map({
-      summary: i === 0 ? "It's a baby!" : `Happy Birthday #${i}`,
-      emoji: i === 0 ? "baby" : i === 100 ? "100" : "birthday",
-      date: this.addYearsTo(UserStore.user.get('born'), i)
-    }))
+    let birthdays = {};
+    for (var i=0; i<101; i++) {
+      birthdays[i * 52] = [{
+        summary: i === 0 ? "It's a baby!" : `Happy Birthday #${i}`,
+        emoji: i === 0 ? "baby" : i === 100 ? "100" : "birthday",
+        date: this.addYearsTo(UserStore.user.get('born'), i)
+      }]
+    }
+    return birthdays;
   }
 
   addYearsTo(dateStr, years) {
@@ -63,14 +67,8 @@ class EventStore extends BaseStore {
   }
 
   get events() {
-    return this._userEvents.concat(this._calculatedEvents);
-  }
-
-  eventsForWeek(weekno) {
-    return [this.events.first()]
-  }
-  eventsFor(start, end) {
-    return this.events.filter(e => e.get('date') >= start && e.get('date') < end);
+    // return this._userEvents.concat(this._calculatedEvents);
+    return this._calculatedEvents;
   }
 }
 

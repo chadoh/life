@@ -66,7 +66,7 @@ class EventStore extends BaseStore {
     return this._userEvents.concat(this._calculatedEvents);
   }
 
-  eventsForWeek(start) {
+  eventsForWeek(weekno) {
     return [this.events.first()]
   }
   eventsFor(start, end) {

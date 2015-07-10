@@ -30,7 +30,7 @@ export default class WholeLife extends React.Component {
 
   render() {
     return (
-      <table>
+      <table className="life">
         {
           Range(0,101).map(i => (
             <Year key={i} age={i} />

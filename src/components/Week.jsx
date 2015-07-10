@@ -2,15 +2,18 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import Emoji from 'node-emoji';
 import UserStore from '../stores/UserStore';
+import EventStore from '../stores/EventStore';
 import { Link } from 'react-router';
 
 export default class Week extends React.Component {
   render() {
-    // var now = new Date();
-    // var classes = ["week"];
-    // if ("2015-07-09" > this.props.start) classes.push("past");
+    let start = UserStore.dateOf(this.props.age, this.props.weekno);
     return (
-      <td title={UserStore.dateOf(this.props.age, this.props.weekno).toDateString()}>{this.props.weekno}</td>
+      <td data-tooltip={start.toDateString()}>
+        <Link to="week" params={{slug: UserStore.user.get('slug'), start: start.toISOString().replace(/T.+/, '')}}>
+          {this.props.weekno}
+        </Link>
+      </td>
     )
   }
 

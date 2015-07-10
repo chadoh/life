@@ -3,6 +3,10 @@
 /*
  * Week grid
  */
+.life {
+  width: 100%;
+}
+
 .week {
   display: inline-block;
   cursor: pointer;
@@ -28,7 +32,6 @@
  * tooltips
  */
 [data-tooltip] {
-  display: inline-block;
   position: relative;
 }
 [data-tooltip]:before{

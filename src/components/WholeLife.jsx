@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
-import Year from './Year';
+import Week from './Week';
 // import UserStore from '../stores/UserStore';
 // import EventStore from '../stores/EventStore';
-import { Range, List } from 'immutable';
 
 export default class WholeLife extends React.Component {
   constructor(props) {
@@ -29,14 +28,14 @@ export default class WholeLife extends React.Component {
   }
 
   render() {
+    var weeks = [];
+    for(var i = 0; i < 101*52; i++) {
+      weeks.push(<Week key={i} weekno={i} />)
+    }
     return (
-      <table className="life">
-        {
-          Range(0,101).map(i => (
-            <Year key={i} age={i} />
-          )).toJS()
-        }
-      </table>
+      <div className="life">
+        {weeks}
+      </div>
     );
   }
 }

@@ -32,8 +32,8 @@ class UserStore extends BaseStore {
     return this._born
   }
 
-  dateOf(age, weekno) {
-    return new Date(this.born.getFullYear() + age, this.born.getMonth(), this.born.getDate() + weekno*7)
+  dateOf(weekno) {
+    return new Date(this.born.getFullYear() + Math.floor(weekno/52), this.born.getMonth(), this.born.getDate() + (weekno%52)*7)
   }
 }
 

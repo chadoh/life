@@ -15,8 +15,7 @@
 }
 .life a {
   background-color: #fef8fc;
-  margin-bottom: 2px;
-  border: 0.5vw solid white;
+  border: 1px solid white;
   width: 1.923076923%; /* 100/52 */
   display: -webkit-flex;
   display: -moz-flex;

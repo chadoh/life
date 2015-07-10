@@ -12,7 +12,7 @@ export default class Week extends React.Component {
     return (
       <a className={klass}
         data-tooltip={start.toDateString()}
-        href={`week/${start.toISOString().replace(/T.+/, '')}`}>
+        href={`${UserStore.user.get('slug')}/week/${start.toISOString().replace(/T.+/, '')}`}>
       </a>
     )
   }

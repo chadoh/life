@@ -14,11 +14,22 @@
   flex-flow: row wrap;
 }
 .life a {
+  background-color: #fef8fc;
+  margin-bottom: 2px;
+  border: 0.5vw solid white;
   width: 1.923076923%; /* 100/52 */
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flexbox;
   display: flex;
+}
+.life a.past {
+  background-color: #fae3e3;
+}
+.life a:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
 }
 
 .week {
@@ -48,7 +59,7 @@
 [data-tooltip] {
   position: relative;
 }
-[data-tooltip]:before{
+/* [data-tooltip]:before{ /* doesn't work if same element is Week /*
   content: '';
   display: none;
   position: absolute;
@@ -61,7 +72,7 @@
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid rgba(0,0,0,.72);
-}
+} */
 [data-tooltip]:after {
   content: attr(data-tooltip);
   display: none;

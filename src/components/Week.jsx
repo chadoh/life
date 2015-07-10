@@ -8,9 +8,11 @@ import { Link } from 'react-router';
 export default class Week extends React.Component {
   render() {
     let start = UserStore.dateOf(this.props.weekno);
+    let klass = new Date() > start ? 'past' : '';
     return (
-      <a data-tooltip={start.toDateString()} href={`week/${start.toISOString().replace(/T.+/, '')}`}>
-        {this.props.weekno % 52}
+      <a className={klass}
+        data-tooltip={start.toDateString()}
+        href={`week/${start.toISOString().replace(/T.+/, '')}`}>
       </a>
     )
   }

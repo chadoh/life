@@ -66,6 +66,9 @@ class EventStore extends BaseStore {
     return this._userEvents.concat(this._calculatedEvents);
   }
 
+  eventsForWeek(start) {
+    return [this.events.first()]
+  }
   eventsFor(start, end) {
     return this.events.filter(e => e.get('date') >= start && e.get('date') < end);
   }

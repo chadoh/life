@@ -14,6 +14,7 @@
   flex-flow: row wrap;
 }
 .life a {
+  text-decoration: none;
   background-color: #fef8fc;
   border: 1px solid white;
   width: 1.923076923%; /* 100/52 */

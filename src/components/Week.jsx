@@ -13,8 +13,13 @@ export default class Week extends React.Component {
       <a className={klass}
         data-tooltip={start.toDateString()}
         href={`${UserStore.user.get('slug')}/week/${start.toISOString().replace(/T.+/, '')}`}>
+        {this.emojiFor(start)}
       </a>
     )
+  }
+
+  emojiFor(date) {
+    return Emoji.get(EventStore.eventsForWeek(date).map(e => e.get('emoji'))[0])
   }
 
   // emojiFor(events) {

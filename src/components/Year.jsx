@@ -22,8 +22,8 @@ export default class Year extends React.Component {
     return (
       <tr>
         {
-          Range(0,53).map(j => (
-            <Week key={j} weekno={j}/>
+          Range(0,53).map(i => (
+            <Week key={i} age={this.props.age} weekno={i}/>
           )).toJS()
         }
       </tr>

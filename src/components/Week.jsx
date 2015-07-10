@@ -10,7 +10,7 @@ export default class Week extends React.Component {
     // var classes = ["week"];
     // if ("2015-07-09" > this.props.start) classes.push("past");
     return (
-      <td>{this.props.weekno}</td>
+      <td title={UserStore.dateOf(this.props.age, this.props.weekno).toDateString()}>{this.props.weekno}</td>
     )
   }
 

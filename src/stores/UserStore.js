@@ -25,6 +25,15 @@ class UserStore extends BaseStore {
   get user() {
     return this._user;
   }
+
+  get born() {
+    if (this._born) return this._born
+    else this._born = new Date(this._user.get('born').split('-'))
+    return this._born
+  }
+  dateOf(age, weekno) {
+    return new Date(this.born.getFullYear() + age, this.born.getMonth(), this.born.getDate() + weekno*7)
+  }
 }
 
 export default new UserStore();

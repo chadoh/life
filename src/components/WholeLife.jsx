@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
-// import Year from './Year';
+import Year from './Year';
 // import UserStore from '../stores/UserStore';
 // import EventStore from '../stores/EventStore';
 import { Range, List } from 'immutable';
@@ -33,13 +33,7 @@ export default class WholeLife extends React.Component {
       <table>
         {
           Range(0,101).map(i => (
-            <tr key={i}>
-              {
-                Range(0,53).map(j => (
-                  <td key={j}>{j}</td>
-                )).toJS()
-              }
-            </tr>
+            <Year key={i} />
           )).toJS()
         }
       </table>

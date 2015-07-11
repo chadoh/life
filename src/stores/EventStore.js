@@ -1,31 +1,29 @@
 import {EVENTS_GET, EVENT_CREATE, EVENT_DESTROY} from '../constants/EventConstants';
 import BaseStore from './BaseStore';
-import UserStore from './UserStore';
 import Immutable from 'immutable';
-
-let Map = Immutable.Map,
-    List = Immutable.List;
 
 class EventStore extends BaseStore {
 
   constructor() {
     super();
     this.subscribe(() => this._registerToActions.bind(this))
-    this._userEvents = List();
+    this._events = Immutable.Map();
   }
 
   _registerToActions(action) {
     switch(action.actionType) {
       case EVENTS_GET:
-        this._userEvents = this.makeImmutable(action.events);
+        this._events = Immutable.fromJS(action.events);
         this.emitChange();
         break;
       case EVENT_CREATE:
-        this._userEvents = this._userEvents.concat(this.makeImmutable([action.event]))
+        debugger;
+        // this._events = this._events.concat(this.makeImmutable([action.event]))
         this.emitChange();
         break;
       case EVENT_DESTROY:
-        this._userEvents = this._userEvents.filter(e => e.get('id') !== action.id)
+        debugger;
+        // this._events = this._events.filter(e => e.get('id') !== action.id)
         this.emitChange();
         break;
       default:
@@ -33,45 +31,8 @@ class EventStore extends BaseStore {
     };
   }
 
-  makeImmutable(events) {
-    return List(
-      events.map(e => Map(e))
-    )
-  }
-
-  get _calculatedEvents() {
-    return this.userBirthdays
-  }
-
-  get userBirthdays() {
-    if (!UserStore.user.get('born')) return List();
-    else {
-      if (this._userBirthdays) return this._userBirthdays;
-      this._userBirthdays = this.calculateBirthdays;
-      return this._userBirthdays
-    }
-  }
-
-  get calculateBirthdays() {
-    let birthdays = {};
-    for (var i=0; i<101; i++) {
-      birthdays[i * 52] = [{
-        summary: i === 0 ? "It's a baby!" : `Happy Birthday #${i}`,
-        emoji: i === 0 ? "baby" : i === 100 ? "100" : "birthday",
-        date: this.addYearsTo(UserStore.user.get('born'), i)
-      }]
-    }
-    return Immutable.fromJS(birthdays);
-  }
-
-  addYearsTo(dateStr, years) {
-    let parts = dateStr.split('-');
-    return `${parseInt(parts[0]) + years}-${parts[1]}-${parts[2]}`
-  }
-
   get events() {
-    // return this._userEvents.concat(this._calculatedEvents);
-    return this._calculatedEvents;
+    return this._events;
   }
 }
 

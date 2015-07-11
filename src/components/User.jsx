@@ -15,16 +15,16 @@ export default class User extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.state.user.get('id')) {
-      UserService.getUser(this.props.params.slug)
-      // EventService.fetchEventsForUser(this.props.params.slug)
-    }
-
+    UserService.getUser(this.props.params.slug)
     UserStore.addChangeListener(this._onChange);
+
+    EventService.fetchEventsForUser(this.props.params.slug);
+    EventStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
     UserStore.removeChangeListener(this._onChange);
+    EventStore.removeChangeListener(this._onChange);
   }
 
   _onChange() {
@@ -32,12 +32,11 @@ export default class User extends React.Component {
   }
 
   getState() {
-    return {user: UserStore.user};
+    return {user: UserStore.user, events: EventStore.events};
   }
 
   render() {
-    var cal = !this.state.user.get('born') ? '' :
-      <WholeLife />
+    var cal = !this.state.events.get('0') ? '' : <WholeLife events={this.state.events} />
     return (
       <div>
         <h1>{this.state.user.get('name')} <small>A life</small></h1>

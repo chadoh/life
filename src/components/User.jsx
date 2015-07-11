@@ -4,7 +4,8 @@ import UserStore from '../stores/UserStore';
 import EventStore from '../stores/EventStore';
 import UserService from '../services/UserService';
 import EventService from '../services/EventService';
-import WholeLife from './WholeLife';
+import Life from './Life';
+import LifeLoading from './LifeLoading';
 import { RouteHandler } from 'react-router';
 
 export default class User extends React.Component {
@@ -36,7 +37,7 @@ export default class User extends React.Component {
   }
 
   render() {
-    var cal = !this.state.events.get('0') ? '' : <WholeLife events={this.state.events} />
+    var cal = !this.state.events.get('0') ? <LifeLoading /> : <Life events={this.state.events} />
     return (
       <div>
         <h1>{this.state.user.get('name')} <small>A life</small></h1>

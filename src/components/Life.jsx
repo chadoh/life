@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import Week from './Week';
 
-export default class WholeLife extends React.Component {
+export default class Life extends React.Component {
   render() {
     var weeks = [];
     for(var i = 0; i < 101*52; i++) {
@@ -16,4 +16,4 @@ export default class WholeLife extends React.Component {
   }
 }
 
-ReactMixin(WholeLife.prototype, React.addons.PureRenderMixin);
+ReactMixin(Life.prototype, React.addons.PureRenderMixin);

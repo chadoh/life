@@ -12,38 +12,17 @@
   -webkit-flex-flow: row wrap;
   -moz-flex-flow: row wrap;
   flex-flow: row wrap;
+  padding-bottom: 5rem;
 }
-.life a {
+.life > * {
   text-decoration: none;
   color: #fef8fc;
-  border: 1px solid white;
   width: 1.923076923%; /* 100/52 */
   display: block;
   text-align: center;
 }
-.life a.past {
+.life > *.past {
   color: #fae3e3;
-}
-
-.week {
-  display: inline-block;
-  cursor: pointer;
-  width: 1.886792453%; /* 100/53 */
-  font-size: 10px;
-  text-align: center;
-}
-.week .placeholder {
-  display: inline-block;
-  background-color: #FEF8FC;
-  border-radius: 50%;
-  width: 8px;
-  height: 8px;
-}
-.week.past .placeholder {
-  background-color: #FAE3E3;
-}
-.week a {
-  text-decoration: none;
 }
 
 /*

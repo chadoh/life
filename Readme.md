@@ -6,9 +6,9 @@ Built with [react-flux-jwt-authentication-sample](https://github.com/auth0/react
 
 ## Development
 
-You will need to run [life_api](https://github.com/chadoh/life_api) locally on port 3001.
+Run `npm install` on this project and run `npm run watch` to start the app. Then just navigate to [http://localhost:3000](http://localhost:3000)
 
-Then, run `npm install` on this project and run `npm run watch` to start the app. Then just navigate to [http://localhost:3000](http://localhost:3000)
+Optionally, you can run [life_api](https://github.com/chadoh/life_api) locally on port 5000, and change `BaseConstants` to use it instead of the production env.
 
 ## How does it work?
 

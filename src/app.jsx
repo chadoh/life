@@ -22,7 +22,7 @@ var routes = (
 
 var router = Router.create({
   routes: routes,
-  location: Router.HistoryLocation
+  // location: Router.HistoryLocation
 });
 RouterContainer.set(router);
 

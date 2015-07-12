@@ -45,7 +45,7 @@ export default class WeekDetail extends React.Component {
         <td>{Emoji.get(event.get('emoji'))}</td>
         <td>{event.get('summary')}</td>
         <td className="text-muted">{event.get('date')}</td>
-        {deleteButton}
+        {event.get('id') ? deleteButton : ''}
       </tr>
     ));
 
@@ -74,16 +74,18 @@ export default class WeekDetail extends React.Component {
     return (
       <div className="week-detail-wrap">
         <Link to="user" params={{slug: this.props.params.slug}} className="close-week-detail">close</Link>
-        <aside className="week-detail">
-          <h1>
-            Week of {this.start.toDateString()} <br />
-            <small>{Math.floor(+this.props.params.weekno/52)} years old</small>
-          </h1>
-          <table className="table">
-            {events}
-          </table>
-          {form}
-        </aside>
+        {!UserStore.user.get('born') ? '' :
+          <aside className="week-detail">
+            <h1>
+              Week of {this.start.toDateString()} <br />
+              <small>{Math.floor(+this.props.params.weekno/52)} years old</small>
+            </h1>
+            <table className="table">
+              {events}
+            </table>
+            {form}
+          </aside>
+        }
       </div>
     )
   }

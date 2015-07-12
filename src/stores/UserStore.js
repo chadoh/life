@@ -8,7 +8,7 @@ class UserStore extends BaseStore {
     super();
     this.subscribe(() => this._registerToActions.bind(this))
     // this._user = Map({id: 1, name: "Chad Ostrowski", email: "hi@chadoh.com", slug: "chadoh", born: "1987-03-14"});
-    this._user = Map({id: null, name: null, email: null, slug: null, born: null});
+    this._user = Map({id: '', name: '', email: '', slug: '', born: ''});
   }
 
   _registerToActions(action) {
@@ -33,6 +33,7 @@ class UserStore extends BaseStore {
   }
 
   dateOf(weekno) {
+    if (!this._user.get('born')) return new Date();
     return new Date(this.born.getFullYear() + Math.floor(weekno/52), this.born.getMonth(), this.born.getDate() + (weekno%52)*7)
   }
 }

@@ -20,9 +20,12 @@ export default class WeekDetail extends React.Component {
     this._onChange = this._onChange.bind(this);
   }
 
+  componentWillMount() {
+    EventStore.addChangeListener(this._onChange);
+  }
+
   componentDidMount() {
     if (!this.state.events) this._onChange();
-    EventStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {

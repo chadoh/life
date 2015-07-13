@@ -15,11 +15,13 @@ export default class User extends React.Component {
     this._onChange = this._onChange.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     UserStore.addChangeListener(this._onChange);
-    UserService.getUser(this.props.params.slug)
-
     EventStore.addChangeListener(this._onChange);
+  }
+
+  componentDidMount() {
+    UserService.getUser(this.props.params.slug)
     EventService.fetchEventsForUser(this.props.params.slug);
   }
 

@@ -12,7 +12,6 @@ import LoginActions from './actions/LoginActions';
 var routes = (
   <Route handler={AuthenticatedApp}>
     <Route name="login" handler={Login}/>
-    <Route name="signup" handler={Signup}/>
     <Route name="home" path="/" handler={Home}/>
     <Route name="user" path="/:slug" handler={User} ignoreScrollBehavior={true}>
       <Route name="week" path="week/:weekno" handler={WeekDetail} ignoreScrollBehavior={true}/>

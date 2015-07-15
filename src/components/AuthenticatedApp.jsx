@@ -13,7 +13,8 @@ export default class AuthenticatedApp extends React.Component {
 
   _getLoginState() {
     return {
-      userLoggedIn: LoginStore.isLoggedIn()
+      userLoggedIn: LoginStore.isLoggedIn(),
+      user: LoginStore.getState().user
     };
   }
 
@@ -34,10 +35,12 @@ export default class AuthenticatedApp extends React.Component {
     return (
       <div className="container">
         <nav className="navbar navbar-default">
-          <div className="navbar-header">
-            <a className="navbar-brand" href="/">Life</a>
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <Link className="navbar-brand" to="home">Life</Link>
+            </div>
+            {this.headerItems}
           </div>
-          {this.headerItems}
         </nav>
         <RouteHandler/>
       </div>
@@ -56,15 +59,12 @@ export default class AuthenticatedApp extends React.Component {
         <li>
           <Link to="login">Login</Link>
         </li>
-        <li>
-          <Link to="signup">Signup</Link>
-        </li>
       </ul>)
     } else {
       return (
       <ul className="nav navbar-nav navbar-right">
         <li>
-          <Link to="home">Home</Link>
+          <Link to="user" params={{slug: this.state.user.slug}}>Your Life</Link>
         </li>
         <li>
           <a href="" onClick={this.logout}>Logout</a>

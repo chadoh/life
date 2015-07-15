@@ -1,11 +1,9 @@
-import AppDispatcher from '../dispatchers/AppDispatcher.js';
-import {USER_GET} from '../constants/UserConstants.js';
+import alt from '../alt';
 
-export default {
-  gotUser: (user) => {
-    AppDispatcher.dispatch({
-      actionType: USER_GET,
-      user: user
-    })
+class UserActions {
+  constructor() {
+    this.generateActions('gotUser')
   }
 }
+
+export default alt.createActions(UserActions)

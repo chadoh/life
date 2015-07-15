@@ -33,6 +33,7 @@ class UserStore extends BaseStore {
   }
 
   dateOf(weekno) {
+    // use this.waitFor(UserStore)
     if (!this._user.get('born')) return new Date();
     return new Date(this.born.getFullYear() + Math.floor(weekno/52), this.born.getMonth(), this.born.getDate() + (weekno%52)*7)
   }

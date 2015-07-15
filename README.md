@@ -8,12 +8,8 @@ Built with [react-flux-jwt-authentication-sample](https://github.com/auth0/react
 
 Run `npm install` on this project and run `npm run watch` to start the app. Then just navigate to [http://localhost:3000](http://localhost:3000)
 
-Optionally, you can run [life_api](https://github.com/chadoh/life_api) locally on port 5000, and change `BaseConstants` to use it instead of the production env.
-
-## How does it work?
-
-To learn more about how this project works and how it has been implemented, please read [this blog post](https://auth0.com/blog/2015/04/09/adding-authentication-to-your-react-flux-app/)
+Optionally, you can run [life_api](https://github.com/chadoh/life_api) locally on port 5000, and change `src/config.js` to use it instead of the production env.
 
 ## Deployment
 
-TBD
+Right now, the files are manually uploaded to an S3 bucket. The plan is to make it render "isomorphically", which means it will need to be deployed on Heroku or some such.

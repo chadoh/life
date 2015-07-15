@@ -15,14 +15,14 @@ var routes = (
     <Route name="signup" handler={Signup}/>
     <Route name="home" path="/" handler={Home}/>
     <Route name="user" path="/:slug" handler={User} ignoreScrollBehavior={true}>
-      <Route name="week" path="week/:start/to/:end" handler={WeekDetail} ignoreScrollBehavior={true}/>
+      <Route name="week" path="week/:weekno" handler={WeekDetail} ignoreScrollBehavior={true}/>
     </Route>
   </Route>
 );
 
 var router = Router.create({
   routes: routes,
-  location: Router.HistoryLocation
+  // location: Router.HistoryLocation
 });
 RouterContainer.set(router);
 

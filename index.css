@@ -3,41 +3,41 @@
 /*
  * Week grid
  */
-.week {
-  display: inline-block;
-  cursor: pointer;
-  width: 1.886792453%; /* 100/53 */
-  font-size: 10px;
+.life {
+  width: 100%;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  flex-flow: row wrap;
+  padding-bottom: 5rem;
+}
+.life > * {
+  text-decoration: none;
+  color: #fef8fc;
+  width: 1.923076923%; /* 100/52 */
+  display: block;
   text-align: center;
 }
-.week .placeholder {
-  display: inline-block;
-  background-color: #FEF8FC;
-  border-radius: 50%;
-  width: 8px;
-  height: 8px;
-}
-.week.past .placeholder {
-  background-color: #FAE3E3;
-}
-.week a {
-  text-decoration: none;
+.life > *.past {
+  color: #fae3e3;
 }
 
 /*
  * tooltips
  */
 [data-tooltip] {
-  display: inline-block;
   position: relative;
 }
 [data-tooltip]:before{
   content: '';
   display: none;
   position: absolute;
-  z-index: 9998;
+  z-index: 1;
   bottom: 20px;
-  left: 0;
+  left: 25%;
   width: 0;
   height: 0;
 
@@ -49,7 +49,7 @@
   content: attr(data-tooltip);
   display: none;
   position: absolute;
-  z-index: 9999;
+  z-index: 2;
   bottom: 25px;
   left: -6.5rem;
   width: 14rem;
@@ -73,7 +73,7 @@
   position: fixed;
   top: 0; right: 0; bottom: 0; left: 0;
   background-color: rgba(255,255,255,0.6);
-  z-index: 1;
+  z-index: 3;
 }
 .week-detail {
   position: fixed;

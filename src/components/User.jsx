@@ -4,7 +4,8 @@ import UserStore from '../stores/UserStore';
 import EventStore from '../stores/EventStore';
 import UserService from '../services/UserService';
 import EventService from '../services/EventService';
-import WholeLife from './WholeLife';
+import Life from './Life';
+import LifeLoading from './LifeLoading';
 import { RouteHandler } from 'react-router';
 
 export default class User extends React.Component {
@@ -14,17 +15,19 @@ export default class User extends React.Component {
     this._onChange = this._onChange.bind(this);
   }
 
-  componentDidMount() {
-    if (!this.state.user.id) {
-      UserService.getUser(this.props.params.slug)
-      EventService.fetchEventsForUser(this.props.params.slug)
-    }
+  componentWillMount() {
+    UserStore.listen(this._onChange);
+    EventStore.listen(this._onChange);
+  }
 
-    UserStore.addChangeListener(this._onChange);
+  componentDidMount() {
+    UserService.getUser(this.props.params.slug)
+    EventService.fetchEventsForUser(this.props.params.slug);
   }
 
   componentWillUnmount() {
-    UserStore.removeChangeListener(this._onChange);
+    UserStore.unlisten(this._onChange);
+    EventStore.unlisten(this._onChange);
   }
 
   _onChange() {
@@ -32,12 +35,11 @@ export default class User extends React.Component {
   }
 
   getState() {
-    return {user: UserStore.user};
+    return {user: UserStore.getState().user, events: EventStore.getState().events};
   }
 
   render() {
-    var cal = !this.state.user.get('born') ? '' :
-      <WholeLife />
+    var cal = !this.state.events.get('0') ? <LifeLoading /> : <Life events={this.state.events} />
     return (
       <div>
         <h1>{this.state.user.get('name')} <small>A life</small></h1>

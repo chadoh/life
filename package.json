@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/chadoh/life",
   "dependencies": {
+    "alt": "^0.17.1",
     "bootstrap": "^3.3.0",
     "flux": "^2.0.1",
     "jwt-decode": "^1.1.0",

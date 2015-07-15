@@ -1,23 +1,9 @@
-import AppDispatcher from '../dispatchers/AppDispatcher.js';
-import {EVENTS_GET, EVENT_CREATE, EVENT_DESTROY} from '../constants/EventConstants.js';
+import alt from '../alt';
 
-export default {
-  gotEvents: (events) => {
-    AppDispatcher.dispatch({
-      actionType: EVENTS_GET,
-      events: events
-    })
-  },
-  createdEvent: (event) => {
-    AppDispatcher.dispatch({
-      actionType: EVENT_CREATE,
-      event: event
-    })
-  },
-  destroyedEvent: (id) => {
-    AppDispatcher.dispatch({
-      actionType: EVENT_DESTROY,
-      id: id
-    })
+class EventActions {
+  constructor() {
+    this.generateActions('gotEvents', 'createdEvent', 'destroyedEvent')
   }
 }
+
+export default alt.createActions(EventActions)

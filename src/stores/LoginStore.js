@@ -1,44 +1,37 @@
-import {LOGIN_USER, LOGOUT_USER} from '../constants/LoginConstants';
-import BaseStore from './BaseStore';
-import jwt_decode from 'jwt-decode';
+import alt from '../alt'
+import jwt_decode from 'jwt-decode'
+import LoginActions from '../actions/LoginActions'
 
-
-class LoginStore extends BaseStore {
+class LoginStore {
 
   constructor() {
-    super();
-    this.subscribe(() => this._registerToActions.bind(this))
-    this._user = null;
-    this._jwt = null;
+    this.bindListeners({
+      loginUser: LoginActions.loginUser,
+      logoutUser: LoginActions.logoutUser
+    })
+    this.state = {
+      user: null,
+      jwt: null
+    }
   }
 
-  _registerToActions(action) {
-    switch(action.actionType) {
-      case LOGIN_USER:
-        this._jwt = action.jwt;
-        this._user = jwt_decode(this._jwt);
-        this.emitChange();
-        break;
-      case LOGOUT_USER:
-        this._user = null;
-        this.emitChange();
-        break;
-      default:
-        break;
-    };
+  loginUser(jwt) {
+    this.setState({
+      jwt: jwt,
+      user: jwt_decode(jwt)
+    })
   }
 
-  get user() {
-    return this._user;
+  logoutUser() {
+    this.setState({
+      jwt: null,
+      user: null
+    })
   }
 
-  get jwt() {
-    return this._jwt;
-  }
-
-  isLoggedIn() {
-    return !!this._user;
+  static isLoggedIn() {
+    return !!this.getState().user;
   }
 }
 
-export default new LoginStore();
+export default alt.createStore(LoginStore, 'LoginStore')

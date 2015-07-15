@@ -1,29 +1,29 @@
-import {USER_GET} from '../constants/UserConstants';
-import BaseStore from './BaseStore';
-import { Map } from 'immutable';
+import alt from '../alt'
+import { Map } from 'immutable'
+import UserActions from '../actions/UserActions'
 
-class UserStore extends BaseStore {
+class UserStore {
 
   constructor() {
-    super();
-    this.subscribe(() => this._registerToActions.bind(this))
-    this._user = Map({id: null, name: null, email: null, slug: null, born: null});
+    this.bindListeners({
+      receiveUser: UserActions.gotUser
+    })
+    this.state = {
+      // user: Map({id: 1, name: "Chad Ostrowski", email: "hi@chadoh.com", slug: "chadoh", born: "1987-03-14"}),
+      user: Map({id: '', name: '', email: '', slug: '', born: ''}),
+      born: null
+    }
   }
 
-  _registerToActions(action) {
-    switch(action.actionType) {
-      case USER_GET:
-        this._user = Map(action.user).update('born', str => new Date(str.split('-')));
-        this.emitChange();
-        break;
-      default:
-        break;
-    };
+  receiveUser(user) {
+    this.setState({user: Map(user), born: new Date(user.born.split('-'))})
   }
 
-  get user() {
-    return this._user;
+  static dateOf(weekno) {
+    let _born = this.getState().born;
+    if (!_born) return new Date();
+    return new Date(_born.getFullYear() + Math.floor(weekno/52), _born.getMonth(), _born.getDate() + (weekno%52)*7)
   }
 }
 
-export default new UserStore();
+export default alt.createStore(UserStore, 'UserStore')

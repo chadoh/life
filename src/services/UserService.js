@@ -1,14 +1,14 @@
 import request from 'reqwest';
 import when from 'when';
-import {USER_URL} from '../constants/UserConstants';
+import {API_URL} from '../config';
 import UserActions from '../actions/UserActions';
 import LoginStore from '../stores/LoginStore';
 
 class UserService {
 
   getUser(slug) {
-    request({
-      url: USER_URL + slug,
+    return request({
+      url: API_URL + 'users/' + slug,
       method: 'GET',
       crossOrigin: true,
       headers: {

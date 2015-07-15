@@ -6,34 +6,23 @@ import { Link } from 'react-router';
 
 export default class Week extends React.Component {
   render() {
-    var now = new Date();
-    var classes = ["week"];
-    if (now > this.props.start) classes.push("past");
+    let start = UserStore.dateOf(this.props.weekno);
+    let klass = new Date() > start ? 'past' : '';
     return (
-      <div className={classes.join(' ')}>
-        {this.emojiFor(this.props.events)}
-      </div>
+      <Link to="week" className={klass}
+        data-tooltip={this.tooltip(start.toDateString())}
+        params={{slug: UserStore.getState().user.get('slug'), weekno: this.props.weekno}}>
+        {this.emoji}
+      </Link>
     )
   }
 
-  emojiFor(events) {
-    let tooltip = this.props.start.toDateString();
-    let emoji = <span className="placeholder"/>;
-    if (events.first()) {
-      tooltip = `${tooltip}: ${events.first().get('summary')}`;
-      emoji = Emoji.get(events.first().get('emoji'));
-    }
-    return (
-      <span data-tooltip={tooltip}>
-        <Link to="week" params={{slug: UserStore.user.get('slug'), start: this.dateParam(this.props.start), end: this.dateParam(this.props.end)}}>
-          {emoji}
-        </Link>
-      </span>
-    )
+  get emoji() {
+    return this.props.events ? Emoji.get(this.props.events.first().get('emoji')) : "●"
   }
 
-  dateParam(date) {
-    return date.toJSON().split('T')[0]
+  tooltip(date) {
+    return this.props.events ? `${date}: ${this.props.events.first().get('summary')}` : date
   }
 }
 

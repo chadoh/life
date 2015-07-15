@@ -1,6 +1,6 @@
 import request from 'reqwest';
 import when from 'when';
-import {USER_URL} from '../constants/UserConstants';
+import {API_URL} from '../config';
 import EventActions from '../actions/EventActions';
 import LoginStore from '../stores/LoginStore';
 
@@ -8,7 +8,7 @@ class EventService {
 
   fetchEventsForUser(slug) {
     return request({
-      url: USER_URL + slug + '/events',
+      url: API_URL + 'users/' + slug + '/events',
       method: 'GET',
       crossOrigin: true,
       headers: {
@@ -16,13 +16,13 @@ class EventService {
       }
     })
     .then(function(response) {
-      EventActions.gotEvents(response.events);
+      EventActions.gotEvents(response);
     });
   }
 
   create(slug, summary, emoji, date) {
     return request({
-      url: USER_URL + slug + '/events',
+      url: API_URL + 'users/' + slug + '/events',
       method: 'POST',
       data: { event: {
         summary: summary,
@@ -41,7 +41,7 @@ class EventService {
 
   destroy(slug, id) {
     return request({
-      url: USER_URL + slug + '/events/' + id,
+      url: API_URL + 'users/' + slug + '/events/' + id,
       method: 'DELETE',
       type: 'json', // needed bc of bug reqwest https://github.com/ded/reqwest/issues/160
       crossOrigin: true,

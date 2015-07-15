@@ -14,14 +14,14 @@
   flex-flow: row wrap;
   padding-bottom: 5rem;
 }
-.life > * {
+.life > *, .life > a {
   text-decoration: none;
   color: #fef8fc;
   width: 1.923076923%; /* 100/52 */
   display: block;
   text-align: center;
 }
-.life > *.past {
+.life > a.past {
   color: #fae3e3;
 }
 

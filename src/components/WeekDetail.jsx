@@ -79,7 +79,7 @@ export default class WeekDetail extends React.Component {
     return (
       <div className="week-detail-wrap">
         <Link to="user" params={{slug: this.props.params.slug}} className="close-week-detail">close</Link>
-        {!UserStore.user.get('born') ? '' :
+        {!UserStore.getState().user.get('born') ? '' :
           <aside className="week-detail">
             <h1>
               Week of {this.start.toDateString()} <br />

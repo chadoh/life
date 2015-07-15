@@ -7,23 +7,23 @@ class EventStore extends BaseStore {
   constructor() {
     super();
     this.subscribe(() => this._registerToActions.bind(this))
-    this._events = Immutable.Map();
+    this._userEvents = Immutable.Map();
   }
 
   _registerToActions(action) {
     switch(action.actionType) {
       case EVENTS_GET:
-        this._events = Immutable.fromJS(action.events);
+        this._userEvents = Immutable.fromJS(action.events);
         this.emitChange();
         break;
       case EVENT_CREATE:
         debugger;
-        // this._events = this._events.concat(this.makeImmutable([action.event]))
+        // this._userEvents = this._userEvents.concat(this.makeImmutable([action.event]))
         this.emitChange();
         break;
       case EVENT_DESTROY:
         debugger;
-        // this._events = this._events.filter(e => e.get('id') !== action.id)
+        // this._userEvents = this._userEvents.filter(e => e.get('id') !== action.id)
         this.emitChange();
         break;
       default:
@@ -32,7 +32,7 @@ class EventStore extends BaseStore {
   }
 
   get events() {
-    return this._events;
+    return this._userEvents;
   }
 }
 

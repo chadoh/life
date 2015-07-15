@@ -18,14 +18,14 @@ export default (ComposedComponent) => {
     _getLoginState() {
       return {
         userLoggedIn: LoginStore.isLoggedIn(),
-        user: LoginStore.user,
-        jwt: LoginStore.jwt
+        user: LoginStore.getState().user,
+        jwt: LoginStore.getState().jwt
       };
     }
 
     componentDidMount() {
       this.changeListener = this._onChange.bind(this);
-      LoginStore.addChangeListener(this.changeListener);
+      LoginStore.listen(this.changeListener);
     }
 
     _onChange() {
@@ -33,7 +33,7 @@ export default (ComposedComponent) => {
     }
 
     componentWillUnmount() {
-      LoginStore.removeChangeListener(this.changeListener);
+      LoginStore.unlisten(this.changeListener);
     }
 
     render() {

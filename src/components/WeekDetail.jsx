@@ -21,7 +21,7 @@ export default class WeekDetail extends React.Component {
   }
 
   componentWillMount() {
-    EventStore.addChangeListener(this._onChange);
+    EventStore.listen(this._onChange);
   }
 
   componentDidMount() {
@@ -29,16 +29,18 @@ export default class WeekDetail extends React.Component {
   }
 
   componentWillUnmount() {
-    EventStore.removeChangeListener(this._onChange);
+    EventStore.unlisten(this._onChange);
   }
 
   _onChange() {
-    this.setState({events: EventStore.events.get(this.props.params.weekno)});
+    this.setState({events: EventStore.getState().events.get(this.props.params.weekno)});
   }
 
   get authed() {
-    return LoginStore.user && LoginStore.user.id === UserStore.user.get('id')
+    return LoginStore.getState().user &&
+      LoginStore.getState().user.id === UserStore.getState().user.get('id')
   }
+
   render() {
     let deleteButton = !this.authed ? '' :
       <td><button onClick={this.deleteEvent.bind(this)} className="btn btn-link">&times;</button></td>

@@ -16,8 +16,8 @@ export default class User extends React.Component {
   }
 
   componentWillMount() {
-    UserStore.addChangeListener(this._onChange);
-    EventStore.addChangeListener(this._onChange);
+    UserStore.listen(this._onChange);
+    EventStore.listen(this._onChange);
   }
 
   componentDidMount() {
@@ -26,8 +26,8 @@ export default class User extends React.Component {
   }
 
   componentWillUnmount() {
-    UserStore.removeChangeListener(this._onChange);
-    EventStore.removeChangeListener(this._onChange);
+    UserStore.unlisten(this._onChange);
+    EventStore.unlisten(this._onChange);
   }
 
   _onChange() {
@@ -35,7 +35,7 @@ export default class User extends React.Component {
   }
 
   getState() {
-    return {user: UserStore.user, events: EventStore.events};
+    return {user: UserStore.getState().user, events: EventStore.getState().events};
   }
 
   render() {

@@ -20,9 +20,12 @@ export default class WeekDetail extends React.Component {
     this._onChange = this._onChange.bind(this);
   }
 
-  componentDidMount() {
-    if (!this.events) this._onChange();
+  componentWillMount() {
     EventStore.addChangeListener(this._onChange);
+  }
+
+  componentDidMount() {
+    if (!this.state.events) this._onChange();
   }
 
   componentWillUnmount() {
@@ -30,7 +33,7 @@ export default class WeekDetail extends React.Component {
   }
 
   _onChange() {
-    this.setState({events: EventStore.eventsFor(this.start, this.end)});
+    this.setState({events: EventStore.events.get(this.props.params.weekno)});
   }
 
   get authed() {
@@ -44,8 +47,8 @@ export default class WeekDetail extends React.Component {
       <tr key={event.get('id')} data-id={event.get('id')}>
         <td>{Emoji.get(event.get('emoji'))}</td>
         <td>{event.get('summary')}</td>
-        <td className="text-muted">{event.get('date').toDateString()}</td>
-        {deleteButton}
+        <td className="text-muted">{event.get('date')}</td>
+        {event.get('id') ? deleteButton : ''}
       </tr>
     ));
 
@@ -63,7 +66,10 @@ export default class WeekDetail extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="date">Date</label>
-          <input required id="date" name="date" className="form-control" type="date" min={this.props.params.start} max={this.props.params.end} valueLink={this.linkState('date')} />
+          <input required id="date" name="date" className="form-control"
+                 type="date" min={this.start.toISOString().replace(/T.+/, '')}
+                 max={this.end.toISOString().replace(/T.+/, '')}
+                 valueLink={this.linkState('date')} />
         </div>
         <button type="submit" className="btn btn-default">Save</button>
       </form>
@@ -71,13 +77,18 @@ export default class WeekDetail extends React.Component {
     return (
       <div className="week-detail-wrap">
         <Link to="user" params={{slug: this.props.params.slug}} className="close-week-detail">close</Link>
-        <aside className="week-detail">
-          <h1>{this.props.params.start} <small>to</small> {this.props.params.end}</h1>
-          <table className="table">
-            {events}
-          </table>
-          {form}
-        </aside>
+        {!UserStore.user.get('born') ? '' :
+          <aside className="week-detail">
+            <h1>
+              Week of {this.start.toDateString()} <br />
+              <small>{Math.floor(+this.props.params.weekno/52)} years old</small>
+            </h1>
+            <table className="table">
+              {events}
+            </table>
+            {form}
+          </aside>
+        }
       </div>
     )
   }
@@ -104,14 +115,12 @@ export default class WeekDetail extends React.Component {
       });
   }
   get start() {
-    return this.dateFromString(this.props.params.start);
-  }
-  get end() {
-    return this.dateFromString(this.props.params.end);
+    return UserStore.dateOf(+this.props.params.weekno);
   }
 
-  dateFromString(str) {
-    return new Date(str.split('-'))
+  get end() {
+    let startOfNextWeek = UserStore.dateOf(+this.props.params.weekno + 1);
+    return new Date(startOfNextWeek.getFullYear(), startOfNextWeek.getMonth(), startOfNextWeek.getDate() - 1);
   }
 }
 

@@ -7,7 +7,7 @@ import LoginStore from '../stores/LoginStore';
 class UserService {
 
   getUser(slug) {
-    request({
+    return request({
       url: USER_URL + slug,
       method: 'GET',
       crossOrigin: true,

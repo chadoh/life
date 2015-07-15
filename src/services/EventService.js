@@ -16,7 +16,7 @@ class EventService {
       }
     })
     .then(function(response) {
-      EventActions.gotEvents(response.events);
+      EventActions.gotEvents(response);
     });
   }
 

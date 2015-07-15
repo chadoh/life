@@ -1,42 +1,29 @@
-import {USER_GET} from '../constants/UserConstants';
-import BaseStore from './BaseStore';
-import { Map } from 'immutable';
+import alt from '../alt'
+import { Map } from 'immutable'
+import UserActions from '../actions/UserActions'
 
-class UserStore extends BaseStore {
+class UserStore {
 
   constructor() {
-    super();
-    this.subscribe(() => this._registerToActions.bind(this))
-    // this._user = Map({id: 1, name: "Chad Ostrowski", email: "hi@chadoh.com", slug: "chadoh", born: "1987-03-14"});
-    this._user = Map({id: '', name: '', email: '', slug: '', born: ''});
+    this.bindListeners({
+      receiveUser: UserActions.gotUser
+    })
+    this.state = {
+      // user: Map({id: 1, name: "Chad Ostrowski", email: "hi@chadoh.com", slug: "chadoh", born: "1987-03-14"}),
+      user: Map({id: '', name: '', email: '', slug: '', born: ''}),
+      born: null
+    }
   }
 
-  _registerToActions(action) {
-    switch(action.actionType) {
-      case USER_GET:
-        this._user = Map(action.user);
-        this.emitChange();
-        break;
-      default:
-        break;
-    };
+  receiveUser(user) {
+    this.setState({user: Map(user), born: new Date(user.born.split('-'))})
   }
 
-  get user() {
-    return this._user;
-  }
-
-  get born() {
-    if (this._born) return this._born
-    else this._born = new Date(this._user.get('born').split('-'))
-    return this._born
-  }
-
-  dateOf(weekno) {
-    // use this.waitFor(UserStore)
-    if (!this._user.get('born')) return new Date();
-    return new Date(this.born.getFullYear() + Math.floor(weekno/52), this.born.getMonth(), this.born.getDate() + (weekno%52)*7)
+  static dateOf(weekno) {
+    let _born = this.getState().born;
+    if (!_born) return new Date();
+    return new Date(_born.getFullYear() + Math.floor(weekno/52), _born.getMonth(), _born.getDate() + (weekno%52)*7)
   }
 }
 
-export default new UserStore();
+export default alt.createStore(UserStore, 'UserStore')

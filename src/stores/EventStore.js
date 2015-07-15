@@ -1,39 +1,31 @@
-import {EVENTS_GET, EVENT_CREATE, EVENT_DESTROY} from '../constants/EventConstants';
-import BaseStore from './BaseStore';
-import Immutable from 'immutable';
+import alt from '../alt'
+import EventActions from '../actions/EventActions'
+import Immutable from 'immutable'
 
-class EventStore extends BaseStore {
+class EventStore {
 
   constructor() {
-    super();
-    this.subscribe(() => this._registerToActions.bind(this))
-    this._events = Immutable.Map();
+    this.bindListeners({
+      receiveEvents: EventActions.gotEvents,
+      createEvent: EventActions.createdEvent,
+      destroyEvent: EventActions.destroyedEvent
+    })
+    this.state = {
+      events: Immutable.Map()
+    }
   }
 
-  _registerToActions(action) {
-    switch(action.actionType) {
-      case EVENTS_GET:
-        this._events = Immutable.fromJS(action.events);
-        this.emitChange();
-        break;
-      case EVENT_CREATE:
-        debugger;
-        // this._events = this._events.concat(this.makeImmutable([action.event]))
-        this.emitChange();
-        break;
-      case EVENT_DESTROY:
-        debugger;
-        // this._events = this._events.filter(e => e.get('id') !== action.id)
-        this.emitChange();
-        break;
-      default:
-        break;
-    };
+  receiveEvents(events) {
+    this.setState({events: Immutable.fromJS(events)})
   }
 
-  get events() {
-    return this._events;
+  createEvent(event) {
+    debugger
+  }
+
+  destroyEvent(id) {
+    debugger
   }
 }
 
-export default new EventStore();
+export default alt.createStore(EventStore, 'EventStore')

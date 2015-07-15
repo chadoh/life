@@ -4,7 +4,7 @@ import ReactMixin from 'react-mixin';
 export default class LifeLoading extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { dots: 0 };
+    this.state = { dots: 1750 }; // ~1/3 of a life
   }
 
   componentDidMount() {
@@ -18,7 +18,7 @@ export default class LifeLoading extends React.Component {
   render() {
     var dots = [];
     for(var i = 0; i < this.state.dots; i++) {
-      dots.push(<span className="past" key={i}>●</span>)
+      dots.push(<span key={i}>●</span>)
     }
     return (
       <div>

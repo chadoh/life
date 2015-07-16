@@ -33,7 +33,30 @@ export default class Home extends React.Component {
           <div className="container">
             <h1 className="brand">We want to help you live intentionally!</h1>
             <p>We&lsquo;re making tools to help you visualize and plan your life. To find out when it&lsquo;s ready, sign up!</p>
-            <div className="mailchimp-signup"></div>
+            <div id="mc_embed_signup">
+              <form action="//publishist.us7.list-manage.com/subscribe/post?u=82eccb779d56c1434d98c79cf&amp;id=2354043ebd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
+                <div id="mc_embed_signup_scroll">
+                  <p className="mc-field-group">
+                    <label htmlFor="mce-EMAIL">Email Address </label>
+                    <input type="email" name="EMAIL" required id="mce-EMAIL"/>
+                  </p>
+                  <p className="mc-field-group">
+                    <label htmlFor="mce-FNAME">First Name </label>
+                    <input type="text" name="FNAME" id="mce-FNAME"/>
+                  </p>
+                  <p className="mc-field-group">
+                    <label htmlFor="mce-LNAME">Last Name </label>
+                    <input type="text" name="LNAME" id="mce-LNAME"/>
+                  </p>
+                  <p id="mce-responses" className="clear">
+                    <div className="response" id="mce-error-response" style={{display: 'none'}}></div>
+                    <div className="response" id="mce-success-response" style={{display: 'none'}}></div>
+                  </p>
+                  <div style={{position: 'absolute', left: -5000}}><input type="text" name="b_82eccb779d56c1434d98c79cf_2354043ebd" tabIndex="-1" defaultValue=""/></div>
+                  <div className="clear"><input type="submit" defaultValue="Sign Up" name="subscribe" id="mc-embedded-subscribe"/></div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
 

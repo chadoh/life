@@ -123,6 +123,9 @@ h1.brand small {
   background-color: #F0BFA1;
   color: white;
 }
+.bg-light [type=text], .bg-light [type=email] {
+  color: gray;
+}
 
 /*
  * Brand font

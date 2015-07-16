@@ -2,7 +2,6 @@ import React from 'react';
 import Router, {Route} from 'react-router';
 import AuthenticatedApp from './components/AuthenticatedApp'
 import Login from './components/Login';
-import Signup from './components/Signup';
 import Home from './components/Home';
 import User from './components/User';
 import WeekDetail from './components/WeekDetail';
@@ -21,7 +20,7 @@ var routes = (
 
 var router = Router.create({
   routes: routes,
-  // location: Router.HistoryLocation
+  location: Router.HistoryLocation
 });
 RouterContainer.set(router);
 

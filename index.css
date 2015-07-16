@@ -1,4 +1,135 @@
-@import 'bootstrap';
+body {
+  font-family: "Open Sans", sans-serif
+}
+.container, .container-wide {
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 90%;
+  max-width: 800px;
+}
+.container-wide {
+  max-width: 1200px;
+}
+.full-height {
+  min-height: 100vh;
+}
+a {
+  color: #B36A30;
+}
+a:hover {
+  box-shadow: 0 2px 0 0 #B36A30;
+}
+.button, [type=submit], button {
+  background-color: #B36A30;
+}
+.text-muted {
+  color: gray;
+}
+
+/* must have a position: relative parent to work;
+ * vertically centered content lives in a child element, not this one */
+.vertical-centering, .vertical-centering > * {
+  position: absolute;
+  top: 0; bottom: 0; right: 0; left: 0;
+  margin: auto;
+}
+.vertical-centering > * {
+  display: table;
+  width: 100%;
+}
+
+/*
+ * Hero & Nav
+ */
+.nav-button {
+  text-align: right;
+  height: 0;
+}
+.nav-button > * {
+  z-index: 2;
+  position: relative;
+  background-color: transparent;
+  top: 1.5rem;
+  color: gray;
+}
+.hero {
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-color: #373a3c;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right top;
+  position: relative;
+}
+.sunset-cliffs {
+  background-image: url(http://f.cl.ly/items/442k391O2w2O2a3k3e0e/sunset-cliffs-large.jpeg)
+}
+.hero .brand {
+  color: white;
+  font-size: 2rem;
+}
+.hero h1.brand {
+  font-size: 3rem;
+}
+h1.brand small {
+  font-size: 55%;
+  line-height: 0;
+}
+.hero h1.brand small {
+  font-size: 40%;
+}
+@media (min-width: 720px) {
+  .hero h1.brand {
+    font-size: 20vh;
+    line-height: 24vh;
+    margin-top: -10vh;
+    margin: -6vh 10% 0;
+  }
+}
+.hero .trailing {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  text-align: center;
+}
+.hero .trailing .logo {
+  width: 180px;
+  margin-top: -56px;
+}
+
+/*
+ * Logo
+ */
+.logo-small img {
+  height: 2.5rem;
+  vertical-align: middle;
+}
+.logo-small:hover {
+  box-shadow: none;
+}
+
+/*
+ * Sections
+ */
+.bg-dark, .bg-light {
+  font-size: 1.5rem;
+  padding: 8rem 0;
+  }
+.bg-dark {
+  background-color: #20221F;
+  color: #F0BFA1;
+}
+.bg-light {
+  background-color: #F0BFA1;
+  color: white;
+}
+
+/*
+ * Brand font
+ */
+.brand {
+  font-family: 'Dancing Script', serif;
+}
 
 /*
  * Week grid
@@ -20,6 +151,7 @@
   width: 1.923076923%; /* 100/52 */
   display: block;
   text-align: center;
+  box-shadow: none;
 }
 .life > a.past {
   color: #fae3e3;
@@ -36,7 +168,7 @@
   display: none;
   position: absolute;
   z-index: 1;
-  bottom: 20px;
+  bottom: 30px;
   left: 25%;
   width: 0;
   height: 0;
@@ -50,12 +182,12 @@
   display: none;
   position: absolute;
   z-index: 2;
-  bottom: 25px;
-  left: -6.5rem;
-  width: 14rem;
+  bottom: 35px;
+  left: -5.5rem;
+  width: 12rem;
 
   color: #fff;
-  font-size: 1.3rem;
+  font-size: 1rem;
   padding: 0.5rem;
   text-align: center;
 
@@ -79,11 +211,10 @@
   position: fixed;
   top: 0; right: 0; bottom: 0;
   width: 90%;
-  max-width: 50rem;
+  max-width: 35rem;
   background-color: white;
   box-shadow: 0 0 25px rgba(0,0,0,0.2);
-  padding: 2rem;
-  padding-left: 4rem;
+  padding: 0 2rem;
   overflow-y: scroll;
 }
 .close-week-detail {
@@ -94,4 +225,11 @@
 }
 .close-week-detail:hover {
   color: transparent;
+}
+
+/*
+ * Images
+ */
+img {
+  max-width: 100%
 }

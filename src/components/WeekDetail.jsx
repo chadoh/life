@@ -43,7 +43,7 @@ export default class WeekDetail extends React.Component {
 
   render() {
     let deleteButton = !this.authed ? '' :
-      <td><button onClick={this.deleteEvent.bind(this)} className="btn btn-link">&times;</button></td>
+      <td><button onClick={this.deleteEvent.bind(this)} className="pseudo">&times;</button></td>
 
     let events = this.state.events && this.state.events.map(event => (
       <tr key={event.get('id')} data-id={event.get('id')}>
@@ -57,22 +57,22 @@ export default class WeekDetail extends React.Component {
     let form = !this.authed ? '' :
       <form role="form" onSubmit={this.addEvent.bind(this)}>
         <h2>Add a new event</h2>
-        <div className="form-group">
+        <p>
           <label htmlFor="summary">Summary</label>
           <input required id="summary" name="summary" className="form-control" type="text" placeholder="Left for Mars" valueLink={this.linkState('summary')} ref="summary"/>
-        </div>
-        <div className="form-group">
+        </p>
+        <p>
           <label htmlFor="emoji">Emoji</label>
           <input required id="emoji" name="emoji" className="form-control" type="text" placeholder="milky_way" valueLink={this.linkState('emoji')} />
-          <p className="help-block">Use the names from <a target="_blank" href="http://www.emoji-cheat-sheet.com/">the emoji cheat sheet</a></p>
-        </div>
-        <div className="form-group">
+          <small className="text-muted">Use the names from <a target="_blank" href="http://www.emoji-cheat-sheet.com/">the emoji cheat sheet</a></small>
+        </p>
+        <p>
           <label htmlFor="date">Date</label>
           <input required id="date" name="date" className="form-control"
                  type="date" min={this.start.toISOString().replace(/T.+/, '')}
                  max={this.end.toISOString().replace(/T.+/, '')}
                  valueLink={this.linkState('date')} />
-        </div>
+        </p>
         <button type="submit" className="btn btn-default">Save</button>
       </form>
 
@@ -81,11 +81,11 @@ export default class WeekDetail extends React.Component {
         <Link to="user" params={{slug: this.props.params.slug}} className="close-week-detail">close</Link>
         {!UserStore.getState().user.get('born') ? '' :
           <aside className="week-detail">
-            <h1>
+            <h1 className="brand">
               Week of {this.start.toDateString()} <br />
               <small>{Math.floor(+this.props.params.weekno/52)} years old</small>
             </h1>
-            <table className="table">
+            <table>
               {events}
             </table>
             {form}

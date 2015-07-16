@@ -6,7 +6,7 @@ import UserService from '../services/UserService';
 import EventService from '../services/EventService';
 import Life from './Life';
 import LifeLoading from './LifeLoading';
-import { RouteHandler } from 'react-router';
+import { RouteHandler, Link } from 'react-router';
 
 export default class User extends React.Component {
   constructor(props) {
@@ -41,8 +41,13 @@ export default class User extends React.Component {
   render() {
     var cal = !this.state.events.get('0') ? <LifeLoading /> : <Life events={this.state.events} />
     return (
-      <div>
-        <h1>{this.state.user.get('name')} <small>A life</small></h1>
+      <div className="container-wide">
+        <h1 className="brand">
+          <Link to="home" className="logo-small">
+            <img src="http://f.cl.ly/items/0j1k0u1G0i2A122N3I33/spoon-of-diamonds.png" alt="Home" />
+          </Link>
+          {this.state.user.get('name') + ':'} <small>A life</small>
+        </h1>
         <RouteHandler/>
         {cal}
       </div>

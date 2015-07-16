@@ -33,15 +33,10 @@ export default class AuthenticatedApp extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <Link className="navbar-brand" to="home">Life</Link>
-            </div>
-            {this.headerItems}
-          </div>
-        </nav>
+      <div>
+        <div className="container-wide nav-button">
+          {this.headerItems}
+        </div>
         <RouteHandler/>
       </div>
     );
@@ -54,22 +49,11 @@ export default class AuthenticatedApp extends React.Component {
 
   get headerItems() {
     if (!this.state.userLoggedIn) {
-      return (
-      <ul className="nav navbar-nav navbar-right">
-        <li>
-          <Link to="login">Login</Link>
-        </li>
-      </ul>)
+      return <Link to="login" className="button">Sign In</Link>
+    } else if ('/' + this.state.user.slug === window.location.pathname) {
+      return <a href="" onClick={this.logout} className="button">Sign Out</a>
     } else {
-      return (
-      <ul className="nav navbar-nav navbar-right">
-        <li>
-          <Link to="user" params={{slug: this.state.user.slug}}>Your Life</Link>
-        </li>
-        <li>
-          <a href="" onClick={this.logout}>Logout</a>
-        </li>
-      </ul>)
+      return <Link to="user" params={{slug: this.state.user.slug}} className="button">Your Life</Link>
     }
   }
 }

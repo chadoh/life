@@ -75,9 +75,9 @@ export default class Home extends React.Component {
             <p>Here are some examples of other people&lsquo;s calendars:</p>
             <ul>
               <li><Link to="user" params={{slug: "chadoh"}}>Chad Ostrowski</Link>, the creator of this website</li>
-              <li>Marie Curie, famous physicist &ndash; <span className="brand">Coming Soon</span></li>
+              <li>Ada Lovelace, inventor of the algorithm &ndash; <span className="brand">Coming Soon</span></li>
               <li>Albert Einstein, famous physicist &ndash; <span className="brand">Coming Soon</span></li>
-              <li>Amelia Earhart, the long-lost aviator &ndash; <span className="brand">Coming Soon</span></li>
+              <li>Amelia Earhart, long-lost aviator &ndash; <span className="brand">Coming Soon</span></li>
             </ul>
           </div>
         </div>

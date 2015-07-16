@@ -39,7 +39,7 @@ class EventService {
     })
   }
 
-  destroy(slug, id) {
+  destroy(slug, id, weekno) {
     return request({
       url: API_URL + 'users/' + slug + '/events/' + id,
       method: 'DELETE',
@@ -50,7 +50,7 @@ class EventService {
       }
     })
     .then(response => {
-      EventActions.destroyedEvent(id)
+      EventActions.destroyedEvent({id: id, weekno: weekno})
     })
   }
 

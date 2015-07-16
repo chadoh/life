@@ -18,11 +18,13 @@ export default class Week extends React.Component {
   }
 
   get emoji() {
-    return this.props.events ? Emoji.get(this.props.events.first().get('emoji')) : "●"
+    return this.props.events && this.props.events.first() ?
+      Emoji.get(this.props.events.first().get('emoji')) : "●"
   }
 
   tooltip(date) {
-    return this.props.events ? `${date}: ${this.props.events.first().get('summary')}` : date
+    return this.props.events && this.props.events.first() ?
+      `${date}: ${this.props.events.first().get('summary')}` : date
   }
 }
 

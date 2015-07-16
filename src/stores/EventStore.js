@@ -20,11 +20,23 @@ class EventStore {
   }
 
   createEvent(event) {
-    debugger
+    this.setState({
+      events: this.state.events.set(
+        ''+event.weekno,
+        this.state.events.get(''+event.weekno) ?
+          this.state.events.get(''+event.weekno).push(Immutable.Map(event)) :
+          Immutable.List(Immutable.Map(event))
+      )
+    })
   }
 
-  destroyEvent(id) {
-    debugger
+  destroyEvent(event) {
+    this.setState({
+      events: this.state.events.set(
+        ''+event.weekno,
+        this.state.events.get(''+event.weekno).filter(e => e.get('id') !== event.id)
+      )
+    })
   }
 }
 

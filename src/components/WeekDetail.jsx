@@ -46,7 +46,7 @@ export default class WeekDetail extends React.Component {
       <td><button onClick={this.deleteEvent.bind(this)} className="pseudo">&times;</button></td>
 
     let events = this.state.events && this.state.events.map(event => (
-      <tr key={event.get('id')} data-id={event.get('id')}>
+      <tr key={event.get('id')} data-id={event.get('id')} data-weekno={this.props.params.weekno}>
         <td>{Emoji.get(event.get('emoji'))}</td>
         <td>{event.get('summary')}</td>
         <td className="text-muted">{event.get('date')}</td>
@@ -96,8 +96,10 @@ export default class WeekDetail extends React.Component {
   }
 
   deleteEvent(e) {
-    let id = +e.target.closest('tr').getAttribute('data-id');
-    EventService.destroy(this.props.params.slug, id)
+    let row = e.target.closest('tr');
+    let id = +row.getAttribute('data-id');
+    let weekno = +row.getAttribute('data-weekno');
+    EventService.destroy(this.props.params.slug, id, weekno)
       .catch((err) => {
         alert("There was an error destroying the event");
         console.log("Error destroying event", err);

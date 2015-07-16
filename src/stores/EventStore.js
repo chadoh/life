@@ -20,12 +20,14 @@ class EventStore {
   }
 
   createEvent(event) {
+    let weekno = ''+event.weekno;
+    let immutableEvent = Immutable.Map(event);
     this.setState({
       events: this.state.events.set(
-        ''+event.weekno,
-        this.state.events.get(''+event.weekno) ?
-          this.state.events.get(''+event.weekno).push(Immutable.Map(event)) :
-          Immutable.List(Immutable.Map(event))
+        weekno,
+        this.state.events.get(weekno) ?
+          this.state.events.get(weekno).push(immutableEvent) :
+          Immutable.List([immutableEvent])
       )
     })
   }

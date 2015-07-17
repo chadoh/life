@@ -16,7 +16,12 @@ class UserStore {
   }
 
   receiveUser(user) {
-    this.setState({user: Map(user), born: new Date(user.born.split('-'))})
+    let [year, month, day] = user.born.split('-').map(x => parseInt(x))
+    month = month - 1;
+    this.setState({
+      user: Map(user),
+      born: new Date(year, month, day)
+    })
   }
 
   static dateOf(weekno) {

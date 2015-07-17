@@ -27,12 +27,12 @@ export default class Login extends React.Component {
         <div className="vertical-centering container">
           <form role="form" onSubmit={this.login.bind(this)}>
           <p>
-            <label htmlFor="username" className="brand">Username</label>
-            <input type="text" valueLink={this.linkState('email')} className="form-control" id="email" placeholder="Email" />
+            <label htmlFor="username" className="brand">Email</label>
+            <input type="text" valueLink={this.linkState('email')} className="form-control" id="email" autofocus />
           </p>
           <p>
             <label htmlFor="password" className="brand">Password</label>
-            <input type="password" valueLink={this.linkState('password')} className="form-control" id="password" ref="password" placeholder="Password" />
+            <input type="password" valueLink={this.linkState('password')} className="form-control" id="password" ref="password" />
           </p>
           <button type="submit" className="brand">Sign In</button>
         </form>

@@ -22,7 +22,7 @@ export default class LifeLoading extends React.Component {
     }
     return (
       <div>
-        <p>Each dot represents a week.</p>
+        <p>Each dot represents a week. Wait for it... (faster loading coming soon!)</p>
         <div className="life">
           {dots}
         </div>

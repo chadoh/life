@@ -40,14 +40,6 @@ export default class Home extends React.Component {
                     <label htmlFor="mce-EMAIL">Email Address </label>
                     <input type="email" name="EMAIL" required id="mce-EMAIL"/>
                   </p>
-                  <p className="mc-field-group">
-                    <label htmlFor="mce-FNAME">First Name </label>
-                    <input type="text" name="FNAME" id="mce-FNAME"/>
-                  </p>
-                  <p className="mc-field-group">
-                    <label htmlFor="mce-LNAME">Last Name </label>
-                    <input type="text" name="LNAME" id="mce-LNAME"/>
-                  </p>
                   <p id="mce-responses" className="clear">
                     <div className="response" id="mce-error-response" style={{display: 'none'}}></div>
                     <div className="response" id="mce-success-response" style={{display: 'none'}}></div>

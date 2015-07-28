@@ -1,18 +1,27 @@
 import alt from '../alt'
 import { Map } from 'immutable'
 import UserActions from '../actions/UserActions'
+import UserService from '../services/UserService';
+
+var _blankUser = Map({id: '', name: '', email: '', slug: '', born: ''})
 
 class UserStore {
 
   constructor() {
     this.bindListeners({
+      requestUser: UserActions.requestUser,
       receiveUser: UserActions.gotUser
     })
     this.state = {
       // user: Map({id: 1, name: "Chad Ostrowski", email: "hi@chadoh.com", slug: "chadoh", born: "1987-03-14"}),
-      user: Map({id: '', name: '', email: '', slug: '', born: ''}),
+      user: _blankUser,
       born: null
     }
+  }
+
+  requestUser(slug) {
+    this.setState({user: _blankUser, born: null})
+    UserService.getUser(slug)
   }
 
   receiveUser(user) {

@@ -2,7 +2,7 @@ import alt from '../alt';
 
 class EventActions {
   constructor() {
-    this.generateActions('gotEvents', 'createdEvent', 'destroyedEvent')
+    this.generateActions('requestEventsForUser', 'gotEvents', 'createdEvent', 'destroyedEvent')
   }
 }
 

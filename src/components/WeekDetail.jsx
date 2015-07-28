@@ -67,7 +67,6 @@ class NewEventForm extends React.Component {
   }
 
   selectDate(e) {
-    console.log(e.target.value);
     this.setState({date: e.target.value})
   }
 

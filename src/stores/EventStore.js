@@ -1,11 +1,13 @@
 import alt from '../alt'
 import EventActions from '../actions/EventActions'
 import Immutable from 'immutable'
+import EventService from '../services/EventService'
 
 class EventStore {
 
   constructor() {
     this.bindListeners({
+      requestEventsForUser: EventActions.requestEventsForUser,
       receiveEvents: EventActions.gotEvents,
       createEvent: EventActions.createdEvent,
       destroyEvent: EventActions.destroyedEvent
@@ -13,6 +15,11 @@ class EventStore {
     this.state = {
       events: Immutable.Map()
     }
+  }
+
+  requestEventsForUser(slug) {
+    this.setState({events: Immutable.Map()})
+    EventService.fetchEventsForUser(slug)
   }
 
   receiveEvents(events) {

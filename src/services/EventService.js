@@ -10,10 +10,7 @@ class EventService {
     return request({
       url: API_URL + 'users/' + slug + '/events',
       method: 'GET',
-      crossOrigin: true,
-      headers: {
-        'Authorization': 'Bearer ' + LoginStore.jwt
-      }
+      crossOrigin: true
     })
     .then(function(response) {
       EventActions.gotEvents(response);
@@ -31,7 +28,7 @@ class EventService {
       }},
       crossOrigin: true,
       headers: {
-        'Authorization': 'Bearer ' + LoginStore.jwt
+        'Authorization': 'Bearer ' + LoginStore.getState().jwt
       }
     })
     .then(response => {
@@ -46,7 +43,7 @@ class EventService {
       type: 'json', // needed bc of bug reqwest https://github.com/ded/reqwest/issues/160
       crossOrigin: true,
       headers: {
-        'Authorization': 'Bearer ' + LoginStore.jwt
+        'Authorization': 'Bearer ' + LoginStore.getState().jwt
       }
     })
     .then(response => {

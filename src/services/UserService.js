@@ -12,7 +12,7 @@ class UserService {
       method: 'GET',
       crossOrigin: true,
       headers: {
-        'Authorization': 'Bearer ' + LoginStore.jwt
+        'Authorization': 'Bearer ' + LoginStore.getState().jwt
       }
     })
     .then(function(response) {

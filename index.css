@@ -62,10 +62,12 @@ a:hover {
   position: relative;
 }
 .sunset-cliffs {
-  background-image: url(http://f.cl.ly/items/442k391O2w2O2a3k3e0e/sunset-cliffs-large.jpeg)
+  background-image: url(http://f.cl.ly/items/442k391O2w2O2a3k3e0e/sunset-cliffs-large.jpeg);
+}
+.sunset-cliffs .brand, .sunset-cliffs label {
+  color: white;
 }
 .hero .brand {
-  color: white;
   font-size: 2rem;
 }
 .hero h1.brand {

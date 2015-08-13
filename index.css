@@ -45,7 +45,7 @@ a:hover {
   text-align: right;
   height: 0;
 }
-.nav-button > * {
+.nav-button a {
   z-index: 2;
   position: relative;
   background-color: transparent;

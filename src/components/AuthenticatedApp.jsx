@@ -51,9 +51,12 @@ export default class AuthenticatedApp extends React.Component {
     if (!this.state.userLoggedIn) {
       return <Link to="login" className="button">Sign In</Link>
     } else if ('/' + this.state.user.slug === window.location.pathname) {
-      return <a href="" onClick={this.logout} className="button">Sign Out</a>
+      return <nav>
+        <Link to="account" className="button">Account Details</Link>
+        <a href="" onClick={this.logout} className="button">Sign Out</a>
+      </nav>
     } else {
-      return <Link to="user" params={{slug: this.state.user.slug}} className="button">Your Life</Link>
+      return <Link to="user" params={{slug: this.state.user.slug}} className="button">You</Link>
     }
   }
 }

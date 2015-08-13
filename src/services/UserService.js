@@ -1,5 +1,4 @@
-import request from 'reqwest';
-import when from 'when';
+import reqwest from 'reqwest';
 import {API_URL} from '../config';
 import UserActions from '../actions/UserActions';
 import LoginStore from '../stores/LoginStore';
@@ -7,7 +6,7 @@ import LoginStore from '../stores/LoginStore';
 class UserService {
 
   getUser(slug) {
-    return request({
+    return reqwest({
       url: API_URL + 'users/' + slug,
       method: 'GET',
       crossOrigin: true,
@@ -31,7 +30,7 @@ class UserService {
       userData.password = password;
       userData.password_confirmation = password_confirmation;
     }
-    return request({
+    return reqwest({
       url: API_URL + 'users/' + id,
       data: userData,
       method: 'PATCH',

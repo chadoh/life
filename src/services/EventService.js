@@ -1,5 +1,4 @@
-import request from 'reqwest';
-import when from 'when';
+import reqwest from 'reqwest';
 import {API_URL} from '../config';
 import EventActions from '../actions/EventActions';
 import LoginStore from '../stores/LoginStore';
@@ -7,7 +6,7 @@ import LoginStore from '../stores/LoginStore';
 class EventService {
 
   fetchEventsForUser(slug) {
-    return request({
+    return reqwest({
       url: API_URL + 'users/' + slug + '/events',
       method: 'GET',
       crossOrigin: true
@@ -18,7 +17,7 @@ class EventService {
   }
 
   create(slug, summary, emoji, date) {
-    return request({
+    return reqwest({
       url: API_URL + 'users/' + slug + '/events',
       method: 'POST',
       data: { event: {
@@ -37,7 +36,7 @@ class EventService {
   }
 
   destroy(slug, id, weekno) {
-    return request({
+    return reqwest({
       url: API_URL + 'users/' + slug + '/events/' + id,
       method: 'DELETE',
       type: 'json', // needed bc of bug reqwest https://github.com/ded/reqwest/issues/160

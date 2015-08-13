@@ -22,9 +22,6 @@ class LoginStore {
     var savedJwt = localStorage.getItem('jwt')
 
     if (savedJwt !== jwt) {
-      var nextPath = RouterContainer.get().getCurrentQuery().nextPath || '/' + jwt_decode(jwt).slug
-
-      RouterContainer.get().transitionTo(nextPath)
       localStorage.setItem('jwt', jwt)
       localStorage.setItem('currentUser', JSON.stringify(jwt_decode(jwt)))
     }
@@ -46,7 +43,7 @@ class LoginStore {
   }
 
   updateUser(user) {
-    if (user.id === this.state.user.id) {
+    if (this.state.user && this.state.user.id === user.id) {
       localStorage.setItem('currentUser', JSON.stringify(user))
       this.setState({user: user})
     }

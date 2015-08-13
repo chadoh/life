@@ -1,12 +1,11 @@
-import request from 'reqwest';
-import when from 'when';
+import reqwest from 'reqwest';
 import {API_URL} from '../config';
 import LoginActions from '../actions/LoginActions';
 
 class AuthService {
 
   login(email, password) {
-    return this.handleAuth(when(request({
+    return reqwest({
       url: API_URL + 'users/sign_in',
       method: 'POST',
       crossOrigin: true,
@@ -15,7 +14,7 @@ class AuthService {
         email: email,
         password: password
       }}
-    })));
+    }).then(this.handleAuth)
   }
 
   logout() {
@@ -23,7 +22,7 @@ class AuthService {
   }
 
   // signup(username, password, extra) {
-  //   return this.handleAuth(when(request({
+  //   return this.handleAuth(when(reqwest({
   //     url: SIGNUP_URL,
   //     method: 'POST',
   //     crossOrigin: true,
@@ -34,13 +33,10 @@ class AuthService {
   //   })));
   // }
 
-  handleAuth(loginPromise) {
-    return loginPromise
-      .then(function(response) {
-        var jwt = response.token;
-        LoginActions.loginUser(jwt);
-        return true;
-      });
+  handleAuth(response) {
+    var jwt = response.token;
+    LoginActions.loginUser(jwt);
+    return response
   }
 }
 

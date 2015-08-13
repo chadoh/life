@@ -2,6 +2,7 @@ import alt from '../alt'
 import { Map } from 'immutable'
 import UserActions from '../actions/UserActions'
 import UserService from '../services/UserService';
+import RouterContainer from '../services/RouterContainer'
 
 var _blankUser = Map({id: '', name: '', email: '', slug: '', born: ''})
 
@@ -10,10 +11,10 @@ class UserStore {
   constructor() {
     this.bindListeners({
       requestUser: UserActions.requestUser,
-      receiveUser: UserActions.gotUser
+      receiveUser: UserActions.gotUser,
+      requestUpdate: UserActions.requestUpdate
     })
     this.state = {
-      // user: Map({id: 1, name: "Chad Ostrowski", email: "hi@chadoh.com", slug: "chadoh", born: "1987-03-14"}),
       user: _blankUser,
       born: null
     }
@@ -30,6 +31,13 @@ class UserStore {
     this.setState({
       user: Map(user),
       born: new Date(year, month, day)
+    })
+  }
+
+  requestUpdate(params) {
+    UserService.update(...params).then(() => {
+      var nextPath = '/' + params[1]
+      RouterContainer.get().transitionTo(nextPath)
     })
   }
 

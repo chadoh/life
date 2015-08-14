@@ -2,13 +2,13 @@ import alt from '../alt'
 import jwt_decode from 'jwt-decode'
 import LoginActions from '../actions/LoginActions'
 import UserActions from '../actions/UserActions'
-import RouterContainer from '../services/RouterContainer'
 
 class LoginStore {
 
   constructor() {
     this.bindListeners({
       loginUser: LoginActions.loginUser,
+      loginUserFromSavedSession: LoginActions.loginUserFromSavedSession,
       logoutUser: LoginActions.logoutUser,
       updateUser: UserActions.gotUser
     })
@@ -16,6 +16,16 @@ class LoginStore {
       user: null,
       jwt: null
     }
+  }
+
+  loginUserFromSavedSession() {
+    let exp;
+    let jwt = localStorage.getItem('jwt')
+    if (jwt) exp = new Date(jwt_decode(jwt).exp * 1000)
+    else return;
+
+    if (jwt && exp > new Date()) this.loginUser(jwt)
+    else this.logoutUser()
   }
 
   loginUser(jwt) {
@@ -33,8 +43,8 @@ class LoginStore {
   }
 
   logoutUser() {
-    RouterContainer.get().transitionTo('/login')
     localStorage.removeItem('jwt')
+    localStorage.removeItem('currentUser')
 
     this.setState({
       jwt: null,

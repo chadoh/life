@@ -18,7 +18,7 @@ class AuthService {
   }
 
   logout() {
-    LoginActions.logoutUser();
+    LoginActions.logoutUser()
   }
 
   // signup(username, password, extra) {

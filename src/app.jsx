@@ -26,10 +26,7 @@ var router = Router.create({
 });
 RouterContainer.set(router);
 
-let jwt = localStorage.getItem('jwt');
-if (jwt) {
-  LoginActions.loginUser(jwt);
-}
+LoginActions.loginUserFromSavedSession()
 
 router.run(function (Handler) {
   React.render(<Handler />, document.getElementById('content'));

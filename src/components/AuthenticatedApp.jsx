@@ -4,6 +4,7 @@ import React from 'react';
 import LoginStore from '../stores/LoginStore'
 import { Route, RouteHandler, Link } from 'react-router';
 import AuthService from '../services/AuthService'
+import RouterContainer from '../services/RouterContainer'
 
 export default class AuthenticatedApp extends React.Component {
   constructor() {
@@ -44,7 +45,8 @@ export default class AuthenticatedApp extends React.Component {
 
   logout(e) {
     e.preventDefault();
-    AuthService.logout();
+    AuthService.logout()
+    RouterContainer.get().transitionTo('/login')
   }
 
   get headerItems() {

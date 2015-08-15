@@ -62,7 +62,7 @@ a:hover {
   position: relative;
 }
 .sunset-cliffs {
-  background-image: url(http://f.cl.ly/items/442k391O2w2O2a3k3e0e/sunset-cliffs-large.jpeg);
+  background-image: url(/images/sunset-cliffs-large.jpeg);
 }
 .sunset-cliffs .brand, .sunset-cliffs label, .sunset-cliffs p.error {
   color: white;

@@ -238,3 +238,7 @@ h1.brand small {
 img {
   max-width: 100%
 }
+
+.life-calendar-image img {
+  border-radius: .2em;
+}

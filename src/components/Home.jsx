@@ -31,8 +31,17 @@ export default class Home extends React.Component {
 
         <div className="bg-light">
           <div className="container">
-            <h1 className="brand">We want to help you live intentionally!</h1>
-            <p>We&lsquo;re making tools to help you visualize and plan your life. To find out when it&lsquo;s ready, sign up!</p>
+            <h1 className="brand">Claim your ✨ Emoji Life Calendar ! ✨ </h1>
+            <p>
+              We want to help you live intentionally. We&lsquo;ll give you a&nbsp;
+              <em>life calendar</em>, so you can see every week of your past
+              and future life all in one friendly page. You can see where
+              you&lsquo;ve been, and set goals for where you want to be.
+              It&lsquo;s very motivating!
+            </p>
+            <p className="life-calendar-image">
+              <img src="/images/life-calendar-example.png" alt="Our life calendars are not very accessible yet. That's on our roadmap, so check back soon!"/>
+            </p>
             <div id="mc_embed_signup">
               <form action="//publishist.us7.list-manage.com/subscribe/post?u=82eccb779d56c1434d98c79cf&amp;id=2354043ebd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
                 <div id="mc_embed_signup_scroll">
@@ -56,14 +65,6 @@ export default class Home extends React.Component {
         <div className="bg-dark">
           <div className="container">
             <h1 className="brand">How about some examples?</h1>
-            <p>
-              Our core product is a <em>Life Calendar</em>. You can use it to
-              quickly get a view of every week of your life. All the weeks
-              you&lsquo;ve already lived, and all the weeks upcoming. It gives
-              a beautiful portrait of all you&lsquo;ve done, allows setting
-              goals for the future, and gives a poignant, motivating reminder
-              of the transience of life.
-            </p>
             <p>Here are some examples of other people&lsquo;s calendars:</p>
             <ul>
               <li><Link to="user" params={{slug: "chadoh"}}>Chad Ostrowski</Link>, the creator of this website</li>

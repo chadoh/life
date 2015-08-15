@@ -56,7 +56,7 @@ export default class Home extends React.Component {
               <form action="//publishist.us7.list-manage.com/subscribe/post?u=82eccb779d56c1434d98c79cf&amp;id=2354043ebd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
                 <div id="mc_embed_signup_scroll">
                   <p className="mc-field-group">
-                    <label htmlFor="mce-EMAIL">Enter your email address to get started:</label>
+                    <label htmlFor="mce-EMAIL">Enter your email address to find out when it&lsquo;s ready:</label>
                     <input type="email" name="EMAIL" required id="mce-EMAIL" placeholder="awesome@you.com"/>
                   </p>
                   <p id="mce-responses" className="clear">

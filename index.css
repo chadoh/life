@@ -116,7 +116,10 @@ h1.brand small {
 .bg-dark, .bg-light {
   font-size: 1.5rem;
   padding: 8rem 0;
-  }
+}
+.bg-dark:first-child, .bg-light:first-child {
+  padding-top: 0;
+}
 .bg-dark {
   background-color: #20221F;
   color: #F0BFA1;
@@ -241,4 +244,57 @@ img {
 
 .life-calendar-image img {
   border-radius: .2em;
+}
+
+
+/*
+ * Payment Options
+ */
+.payment-options {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 4rem;
+}
+.payment-option {
+  width: 30%;
+  text-align: center;
+  border: 3px solid white;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+.payment-option:hover {
+  box-shadow: 0 0 15px white;
+}
+.payment-option h2 {
+  position: relative;
+  padding-bottom: 90%;
+  height: 0;
+}
+.payment-option h2 > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: #373a3c;
+  background-image: url(/images/sunset-cliffs-large.jpeg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  border: 5px solid white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3) inset;
+  border-radius: 100%;
+  text-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+.currency-marker {
+  vertical-align: super;
+  font-size: 1.5rem;
+}
+.amount {
+  font-size: 4rem;
 }

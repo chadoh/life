@@ -66,6 +66,7 @@ a:hover {
 }
 .sunset-cliffs .brand, .sunset-cliffs label, .sunset-cliffs p.error {
   color: white;
+  text-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 .hero .brand {
   font-size: 2rem;

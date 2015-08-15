@@ -1,5 +1,4 @@
 import React from 'react';
-import AuthenticatedComponent from './AuthenticatedComponent'
 import { Link } from 'react-router';
 
 export default class Home extends React.Component {

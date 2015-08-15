@@ -32,6 +32,9 @@ export default class Home extends React.Component {
         <div className="bg-light">
           <div className="container">
             <h1 className="brand">Claim your ✨ Emoji Life Calendar ! ✨ </h1>
+            <p className="life-calendar-image">
+              <img src="/images/life-calendar-example.png" alt="Our life calendars are not very accessible yet. That's on our roadmap, so check back soon!"/>
+            </p>
             <p>
               We want to help you live intentionally. We&lsquo;ll give you a&nbsp;
               <em>life calendar</em>, so you can see every week of your past
@@ -39,15 +42,12 @@ export default class Home extends React.Component {
               you&lsquo;ve been, and set goals for where you want to be.
               It&lsquo;s very motivating!
             </p>
-            <p className="life-calendar-image">
-              <img src="/images/life-calendar-example.png" alt="Our life calendars are not very accessible yet. That's on our roadmap, so check back soon!"/>
-            </p>
             <div id="mc_embed_signup">
               <form action="//publishist.us7.list-manage.com/subscribe/post?u=82eccb779d56c1434d98c79cf&amp;id=2354043ebd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
                 <div id="mc_embed_signup_scroll">
                   <p className="mc-field-group">
-                    <label htmlFor="mce-EMAIL">Email Address </label>
-                    <input type="email" name="EMAIL" required id="mce-EMAIL"/>
+                    <label htmlFor="mce-EMAIL">We just need your email address:</label>
+                    <input type="email" name="EMAIL" required id="mce-EMAIL" placeholder="awesome@you.com"/>
                   </p>
                   <p id="mce-responses" className="clear">
                     <div className="response" id="mce-error-response" style={{display: 'none'}}></div>

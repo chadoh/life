@@ -1,9 +1,0 @@
----
-:aws:
-  :access_key_id: AKIAJ6TBQ2BSE5IDGDCQ
-  :secret_access_key: 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
-:acf:
-  :distribution_id: E1XAHRG2SMVAN5
-:deploy:
-  :from_folder: './build'
-  :s3_bucket: 'entire.life'

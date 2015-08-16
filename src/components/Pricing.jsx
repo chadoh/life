@@ -9,7 +9,7 @@ export default class Pricing extends React.Component {
           <div className="container">
             <h1 className="brand">
               <Link to="home" className="logo-small">
-                <img src="http://f.cl.ly/items/0j1k0u1G0i2A122N3I33/spoon-of-diamonds.png" alt="Home" />
+                <img src="/images/spoon-of-diamonds.png" alt="Home" />
               </Link>
               Choose your payment plan <sup><a href="#addendum">*</a></sup>
             </h1>

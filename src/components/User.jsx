@@ -48,7 +48,7 @@ export default class User extends React.Component {
       <div className="container-wide">
         <h1 className="brand">
           <Link to="home" className="logo-small">
-            <img src="http://f.cl.ly/items/0j1k0u1G0i2A122N3I33/spoon-of-diamonds.png" alt="Home" />
+            <img src="/images/spoon-of-diamonds.png" alt="Home" />
           </Link>
           {this.state.user.get('name') + ':'} <small>A life</small>
         </h1>

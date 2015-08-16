@@ -53,7 +53,7 @@ export default class Home extends React.Component {
               <img src="/images/life-calendar-example-3.png" alt="Our life calendars are not very accessible yet. That's on our roadmap, so check back soon!"/>
             </p>
             <h1 className="brand">
-              <Link to="pricing">Get started &rarr;</Link>
+              <Link to="signup">Get started &rarr;</Link>
             </h1>
           </div>
         </div>

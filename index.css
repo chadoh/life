@@ -64,7 +64,7 @@ a:hover {
 .sunset-cliffs {
   background-image: url(/images/sunset-cliffs-large.jpeg);
 }
-.sunset-cliffs .brand, .sunset-cliffs label, .sunset-cliffs p.error {
+.sunset-cliffs .brand, .sunset-cliffs label, .sunset-cliffs p.text {
   color: white;
   text-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
@@ -131,6 +131,12 @@ h1.brand small {
 }
 .bg-light [type=text], .bg-light [type=email] {
   color: gray;
+}
+
+.bg-tint {
+  background-color: rgba(0,0,0,0.2);
+  padding: 1.5rem;
+  border-radius: .5rem;
 }
 
 /*

@@ -16,8 +16,7 @@ var routes = (
     <Route name="login" handler={Login}/>
     <Route name="home" path="/" handler={Home}/>
 
-    <Route name="pricing" path="pricing" handler={Pricing}/>
-    <Route name="signup" path="signup/payment/:payment" handler={Signup}/>
+    <Route name="signup" path="signup" handler={Signup}/>
 
     <Route name="account" path="/account" handler={UserEdit} />
     <Route name="user" path="/:slug" handler={User} ignoreScrollBehavior={true}>

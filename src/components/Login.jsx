@@ -36,10 +36,10 @@ export default class Login extends React.Component {
       <div className="hero sunset-cliffs">
         <div className="vertical-centering container">
           <form role="form" onSubmit={this.login.bind(this)}>
-            <p ref="error" className="error" style={{display: 'none'}}><span ref="errorMsg"/><span className="label error">oops</span></p>
+            <p ref="error" className="text" style={{display: 'none'}}><span ref="errorMsg"/><span className="label error">oops</span></p>
             <p>
               <label htmlFor="email" className="brand">Email</label>
-              <input type="email" required valueLink={this.linkState('email')} className="form-control" id="email" autofocus />
+              <input type="email" required valueLink={this.linkState('email')} className="form-control" id="email" autoFocus />
             </p>
             <p>
               <label htmlFor="password" className="brand">Password</label>

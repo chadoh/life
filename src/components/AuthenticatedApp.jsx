@@ -50,8 +50,14 @@ export default class AuthenticatedApp extends React.Component {
   }
 
   get headerItems() {
-    if (!this.state.userLoggedIn) {
-      return <Link to="login" className="button">Sign In</Link>
+    let currentPath = window.location.pathname.split('/')[1]
+    if (currentPath === 'pricing' || currentPath === 'signup') {
+      return null
+    } else if (!this.state.userLoggedIn) {
+      return <nav>
+        <Link to="pricing" className="button">Join</Link>
+        <Link to="login" className="button">Sign In</Link>
+      </nav>
     } else if ('/' + this.state.user.slug === window.location.pathname) {
       return <nav>
         <Link to="account" className="button">Account Details</Link>

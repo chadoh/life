@@ -52,22 +52,9 @@ export default class Home extends React.Component {
             <p className="life-calendar-image">
               <img src="/images/life-calendar-example-3.png" alt="Our life calendars are not very accessible yet. That's on our roadmap, so check back soon!"/>
             </p>
-            <div id="mc_embed_signup">
-              <form action="//publishist.us7.list-manage.com/subscribe/post?u=82eccb779d56c1434d98c79cf&amp;id=2354043ebd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
-                <div id="mc_embed_signup_scroll">
-                  <p className="mc-field-group">
-                    <label htmlFor="mce-EMAIL">Enter your email address to find out when it&lsquo;s ready:</label>
-                    <input type="email" name="EMAIL" required id="mce-EMAIL" placeholder="awesome@you.com"/>
-                  </p>
-                  <p id="mce-responses" className="clear">
-                    <div className="response" id="mce-error-response" style={{display: 'none'}}></div>
-                    <div className="response" id="mce-success-response" style={{display: 'none'}}></div>
-                  </p>
-                  <div style={{position: 'absolute', left: -5000}}><input type="text" name="b_82eccb779d56c1434d98c79cf_2354043ebd" tabIndex="-1" defaultValue=""/></div>
-                  <div className="clear"><input type="submit" defaultValue="Sign Up" name="subscribe" id="mc-embedded-subscribe"/></div>
-                </div>
-              </form>
-            </div>
+            <h1 className="brand">
+              <Link to="pricing">Get started &rarr;</Link>
+            </h1>
           </div>
         </div>
 

@@ -1,49 +1,37 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
-import UserStore from '../stores/UserStore';
-import LoginStore from '../stores/LoginStore';
-import UserActions from '../actions/UserActions';
-import AuthenticatedComponent from './AuthenticatedComponent';
-import { RouteHandler, Link } from 'react-router';
+import { Link } from 'react-router';
+import RouterContainer from '../services/RouterContainer'
 
-class UserEdit extends React.Component {
+export default class Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.getState();
-  }
-
-  getState() {
-    let user = LoginStore.getState().user;
-    return {
-      id: user.id,
-      slug: user.slug,
-      name: user.name,
-      email: user.email,
-      born: user.born,
+    this.state = {
+      slug: '',
+      name: '',
+      email: '',
+      born: '',
       password: '',
       password_confirmation: '',
-    };
+    }
   }
 
-  update(e) {
+  componentDidMount() {
+    if (!this.props.params.payment) {
+      RouterContainer.get().transitionTo('/pricing')
+    }
+  }
+
+  signup(e) {
     e.preventDefault();
-    UserActions.requestUpdate([
-      this.state.id,
-      this.state.slug,
-      this.state.name,
-      this.state.email,
-      this.state.born,
-      this.state.password,
-      this.state.password_confirmation
-    ])
   }
 
   render() {
     return (
-      <form role="form" onSubmit={this.update.bind(this)}>
+      <form role="form" onSubmit={this.signup.bind(this)}>
         <div className="hero sunset-cliffs">
           <div className="container">
-            <h2 className="brand">Edit Account Details</h2>
+            <h2 className="brand">Signup</h2>
             <p>
               <label htmlFor="slug">Username (entire.life/{this.state.slug})</label>
               <input type="text" required valueLink={this.linkState('slug')} className="form-control" id="slug" autofocus />
@@ -80,6 +68,4 @@ class UserEdit extends React.Component {
   }
 }
 
-ReactMixin(UserEdit.prototype, React.addons.LinkedStateMixin);
-
-export default AuthenticatedComponent(UserEdit)
+ReactMixin(Signup.prototype, React.addons.LinkedStateMixin);

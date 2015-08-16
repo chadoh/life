@@ -11,10 +11,10 @@ export default class Pricing extends React.Component {
               <Link to="home" className="logo-small">
                 <img src="/images/spoon-of-diamonds.png" alt="Home" />
               </Link>
-              Choose your payment plan <sup><a href="#addendum">*</a></sup>
+              &nbsp;Choose your payment plan <sup><a href="#addendum">*</a></sup>
             </h1>
             <div className="payment-options">
-              <a className="payment-option">
+              <Link to="signup" params={{payment: 'annual'}} className="payment-option">
                 <h2 className="brand">
                   <div className="vertical-centering">
                     <div>
@@ -27,8 +27,8 @@ export default class Pricing extends React.Component {
                   <span className="amount">10</span>
                   <div className="interval">each year</div>
                 </div>
-              </a>
-              <a className="payment-option">
+              </Link>
+              <Link to="signup" params={{payment: 'once'}} className="payment-option">
                 <h2 className="brand">
                   <div className="vertical-centering">
                     <div>
@@ -41,7 +41,7 @@ export default class Pricing extends React.Component {
                   <span className="amount">50</span>
                   <div className="interval">one-time fee</div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

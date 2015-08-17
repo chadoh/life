@@ -43,7 +43,7 @@ class UserStore {
 
   static dateOf(weekno) {
     let _born = this.getState().born;
-    if (!_born) return new Date();
+    if (!_born) throw "User has no birth date set yet!"
     return new Date(_born.getFullYear() + Math.floor(weekno/52), _born.getMonth(), _born.getDate() + (weekno%52)*7)
   }
 }

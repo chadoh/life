@@ -43,7 +43,9 @@ export default class User extends React.Component {
   }
 
   render() {
-    var cal = !this.state.events.get('0') ? <LifeLoading /> : <Life events={this.state.events} />
+    var cal = !this.state.events.get('0') || !this.state.user.get('born') ?
+      <LifeLoading /> : <Life events={this.state.events} />
+
     return (
       <div className="container-wide">
         <h1 className="brand">

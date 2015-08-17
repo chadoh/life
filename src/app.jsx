@@ -4,6 +4,7 @@ import AuthenticatedApp from './components/AuthenticatedApp'
 import Login from './components/Login';
 import Home from './components/Home';
 import Pricing from './components/Pricing';
+import Confirm from './components/Confirm';
 import Signup from './components/Signup';
 import User from './components/User';
 import WeekDetail from './components/WeekDetail';
@@ -17,6 +18,7 @@ var routes = (
     <Route name="home" path="/" handler={Home}/>
 
     <Route name="signup" path="signup" handler={Signup}/>
+    <Route name="confirm" path="users/confirmation" handler={Confirm}/>
 
     <Route name="account" path="/account" handler={UserEdit} />
     <Route name="user" path="/:slug" handler={User} ignoreScrollBehavior={true}>

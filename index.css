@@ -305,3 +305,9 @@ img {
 .amount {
   font-size: 4rem;
 }
+
+
+/* Inputs */
+input[disabled] {
+  opacity: .7;
+}

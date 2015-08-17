@@ -1,6 +1,5 @@
 import React from 'react/addons';
 import ReactMixin from 'react-mixin';
-import RouterContainer from '../services/RouterContainer'
 
 export default class SignupBorn extends React.Component {
   constructor(props) {
@@ -12,11 +11,9 @@ export default class SignupBorn extends React.Component {
 
   submit(e) {
     e.preventDefault()
-
-    let path = window.location.pathname;
-    let query = window.location.search;
-    RouterContainer.get().transitionTo(path + query + '&born=' + this.state.born)
+    this.props.onSubmit(this.state.born)
   }
+
   render() {
     return (
       <div className="hero sunset-cliffs">

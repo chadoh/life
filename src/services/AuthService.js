@@ -21,17 +21,21 @@ class AuthService {
     LoginActions.logoutUser()
   }
 
-  // signup(username, password, extra) {
-  //   return this.handleAuth(when(reqwest({
-  //     url: SIGNUP_URL,
-  //     method: 'POST',
-  //     crossOrigin: true,
-  //     type: 'json',
-  //     data: {
-  //       username, password, extra
-  //     }
-  //   })));
-  // }
+  signup(payment, name, email, slug, born) {
+    return reqwest({
+      url: API_URL + 'users',
+      method: 'POST',
+      crossOrigin: true,
+      type: 'json',
+      data: { user: {
+        payment_frequency: payment,
+        name: name,
+        email: email,
+        slug: slug,
+        born: born
+      }}
+    }).then(this.handleAuth)
+  }
 
   handleAuth(response) {
     var jwt = response.token;

@@ -22,9 +22,9 @@ export default class SignupEmail extends React.Component {
       let query = window.location.search;
       RouterContainer.get().transitionTo(path + query + '&email=' + this.state.email)
     })
-    .fail(err => {
+    .fail(() => {
       React.findDOMNode(this.refs.error).style.display = "block"
-    }.bind(this))
+    })
 
   }
   render() {

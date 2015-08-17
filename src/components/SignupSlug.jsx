@@ -1,5 +1,6 @@
 import React from 'react/addons';
 import ReactMixin from 'react-mixin';
+import AuthService from '../services/AuthService'
 import RouterContainer from '../services/RouterContainer'
 
 export default class SignupSlug extends React.Component {
@@ -13,9 +14,16 @@ export default class SignupSlug extends React.Component {
   submit(e) {
     e.preventDefault()
 
-    let path = window.location.pathname;
-    let query = window.location.search;
-    RouterContainer.get().transitionTo(path + query + '&slug=' + this.state.slug)
+    React.findDOMNode(this.refs.error).style.display = "none"
+    AuthService.checkSlug(this.state.slug)
+    .then(() => {
+      let path = window.location.pathname;
+      let query = window.location.search;
+      RouterContainer.get().transitionTo(path + query + '&slug=' + this.state.slug)
+    })
+    .fail(() => {
+      React.findDOMNode(this.refs.error).style.display = "block"
+    })
   }
   render() {
     return (
@@ -23,7 +31,10 @@ export default class SignupSlug extends React.Component {
         <div className="vertical-centering container">
           <form role="form" onSubmit={this.submit.bind(this)} className="bg-tint">
             <h2 className="brand">Awesome. We&lsquo;re almost done!</h2>
-            <p ref="error" className="text" style={{display: 'none'}}><span ref="errorMsg"/><span className="label error">oops</span></p>
+            <div className="text" ref="error" style={{display: 'none'}}>
+              <p><span className="brand">Alas!</span> That has already been taken! 😔 </p>
+              <p>Please try something else.</p>
+            </div>
             <p>
               <label htmlFor="slug">When you send people a link to your calendar, how would you like it to look?</label>
               <input type="text" required className="form-control" id="slug"

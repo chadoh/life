@@ -54,6 +54,18 @@ class AuthService {
       }
     })
   }
+
+  checkSlug(slug) {
+    return reqwest({
+      url: API_URL + 'users/check_slug',
+      method: 'get',
+      crossOrigin: true,
+      type: 'json',
+      data: {
+        slug: slug
+      }
+    })
+  }
 }
 
 export default new AuthService()

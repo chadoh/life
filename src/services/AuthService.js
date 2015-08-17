@@ -42,6 +42,18 @@ class AuthService {
     LoginActions.loginUser(jwt);
     return response
   }
+
+  checkEmail(email) {
+    return reqwest({
+      url: API_URL + 'users/check_email',
+      method: 'get',
+      crossOrigin: true,
+      type: 'json',
+      data: {
+        email: email
+      }
+    })
+  }
 }
 
 export default new AuthService()

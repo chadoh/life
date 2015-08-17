@@ -64,7 +64,7 @@ a:hover {
 .sunset-cliffs {
   background-image: url(/images/sunset-cliffs-large.jpeg);
 }
-.sunset-cliffs .brand, .sunset-cliffs label, .sunset-cliffs p.text {
+.sunset-cliffs .brand, .sunset-cliffs label, .sunset-cliffs .text {
   color: white;
   text-shadow: 0 0 5px rgba(0,0,0,0.1);
 }

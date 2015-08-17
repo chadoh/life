@@ -1,5 +1,7 @@
-import React from 'react/addons';
-import ReactMixin from 'react-mixin';
+import React from 'react/addons'
+import ReactMixin from 'react-mixin'
+import { Link } from 'react-router';
+import AuthService from '../services/AuthService'
 import RouterContainer from '../services/RouterContainer'
 
 export default class SignupEmail extends React.Component {
@@ -13,9 +15,17 @@ export default class SignupEmail extends React.Component {
   submit(e) {
     e.preventDefault()
 
-    let path = window.location.pathname;
-    let query = window.location.search;
-    RouterContainer.get().transitionTo(path + query + '&email=' + this.state.email)
+    React.findDOMNode(this.refs.error).style.display = "none"
+    AuthService.checkEmail(this.state.email)
+    .then(() => {
+      let path = window.location.pathname;
+      let query = window.location.search;
+      RouterContainer.get().transitionTo(path + query + '&email=' + this.state.email)
+    })
+    .fail(err => {
+      React.findDOMNode(this.refs.error).style.display = "block"
+    }.bind(this))
+
   }
   render() {
     return (
@@ -23,7 +33,16 @@ export default class SignupEmail extends React.Component {
         <div className="vertical-centering container">
           <form role="form" onSubmit={this.submit.bind(this)} className="bg-tint">
             <h2 className="brand">Nice to meet you, {this.props.name}!</h2>
-            <p ref="error" className="text" style={{display: 'none'}}><span ref="errorMsg"/><span className="label error">oops</span></p>
+            <div className="text" ref="error" style={{display: 'none'}}>
+              <p>That email address has already been taken! 😔 </p>
+              <p>Did you sign up already? You can <Link to="login">sign in!</Link></p>
+              <p>
+                If you don't remember ever setting a password, search your
+                email for a link to confirm your account! If you're still
+                having trouble, please <a href="mailto:hi+entire.life@chadoh.com">email us</a>
+                &nbsp;for help!
+              </p>
+            </div>
             <p>
               <label htmlFor="email">We&lsquo;ll need your email address. This is how you&lsquo;ll sign in!</label>
               <input type="email" required className="form-control" id="email"

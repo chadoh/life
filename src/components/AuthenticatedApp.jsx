@@ -80,7 +80,7 @@ export default class AuthenticatedApp extends React.Component {
 
   get payment() {
     if (this.state.userLoggedIn && !this.state.user.paid)
-      return <PaymentForm/>
+      return <PaymentForm user={this.state.user}/>
     else
       return null
   }

@@ -5,11 +5,20 @@ import LoginStore from '../stores/LoginStore'
 import { Route, RouteHandler, Link } from 'react-router';
 import AuthService from '../services/AuthService'
 import RouterContainer from '../services/RouterContainer'
+import PaymentForm from './PaymentForm'
 
 export default class AuthenticatedApp extends React.Component {
   constructor() {
     super()
-    this.state = this._getLoginState();
+    this.state = this._getLoginState()
+    this.setBodyStyle()
+  }
+
+  setBodyStyle() {
+    if (this.state.userLoggedIn && !this.state.user.paid)
+      document.body.style.overflow = 'hidden'
+    else
+      document.body.style.overflow = 'scroll'
   }
 
   _getLoginState() {
@@ -25,6 +34,7 @@ export default class AuthenticatedApp extends React.Component {
   }
 
   _onChange() {
+    this.setBodyStyle()
     this.setState(this._getLoginState());
   }
 
@@ -39,6 +49,7 @@ export default class AuthenticatedApp extends React.Component {
           {this.headerItems}
         </div>
         <RouteHandler/>
+        {this.payment}
       </div>
     );
   }
@@ -65,5 +76,12 @@ export default class AuthenticatedApp extends React.Component {
     } else {
       return <Link to="user" params={{slug: this.state.user.slug}} className="button">You</Link>
     }
+  }
+
+  get payment() {
+    if (this.state.userLoggedIn && !this.state.user.paid)
+      return <PaymentForm/>
+    else
+      return null
   }
 }

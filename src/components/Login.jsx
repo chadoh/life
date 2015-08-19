@@ -53,4 +53,4 @@ export default class Login extends React.Component {
   }
 }
 
-ReactMixin(Login.prototype, React.addons.LinkedStateMixin);
+ReactMixin(Login.prototype, React.addons.LinkedStateMixin)

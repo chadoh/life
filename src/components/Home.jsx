@@ -36,7 +36,7 @@ export default class Home extends React.Component {
             </p>
             <p>Here&lsquo;s how it works:</p>
             <h2 className="brand">1. Sign up</h2>
-            <p>You&lsquo;ll get a blank calendar</p>
+            <p>You&lsquo;ll get a blank calendar <small>(each row represents a year, each dot is a week)</small></p>
             <p className="life-calendar-image">
               <img src="/images/life-calendar-example-1.png" alt="Our life calendars are not very accessible yet. That's on our roadmap, so check back soon!"/>
             </p>

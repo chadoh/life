@@ -46,7 +46,7 @@ export default class PaymentForm extends React.Component {
       React.findDOMNode(this.refs.errorMsg).innerText = response.error.message;
       React.findDOMNode(this.refs.error).style.display = "block";
     } else {
-      PaymentService.charge({user_id: this.props.user.id, token: response.id})
+      PaymentService.charge(this.props.user.slug, response.id)
     }
   }
 

@@ -39,7 +39,7 @@ export default class SignupEmail extends React.Component {
               <p>
                 If you don't remember ever setting a password, search your
                 email for a link to confirm your account! If you're still
-                having trouble, please <a href="mailto:hi+entire.life@chadoh.com">email us</a>
+                having trouble, please <a href="mailto:your@entire.life">email us</a>
                 &nbsp;for help!
               </p>
             </div>

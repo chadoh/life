@@ -54,7 +54,7 @@ export default class Pricing extends React.Component {
             </p>
             <p>
               If the amounts we&lsquo;re charging seem too high, please&nbsp;
-              <a href="mailto:hi+entire.life@chadoh.com">email us</a> to see if we
+              <a href="mailto:your@entire.life">email us</a> to see if we
               can work out a deal.
             </p>
             <p>

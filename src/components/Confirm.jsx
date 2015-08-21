@@ -63,7 +63,7 @@ export default class UserEdit extends React.Component {
               Uh oh! You may have tried clicking a link in an old confirmation
               email that we sent you. Maybe you already confirmed your account!
               In any case, this page won't help you. If this is causing
-              problems, please <a href="mailto:hi+entire.life@chadoh.com">email us</a>.
+              problems, please <a href="mailto:your@entire.life">email us</a>.
             </p>
           </div>
 

@@ -15,10 +15,12 @@ export default class AuthenticatedApp extends React.Component {
   }
 
   setBodyStyle() {
-    if (this.state.userLoggedIn && !this.state.user.paid)
-      document.body.className = document.body.className + ' noscroll-payment'
-    else
+    if (this.state.userLoggedIn && !this.state.user.paid) {
+      if (!document.body.className.match(/noscroll-payment/))
+        document.body.className = document.body.className + ' noscroll-payment'
+    } else if (document.body.className.match(/noscroll-payment/)) {
       document.body.className = document.body.className.replace(/ noscroll-payment/, '')
+    }
   }
 
   _getLoginState() {
@@ -34,8 +36,8 @@ export default class AuthenticatedApp extends React.Component {
   }
 
   _onChange() {
-    this.setBodyStyle()
     this.setState(this._getLoginState());
+    this.setBodyStyle()
   }
 
   componentWillUnmount() {

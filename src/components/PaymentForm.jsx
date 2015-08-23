@@ -41,10 +41,10 @@ export default class PaymentForm extends React.Component {
   }
 
   stripeResponseHandler(status, response) {
-    React.findDOMNode(this.refs.button).disabled = false;
     if (response.error) {
       React.findDOMNode(this.refs.errorMsg).innerText = response.error.message;
       React.findDOMNode(this.refs.error).style.display = "block";
+      React.findDOMNode(this.refs.button).disabled = false;
     } else {
       PaymentService.charge(this.props.user.slug, response.id)
     }

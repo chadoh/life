@@ -16,9 +16,9 @@ export default class AuthenticatedApp extends React.Component {
 
   setBodyStyle() {
     if (this.state.userLoggedIn && !this.state.user.paid)
-      document.body.style.overflow = 'hidden'
+      document.body.className = document.body.className + ' noscroll-payment'
     else
-      document.body.style.overflow = 'scroll'
+      document.body.className = document.body.className.replace(/ noscroll-payment/, '')
   }
 
   _getLoginState() {

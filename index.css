@@ -1,6 +1,9 @@
 body {
   font-family: "Open Sans", sans-serif
 }
+body[class*=noscroll] {
+  overflow: hidden;
+}
 .container, .container-wide {
   margin: 0 auto;
   padding: 0 15px;
@@ -229,7 +232,7 @@ h1.brand small {
   z-index: 3;
 }
 .week-detail {
-  position: fixed;
+  position: absolute;
   top: 0; right: 0; bottom: 0;
   width: 90%;
   max-width: 35rem;
@@ -246,6 +249,11 @@ h1.brand small {
 }
 .close-week-detail:hover {
   color: transparent;
+}
+
+.emojiPicker {
+  left: auto !important;
+  top: auto !important;
 }
 
 /*
@@ -317,7 +325,6 @@ img {
 input[disabled] {
   opacity: .7;
 }
-
 
 /* Payment form */
 .payment {

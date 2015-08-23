@@ -1,16 +1,20 @@
-import React from 'react';
-import Router, {Route} from 'react-router';
+import React from 'react'
+import Router, {Route} from 'react-router'
 import AuthenticatedApp from './components/AuthenticatedApp'
-import Login from './components/Login';
-import Home from './components/Home';
-import Pricing from './components/Pricing';
-import Confirm from './components/Confirm';
-import Signup from './components/Signup';
-import User from './components/User';
-import WeekDetail from './components/WeekDetail';
-import UserEdit from './components/UserEdit';
-import RouterContainer from './services/RouterContainer';
-import LoginActions from './actions/LoginActions';
+import Login from './components/Login'
+import Home from './components/Home'
+import Pricing from './components/Pricing'
+import Confirm from './components/Confirm'
+import Signup from './components/Signup'
+import User from './components/User'
+import WeekDetail from './components/WeekDetail'
+import UserEdit from './components/UserEdit'
+import RouterContainer from './services/RouterContainer'
+import LoginActions from './actions/LoginActions'
+import jQuery from 'jquery'
+
+window.jQuery = jQuery;
+window.$ = jQuery;
 
 var routes = (
   <Route handler={AuthenticatedApp}>

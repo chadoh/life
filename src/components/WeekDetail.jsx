@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import Emoji from 'node-emoji';
-import UserStore from '../stores/UserStore';
-import LoginStore from '../stores/LoginStore';
-import EventStore from '../stores/EventStore';
-import EventService from '../services/EventService';
-import { Range } from 'immutable';
-import { Link } from 'react-router';
+import React from 'react'
+import ReactMixin from 'react-mixin'
+import Emoji from 'node-emoji'
+import UserStore from '../stores/UserStore'
+import LoginStore from '../stores/LoginStore'
+import EventStore from '../stores/EventStore'
+import EventService from '../services/EventService'
+import { Range } from 'immutable'
+import { Link } from 'react-router'
 
 class Event extends React.Component {
   deleteEvent(e) {
@@ -29,7 +29,7 @@ class Event extends React.Component {
 
     return (
       <tr>
-        <td>{Emoji.get(this.props.event.get('emoji'))}</td>
+        <td>{Emoji.get(this.props.event.get('emoji')) || this.props.event.get('emoji')}</td>
         <td>{this.props.event.get('summary')}</td>
         <td className="text-muted">{this.props.event.get('date')}</td>
         {this.props.event.get('id') ? deleteButton : ''}
@@ -45,25 +45,43 @@ class NewEventForm extends React.Component {
       summary: '',
       emoji: '',
       date: '',
+      emojiInput: null
     }
     this.selectDate = this.selectDate.bind(this)
   }
 
+  componentDidMount() {
+    setTimeout(this.initEmojiPicker.bind(this), 500)
+  }
+
+  initEmojiPicker() {
+    let el = React.findDOMNode(this.refs.emoji)
+    jQuery(el).emojiPicker({
+      width: el.offsetWidth,
+      container: '#emoji-container'
+    })
+    // For  some reason this doesn't work with `onKeyUp` on the element
+    jQuery(document).on('keyup', '#emoji', e => {
+      this.setState({emoji: el.value})
+    })
+  }
+
   addEvent(e) {
-    e.preventDefault();
+    e.preventDefault()
     EventService.create(this.props.slug, this.state.summary, this.state.emoji, this.state.date)
       .then(() => {
-        this.setState({summary: '', emoji: ''});
-        this.refs.summary.getDOMNode().focus();
+        this.setState({summary: '', emoji: ''})
+        React.findDOMNode(this.refs.emoji).value = ''
+        React.findDOMNode(this.refs.summary).focus()
       })
       .catch((err) => {
-        alert("There was an error creating the event");
-        console.log("Error creating event", err);
+        alert("There was an error creating the event")
+        console.log("Error creating event", err)
       });
   }
 
   get end() {
-    return UserStore.dateOf(+this.props.weekno + 1);;
+    return UserStore.dateOf(+this.props.weekno + 1)
   }
 
   selectDate(e) {
@@ -85,18 +103,26 @@ class NewEventForm extends React.Component {
     return dates
   }
 
+  toggleEmojiPicker() {
+    // highlight all
+    jQuery(React.findDOMNode(this.refs.emoji)).emojiPicker('toggle')
+  }
+
   render() {
     return (
-      <form role="form" onSubmit={this.addEvent.bind(this)}>
+      <form role="form" onSubmit={this.addEvent.bind(this)} style={{position: 'relative'}}>
         <h2>Add a new event</h2>
         <p>
           <label htmlFor="summary">Summary</label>
-          <input required id="summary" name="summary" className="form-control" type="text" placeholder="Left for Mars" valueLink={this.linkState('summary')} ref="summary"/>
+          <input id="summary" name="summary" ref="summary" type="text"
+            required placeholder="What did you do?" valueLink={this.linkState('summary')}
+          />
         </p>
-        <p>
+        <p id="emoji-container">
           <label htmlFor="emoji">Emoji</label>
-          <input required id="emoji" name="emoji" className="form-control" type="text" placeholder="milky_way" valueLink={this.linkState('emoji')} />
-          <small className="text-muted">Use the names from <a target="_blank" href="http://www.emoji-cheat-sheet.com/">the emoji cheat sheet</a></small>
+          <input id="emoji" name="emoji" ref="emoji" type="text"
+            required maxLength="1" onFocus={this.toggleEmojiPicker.bind(this)}
+          />
         </p>
         <p>
           <label htmlFor="date">Date</label>
@@ -118,19 +144,21 @@ export default class WeekDetail extends React.Component {
   }
 
   componentWillMount() {
-    EventStore.listen(this._onChange);
+    EventStore.listen(this._onChange)
   }
 
   componentDidMount() {
-    if (!this.state.events) this._onChange();
+    if (!this.state.events) this._onChange()
+    document.body.className = document.body.className + ' noscroll-weekdetail'
   }
 
   componentWillUnmount() {
-    EventStore.unlisten(this._onChange);
+    EventStore.unlisten(this._onChange)
+    document.body.className = document.body.className.replace(/ noscroll-weekdetail/, '')
   }
 
   _onChange() {
-    this.setState({events: EventStore.getState().events.get(this.props.params.weekno)});
+    this.setState({events: EventStore.getState().events.get(this.props.params.weekno)})
   }
 
   get authed() {

@@ -115,7 +115,7 @@ class NewEventForm extends React.Component {
         <p>
           <label htmlFor="summary">Summary</label>
           <input id="summary" name="summary" ref="summary" type="text"
-            required placeholder="What did you do?" valueLink={this.linkState('summary')}
+            required valueLink={this.linkState('summary')}
           />
         </p>
         <p id="emoji-container">

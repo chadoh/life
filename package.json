@@ -16,7 +16,7 @@
     ]
   },
   "scripts": {
-    "start": "npm run build && serve .",
+    "start": "npm run build && node server.js",
     "build": "npm run build-js && npm run build-css && npm run build-html && npm run build-vendor && npm run build-images",
     "watch": "npm run watch-js & npm run watch-css & npm run watch-html & node server.js",
     "test": "npm run lint -s && npm run build",

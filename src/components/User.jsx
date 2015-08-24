@@ -7,6 +7,7 @@ import EventActions from '../actions/EventActions';
 import Life from './Life';
 import LifeLoading from './LifeLoading';
 import { RouteHandler, Link } from 'react-router';
+import Title from './Title'
 
 export default class User extends React.Component {
   constructor(props) {
@@ -48,12 +49,12 @@ export default class User extends React.Component {
 
     return (
       <div className="container-wide">
-        <h1 className="brand">
+        <Title>
           <Link to="home" className="logo-small">
             <img src="/images/spoon-of-diamonds.png" alt="Home" />
           </Link>
           {this.state.user.get('name') + ':'} <small>A life</small>
-        </h1>
+        </Title>
         <RouteHandler/>
         {cal}
       </div>

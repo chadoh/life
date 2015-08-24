@@ -50,16 +50,22 @@ a:hover {
 /*
  * Hero & Nav
  */
-.nav-button {
+.nav-buttons {
   text-align: right;
   height: 0;
 }
-.nav-button a {
+.nav-buttons a {
   z-index: 2;
   position: relative;
   background-color: transparent;
   top: 1.5rem;
   color: gray;
+}
+.nav-buttons h1 {
+  float: left;
+}
+.nav-buttons h1 a {
+  top: 0;
 }
 .hero {
   min-height: 100vh;

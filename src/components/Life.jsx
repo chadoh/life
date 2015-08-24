@@ -9,7 +9,7 @@ export default class Life extends React.Component {
       weeks.push(<Week key={i} weekno={i} events={this.props.events.get(''+i)} />)
     }
     return (
-      <div className="life">
+      <div style={{clear: 'both'}} className="life">
         {weeks}
       </div>
     );

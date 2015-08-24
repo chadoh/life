@@ -21,7 +21,7 @@ export default class LifeLoading extends React.Component {
       dots.push(<span key={i}>●</span>)
     }
     return (
-      <div>
+      <div style={{clear: 'both'}}>
         <p>Each dot represents a week. Wait for it... (faster loading coming soon!)</p>
         <div className="life">
           {dots}

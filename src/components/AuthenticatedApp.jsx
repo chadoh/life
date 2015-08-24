@@ -47,7 +47,7 @@ export default class AuthenticatedApp extends React.Component {
   render() {
     return (
       <div>
-        <div className="container-wide nav-button">
+        <div className="container-wide nav-buttons">
           {this.headerItems}
         </div>
         <RouteHandler/>
@@ -76,7 +76,7 @@ export default class AuthenticatedApp extends React.Component {
         <a href="" onClick={this.logout} className="button">Sign Out</a>
       </nav>
     } else {
-      return <Link to="user" params={{slug: this.state.user.slug}} className="button">You</Link>
+      return <nav><Link to="user" params={{slug: this.state.user.slug}} className="button">You</Link></nav>
     }
   }
 

@@ -63,12 +63,17 @@ a:hover {
 }
 .hero {
   min-height: 100vh;
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-color: #373a3c;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right top;
+  background-position: left center;
   position: relative;
+}
+@media (min-width: 720px) {
+  .hero {
+    background-attachment: fixed;
+  }
 }
 .sunset-cliffs {
   background-image: url(/images/sunset-cliffs-large.jpeg);

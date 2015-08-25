@@ -26,8 +26,8 @@
     "build-vendor": "cp -R src/vendor build",
     "build-images": "cp -R src/images build",
     "watch-js": "watchify --extension=.jsx --extension=.js src/app.jsx -o build/build.js --debug --verbose",
-    "watch-css": "nodemon -e css --ignore build/build.css --exec 'rework-npm index.css -o build/build.css'",
-    "watch-html": "nodemon -e html --ignore build/index.html --exec cp index.html build/index.html",
+    "watch-css": "nodemon --watch index.css --exec 'rework-npm index.css -o build/build.css'",
+    "watch-html": "nodemon --watch index.html --exec cp index.html build/index.html",
     "lint-eslint": "eslint .",
     "lint-jscs": "jscs .",
     "lint": "npm run lint-eslint && npm run lint-jscs"

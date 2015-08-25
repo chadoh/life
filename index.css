@@ -29,6 +29,9 @@ a:hover {
   color: gray;
 }
 .flex-row {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 .flex-row > * {
@@ -283,19 +286,36 @@ img {
  * Payment Options
  */
 .payment-options {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
   display: flex;
   justify-content: space-around;
   margin-top: 4rem;
+  -webkit-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  flex-flow: row wrap;
 }
 .payment-option {
-  width: 30%;
+  width: 100%;
   text-align: center;
   border: 3px solid white;
   border-radius: 1.5rem;
   padding: 1.5rem;
+  margin-bottom: 1.5rem;
   color: white;
   text-decoration: none;
   cursor: pointer;
+}
+@media(min-width: 500px) {
+  .payment-option {
+    width: 47%;
+  }
+}
+@media(min-width: 700px) {
+  .payment-option {
+    width: 30%;
+  }
 }
 .payment-option:hover {
   box-shadow: 0 0 15px white;
@@ -304,6 +324,26 @@ img {
   position: relative;
   padding-bottom: 90%;
   height: 0;
+}
+@media(min-width: 400px) {
+  .payment-option h2 {
+    padding-bottom: 45%;
+    width: 50%;
+    float: right;
+  }
+  .payment-option .price {
+    width: 50%;
+  }
+}
+@media(min-width: 500px) {
+  .payment-option h2 {
+    padding-bottom: 90%;
+    width: 100%;
+    float: none;
+  }
+  .payment-option .price {
+    width: 100%;
+  }
 }
 .payment-option h2 > div {
   position: absolute;

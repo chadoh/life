@@ -16,7 +16,7 @@ export default class Pricing extends React.Component {
             <div className="payment-options">
               <Link to="signup" query={{payment: 'annual'}} className="payment-option">
                 <h2 className="brand">
-                  <div className="vertical-centering">
+                  <div className="vertical-centering-small">
                     <div>
                       Annual
                     </div>
@@ -30,7 +30,7 @@ export default class Pricing extends React.Component {
               </Link>
               <Link to="signup" query={{payment: 'lifetime'}} className="payment-option">
                 <h2 className="brand">
-                  <div className="vertical-centering">
+                  <div className="vertical-centering-small">
                     <div>
                       Lifetime
                     </div>

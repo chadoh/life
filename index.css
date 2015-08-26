@@ -3,6 +3,7 @@ body {
 }
 body[class*=noscroll] {
   overflow: hidden;
+  position: fixed;
 }
 .container, .container-wide {
   margin: 0 auto;
@@ -401,11 +402,12 @@ input[disabled] {
   top: 0; bottom: 0; right: 0; left: 0;
   background-color: rgba(255,255,255,0.6);
   z-index: 2;
-  padding-top: 10rem;
+  padding: 10rem 0;
+  overflow: scroll;
 }
 @media(min-width: 750px) {
   .payment {
-    padding-top: 0;
+    padding: 0;
   }
 }
 .payment-inner {

@@ -2,6 +2,7 @@ import React from 'react/addons'
 import ReactMixin from 'react-mixin'
 import PaymentService from '../services/PaymentService'
 import {STRIPE_PUBLISHABLE_KEY} from '../config'
+import CreditCardInput from './CreditCardInput'
 
 export default class PaymentForm extends React.Component {
   constructor() {
@@ -68,7 +69,7 @@ export default class PaymentForm extends React.Component {
             <p ref="error" style={{display: 'none'}}><span ref="errorMsg"/><span className="label error">oops</span></p>
             <div className="cardPaymentView">
               <div className="cardNumberInput input top">
-                <input valueLink={this.linkState('cc')} onFocus={this.focusParentDiv} onBlur={this.blurParentDiv} className="control" id="card_number" type="tel" x-autocompletetype="cc-number" autocompletetype="cc-number" autoCorrect="off" spellCheck="off" autoCapitalize="off" placeholder="Card number" autoFocus/>
+                <CreditCardInput valueLink={this.linkState('cc')} onFocus={this.focusParentDiv} onBlur={this.blurParentDiv}/>
                 <div className="svg icon" style={{ width: "30px", height: "30px" }}>
                   <img src="/images/icon-credit-card.svg" alt=""/>
                 </div>

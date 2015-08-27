@@ -44,6 +44,7 @@
     "jwt-decode": "^1.1.0",
     "node-emoji": "^0.1.0",
     "react": "^0.13",
+    "react-input-mask": "^0.0.16",
     "react-mixin": "^1.1.0",
     "react-router": "^0.13.3",
     "reqwest": "^1.1.5"

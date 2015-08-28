@@ -32,8 +32,7 @@ export default class CreditCardInput extends React.Component {
         className="control"
         id="card_number"
         type="tel"
-        x-autocompletetype="cc-number"
-        autoCompletetype="cc-number"
+        ref={this._setAutocompleteType}
         name="ccnum"
         autoCorrect="off"
         spellCheck="off"
@@ -42,5 +41,11 @@ export default class CreditCardInput extends React.Component {
         autoFocus
       />
     )
+  }
+
+  _setAutocompleteType(component) {
+    let element = component.getDOMNode()
+    element.setAttribute('x-autocompletetype', 'cc-number')
+    element.setAttribute('autocompletetype', 'cc-number')
   }
 }

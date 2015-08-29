@@ -32,12 +32,17 @@ export default class CreditCardInput extends React.Component {
     this.setState({cc: value})
   }
 
+  onBlur(e) {
+    this.onChange(e)
+    this.props.onBlur(e)
+  }
+
   render() {
     return (
       <input
         onChange={this.onChange.bind(this)}
         onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
+        onBlur={this.onBlur.bind(this)}
         className="control"
         id="card_number"
         type="tel"

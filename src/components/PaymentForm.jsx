@@ -9,7 +9,7 @@ export default class PaymentForm extends React.Component {
     super()
     this.state = {
       cc: '',
-      exp: (new Date()).toISOString().split('-').slice(0,2).join('-'),
+      exp: '',
       cvc: ''
     }
   }

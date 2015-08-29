@@ -1,39 +1,49 @@
 import React from 'react/addons'
 import ReactMixin from 'react-mixin'
-import MaskedInput from 'react-input-mask'
+
+let visaPattern = /^(....)(....)?(....)?(....)?(.+)?$/
+let amexPattern = /^(...)(....)?(.....)?(....)?(.+)?$/
 
 export default class CreditCardInput extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cc: props.valueLink.value,
-      mask: "9999 9999 9999 9999 99999999"
+      cc: props.valueLink.value
     }
   }
 
   onChange(e) {
-    this.props.valueLink.requestChange(e.target.value)
-    let newState = {
-      cc: e.target.value,
-      mask: "9999 9999 9999 9999 99999999"
-    }
-    if (/^3[47]/.test(e.target.value)) newState.mask = "999 9999 99999 9999"
-    this.setState(newState)
+    let cardPattern = visaPattern;
+    if (/^3[47]/.test(e.target.value)) cardPattern = amexPattern;
+
+    let value = e.target.value.
+      replace(/[^\d]/g, '').
+      replace(/\s/g, '').
+      replace(cardPattern, (match, p0, p1, p2, p3, p4, offset, string) => {
+        let parts = [p0, p1, p2, p3, p4]
+        let cleaned = [p0]
+        for (var i = 1; i < 5; i++) {
+          if (parts[i]) cleaned.push(parts[i])
+        }
+        return cleaned.join(' ')
+      })
+
+    this.props.valueLink.requestChange(value)
+    this.setState({cc: value})
   }
 
   render() {
     return (
-      <MaskedInput
+      <input
         onChange={this.onChange.bind(this)}
         onFocus={this.props.onFocus}
         onBlur={this.props.onBlur}
-        mask={this.state.mask}
-        maskChar={null}
         className="control"
         id="card_number"
         type="tel"
         ref={this._setAutocompleteType}
         name="ccnum"
+        value={this.state.cc}
         autoCorrect="off"
         spellCheck="off"
         autoCapitalize="off"

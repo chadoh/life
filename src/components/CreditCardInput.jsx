@@ -47,7 +47,7 @@ export default class CreditCardInput extends React.Component {
         id="card_number"
         type="tel"
         ref={this._setAutocompleteType}
-        name="ccnum"
+        name="card_number"
         value={this.state.cc}
         autoCorrect="off"
         spellCheck="off"

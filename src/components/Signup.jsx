@@ -21,6 +21,7 @@ export default class Signup extends React.Component {
     e.preventDefault()
 
     React.findDOMNode(this.refs.button).disabled = true;
+    React.findDOMNode(this.refs.error).style.display = "none";
     AuthService.signup(
       this.props.query.payment,
       this.props.query.name,
@@ -28,17 +29,26 @@ export default class Signup extends React.Component {
       this.props.query.slug,
       this.state.born
     )
-    .then(function(response) {
+    .then(response => {
       var jwt = response.token;
       var nextPath = '/' + jwt_decode(jwt).slug;
       RouterContainer.get().transitionTo(nextPath)
     })
 
-    .fail(function(err) {
+    .fail(err => {
       React.findDOMNode(this.refs.button).disabled = false;
-      alert('there was an error! :-( :-(')
-      console.error(err)
+      React.findDOMNode(this.refs.errorMsg).innerText = this.prettyError(err.response);
+      React.findDOMNode(this.refs.error).style.display = "block";
     })
+  }
+
+  prettyError(errorJson) {
+    let error = JSON.parse(errorJson)
+    let msg = []
+    for (var key in error) {
+      msg.push(key + ' ' + error[key].join(', '))
+    }
+    return msg.join('; ')
   }
 
   render() {

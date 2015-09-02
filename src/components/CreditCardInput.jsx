@@ -8,18 +8,23 @@ export default class CreditCardInput extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cc: props.valueLink.value
+      cc: props.valueLink.value,
+      cardType: ''
     }
   }
 
   onChange(e) {
-    let cardPattern = visaPattern;
-    if (/^3[47]/.test(e.target.value)) cardPattern = amexPattern;
+    let value = this.formatValue(e.target.value, /^3[47]/.test(e.target.value) ? amexPattern : visaPattern)
 
-    let value = e.target.value.
+    this.props.valueLink.requestChange(value)
+    this.setState({cc: value, cardType: this.detectType(value)})
+  }
+
+  formatValue(value, pattern) {
+    return value.
       replace(/[^\d]/g, '').
       replace(/\s/g, '').
-      replace(cardPattern, (match, p0, p1, p2, p3, p4, offset, string) => {
+      replace(pattern, (match, p0, p1, p2, p3, p4, offset, string) => {
         let parts = [p0, p1, p2, p3, p4]
         let cleaned = [p0]
         for (var i = 1; i < 5; i++) {
@@ -27,9 +32,16 @@ export default class CreditCardInput extends React.Component {
         }
         return cleaned.join(' ')
       })
+  }
 
-    this.props.valueLink.requestChange(value)
-    this.setState({cc: value})
+  detectType(value) {
+    if (/^4/.test(value)) return 'visa'
+    if (/^5[1-5]/.test(value)) return 'mastercard'
+    if (/^3[47]/.test(value)) return 'amex'
+    if (/^3(?:0[0-5]|[68])/.test(value)) return 'diners'
+    if (/^6(?:011|5)/.test(value)) return 'discover'
+    if (/^(?:2131|1800|35)/.test(value)) return 'jcb'
+    return ''
   }
 
   onBlur(e) {
@@ -43,7 +55,7 @@ export default class CreditCardInput extends React.Component {
         onChange={this.onChange.bind(this)}
         onFocus={this.props.onFocus}
         onBlur={this.onBlur.bind(this)}
-        className="control"
+        className={'control ' + this.state.cardType}
         id="card_number"
         type="tel"
         ref={this._setAutocompleteType}

@@ -20,7 +20,7 @@ export default class SignupEmail extends React.Component {
     .then(() => {
       let path = window.location.pathname;
       let query = window.location.search;
-      RouterContainer.get().transitionTo(path + query + '&email=' + this.state.email)
+      RouterContainer.get().transitionTo(path + query + '&email=' + encodeURIComponent(this.state.email))
     })
     .fail(() => {
       React.findDOMNode(this.refs.error).style.display = "block"

@@ -15,7 +15,7 @@ export default class SignupName extends React.Component {
 
     let path = window.location.pathname;
     let query = window.location.search;
-    RouterContainer.get().transitionTo(path + query + '&name=' + this.state.name)
+    RouterContainer.get().transitionTo(path + query + '&name=' + encodeURIComponent(this.state.name))
   }
   render() {
     return (

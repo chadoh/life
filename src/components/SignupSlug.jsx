@@ -19,7 +19,7 @@ export default class SignupSlug extends React.Component {
     .then(() => {
       let path = window.location.pathname;
       let query = window.location.search;
-      RouterContainer.get().transitionTo(path + query + '&slug=' + this.state.slug)
+      RouterContainer.get().transitionTo(path + query + '&slug=' + encodeURIComponent(this.state.slug))
     })
     .fail(() => {
       React.findDOMNode(this.refs.error).style.display = "block"

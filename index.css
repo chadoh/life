@@ -603,3 +603,47 @@ input[disabled] {
   transform-origin: 50% 50%;
   pointer-events: none;
 }
+
+.control.amex {
+  background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/amex-rCwsUgG9VyC8v8BdohM3Rw.png")
+}
+.control.diners {
+  background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/diners-rzdCy07VGt8190Sl9Vt7ag.png")
+}
+.control.discover {
+  background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/discover-GhYYu271VuO3llRQeCQA.png")
+}
+.control.jcb {
+  background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/jcb-oXQoEoicpg7Sh8tItANTpg.png")
+}
+.control.mastercard {
+  background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/mastercard-HVnFbrioF3RgUWZV0DcA.png")
+}
+.control.visa {
+  background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/visa-PN8VNASAyUCxB1J1kpg1fQ.png")
+}
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),only screen and (min--moz-device-pixel-ratio:1.5),only screen and (min-device-pixel-ratio:1.5) {
+  .control.amex {
+    background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/amex@2x-Im4rwQaMmOdUZ7GkDc7p1w.png")
+  }
+  .control.diners {
+    background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/diners@2x-YsoHAeUpmA3wX5cEsTmoKg.png")
+  }
+  .control.discover {
+    background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/discover@2x-Ht7GcwNzjvcmQSPh6K2cUA.png")
+  }
+  .control.jcb {
+    background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/jcb@2x-0JpAywvLOTRfVf23XMWMTQ.png")
+  }
+  .control.mastercard {
+    background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/mastercard@2x-i5mYl4TdEhnyRIf6tSjYWg.png")
+  }
+  .control.visa {
+    background-image: url("https://b.stripecdn.com/checkout/v3/images/cards/visa@2x-m9vontAoBuAB8u3G2nDSA.png")
+  }
+}
+.control.amex,.control.diners,.control.discover,.control.jcb,.control.mastercard,.control.visa {
+  background-repeat: no-repeat;
+  background-size: 32px 20px;
+  background-position: right center;
+}

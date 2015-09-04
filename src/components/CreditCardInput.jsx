@@ -74,5 +74,6 @@ export default class CreditCardInput extends React.Component {
     let element = component.getDOMNode()
     element.setAttribute('x-autocompletetype', 'cc-number')
     element.setAttribute('autocompletetype', 'cc-number')
+    element.setAttribute('autocomplete', 'cc-number')
   }
 }

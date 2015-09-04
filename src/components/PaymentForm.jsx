@@ -75,19 +75,13 @@ export default class PaymentForm extends React.Component {
                 </div>
               </div>
               <div className="cardExpiresInput input left bottom">
-                <input valueLink={this.linkState('exp')} onFocus={this.focusParentDiv} onBlur={this.blurParentDiv} className="control" id="cc-exp" type="month" x-autocompletetype="off" autocompletetype="off" autoCorrect="off" spellCheck="off" autoCapitalize="off" placeholder="YYYY-MM"/>
+                <input valueLink={this.linkState('exp')} onFocus={this.focusParentDiv} onBlur={this.blurParentDiv} className="control" id="cc-exp" type="month" name="card_exp" ref={this._setExpAutocompleteType} autoCorrect="off" spellCheck="off" autoCapitalize="off" placeholder="YYYY-MM"/>
                 <div className="svg icon" style={{ width: "30px", height: "30px" }}>
                   <img src="/images/icon-calendar.svg" alt=""/>
                 </div>
-                <select id="cc-exp-year" x-autocompletetype="cc-exp-year" autocompletetype="cc-exp-year" autoCorrect="off" spellCheck="off" autoCapitalize="off" tabIndex="-1" style={{ position: "absolute", left: "-10000px" }}>
-                  <option>Year</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option>
-                </select>
-                <select id="cc-exp-month" x-autocompletetype="cc-exp-month" autocompletetype="cc-exp-month" autoCorrect="off" spellCheck="off" autoCapitalize="off" tabIndex="-1" style={{ position: "absolute", left: "-10000px" }}>
-                  <option>Month</option><option value="01">January</option><option value="02">February</option><option value="03">March</option><option value="04">April</option><option value="05">May</option><option value="06">June</option><option value="07">July</option><option value="08">August</option><option value="09">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
-                </select>
               </div>
               <div className="cardCVCInput input right bottom">
-                <input valueLink={this.linkState('cvc')} onFocus={this.focusParentDiv} onBlur={this.blurParentDiv} className="control" id="cc-csc" type="tel" autoComplete="off" autoCorrect="off" spellCheck="off" autoCapitalize="off" placeholder="CVC" maxLength="4"/>
+                <input valueLink={this.linkState('cvc')} onFocus={this.focusParentDiv} onBlur={this.blurParentDiv} className="control" id="cc-csc" type="tel" name="card_csc" ref={this._setCSCAutocompleteType} spellCheck="off" autoCapitalize="off" placeholder="CVC" maxLength="4"/>
                 <div className="svg icon" style={{ width: "30px", height: "30px" }}>
                   <img src="/images/icon-lock.svg" alt=""/>
                 </div>
@@ -98,6 +92,20 @@ export default class PaymentForm extends React.Component {
         </div>
       </form>
     )
+  }
+
+  _setExpAutocompleteType(component) {
+    let element = component.getDOMNode()
+    element.setAttribute('x-autocompletetype', 'cc-exp')
+    element.setAttribute('autocompletetype', 'cc-exp')
+    element.setAttribute('autocomplete', 'cc-exp')
+  }
+
+  _setCSCAutocompleteType(component) {
+    let element = component.getDOMNode()
+    element.setAttribute('x-autocompletetype', 'cc-csc')
+    element.setAttribute('autocompletetype', 'cc-csc')
+    element.setAttribute('autocomplete', 'cc-csc')
   }
 }
 

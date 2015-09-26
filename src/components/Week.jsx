@@ -24,8 +24,10 @@ export default class Week extends React.Component {
   }
 
   tooltip(date) {
-    return this.props.events && this.props.events.first() ?
-      `${date}: ${this.props.events.first().get('summary')}` : date
+    let append = '';
+    if (this.props.events && this.props.events.first())
+      append = `: ${this.props.events.first().get('summary')}`;
+    return `Week of ${date}` + append;
   }
 }
 

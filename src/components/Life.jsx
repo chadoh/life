@@ -5,7 +5,7 @@ import Week from './Week';
 export default class Life extends React.Component {
   render() {
     var weeks = [];
-    for(var i = 0; i < 101*52; i++) {
+    for(var i = 0; i < 100*53; i++) {
       weeks.push(<Week key={i} weekno={i} events={this.props.events.get(''+i)} />)
     }
     return (

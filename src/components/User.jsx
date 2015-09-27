@@ -44,7 +44,7 @@ export default class User extends React.Component {
   }
 
   render() {
-    var cal = !this.state.events.get('0') || !this.state.user.get('born') ?
+    var cal = !this.state.events.get('1') || !this.state.user.get('born') ?
       <LifeLoading /> : <Life events={this.state.events} />
 
     return (

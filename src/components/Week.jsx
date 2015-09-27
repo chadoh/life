@@ -20,7 +20,8 @@ export default class Week extends React.Component {
   get emoji() {
     return this.props.events && this.props.events.first() ?
       Emoji.get(this.props.events.first().get('emoji')) || this.props.events.first().get('emoji') :
-      "●"
+      !(this.props.weekno % 53 === 0) ? "●" :
+      (this.props.weekno / 53) % 5 === 0 ? this.props.weekno / 53 : " "
   }
 
   tooltip(date) {

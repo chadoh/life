@@ -1,5 +1,6 @@
 body {
   font-family: "Open Sans", sans-serif
+  color: #20221F;
 }
 body[class*=noscroll] {
   overflow: hidden;
@@ -132,13 +133,13 @@ h1.brand small {
     margin: -6vh 10% 0;
   }
 }
-.hero .trailing {
+.trailing {
   position: absolute;
   top: 100%;
   width: 100%;
   text-align: center;
 }
-.hero .trailing .logo {
+.trailing .logo {
   width: 180px;
   margin-top: -56px;
 }
@@ -160,6 +161,9 @@ h1.brand small {
 .bg-dark, .bg-light {
   font-size: 1.5rem;
   padding: 8rem 0;
+}
+.bg-dark blockquote {
+  box-shadow: inset 5px 0;
 }
 .bg-dark:first-child, .bg-light:first-child {
   padding-top: 0;
@@ -299,6 +303,12 @@ img {
 
 .life-calendar-image img {
   border-radius: .2em;
+}
+.centered {
+  text-align: center;
+}
+.shrink img {
+  width: 50%;
 }
 
 

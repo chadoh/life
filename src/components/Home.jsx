@@ -59,9 +59,8 @@ export default class Home extends React.Component {
             <p>
               <img src="https://draftin.com:443/images/32526?token=t0EYPy0xRmvK8KBSkW6WeF7tMjjqe_UXnAXTFGpKWM-jHjIx0kznMZLqvnPCOy8Wab8-3pBEZh4N0d-Zwn1cZcs" alt="a 52x100 grid, each row representing one year"/>
             </p>
-            <p>Ahhhh.</p>
-            <p>Yeah, that was a lot of dots.</p>
-            <p>But also not as many as I'd like! Usually, as I go about my life, I like to pretend that my weeks will never end. That they're an unlimited resource.</p>
+            <p>That is a lot of dots.</p>
+            <p>But also not as many as I'd like! I'd prefer to pretend that my weeks will never end. That they're an unlimited resource.</p>
             <p>But they're not! </p>
             <p>They're finite. Totally countable. If you scroll through this page quickly, you might miss the whole thing.</p>
             <p><a href="http://waitbutwhy.com/2014/05/life-weeks.html">Wait But Why</a> points out that if you had a diamond for each of those dots—a diamond for every week of your life—they would just about fill one tablespoon. That's it! One precious spoonful of diamonds.</p>
@@ -73,8 +72,8 @@ export default class Home extends React.Component {
         <div className="bg-dark">
           <div className="container">
             <h2 id="remember-that-you'll-die" className="brand">Remember that you'll die</h2>
-            <p>We don't like to think about it. I, at least, like to pretend that my numbered days are endless.</p>
-            <p>But ignoring reality doesn't change it. And if you treat your limited, precious resource like it's inexhaustible, it's easy for each week to start to blur into the next.</p>
+            <p>We don't like to think about it, but ignoring reality doesn't change anything.</p>
+            <p>And if you treat your limited, precious weeks like they're inexhaustible, it's easy for each week to start to blur into the next.</p>
             <p>What are good ways to use your diamonds? I love how <a href="http://waitbutwhy.com/2014/05/life-weeks.html">Wait But Why</a> says it. Good ways to use your diamonds are:</p>
             <blockquote>
               <p>

@@ -4,15 +4,7 @@ import ReactMixin from 'react-mixin';
 export default class LifeLoading extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { dots: 1750 }; // ~1/3 of a life
-  }
-
-  componentDidMount() {
-    this.dotIncrementer = setInterval(() => this.setState({dots: this.state.dots + 1}), 100)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.dotIncrementer)
+    this.state = { dots: 5252 }
   }
 
   render() {

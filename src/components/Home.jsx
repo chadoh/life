@@ -38,7 +38,7 @@ export default class Home extends React.Component {
             <h2 id="something-more-tangible" className="brand">Something more tangible</h2>
             <p>How about months?</p>
             <p className="life-calendar-image">
-              <img src="https://draftin.com:443/images/32522?token=EwJlv84mCLtd99b7VexV6fl8pBgTFAc3KaJq_bj6YneoOd87Y4YzvdzCChWzT1Vt0EA_xPY2fbaxyVVAkIyhVZA" alt="a 36x33 grid, each row of 36 representing three years"/>
+              <img src="/images/life-in-months.png" alt="a 36x33 grid, each row of 36 representing three years"/>
             </p>
             <p>It's wild to think that I probably won't have that many months in my life. Months definitely feel like more of a human timescale than years.</p>
           </div>
@@ -57,7 +57,7 @@ export default class Home extends React.Component {
             <h2 id="how-about-weeks?" className="brand">How about weeks?</h2>
             <p><a href="http://waitbutwhy.com/2014/05/life-weeks.html">Wait But Why</a> breaks it down one step further. Here's a whole 100-year life in weeks:</p>
             <p>
-              <img src="https://draftin.com:443/images/32526?token=t0EYPy0xRmvK8KBSkW6WeF7tMjjqe_UXnAXTFGpKWM-jHjIx0kznMZLqvnPCOy8Wab8-3pBEZh4N0d-Zwn1cZcs" alt="a 52x100 grid, each row representing one year"/>
+              <img src="/images/life-in-weeks.png" alt="a 52x100 grid, each row representing one year"/>
             </p>
             <p>That is a lot of dots.</p>
             <p>But also not as many as I'd like! I'd prefer to pretend that my weeks will never end. That they're an unlimited resource.</p>

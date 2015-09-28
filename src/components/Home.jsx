@@ -48,7 +48,7 @@ export default class Home extends React.Component {
             <h2 id="but-months-are-still-too-long" className="brand">But months are still too long</h2>
             <p>You've probably heard that habits are formed or broken within a month. If you're anything like me, though, you can never stick with things for an entire month. </p>
             <p>Which makes me think that months aren't quite a human rhythm, either. </p>
-            <p>Like years, we're surprised every time a new month arrives. "September already??"</p>
+            <p>Like years, we're surprised every time a new month arrives. "October already??"</p>
             <p>But also like years, they're too long to really motivate us.</p>
           </div>
         </div>

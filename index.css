@@ -112,6 +112,14 @@ a:hover {
   width: 90%;
   text-align: center;
   padding-top: 6rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  border-radius: .4rem;
+}
+@media(min-width: 770px) {
+  .hook {
+    width: 50%;
+    padding-top: 0;
+  }
 }
 .embed-container {
   border-radius: .4rem .4rem 0 0;
@@ -130,12 +138,6 @@ a:hover {
   margin-top: 0;
 }
 
-@media(min-width: 770px) {
-  .hook {
-    width: 50%;
-    padding-top: 0;
-  }
-}
 
 /*
  * Logo

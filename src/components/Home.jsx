@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default class Home extends React.Component {
+  constructor(props) {
+    super(props)
+    this.playVideo = this.playVideo.bind(this)
+  }
   render() {
     return (
       <div>
@@ -10,7 +14,7 @@ export default class Home extends React.Component {
             <div>
               <div className="hook">
                 <div className="video-container">
-                  <div className='embed-container'><iframe src='https://player.vimeo.com/video/132391869' frameBorder='0'></iframe></div>
+                  <div ref="video" className='embed-container'><a href="#play-video" onClick={this.playVideo}><img src="/images/video-placeholder.jpg" alt="play video"/></a></div>
                 </div>
                 <div className="hook-description">
                   <h1 className="brand">Take control of your life</h1>
@@ -23,5 +27,11 @@ export default class Home extends React.Component {
         </div>
       </div>
     )
+  }
+
+  playVideo(e) {
+    e.preventDefault();
+    const player = React.findDOMNode(this.refs.video)
+    player.innerHTML = "<iframe src='https://player.vimeo.com/video/132391869?autoplay=1' frameborder='0' allowfullscreen></iframe>"
   }
 }

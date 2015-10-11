@@ -40,9 +40,10 @@ var router = Router.create({
 });
 RouterContainer.set(router);
 
-LoginActions.loginUserFromSavedSession()
+// LoginActions.loginUserFromSavedSession()
+
+LoginActions.getProfile()
 
 router.run(function (Handler) {
   React.render(<Handler />, document.getElementById('content'));
 });
-

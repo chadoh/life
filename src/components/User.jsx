@@ -44,8 +44,8 @@ export default class User extends React.Component {
   }
 
   render() {
-    var cal = !this.state.events.get('0') || !this.state.user.get('born') ?
-      <LifeLoading /> : <Life events={this.state.events} />
+    // var cal = !this.state.events.get('0') || !this.state.user.get('born') ?
+    //   <LifeLoading /> : <Life events={this.state.events} />
 
     return (
       <div className="container-wide">
@@ -56,7 +56,7 @@ export default class User extends React.Component {
           {this.state.user.get('name') + ':'} <small>A life</small>
         </Title>
         <RouteHandler/>
-        {cal}
+        {/* {cal} */}
       </div>
     );
   }

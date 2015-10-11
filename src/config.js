@@ -4,4 +4,6 @@ export default {
 
   // STRIPE_PUBLISHABLE_KEY: 'pk_4QXgq0EuigTEkoZF72kdekSBUF6gs', // test
   STRIPE_PUBLISHABLE_KEY: 'pk_n6D1XV27lIqhZyg1sjLeE0HjyPo7X', // live
+
+  AUTH0TOKEN: 'FZ4dumhe3LHckksl3w7vPsp6UoeH3Q1B',
 }

@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
+import LoginStore from '../stores/LoginStore'
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class Home extends React.Component {
 
     this.videoElement = this.videoElement.bind(this)
     this.playVideo = this.playVideo.bind(this)
+    this.showLock = this.showLock.bind(this)
   }
 
   render() {
@@ -24,7 +26,7 @@ export default class Home extends React.Component {
                 <div className="hook-description">
                   <h1 className="brand">Take control of your life</h1>
                   <p><small>for only $10 a year</small></p>
-                  <Link to="signup" className="button">Claim your FREE life calendar now &rarr;</Link>
+                  <a onClick={this.showLock} className="button" href="#">Claim your FREE life calendar now &rarr;</a>
                 </div>
               </div>
             </div>
@@ -44,5 +46,10 @@ export default class Home extends React.Component {
   playVideo(e) {
     e.preventDefault();
     this.setState({playing: true})
+  }
+
+  showLock(e) {
+    e.preventDefault()
+    LoginStore.getState().lock.show()
   }
 }

@@ -26,7 +26,7 @@ export default class Home extends React.Component {
                 <div className="hook-description">
                   <h1 className="brand">Take control of your life</h1>
                   <p><small>for only $10 a year</small></p>
-                  <a onClick={this.showLock} className="button" href="#">Claim your FREE life calendar now &rarr;</a>
+                  <button onClick={this.showLock}>&rarr; Claim my FREE life calendar now &larr;</button>
                 </div>
               </div>
             </div>

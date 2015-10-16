@@ -1,4 +1,4 @@
-import alt from '../alt'
+import alt from '../lib/alt'
 import { Map } from 'immutable'
 import UserActions from '../actions/UserActions'
 import UserService from '../services/UserService';

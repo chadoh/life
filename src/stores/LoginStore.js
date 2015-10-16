@@ -1,20 +1,48 @@
-import alt from '../alt'
+import alt from '../lib/alt'
 import jwt_decode from 'jwt-decode'
 import LoginActions from '../actions/LoginActions'
 import UserActions from '../actions/UserActions'
+import { AUTH0TOKEN } from '../config'
 
 class LoginStore {
 
   constructor() {
-    this.bindListeners({
-      loginUser: LoginActions.loginUser,
-      loginUserFromSavedSession: LoginActions.loginUserFromSavedSession,
-      logoutUser: LoginActions.logoutUser,
-      updateUser: UserActions.gotUser
-    })
+    this.bindActions(LoginActions)
+
+    this.lock = new Auth0Lock(AUTH0TOKEN, 'entire-life.auth0.com')
+
     this.state = {
-      user: null,
-      jwt: null
+      lock: this.lock,
+      idToken: this.getIdToken(),
+      profile: null
+    }
+  }
+
+  getIdToken() {
+    var idToken = localStorage.getItem('userToken');
+    var authHash = this.lock.parseHash(window.location.hash);
+    if (!idToken && authHash) {
+      if (authHash.id_token) {
+        idToken = authHash.id_token
+        localStorage.setItem('userToken', authHash.id_token);
+      }
+      if (authHash.error) {
+        console.log("Error signing in", authHash);
+        return null;
+      }
+    }
+    return idToken;
+  }
+
+  getProfile() {
+    if (this.state.idToken) {
+      this.lock.getProfile(this.state.idToken, (err, profile) => {
+        if (err) {
+          console.log("Error loading the Profile", err);
+          return;
+        }
+        this.setState({profile: profile})
+      })
     }
   }
 
@@ -43,16 +71,15 @@ class LoginStore {
   }
 
   logoutUser() {
-    localStorage.removeItem('jwt')
-    localStorage.removeItem('currentUser')
+    localStorage.removeItem('userToken')
 
     this.setState({
-      jwt: null,
-      user: null
+      idToken: null,
+      profile: null
     })
   }
 
-  updateUser(user) {
+  gotUser(user) {
     if (this.state.user && this.state.user.id === user.id) {
       localStorage.setItem('currentUser', JSON.stringify(user))
       this.setState({user: user})

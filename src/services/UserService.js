@@ -11,7 +11,7 @@ class UserService {
       method: 'GET',
       crossOrigin: true,
       headers: {
-        'Authorization': 'Bearer ' + LoginStore.getState().jwt
+        'Authorization': 'Bearer ' + LoginStore.getState().idToken
       }
     })
     .then(function(response) {
@@ -36,7 +36,7 @@ class UserService {
       method: 'PATCH',
       crossOrigin: true,
       headers: {
-        'Authorization': 'Bearer ' + LoginStore.getState().jwt
+        'Authorization': 'Bearer ' + LoginStore.getState().idToken
       }
     })
     .then(function(response) {

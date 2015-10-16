@@ -10,34 +10,18 @@ import PaymentForm from './PaymentForm'
 export default class AuthenticatedApp extends React.Component {
   constructor() {
     super()
-    this.state = this._getLoginState()
-    this.setBodyStyle()
-  }
 
-  setBodyStyle() {
-    if (this.state.userLoggedIn && !this.state.user.paid) {
-      if (!document.body.className.match(/noscroll-payment/))
-        document.body.className = document.body.className + ' noscroll-payment'
-    } else if (document.body.className.match(/noscroll-payment/)) {
-      document.body.className = document.body.className.replace(/ noscroll-payment/, '')
-    }
-  }
+    this.state = { profile: LoginStore.getState().profile }
 
-  _getLoginState() {
-    return {
-      userLoggedIn: LoginStore.isLoggedIn(),
-      user: LoginStore.getState().user
-    };
+    this.changeListener = this._onChange.bind(this);
   }
 
   componentDidMount() {
-    this.changeListener = this._onChange.bind(this);
     LoginStore.listen(this.changeListener);
   }
 
   _onChange() {
-    this.setState(this._getLoginState());
-    this.setBodyStyle()
+    this.setState({profile: LoginStore.getState().profile});
   }
 
   componentWillUnmount() {
@@ -51,39 +35,41 @@ export default class AuthenticatedApp extends React.Component {
           {this.headerItems}
         </div>
         <RouteHandler/>
-        {this.payment}
       </div>
     );
   }
 
-  logout(e) {
-    e.preventDefault();
-    AuthService.logout()
-    RouterContainer.get().transitionTo('/login')
-  }
-
   get headerItems() {
-    if (window.location.pathname.split('/')[1] === 'signup') {
+    const path = window.location.pathname.split('/')[1]
+    if (path === 'signup') {
       return null
-    } else if (!this.state.userLoggedIn) {
+    } else if (!LoginStore.getState().idToken) {
       return <nav>
-        <Link to="signup" className="button">Join</Link>
-        <Link to="login" className="button">Sign In</Link>
+        <a href="#sign-in" className="button" onClick={this.showLock}>You</a>
       </nav>
-    } else if ('/' + this.state.user.slug === window.location.pathname) {
+    } else if (!this.state.profile) {
+      return null
+    } else if (path === this.state.profile.nickname) {
       return <nav>
         <Link to="account" className="button">Account Details</Link>
         <a href="" onClick={this.logout} className="button">Sign Out</a>
       </nav>
     } else {
-      return <nav><Link to="user" params={{slug: this.state.user.slug}} className="button">You</Link></nav>
+      return <nav>
+        <Link to="user" params={{slug: this.state.profile.nickname}} className="button">You</Link>
+      </nav>
     }
   }
 
-  get payment() {
-    if (this.state.userLoggedIn && !this.state.user.paid)
-      return <PaymentForm user={this.state.user}/>
-    else
-      return null
+  showLock(e) {
+    e.preventDefault()
+    LoginStore.getState().lock.show()
   }
+
+  // logout(e) {
+  //   e.preventDefault()
+  //   AuthService.logout()
+  //   RouterContainer.get().transitionTo('/login')
+  // }
+
 }

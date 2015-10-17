@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode'
 
 class LoginActions {
   constructor() {
-    this.generateActions('loginUser', 'logout', 'loginUserFromSavedSession', 'onSignIn')
+    this.generateActions('onSignIn', 'logout')
   }
 }
 

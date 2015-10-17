@@ -1,7 +1,6 @@
 import React from 'react'
 import Router, {Route} from 'react-router'
 import AuthenticatedApp from './components/AuthenticatedApp'
-import Login from './components/Login'
 import Home from './components/Home'
 import Pricing from './components/Pricing'
 import Confirm from './components/Confirm'
@@ -19,7 +18,6 @@ window.$ = jQuery;
 
 var routes = (
   <Route handler={AuthenticatedApp}>
-    <Route name="login" handler={Login}/>
     <Route name="home" path="/" handler={Home}/>
 
     <Route name="signup" path="signup" handler={Signup}/>
@@ -39,8 +37,6 @@ var router = Router.create({
   location: Router.HistoryLocation
 });
 RouterContainer.set(router);
-
-LoginActions.loginUserFromSavedSession()
 
 router.run(function (Handler) {
   React.render(<Handler />, document.getElementById('content'));

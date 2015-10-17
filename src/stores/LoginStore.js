@@ -6,12 +6,8 @@ import UserActions from '../actions/UserActions'
 class LoginStore {
 
   constructor() {
-    this.bindListeners({
-      loginUser: LoginActions.loginUser,
-      loginUserFromSavedSession: LoginActions.loginUserFromSavedSession,
-      logoutUser: LoginActions.logoutUser,
-      updateUser: UserActions.gotUser
-    })
+    this.bindActions(LoginActions)
+
     this.state = {
       user: null,
       jwt: null
@@ -42,7 +38,12 @@ class LoginStore {
     })
   }
 
-  logoutUser() {
+  logout() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+
     localStorage.removeItem('jwt')
     localStorage.removeItem('currentUser')
 
@@ -52,11 +53,20 @@ class LoginStore {
     })
   }
 
-  updateUser(user) {
+  gotUser(user) {
     if (this.state.user && this.state.user.id === user.id) {
       localStorage.setItem('currentUser', JSON.stringify(user))
       this.setState({user: user})
     }
+  }
+
+  onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+    debugger;
   }
 
   static isLoggedIn() {

@@ -58,8 +58,8 @@ export default class AuthenticatedApp extends React.Component {
 
   logout(e) {
     e.preventDefault();
-    AuthService.logout()
-    RouterContainer.get().transitionTo('/login')
+    LoginActions.logout()
+    RouterContainer.get().transitionTo('/')
   }
 
   get headerItems() {

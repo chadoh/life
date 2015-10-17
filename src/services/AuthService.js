@@ -17,10 +17,6 @@ class AuthService {
     }).then(this.handleAuth)
   }
 
-  logout() {
-    LoginActions.logoutUser()
-  }
-
   signup(payment, name, email, slug, born) {
     return reqwest({
       url: API_URL + 'users',

@@ -19,7 +19,7 @@ export default (ComposedComponent) => {
       return {
         userLoggedIn: LoginStore.isLoggedIn(),
         user: LoginStore.getState().user,
-        jwt: LoginStore.getState().jwt
+        idToken: LoginStore.getState().idToken
       };
     }
 
@@ -41,7 +41,7 @@ export default (ComposedComponent) => {
       <ComposedComponent
         {...this.props}
         user={this.state.user}
-        jwt={this.state.jwt}
+        idToken={this.state.idToken}
         userLoggedIn={this.state.userLoggedIn} />
       );
     }

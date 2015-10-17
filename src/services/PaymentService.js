@@ -15,7 +15,7 @@ class AuthService {
         token: token
       },
       headers: {
-        'Authorization': 'Bearer ' + LoginStore.getState().jwt
+        'Authorization': 'Bearer ' + LoginStore.getState().idToken
       }
     }).then(response => {
       UserActions.gotUser(response.user)

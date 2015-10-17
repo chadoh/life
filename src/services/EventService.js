@@ -27,7 +27,7 @@ class EventService {
       }},
       crossOrigin: true,
       headers: {
-        'Authorization': 'Bearer ' + LoginStore.getState().jwt
+        'Authorization': 'Bearer ' + LoginStore.getState().idToken
       }
     })
     .then(response => {
@@ -42,7 +42,7 @@ class EventService {
       type: 'json', // needed bc of bug reqwest https://github.com/ded/reqwest/issues/160
       crossOrigin: true,
       headers: {
-        'Authorization': 'Bearer ' + LoginStore.getState().jwt
+        'Authorization': 'Bearer ' + LoginStore.getState().idToken
       }
     })
     .then(response => {

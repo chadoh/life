@@ -4,15 +4,25 @@ import LoginActions from '../actions/LoginActions';
 
 class AuthService {
 
+  recordLogin(idToken) {
+    return reqwest({
+      url: API_URL + 'users/record_login',
+      method: 'post',
+      crossOrigin: true,
+      type: 'json',
+      headers: {
+        'Authorization': 'Bearer ' + idToken
+      }
+    })
+  }
+
   checkEmail(email) {
     return reqwest({
       url: API_URL + 'users/check_email',
       method: 'get',
       crossOrigin: true,
       type: 'json',
-      data: {
-        email: email
-      }
+      data: {email}
     })
   }
 
@@ -22,9 +32,7 @@ class AuthService {
       method: 'get',
       crossOrigin: true,
       type: 'json',
-      data: {
-        slug: slug
-      }
+      data: {slug}
     })
   }
 }

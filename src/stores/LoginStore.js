@@ -1,6 +1,7 @@
 import alt from '../alt'
 import LoginActions from '../actions/LoginActions'
 import UserActions from '../actions/UserActions'
+import AuthService from '../services/AuthService'
 
 class LoginStore {
 
@@ -30,16 +31,26 @@ class LoginStore {
 
   onSignIn(googleUser) {
     const profile = googleUser.getBasicProfile();
-    const user = {
-      id: profile.getId(),
-      name: profile.getName(),
-      imageUrl: profile.getImageUrl(),
-      email: profile.getEmail()
-    }
-    this.setState({
-      user: user,
-      idToken: googleUser.getAuthResponse().idToken
-    })
+    const idToken = googleUser.getAuthResponse().id_token;
+    AuthService.recordLogin(idToken).
+      then((response, other, stuff) => {
+        const user = {
+          googleId: profile.getId(),
+          name: profile.getName(),
+          imageUrl: profile.getImageUrl(),
+          email: profile.getEmail(),
+
+          slug: response.user.slug,
+          id: response.user.id,
+          born: response.user.born,
+          paid: response.user.paid,
+          payment_frequency: response.user.payment_frequency,
+        }
+        this.setState({
+          user: user,
+          idToken: idToken
+        })
+      })
   }
 
   static isLoggedIn() {

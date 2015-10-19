@@ -3,7 +3,6 @@ import Router, {Route} from 'react-router'
 import AuthenticatedApp from './components/AuthenticatedApp'
 import Home from './components/Home'
 import Pricing from './components/Pricing'
-import Confirm from './components/Confirm'
 import Signup from './components/Signup'
 import User from './components/User'
 import WeekDetail from './components/WeekDetail'
@@ -21,7 +20,6 @@ var routes = (
     <Route name="home" path="/" handler={Home}/>
 
     <Route name="signup" path="signup" handler={Signup}/>
-    <Route name="confirm" path="users/confirmation" handler={Confirm}/>
 
     <Route name="payment-form-test" path="payment-form-test" handler={PaymentFormTest}/>card_number
 

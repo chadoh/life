@@ -11,16 +11,6 @@ export default class AuthenticatedApp extends React.Component {
   constructor() {
     super()
     this.state = this._getLoginState()
-    this.setBodyStyle()
-  }
-
-  setBodyStyle() {
-    if (this.state.userLoggedIn && !this.state.user.paid) {
-      if (!document.body.className.match(/noscroll-payment/))
-        document.body.className = document.body.className + ' noscroll-payment'
-    } else if (document.body.className.match(/noscroll-payment/)) {
-      document.body.className = document.body.className.replace(/ noscroll-payment/, '')
-    }
   }
 
   _getLoginState() {
@@ -37,7 +27,6 @@ export default class AuthenticatedApp extends React.Component {
 
   _onChange() {
     this.setState(this._getLoginState());
-    this.setBodyStyle()
   }
 
   componentWillUnmount() {
@@ -51,7 +40,6 @@ export default class AuthenticatedApp extends React.Component {
           {this.headerItems}
         </div>
         <RouteHandler/>
-        {this.payment}
       </div>
     );
   }
@@ -67,7 +55,7 @@ export default class AuthenticatedApp extends React.Component {
       return null
     } else if (!this.state.userLoggedIn) {
       return <nav>
-        <Link to="signup" className="button">Join</Link>
+        <Link to="signup" className="button">Sign in</Link>
       </nav>
     } else if ('/' + this.state.user.slug === window.location.pathname) {
       return <nav>
@@ -77,12 +65,5 @@ export default class AuthenticatedApp extends React.Component {
     } else {
       return <nav><Link to="user" params={{slug: this.state.user.slug}} className="button">You</Link></nav>
     }
-  }
-
-  get payment() {
-    if (this.state.userLoggedIn && !this.state.user.paid)
-      return <PaymentForm user={this.state.user}/>
-    else
-      return null
   }
 }

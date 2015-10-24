@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, RouteHandler } from 'react-router';
 import LoginActions from '../actions/LoginActions';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { playing: false }
+    this.state = {
+      playing: false,
+    }
 
     this.videoElement = this.videoElement.bind(this)
     this.playVideo = this.playVideo.bind(this)
-
-    window.onSignIn = this.onSignIn;
   }
 
   render() {
@@ -24,22 +24,13 @@ export default class Home extends React.Component {
                 <div className="video-container">
                   <div className='embed-container'>{this.videoElement()}</div>
                 </div>
-                <div className="hook-description">
-                  <h1 className="brand">Take control of your life</h1>
-                  <p><small>for only $10 a year</small></p>
-                  <Link to="signup" className="button">Claim your FREE life calendar now &rarr;</Link>
-                  <div className="g-signin2" data-onsuccess="onSignIn"></div>
-                </div>
+                <RouteHandler className="hook-description"/>
               </div>
             </div>
           </div>
         </div>
       </div>
     )
-  }
-
-  onSignIn(googleUser) {
-    LoginActions.onSignIn(googleUser)
   }
 
   videoElement() {

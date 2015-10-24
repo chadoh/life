@@ -1,9 +1,11 @@
 import React from 'react'
-import Router, {Route} from 'react-router'
+import Router, {Route, DefaultRoute} from 'react-router'
 import AuthenticatedApp from './components/AuthenticatedApp'
 import Home from './components/Home'
 import Pricing from './components/Pricing'
 import Signup from './components/Signup'
+import Signin from './components/Signin'
+import Workit from './components/Workit'
 import User from './components/User'
 import WeekDetail from './components/WeekDetail'
 import UserEdit from './components/UserEdit'
@@ -17,7 +19,10 @@ window.$ = jQuery;
 
 var routes = (
   <Route handler={AuthenticatedApp}>
-    <Route name="home" path="/" handler={Home}/>
+    <Route name="home" path="/" handler={Home}>
+      <DefaultRoute name="workit" handler={Workit}/>
+      <Route name="signin" path="signin" handler={Signin}/>
+    </Route>
 
     <Route name="signup" path="signup" handler={Signup}/>
 

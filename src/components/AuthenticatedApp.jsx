@@ -55,7 +55,7 @@ export default class AuthenticatedApp extends React.Component {
       return null
     } else if (!this.state.userLoggedIn) {
       return <nav>
-        <Link to="signup" className="button">Sign in</Link>
+        <Link to="signin" className="button">Sign in</Link>
       </nav>
     } else if ('/' + this.state.user.slug === window.location.pathname) {
       return <nav>

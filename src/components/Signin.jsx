@@ -29,7 +29,6 @@ export default class Signin extends React.Component {
     return (
       <div {...this.props}>
         <div id="signin" ref="signin"/>
-        <Link to="signing-up">Continue</Link>
       </div>
     )
   }

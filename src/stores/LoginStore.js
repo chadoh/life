@@ -2,6 +2,7 @@ import alt from '../alt'
 import LoginActions from '../actions/LoginActions'
 import UserActions from '../actions/UserActions'
 import AuthService from '../services/AuthService'
+import RouterContainer from '../services/RouterContainer'
 
 class LoginStore {
 
@@ -50,6 +51,9 @@ class LoginStore {
           user: user,
           idToken: idToken
         })
+
+        const nextPath = user.born ? '/' + user.slug : '/signing-up';
+        RouterContainer.get().transitionTo(nextPath)
       })
   }
 

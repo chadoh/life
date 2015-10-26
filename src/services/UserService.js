@@ -19,20 +19,14 @@ class UserService {
     });
   }
 
-  update(id, slug, name, email, born, password, password_confirmation) {
-    let userData = { user: {
-      slug: slug,
-      name: name,
-      email: email,
-      born: born,
-    }}
-    if (password) {
-      userData.password = password;
-      userData.password_confirmation = password_confirmation;
-    }
+  update({id, slug, name, born}) {
+    let params = {};
+    if(slug) params.slug = slug;
+    if(name) params.name = name;
+    if(born) params.born = born;
     return reqwest({
       url: API_URL + 'users/' + id,
-      data: userData,
+      data: { user: params },
       method: 'PATCH',
       crossOrigin: true,
       headers: {
@@ -41,6 +35,7 @@ class UserService {
     })
     .then(function(response) {
       UserActions.gotUser(response.user);
+      return response;
     })
   }
 

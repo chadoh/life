@@ -2,9 +2,8 @@ import React from 'react'
 import Router, {Route, DefaultRoute} from 'react-router'
 import AuthenticatedApp from './components/AuthenticatedApp'
 import Home from './components/Home'
-import Pricing from './components/Pricing'
-import Signup from './components/Signup'
 import Signin from './components/Signin'
+import SigningUp from './components/SigningUp'
 import Workit from './components/Workit'
 import User from './components/User'
 import WeekDetail from './components/WeekDetail'
@@ -24,9 +23,9 @@ var routes = (
       <Route name="signin" path="signin" handler={Signin}/>
     </Route>
 
-    <Route name="signup" path="signup" handler={Signup}/>
+    <Route name="signing-up" path="/signing-up" handler={SigningUp}/>
 
-    <Route name="payment-form-test" path="payment-form-test" handler={PaymentFormTest}/>card_number
+    <Route name="payment-form-test" path="payment-form-test" handler={PaymentFormTest}/>
 
     <Route name="account" path="/account" handler={UserEdit} />
     <Route name="user" path="/:slug" handler={User} ignoreScrollBehavior={true}>

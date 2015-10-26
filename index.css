@@ -53,8 +53,12 @@ a:hover {
   display: table;
   width: 100%;
 }
+.vertical-centering {
+  padding-top: 6rem;
+}
 @media(min-width: 750px) {
   .vertical-centering, .vertical-centering > * {
+    padding: 0;
     position: absolute;
     top: 0; bottom: 0; right: 0; left: 0;
     margin: auto;
@@ -106,10 +110,10 @@ a:hover {
   color: white;
   text-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
-
-.hook-wrap {
-  padding-top: 6rem;
+button.brand {
+  font-size: 1.5rem;
 }
+
 .hook {
   margin: 0 auto;
   width: 90%;
@@ -118,9 +122,6 @@ a:hover {
   border-radius: .4rem;
 }
 @media(min-width: 750px) {
-  .hook-wrap {
-    padding-top: 0;
-  }
   .hook {
     width: 50%;
   }
@@ -132,11 +133,18 @@ a:hover {
 .embed-container iframe, .embed-container object, .embed-container embed, .embed-container a {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
 }
-.hook-description {
+.hook-description, .bg-tint {
   background-color: rgba(0,0,0,0.7);
   border-radius: 0 0 .4rem .4rem;
   color: white;
   padding: 0 1.5rem 1.5rem;
+}
+.bg-tint input {
+  color: #20221F;
+}
+.bg-tint {
+  padding: 1.5rem;
+  border-radius: .4rem;
 }
 .hook-description p {
   margin-top: 0;
@@ -185,12 +193,6 @@ a:hover {
 }
 .bg-light [type=text], .bg-light [type=email] {
   color: gray;
-}
-
-.bg-tint {
-  background-color: rgba(0,0,0,0.2);
-  padding: 1.5rem;
-  border-radius: .5rem;
 }
 
 /*

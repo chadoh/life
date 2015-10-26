@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, RouteHandler } from 'react-router';
-import LoginActions from '../actions/LoginActions';
 
 export default class Home extends React.Component {
   constructor(props) {

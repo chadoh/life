@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router';
+import LoginActions from '../actions/LoginActions';
 
 export default class Signin extends React.Component {
   constructor(props) {
@@ -7,13 +9,12 @@ export default class Signin extends React.Component {
   }
 
   componentDidMount() {
-    window.onSignIn = this.onSignIn;
-
     setTimeout(() => {
       gapi.signin2.render('signin', {
         longtitle: true,
         width: 220,
         height: 50,
+        onsuccess: this.onSignIn,
       })
     }, 50)
 
@@ -27,7 +28,8 @@ export default class Signin extends React.Component {
   render() {
     return (
       <div {...this.props}>
-        <div id="signin" ref="signin" data-onsuccess="onSignIn"></div>
+        <div id="signin" ref="signin"/>
+        <Link to="signing-up">Continue</Link>
       </div>
     )
   }

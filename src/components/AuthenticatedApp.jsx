@@ -51,7 +51,7 @@ export default class AuthenticatedApp extends React.Component {
   }
 
   get headerItems() {
-    if (window.location.pathname.split('/')[1] === 'signup') {
+    if (window.location.pathname.split('/')[1] === 'signing-up') {
       return null
     } else if (!this.state.userLoggedIn) {
       return <nav>

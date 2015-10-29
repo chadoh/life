@@ -1,12 +1,8 @@
-'use strict';
-
 import React from 'react';
 import LoginStore from '../stores/LoginStore'
+import { RouteHandler, Link } from 'react-router';
+import SignedInNav from './SignedInNav'
 import LoginActions from '../actions/LoginActions'
-import { Route, RouteHandler, Link } from 'react-router';
-import AuthService from '../services/AuthService'
-import RouterContainer from '../services/RouterContainer'
-import PaymentForm from './PaymentForm'
 
 export default class AuthenticatedApp extends React.Component {
   constructor() {
@@ -45,26 +41,15 @@ export default class AuthenticatedApp extends React.Component {
     );
   }
 
-  logout(e) {
-    e.preventDefault();
-    LoginActions.logout()
-    RouterContainer.get().transitionTo('/')
-  }
-
   get headerItems() {
     if (window.location.pathname.split('/')[1] === 'signing-up') {
       return null
     } else if (!this.state.userLoggedIn) {
       return <nav>
-        <Link to="signin" className="button">Sign in</Link>
-      </nav>
-    } else if ('/' + this.state.user.slug === window.location.pathname) {
-      return <nav>
-        <Link to="account" className="button">Account Details</Link>
-        <a href="" onClick={this.logout} className="button">Sign Out</a>
+        <Link to="signin" className="button">My Calendar</Link>
       </nav>
     } else {
-      return <nav><Link to="user" params={{slug: this.state.user.slug}} className="button">You</Link></nav>
+      return <SignedInNav/>
     }
   }
 }

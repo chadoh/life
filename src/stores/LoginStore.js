@@ -13,6 +13,7 @@ class LoginStore {
       user: null,
       idToken: null
     }
+    window.L = this;
   }
 
   logout() {

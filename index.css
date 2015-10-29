@@ -89,6 +89,9 @@ a:hover {
 .nav-buttons h1 a {
   top: 0;
 }
+.nav-avatar {
+  border-radius: 50%;
+ }
 .hero {
   min-height: 100vh;
   background-attachment: scroll;

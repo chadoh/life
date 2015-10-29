@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react/addons'
 import ReactMixin from 'react-mixin'
 import AuthService from '../services/AuthService'
 import LoginStore from '../stores/LoginStore'

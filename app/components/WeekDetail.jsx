@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactMixin from 'react-mixin'
-import Emoji from 'node-emoji'
 import UserStore from '../stores/UserStore'
 import LoginStore from '../stores/LoginStore'
 import EventStore from '../stores/EventStore'
@@ -29,7 +28,7 @@ class Event extends React.Component {
 
     return (
       <tr>
-        <td>{Emoji.get(this.props.event.get('emoji')) || this.props.event.get('emoji')}</td>
+        <td>{this.props.event.get('emoji')}</td>
         <td>{this.props.event.get('summary')}</td>
         <td className="text-muted">{this.props.event.get('date')}</td>
         {this.props.event.get('id') ? deleteButton : ''}

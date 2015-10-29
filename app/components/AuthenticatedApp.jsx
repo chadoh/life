@@ -6,12 +6,12 @@ import LoginActions from '../actions/LoginActions'
 import { Route, RouteHandler, Link } from 'react-router';
 import AuthService from '../services/AuthService'
 import RouterContainer from '../services/RouterContainer'
-import PaymentForm from './PaymentForm'
 
 export default class AuthenticatedApp extends React.Component {
   constructor() {
     super()
     this.state = this._getLoginState()
+    this.headerItems = this.headerItems.bind(this)
   }
 
   _getLoginState() {

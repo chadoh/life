@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
-import Emoji from 'node-emoji';
 import UserStore from '../stores/UserStore';
 import { Link } from 'react-router';
 
@@ -19,7 +18,7 @@ export default class Week extends React.Component {
 
   get emoji() {
     return this.props.events && this.props.events.first() ?
-      Emoji.get(this.props.events.first().get('emoji')) || this.props.events.first().get('emoji') :
+      this.props.events.first().get('emoji') :
       "●"
   }
 

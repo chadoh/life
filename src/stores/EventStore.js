@@ -1,4 +1,4 @@
-import alt from '../alt'
+import alt from '../lib/alt'
 import EventActions from '../actions/EventActions'
 import Immutable from 'immutable'
 import EventService from '../services/EventService'

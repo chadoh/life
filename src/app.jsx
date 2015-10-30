@@ -12,9 +12,13 @@ import PaymentFormTest from './components/PaymentFormTest'
 import RouterContainer from './services/RouterContainer'
 import LoginActions from './actions/LoginActions'
 import jQuery from 'jquery'
+import storage from './lib/storage'
+import persist from './lib/persist'
 
 window.jQuery = jQuery;
 window.$ = jQuery;
+
+persist(alt, storage, 'app')
 
 var routes = (
   <Route handler={AuthenticatedApp}>

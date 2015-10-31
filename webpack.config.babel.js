@@ -2,16 +2,18 @@ import path from 'path'
 import webpack from 'webpack'
 import merge from 'webpack-merge'
 
-let TARGET = process.env.npm_lifecycle_event;
-let ROOT_PATH = path.resolve(__dirname)
+const TARGET = process.env.npm_lifecycle_event;
+const ROOT_PATH = path.resolve(__dirname);
+const APP_PATH = path.resolve(ROOT_PATH, 'app');
+const BUILD_PATH = path.resolve(ROOT_PATH, 'build');
 
-let common = {
-  entry: path.resolve(ROOT_PATH, 'app', ),
+const common = {
+  entry: APP_PATH,
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: path.resolve(ROOT_PATH, 'build'),
+    path: BUILD_PATH,
     filename: 'bundle.js'
   },
   module: {
@@ -19,15 +21,23 @@ let common = {
       {
         test: /.css$/,
         loaders: ['style', 'css'],
-        include: path.resolve(ROOT_PATH, 'app')
+        include: APP_PATH
+      },
+      {
+        test: /.*\.(gif|png|jpe?g|svg)$/i,
+        loaders: [
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+        ],
+        include: APP_PATH
       },
       {
         test: /.jsx?$/,
         loaders: ['react-hot', 'babel'],
-        include: path.resolve(ROOT_PATH, 'app')
+        include: APP_PATH
       }
     ]
-  },
+  }
 }
 
 if (TARGET === 'start' || !TARGET) {
@@ -35,6 +45,8 @@ if (TARGET === 'start' || !TARGET) {
     devtool: 'eval-source-map',
     devServer: {
       historyApiFallback: true,
+      contentBase: APP_PATH,
+      port: 3000,
       hot: true,
       inline: true,
       progress: true

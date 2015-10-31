@@ -11,7 +11,6 @@ import User from './components/User'
 import WeekDetail from './components/WeekDetail'
 import UserEdit from './components/UserEdit'
 import RouterContainer from './services/RouterContainer'
-import LoginActions from './actions/LoginActions'
 import jQuery from 'jquery'
 
 window.jQuery = jQuery;
@@ -42,4 +41,3 @@ RouterContainer.set(router);
 router.run(function (Handler) {
   React.render(<Handler />, document.getElementById('content'));
 });
-

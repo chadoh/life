@@ -79,7 +79,7 @@ class NewEventForm extends React.Component {
       });
   }
 
-  get end() {
+  end() {
     return UserStore.dateOf(+this.props.weekno + 1)
   }
 
@@ -87,10 +87,10 @@ class NewEventForm extends React.Component {
     this.setState({date: e.target.value})
   }
 
-  get dates() {
+  dates() {
     let dates = []
     let date = this.props.start;
-    while (date < this.end) {
+    while (date < this.end()) {
       dates.push(
         <label key={date}>
           <br/><input type="radio" name="date" value={date.toISOString().replace(/T.+/, '')} onChange={this.selectDate}/>
@@ -125,7 +125,7 @@ class NewEventForm extends React.Component {
         </p>
         <p>
           <label htmlFor="date">Date</label>
-          {this.dates}
+          {this.dates()}
         </p>
         <button type="submit" className="btn btn-default">Save</button>
       </form>
@@ -160,7 +160,7 @@ export default class WeekDetail extends React.Component {
     this.setState({events: EventStore.getState().events.get(this.props.params.weekno)})
   }
 
-  get authed() {
+  authed() {
     return LoginStore.getState().user &&
       LoginStore.getState().user.id === UserStore.getState().user.get('id')
   }
@@ -172,12 +172,12 @@ export default class WeekDetail extends React.Component {
         slug={this.props.params.slug}
         weekno={this.props.params.weekno}
         event={event}
-        authed={this.authed}
+        authed={this.authed()}
       />
     ));
 
-    let form = !this.authed ? '' :
-      <NewEventForm weekno={this.props.params.weekno} start={this.start} slug={this.props.params.slug} />
+    let form = !this.authed() ? '' :
+      <NewEventForm weekno={this.props.params.weekno} start={this.start()} slug={this.props.params.slug} />
 
     return (
       <div className="week-detail-wrap">
@@ -198,7 +198,7 @@ export default class WeekDetail extends React.Component {
     )
   }
 
-  get start() {
+  start() {
     return UserStore.dateOf(+this.props.params.weekno);
   }
 }

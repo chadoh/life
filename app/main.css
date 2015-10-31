@@ -23,7 +23,7 @@ body[class*=noscroll] {
 a {
   color: #B36A30;
 }
-a:hover {
+a:focus, a:hover {
   box-shadow: 0 2px 0 0 #B36A30;
 }
 .button, [type=submit], button {
@@ -226,6 +226,9 @@ button.brand {
 }
 .life > a.past {
   color: #fae3e3;
+}
+img.emoji {
+  vertical-align: middle;
 }
 
 /*

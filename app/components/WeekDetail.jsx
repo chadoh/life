@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactMixin from 'react-mixin'
+import ReactEmoji from 'react-emoji';
 import UserStore from '../stores/UserStore'
 import LoginStore from '../stores/LoginStore'
 import EventStore from '../stores/EventStore'
@@ -28,7 +29,7 @@ class Event extends React.Component {
 
     return (
       <tr>
-        <td>{this.props.event.get('emoji')}</td>
+        <td>{this.emojify(this.props.event.get('emoji'), {attributes: {className: 'emoji'}})}</td>
         <td>{this.props.event.get('summary')}</td>
         <td className="text-muted">{this.props.event.get('date')}</td>
         {this.props.event.get('id') ? deleteButton : ''}
@@ -36,6 +37,7 @@ class Event extends React.Component {
     )
   }
 }
+ReactMixin(Event.prototype, ReactEmoji);
 
 class NewEventForm extends React.Component {
   constructor(props) {
@@ -50,19 +52,19 @@ class NewEventForm extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(this.initEmojiPicker.bind(this), 500)
+    // setTimeout(this.initEmojiPicker.bind(this), 500)
   }
 
   initEmojiPicker() {
-    let el = React.findDOMNode(this.refs.emoji)
-    jQuery(el).emojiPicker({
-      width: el.offsetWidth,
-      container: '#emoji-container'
-    })
-    // For  some reason this doesn't work with `onKeyUp` on the element
-    jQuery(document).on('keyup', '#emoji', e => {
-      this.setState({emoji: el.value})
-    })
+    // let el = React.findDOMNode(this.refs.emoji)
+    // jQuery(el).emojiPicker({
+    //   width: el.offsetWidth,
+    //   container: '#emoji-container'
+    // })
+    // // For  some reason this doesn't work with `onKeyUp` on the element
+    // jQuery(document).on('keyup', '#emoji', e => {
+    //   this.setState({emoji: el.value})
+    // })
   }
 
   addEvent(e) {
@@ -104,7 +106,7 @@ class NewEventForm extends React.Component {
 
   toggleEmojiPicker() {
     // highlight all
-    jQuery(React.findDOMNode(this.refs.emoji)).emojiPicker('toggle')
+    // jQuery(React.findDOMNode(this.refs.emoji)).emojiPicker('toggle')
   }
 
   render() {
@@ -120,7 +122,7 @@ class NewEventForm extends React.Component {
         <p id="emoji-container">
           <label htmlFor="emoji">Emoji</label>
           <input id="emoji" name="emoji" ref="emoji" type="text"
-            required maxLength="1" onFocus={this.toggleEmojiPicker.bind(this)}
+            required onFocus={this.toggleEmojiPicker.bind(this)} valueLink={this.linkState('emoji')}
           />
         </p>
         <p>
@@ -185,7 +187,7 @@ export default class WeekDetail extends React.Component {
         {!UserStore.getState().user.get('born') ? '' :
           <aside className="week-detail">
             <h1 className="brand">
-              Week of {this.start.toDateString()}<br/>
+              Week of {this.start().toDateString()}<br/>
               <small>{Math.floor(+this.props.params.weekno/52)} years old</small>
             </h1>
             <table>

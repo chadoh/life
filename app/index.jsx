@@ -1,3 +1,4 @@
+import './vendor/picnic.min.css'
 import './main.css'
 
 import React from 'react'
@@ -11,10 +12,6 @@ import User from './components/User'
 import WeekDetail from './components/WeekDetail'
 import UserEdit from './components/UserEdit'
 import RouterContainer from './services/RouterContainer'
-import jQuery from 'jquery'
-
-window.jQuery = jQuery;
-window.$ = jQuery;
 
 var routes = (
   <Route handler={AuthenticatedApp}>

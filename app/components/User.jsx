@@ -52,7 +52,7 @@ export default class User extends React.Component {
       <div className="container-wide">
         <Title>
           <Link to="home" className="logo-small">
-            <img src={spoon} alt="Home" />
+            <img src={`/${spoon}`} alt="Home" />
           </Link>
           {this.state.user.get('name') + ':'} <small>A life</small>
         </Title>

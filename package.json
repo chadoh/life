@@ -42,11 +42,11 @@
   },
   "dependencies": {
     "alt": "^0.17.3",
+    "jwt-decode": "^1.1.0",
     "react": "^0.13.3",
+    "react-emoji": "^0.3.3",
     "react-mixin": "^1.1.0",
     "react-router": "^0.13.3",
-    "jquery": "^2.1.4",
-    "jwt-decode": "^1.1.0",
     "reqwest": "^1.1.5"
   }
 }

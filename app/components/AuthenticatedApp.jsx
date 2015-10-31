@@ -1,17 +1,16 @@
-'use strict';
-
 import React from 'react';
 import LoginStore from '../stores/LoginStore'
 import LoginActions from '../actions/LoginActions'
 import { Route, RouteHandler, Link } from 'react-router';
 import AuthService from '../services/AuthService'
 import RouterContainer from '../services/RouterContainer'
-import PaymentForm from './PaymentForm'
 
 export default class AuthenticatedApp extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = this._getLoginState()
+    this.headerItems = this.headerItems.bind(this)
+    this._onChange = this._onChange.bind(this);
   }
 
   _getLoginState() {
@@ -22,8 +21,7 @@ export default class AuthenticatedApp extends React.Component {
   }
 
   componentDidMount() {
-    this.changeListener = this._onChange.bind(this);
-    LoginStore.listen(this.changeListener);
+    LoginStore.listen(this._onChange);
   }
 
   _onChange() {
@@ -31,14 +29,14 @@ export default class AuthenticatedApp extends React.Component {
   }
 
   componentWillUnmount() {
-    LoginStore.unlisten(this.changeListener);
+    LoginStore.unlisten(this._onChange);
   }
 
   render() {
     return (
       <div>
         <div className="container-wide nav-buttons">
-          {this.headerItems}
+          {this.headerItems()}
         </div>
         <RouteHandler/>
       </div>
@@ -51,7 +49,7 @@ export default class AuthenticatedApp extends React.Component {
     RouterContainer.get().transitionTo('/')
   }
 
-  get headerItems() {
+  headerItems() {
     if (window.location.pathname.split('/')[1] === 'signing-up') {
       return null
     } else if (!this.state.userLoggedIn) {

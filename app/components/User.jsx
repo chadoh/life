@@ -7,7 +7,8 @@ import EventActions from '../actions/EventActions';
 import Life from './Life';
 import LifeLoading from './LifeLoading';
 import { RouteHandler, Link } from 'react-router';
-import Title from './Title'
+import Title from './Title';
+import spoon from '../images/spoon-of-diamonds.png';
 
 export default class User extends React.Component {
   constructor(props) {
@@ -51,7 +52,7 @@ export default class User extends React.Component {
       <div className="container-wide">
         <Title>
           <Link to="home" className="logo-small">
-            <img src="/images/spoon-of-diamonds.png" alt="Home" />
+            <img src={spoon} alt="Home" />
           </Link>
           {this.state.user.get('name') + ':'} <small>A life</small>
         </Title>

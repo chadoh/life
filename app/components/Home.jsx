@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, RouteHandler } from 'react-router';
+import placeholderImg from '../images/video-placeholder.jpg';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -36,7 +37,7 @@ export default class Home extends React.Component {
     if (this.state.playing)
       return <iframe src='https://player.vimeo.com/video/132391869?autoplay=1' frameBorder='0' webkitAllowFullScreen mozAllowFullScreen allowFullScreen></iframe>;
     else
-      return <a href="#play-video" onClick={this.playVideo}><img src="/images/video-placeholder.jpg" alt="play video"/></a>;
+      return <a href="#play-video" onClick={this.playVideo}><img src={placeholderImg} alt="play video"/></a>;
   }
 
   playVideo(e) {

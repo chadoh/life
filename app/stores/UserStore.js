@@ -1,4 +1,5 @@
-import alt from '../alt'
+import alt from '../lib/alt'
+import immutable from 'alt/utils/ImmutableUtil'
 import { Map } from 'immutable'
 import UserActions from '../actions/UserActions'
 import UserService from '../services/UserService';
@@ -6,6 +7,7 @@ import RouterContainer from '../services/RouterContainer'
 
 var _blankUser = Map({id: '', name: '', email: '', slug: '', born: ''})
 
+@immutable
 class UserStore {
 
   constructor() {
@@ -14,24 +16,18 @@ class UserStore {
       receiveUser: UserActions.gotUser,
       requestUpdate: UserActions.requestUpdate
     })
-    this.state = {
-      user: _blankUser,
-      born: null
-    }
+    this.state = Map({
+      user: _blankUser
+    })
   }
 
   requestUser(slug) {
-    this.setState({user: _blankUser, born: null})
+    this.setState(this.state.set('user', _blankUser))
     UserService.getUser(slug)
   }
 
   receiveUser(user) {
-    let [year, month, day] = user.born.split('-').map(x => parseInt(x))
-    month = month - 1;
-    this.setState({
-      user: Map(user),
-      born: new Date(year, month, day)
-    })
+    this.setState(this.state.set('user', Map(user)))
   }
 
   requestUpdate(params) {
@@ -42,9 +38,13 @@ class UserStore {
   }
 
   static dateOf(weekno) {
-    let _born = this.getState().born;
-    if (!_born) throw "User has no birth date set yet!"
-    return new Date(_born.getFullYear() + Math.floor(weekno/52), _born.getMonth(), _born.getDate() + (weekno%52)*7)
+    let born = this.getState().getIn(['user', 'born']);
+    if (!born) throw Error("User has no birth date set yet!");
+
+    let [year, month, day] = born.split('-').map(x => parseInt(x))
+    born = new Date(year, month - 1, day)
+
+    return new Date(born.getFullYear() + Math.floor(weekno/52), born.getMonth(), born.getDate() + (weekno%52)*7)
   }
 }
 

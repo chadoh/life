@@ -24,7 +24,7 @@
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link rel="icon" type="image/png" href="/favicon.png" />
   {% for (var css in o.htmlWebpackPlugin.files.css) { %}
-    <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
+    <link href="/{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
   {% } %}
 
   <script>
@@ -47,7 +47,7 @@
 
   <!-- Initialize SPA -->
   {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
-    <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+    <script src="/{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
   {% } %}
   <script type="text/javascript" src="https://js.stripe.com/v2/" async></script>
   <script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script>

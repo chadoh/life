@@ -1,4 +1,4 @@
-import alt from '../alt'
+import alt from '../lib/alt'
 import LoginActions from '../actions/LoginActions'
 import UserActions from '../actions/UserActions'
 import AuthService from '../services/AuthService'

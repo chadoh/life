@@ -159,12 +159,12 @@ export default class WeekDetail extends React.Component {
   }
 
   _onChange() {
-    this.setState({events: EventStore.getState().events.get(this.props.params.weekno)})
+    this.setState({events: EventStore.getState().getIn(['events', this.props.params.weekno])})
   }
 
   authed() {
     return LoginStore.getState().user &&
-      LoginStore.getState().user.id === UserStore.getState().user.get('id')
+      LoginStore.getState().user.id === UserStore.getState().getIn(['user', 'id'])
   }
 
   render() {
@@ -184,7 +184,7 @@ export default class WeekDetail extends React.Component {
     return (
       <div className="week-detail-wrap">
         <Link to="user" params={{slug: this.props.params.slug}} className="close-week-detail">close</Link>
-        {!UserStore.getState().user.get('born') ? '' :
+        {!UserStore.getState().getIn(['user', 'born']) ? '' :
           <aside className="week-detail">
             <h1 className="brand">
               Week of {this.start().toDateString()}<br/>

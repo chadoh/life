@@ -32,15 +32,15 @@ class EventStore {
     let weekno = ''+event.weekno;
     let immutableEvent = Immutable.Map(event);
     this.setState(this.state.setIn(['events', weekno],
-      this.state.events.get(weekno) ?
-        this.state.events.get(weekno).push(immutableEvent) :
+      this.state.getIn(['events', weekno]) ?
+        this.state.getIn(['events', weekno]).push(immutableEvent) :
         Immutable.List([immutableEvent])
     ))
   }
 
   destroyEvent(event) {
-    this.setState(this.state.setIn(['events', weekno],
-      this.state.events.get(''+event.weekno).filter(e => e.get('id') !== event.id)
+    this.setState(this.state.setIn(['events', ''+event.weekno],
+      this.state.getIn(['events', ''+event.weekno]).filter(e => e.get('id') !== event.id)
     ))
   }
 }

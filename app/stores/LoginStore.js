@@ -3,6 +3,7 @@ import LoginActions from '../actions/LoginActions'
 import UserActions from '../actions/UserActions'
 import AuthService from '../services/AuthService'
 import RouterContainer from '../services/RouterContainer'
+import merge from 'webpack-merge'
 
 class LoginStore {
 
@@ -16,7 +17,12 @@ class LoginStore {
   }
 
   logout() {
-    gapi.auth2.getAuthInstance().signOut()
+    const waitForLoaded = setInterval(() => {
+      if(window.gapi) {
+        clearInterval(waitForLoaded)
+        gapi.auth2.getAuthInstance().signOut()
+      }
+    }, 30)
 
     this.setState({
       user: null,
@@ -33,28 +39,30 @@ class LoginStore {
   onSignIn(googleUser) {
     const profile = googleUser.getBasicProfile();
     const idToken = googleUser.getAuthResponse().id_token;
-    AuthService.recordLogin(idToken).
-      then((response, other, stuff) => {
-        const user = {
-          googleId: profile.getId(),
-          name: profile.getName(),
-          imageUrl: profile.getImageUrl(),
-          email: profile.getEmail(),
+    AuthService.recordLogin(idToken)
+    const user = {
+      googleId: profile.getId(),
+      name: profile.getName(),
+      imageUrl: profile.getImageUrl(),
+      email: profile.getEmail(),
+    }
+    this.setState({
+      user: user,
+      idToken: idToken
+    })
+  }
 
-          slug: response.user.slug,
-          id: response.user.id,
-          born: response.user.born,
-          paid: response.user.paid,
-          payment_frequency: response.user.payment_frequency,
-        }
-        this.setState({
-          user: user,
-          idToken: idToken
-        })
-
-        const nextPath = user.born ? '/' + user.slug : '/signing-up';
-        RouterContainer.get().transitionTo(nextPath)
-      })
+  recordedLogin(response) {
+    const user = merge(this.state.user, {
+      slug: response.user.slug,
+      id: response.user.id,
+      born: response.user.born,
+      paid: response.user.paid,
+      payment_frequency: response.user.payment_frequency,
+    })
+    this.setState({user})
+    const nextPath = user.born ? '/' + user.slug : '/signing-up';
+    RouterContainer.get().transitionTo(nextPath)
   }
 
   static isLoggedIn() {

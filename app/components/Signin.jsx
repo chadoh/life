@@ -9,16 +9,23 @@ export default class Signin extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      gapi.signin2.render('signin', {
-        longtitle: true,
-        width: 220,
-        height: 50,
-        onsuccess: this.onSignIn,
-      })
-    }, 50)
-
     window.addEventListener('keyup', this.signin)
+
+    const waitForLoaded = setInterval(() => {
+      if(window.gapi) {
+        clearInterval(waitForLoaded)
+        this.renderSignin()
+      }
+    }, 30)
+  }
+
+  renderSignin() {
+    gapi.signin2.render('signin', {
+      longtitle: true,
+      width: 220,
+      height: 50,
+      onsuccess: LoginActions.onSignIn,
+    })
   }
 
   componentWillUnmount() {
@@ -37,9 +44,5 @@ export default class Signin extends React.Component {
     if (e.keyCode === 13 || e.keyCode === 32) {
       React.findDOMNode(this.refs.signin).firstChild.click()
     }
-  }
-
-  onSignIn(googleUser) {
-    LoginActions.onSignIn(googleUser)
   }
 }

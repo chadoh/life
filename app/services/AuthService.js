@@ -13,7 +13,7 @@ class AuthService {
       headers: {
         'Authorization': 'Bearer ' + idToken
       }
-    })
+    }).then(LoginActions.recordedLogin)
   }
 
   checkEmail(email) {

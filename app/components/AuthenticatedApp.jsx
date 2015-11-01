@@ -4,6 +4,7 @@ import LoginActions from '../actions/LoginActions'
 import { Route, RouteHandler, Link } from 'react-router';
 import AuthService from '../services/AuthService'
 import RouterContainer from '../services/RouterContainer'
+import '../lib/googleAuth'
 
 export default class AuthenticatedApp extends React.Component {
   constructor(props) {
@@ -15,7 +16,6 @@ export default class AuthenticatedApp extends React.Component {
 
   _getLoginState() {
     return {
-      userLoggedIn: LoginStore.isLoggedIn(),
       user: LoginStore.getState().user
     };
   }
@@ -23,6 +23,7 @@ export default class AuthenticatedApp extends React.Component {
   componentDidMount() {
     LoginStore.listen(this._onChange);
   }
+
 
   _onChange() {
     this.setState(this._getLoginState());
@@ -52,7 +53,7 @@ export default class AuthenticatedApp extends React.Component {
   headerItems() {
     if (window.location.pathname.split('/')[1] === 'signing-up') {
       return null
-    } else if (!this.state.userLoggedIn) {
+    } else if (!this.state.user.slug) {
       return <nav>
         <Link to="signin" className="button">Sign in</Link>
       </nav>

@@ -14,7 +14,6 @@ class Event extends React.Component {
     let weekno = +e.target.getAttribute('data-weekno');
     EventService.destroy(this.props.slug, id, weekno)
       .catch((err) => {
-        alert("There was an error destroying the event");
         console.log("Error destroying event", err);
       });
   }
@@ -76,7 +75,6 @@ class NewEventForm extends React.Component {
         React.findDOMNode(this.refs.summary).focus()
       })
       .catch((err) => {
-        alert("There was an error creating the event")
         console.log("Error creating event", err)
       });
   }

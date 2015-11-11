@@ -6,8 +6,8 @@ import UserActions from '../actions/UserActions';
 import EventActions from '../actions/EventActions';
 import Life from './Life';
 import LifeLoading from './LifeLoading';
+import Nav from './Nav';
 import { RouteHandler, Link } from 'react-router';
-import Title from './Title';
 import spoon from '../images/spoon-of-diamonds.png';
 
 export default class User extends React.Component {
@@ -56,12 +56,14 @@ export default class User extends React.Component {
 
     return (
       <div className="container-wide">
-        <Title>
-          <Link to="home" className="logo-small">
-            <img src={`/${spoon}`} alt="Home" />
-          </Link>
-          {this.state.user.get('name') + ':'} <small>A life</small>
-        </Title>
+        <Nav>
+          <h1 className="brand">
+            <Link to="home" className="logo-small">
+              <img src={`/${spoon}`} alt="Home" />
+            </Link>
+            {this.state.user.get('name') + ':'} <small>A life</small>
+          </h1>
+        </Nav>
         <RouteHandler/>
         {cal}
       </div>

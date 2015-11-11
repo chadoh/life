@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, RouteHandler } from 'react-router';
 import placeholderImg from '../images/video-placeholder.jpg';
+import Nav from './Nav';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -17,6 +18,9 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
+        <div className="container-wide">
+          <Nav/>
+        </div>
         <div className="hero sunset-cliffs">
           <div className="vertical-centering">
             <div className="hook-wrap">

@@ -13,6 +13,7 @@ body[class*=noscroll] {
   padding: 0 15px;
   width: 90%;
   max-width: 800px;
+  clear: both;
 }
 .container-wide {
   max-width: 1200px;
@@ -105,12 +106,14 @@ a:focus, a:hover {
 .header-avatar:hover {
   box-shadow: none;
 }
-.nav-buttons h1 {
+.nav-buttons h1, .nav-buttons h2 {
   float: left;
 }
-.nav-buttons h1 a {
+.nav-buttons h1 a, .nav-buttons h2 a {
   top: 0;
 }
+
+
 .hero {
   min-height: 100vh;
   background-attachment: scroll;

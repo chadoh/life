@@ -5,6 +5,7 @@ import LoginStore from '../stores/LoginStore';
 import UserActions from '../actions/UserActions';
 import AuthenticatedComponent from './AuthenticatedComponent';
 import { RouteHandler, Link } from 'react-router';
+import Nav from './Nav';
 
 class UserEdit extends React.Component {
   constructor(props) {
@@ -39,7 +40,11 @@ class UserEdit extends React.Component {
       <form role="form" onSubmit={this.update.bind(this)}>
         <div className="hero sunset-cliffs">
           <div className="container">
-            <h2 className="brand">Edit Account Details</h2>
+            <Nav>
+              <h1 className="brand">Edit Account Details</h1>
+            </Nav>
+          </div>
+          <div className="container">
             <p>
               <label htmlFor="slug">Username (entire.life/{this.state.slug})</label>
               <input type="text" required valueLink={this.linkState('slug')} className="form-control" id="slug" autofocus />

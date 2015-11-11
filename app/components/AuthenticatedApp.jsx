@@ -1,9 +1,10 @@
 import React from 'react';
 import LoginStore from '../stores/LoginStore'
 import LoginActions from '../actions/LoginActions'
-import { Route, RouteHandler, Link } from 'react-router';
+import { RouteHandler, Link } from 'react-router';
 import AuthService from '../services/AuthService'
 import RouterContainer from '../services/RouterContainer'
+import SignedInNav from './SignedInNav'
 import '../lib/googleAuth'
 
 export default class AuthenticatedApp extends React.Component {
@@ -37,7 +38,7 @@ export default class AuthenticatedApp extends React.Component {
     return (
       <div>
         <div className="container-wide nav-buttons">
-          {this.headerItems()}
+          <nav>{this.headerItems()}</nav>
         </div>
         <RouteHandler/>
       </div>
@@ -53,17 +54,10 @@ export default class AuthenticatedApp extends React.Component {
   headerItems() {
     if (window.location.pathname.split('/')[1] === 'signing-up') {
       return null
-    } else if (!this.state.user.slug) {
-      return <nav>
-        <Link to="signin" className="button">Sign in</Link>
-      </nav>
-    } else if ('/' + this.state.user.slug === window.location.pathname) {
-      return <nav>
-        <Link to="account" className="button">Account Details</Link>
-        <a href="" onClick={this.logout} className="button">Sign Out</a>
-      </nav>
+    } else if (!this.state.user || !this.state.user.slug) {
+      return <Link to="signin" className="button">Sign in</Link>
     } else {
-      return <nav><Link to="user" params={{slug: this.state.user.slug}} className="button">You</Link></nav>
+      return <SignedInNav user={this.state.user}/>
     }
   }
 }

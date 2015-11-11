@@ -20,8 +20,6 @@ class UserEdit extends React.Component {
       name: user.name,
       email: user.email,
       born: user.born,
-      password: '',
-      password_confirmation: '',
     };
   }
 
@@ -33,8 +31,6 @@ class UserEdit extends React.Component {
       this.state.name,
       this.state.email,
       this.state.born,
-      this.state.password,
-      this.state.password_confirmation
     ])
   }
 
@@ -59,18 +55,6 @@ class UserEdit extends React.Component {
             <p>
               <label htmlFor="born">Birth Date</label>
               <input type="date" required valueLink={this.linkState('born')} className="form-control" id="born" />
-            </p>
-            <button type="submit" className="brand">Save Changes</button>
-
-            <hr />
-
-            <p>
-              <label htmlFor="password">New Password</label>
-              <input type="password" valueLink={this.linkState('password')} className="form-control" id="password" ref="password" />
-            </p>
-            <p>
-              <label htmlFor="password_confirmation">Confirm New Password</label>
-              <input type="password" valueLink={this.linkState('password_confirmation')} className="form-control" id="password_confirmation" ref="password" />
             </p>
             <button type="submit" className="brand">Save Changes</button>
           </div>

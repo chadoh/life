@@ -73,8 +73,33 @@ a:focus, a:hover {
 /*
  * Hero & Nav
  */
-.signed-in-nav {
+.nav-items {
   float: right;
+  position: relative;
+  top: 1.5rem;
+}
+.nav-dropdown {
+  position: absolute;
+  width: 160px;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  background-color: rgba(255,255,255,0.9);
+  z-index: 2;
+  box-shadow: 0px 3px 5px rgba(0,0,0,0.1);
+  border-radius: 2px;
+}
+.dropdown-link {
+  display: inline-block;
+}
+.dropdown-link:focus, .dropdown-link:hover {
+  box-shadow: none;
+}
+.dropdown-arrow {
+  font-size: 50%;
+}
+.nav-dropdown a {
+  width: 100%;
 }
 .nav-buttons {
   text-align: right;
@@ -84,7 +109,6 @@ a:focus, a:hover {
   z-index: 2;
   position: relative;
   background-color: transparent;
-  top: 1.5rem;
   color: gray;
 }
 .header-avatar {

@@ -19,6 +19,16 @@ export default class Signin extends React.Component {
     }, 30)
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.signin)
+  }
+
+  signin(e) {
+    if (e.keyCode === 13 || e.keyCode === 32) {
+      React.findDOMNode(this.refs.signin).firstChild.click()
+    }
+  }
+
   renderSignin() {
     gapi.signin2.render('signin', {
       longtitle: true,
@@ -28,21 +38,11 @@ export default class Signin extends React.Component {
     })
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('keyup', this.signin)
-  }
-
   render() {
     return (
       <div {...this.props}>
         <div id="signin" ref="signin"/>
       </div>
     )
-  }
-
-  signin(e) {
-    if (e.keyCode === 13 || e.keyCode === 32) {
-      React.findDOMNode(this.refs.signin).firstChild.click()
-    }
   }
 }

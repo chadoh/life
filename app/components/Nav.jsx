@@ -49,7 +49,9 @@ export default class Nav extends React.Component {
   render() {
     return (
       <nav className="nav-buttons">
-        {this.headerItems()}
+        <div className="nav-items">
+          {this.headerItems()}
+        </div>
         {this.props.children}
       </nav>
     )

@@ -13,7 +13,9 @@ class AuthService {
       headers: {
         'Authorization': 'Bearer ' + idToken
       }
-    }).then(LoginActions.recordedLogin)
+    })
+    .then(LoginActions.recordedLogin)
+    .fail(LoginActions.logout)
   }
 
   checkEmail(email) {

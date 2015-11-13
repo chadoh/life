@@ -52,6 +52,12 @@ class LoginStore {
     })
   }
 
+  recordLoginFromSavedSession() {
+    if(this.state.idToken) {
+      AuthService.recordLogin(this.state.idToken)
+    }
+  }
+
   recordedLogin(response) {
     const user = merge(this.state.user, {
       slug: response.user.slug,

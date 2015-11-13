@@ -12,11 +12,14 @@ import User from './components/User'
 import WeekDetail from './components/WeekDetail'
 import UserEdit from './components/UserEdit'
 import RouterContainer from './services/RouterContainer'
+import LoginActions from './actions/LoginActions'
 import alt from './lib/alt'
 import storage from './lib/storage'
 import persist from './lib/persist'
 
 persist(alt, storage, 'app')
+
+LoginActions.recordLoginFromSavedSession();
 
 var routes = (
   <Route handler={AuthenticatedApp}>

@@ -1,0 +1,26 @@
+/* must have a position: relative parent to work;
+ * vertically centered content lives in a child element, not this one */
+.vertical-centering-small, .vertical-centering-small > * {
+  position: absolute;
+  top: 0; bottom: 0; right: 0; left: 0;
+  margin: auto;
+}
+.vertical-centering-small > * {
+  display: table;
+  width: 100%;
+}
+.vertical-centering {
+  padding-top: 6rem;
+}
+@media(min-width: 750px) {
+  .vertical-centering, .vertical-centering > * {
+    padding: 0;
+    position: absolute;
+    top: 0; bottom: 0; right: 0; left: 0;
+    margin: auto;
+  }
+  .vertical-centering > * {
+    display: table;
+    width: 100%;
+  }
+}

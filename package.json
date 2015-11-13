@@ -49,6 +49,7 @@
     "react-emoji": "^0.3.3",
     "react-mixin": "^1.1.0",
     "react-router": "^0.13.3",
+    "react-user-tour": "^2.0.1",
     "reqwest": "^1.1.5"
   }
 }

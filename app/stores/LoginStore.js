@@ -68,7 +68,10 @@ class LoginStore {
     })
     this.setState({user})
     const nextPath = user.born ? '/' + user.slug : '/signing-up';
-    RouterContainer.get().transitionTo(nextPath)
+    const currentPath = window.location.pathname;
+    if(currentPath === '/signin' || nextPath === '/signing-up') {
+      RouterContainer.get().transitionTo(nextPath)
+    }
   }
 
   static isLoggedIn() {

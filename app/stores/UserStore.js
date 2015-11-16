@@ -3,7 +3,6 @@ import immutable from 'alt/utils/ImmutableUtil'
 import { Map } from 'immutable'
 import UserActions from '../actions/UserActions'
 import UserService from '../services/UserService';
-import RouterContainer from '../services/RouterContainer'
 import history from '../lib/history';
 
 var _blankUser = Map({id: '', name: '', email: '', slug: '', born: ''})

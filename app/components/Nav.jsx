@@ -3,7 +3,6 @@ import LoginStore from '../stores/LoginStore'
 import LoginActions from '../actions/LoginActions'
 import { Link } from 'react-router';
 import AuthService from '../services/AuthService'
-import RouterContainer from '../services/RouterContainer'
 import SignedInNav from './SignedInNav'
 
 export default class Nav extends React.Component {

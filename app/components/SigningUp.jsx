@@ -4,7 +4,6 @@ import ReactMixin from 'react-mixin'
 import AuthService from '../services/AuthService'
 import LoginStore from '../stores/LoginStore'
 import { Link } from 'react-router'
-import RouterContainer from '../services/RouterContainer'
 import UserService from '../services/UserService';
 
 class SigningUp extends React.Component {

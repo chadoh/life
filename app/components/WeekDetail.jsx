@@ -32,7 +32,7 @@ class Event extends React.Component {
         <td>{this.emojify(this.props.event.get('emoji'), {attributes: {className: 'emoji'}})}</td>
         <td>{this.props.event.get('summary')}</td>
         <td className="text-muted">{this.props.event.get('date')}</td>
-        {this.props.event.get('id') ? deleteButton : ''}
+        {this.props.event.get('id') ? deleteButton : null}
       </tr>
     )
   }
@@ -182,7 +182,7 @@ export default class WeekDetail extends React.Component {
 
     return (
       <div className="week-detail-wrap">
-        <Link to="user" params={{slug: this.props.params.slug}} className="close-week-detail">close</Link>
+        <Link to={`/${this.props.params.slug}`} className="close-week-detail">close</Link>
         {!UserStore.getState().getIn(['user', 'born']) ? '' :
           <aside className="week-detail">
             <h1 className="brand">
@@ -190,7 +190,9 @@ export default class WeekDetail extends React.Component {
               <small>{Math.floor(+this.props.params.weekno/52)} years old</small>
             </h1>
             <table>
-              {events}
+              <tbody>
+                {events}
+              </tbody>
             </table>
             {form}
           </aside>

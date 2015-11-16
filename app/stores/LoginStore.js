@@ -2,7 +2,6 @@ import alt from '../lib/alt'
 import LoginActions from '../actions/LoginActions'
 import UserActions from '../actions/UserActions'
 import AuthService from '../services/AuthService'
-import RouterContainer from '../services/RouterContainer'
 import merge from 'webpack-merge'
 
 class LoginStore {

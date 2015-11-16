@@ -1,7 +1,6 @@
 import React from 'react';
 import LoginActions from '../actions/LoginActions'
 import { Link } from 'react-router';
-import RouterContainer from '../services/RouterContainer';
 import Avatar from '../components/Avatar';
 import history from '../lib/history';
 

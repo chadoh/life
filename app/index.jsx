@@ -13,7 +13,6 @@ import SigningUp from './components/SigningUp'
 import User from './components/User'
 import WeekDetail from './components/WeekDetail'
 import UserEdit from './components/UserEdit'
-import RouterContainer from './services/RouterContainer'
 import LoginActions from './actions/LoginActions'
 import alt from './lib/alt'
 import storage from './lib/storage'
@@ -39,7 +38,5 @@ let router = (
     </Route>
   </Router>
 )
-
-RouterContainer.set(router);
 
 ReactDOM.render(router, document.getElementById('content'));

@@ -1,4 +1,5 @@
 import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactMixin from 'react-mixin';
 import ReactEmoji from 'react-emoji';
 import UserStore from '../stores/UserStore';
@@ -32,4 +33,4 @@ export default class Week extends React.Component {
 }
 
 ReactMixin(Week.prototype, ReactEmoji);
-ReactMixin(Week.prototype, React.addons.PureRenderMixin);
+ReactMixin(Week.prototype, PureRenderMixin);

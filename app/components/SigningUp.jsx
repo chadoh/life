@@ -1,10 +1,10 @@
-import React from 'react/addons'
+import React from 'react'
+import LinkedStateMixin from 'react-addons-linked-state-mixin'
 import ReactMixin from 'react-mixin'
 import AuthService from '../services/AuthService'
 import LoginStore from '../stores/LoginStore'
 import { Link } from 'react-router'
 import RouterContainer from '../services/RouterContainer'
-import AuthenticatedComponent from './AuthenticatedComponent';
 import UserService from '../services/UserService';
 
 class SigningUp extends React.Component {
@@ -73,24 +73,23 @@ class SigningUp extends React.Component {
   submit(e) {
     e.preventDefault()
 
-    React.findDOMNode(this.refs.button).disabled = true;
-    React.findDOMNode(this.refs.error).style.display = "none";
+    this.refs.button.disabled = true;
+    this.refs.error.style.display = "none";
     UserService.update({
       id: this.state.user.id,
       slug: this.state.slug,
       born: this.state.born,
     })
     .then(response => {
-      debugger;
       const user = response.user;
       const nextPath = '/' + user.slug;
-      RouterContainer.get().transitionTo(nextPath)
+      this.props.history.pushState(null, nextPath)
     })
 
     .fail(err => {
-      React.findDOMNode(this.refs.button).disabled = false;
-      React.findDOMNode(this.refs.errorMsg).innerText = this.prettyError(err.response);
-      React.findDOMNode(this.refs.error).style.display = "block";
+      this.refs.button.disabled = false;
+      this.refs.errorMsg.innerText = this.prettyError(err.response);
+      this.refs.error.style.display = "block";
     })
   }
 
@@ -104,6 +103,6 @@ class SigningUp extends React.Component {
   }
 }
 
-ReactMixin(SigningUp.prototype, React.addons.LinkedStateMixin);
+ReactMixin(SigningUp.prototype, LinkedStateMixin);
 
-export default AuthenticatedComponent(SigningUp)
+export default SigningUp

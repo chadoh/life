@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import UserStore from '../stores/UserStore';
 import EventStore from '../stores/EventStore';
 import UserActions from '../actions/UserActions';
@@ -7,7 +8,7 @@ import EventActions from '../actions/EventActions';
 import Life from './Life';
 import LifeLoading from './LifeLoading';
 import Nav from './Nav';
-import { RouteHandler, Link } from 'react-router';
+import { Link } from 'react-router';
 import spoon from '../images/spoon-of-diamonds.png';
 
 export default class User extends React.Component {
@@ -64,11 +65,11 @@ export default class User extends React.Component {
             {this.state.user.get('name') + ':'} <small>A life</small>
           </h1>
         </Nav>
-        <RouteHandler/>
+        {this.props.children}
         {cal}
       </div>
     );
   }
 }
 
-ReactMixin(User.prototype, React.addons.PureRenderMixin);
+ReactMixin(User.prototype, PureRenderMixin);

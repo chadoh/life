@@ -20,7 +20,7 @@ class LoginStore {
     const waitForLoaded = setInterval(() => {
       if(window.gapi) {
         clearInterval(waitForLoaded)
-        gapi.auth2.getAuthInstance().signOut()
+        if(gapi.auth2) gapi.auth2.getAuthInstance().signOut()
       }
     }, 30)
 
@@ -67,11 +67,6 @@ class LoginStore {
       payment_frequency: response.user.payment_frequency,
     })
     this.setState({user})
-    const nextPath = user.born ? '/' + user.slug : '/signing-up';
-    const currentPath = window.location.pathname;
-    if(currentPath === '/signin' || nextPath === '/signing-up') {
-      RouterContainer.get().transitionTo(nextPath)
-    }
   }
 
   static isLoggedIn() {

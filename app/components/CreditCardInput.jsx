@@ -1,5 +1,4 @@
 import React from 'react/addons'
-import ReactMixin from 'react-mixin'
 
 let visaPattern = /^(....)(....)?(....)?(....)?(.+)?$/
 let amexPattern = /^(...)(....)?(.....)?(....)?(.+)?$/

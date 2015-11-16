@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, RouteHandler } from 'react-router';
 import placeholderImg from '../images/video-placeholder.jpg';
 import Nav from './Nav';
 
@@ -28,7 +27,7 @@ export default class Home extends React.Component {
                 <div className="video-container">
                   <div className='embed-container'>{this.videoElement()}</div>
                 </div>
-                <RouteHandler className="hook-description"/>
+                {React.cloneElement(this.props.children, {className: 'hook-description'})}
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactMixin from 'react-mixin';
 import Week from './Week';
 
@@ -16,4 +17,4 @@ export default class Life extends React.Component {
   }
 }
 
-ReactMixin(Life.prototype, React.addons.PureRenderMixin);
+ReactMixin(Life.prototype, PureRenderMixin);

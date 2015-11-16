@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactMixin from 'react-mixin'
+import LinkedStateMixin from 'react-addons-linked-state-mixin'
 import ReactEmoji from 'react-emoji';
 import UserStore from '../stores/UserStore'
 import LoginStore from '../stores/LoginStore'
@@ -55,7 +56,7 @@ class NewEventForm extends React.Component {
   }
 
   initEmojiPicker() {
-    // let el = React.findDOMNode(this.refs.emoji)
+    // let el = this.refs.emoji
     // jQuery(el).emojiPicker({
     //   width: el.offsetWidth,
     //   container: '#emoji-container'
@@ -71,8 +72,8 @@ class NewEventForm extends React.Component {
     EventService.create(this.props.slug, this.state.summary, this.state.emoji, this.state.date)
       .then(() => {
         this.setState({summary: '', emoji: ''})
-        React.findDOMNode(this.refs.emoji).value = ''
-        React.findDOMNode(this.refs.summary).focus()
+        this.refs.emoji.value = ''
+        this.refs.summary.focus()
       })
       .catch((err) => {
         console.log("Error creating event", err)
@@ -104,7 +105,7 @@ class NewEventForm extends React.Component {
 
   toggleEmojiPicker() {
     // highlight all
-    // jQuery(React.findDOMNode(this.refs.emoji)).emojiPicker('toggle')
+    // jQuery(this.refs.emoji).emojiPicker('toggle')
   }
 
   render() {
@@ -133,7 +134,7 @@ class NewEventForm extends React.Component {
   }
 }
 
-ReactMixin(NewEventForm.prototype, React.addons.LinkedStateMixin);
+ReactMixin(NewEventForm.prototype, LinkedStateMixin);
 
 export default class WeekDetail extends React.Component {
   constructor(props) {

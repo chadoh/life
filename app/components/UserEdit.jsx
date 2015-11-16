@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
+import LinkedStateMixin from 'react-addons-linked-state-mixin'
 import UserStore from '../stores/UserStore';
 import LoginStore from '../stores/LoginStore';
 import UserActions from '../actions/UserActions';
-import AuthenticatedComponent from './AuthenticatedComponent';
-import { RouteHandler, Link } from 'react-router';
 import Nav from './Nav';
 
 class UserEdit extends React.Component {
@@ -26,13 +25,12 @@ class UserEdit extends React.Component {
 
   update(e) {
     e.preventDefault();
-    UserActions.requestUpdate([
-      this.state.id,
-      this.state.slug,
-      this.state.name,
-      this.state.email,
-      this.state.born,
-    ])
+    UserActions.requestUpdate({
+      id: this.state.id,
+      slug: this.state.slug,
+      name: this.state.name,
+      born: this.state.born,
+    })
   }
 
   render() {
@@ -54,10 +52,6 @@ class UserEdit extends React.Component {
               <input type="name" required valueLink={this.linkState('name')} className="form-control" id="name" />
             </p>
             <p>
-              <label htmlFor="email">Email</label>
-              <input type="email" required valueLink={this.linkState('email')} className="form-control" id="email" />
-            </p>
-            <p>
               <label htmlFor="born">Birth Date</label>
               <input type="date" required valueLink={this.linkState('born')} className="form-control" id="born" />
             </p>
@@ -69,6 +63,6 @@ class UserEdit extends React.Component {
   }
 }
 
-ReactMixin(UserEdit.prototype, React.addons.LinkedStateMixin);
+ReactMixin(UserEdit.prototype, LinkedStateMixin);
 
-export default AuthenticatedComponent(UserEdit)
+export default UserEdit

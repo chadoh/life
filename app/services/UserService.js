@@ -21,12 +21,9 @@ class UserService {
 
   update({id, slug, name, born}) {
     let params = {};
-    if(slug) params.slug = slug;
-    if(name) params.name = name;
-    if(born) params.born = born;
     return reqwest({
       url: API_URL + 'users/' + id,
-      data: { user: params },
+      data: { user: arguments[0] },
       method: 'PATCH',
       crossOrigin: true,
       headers: {

@@ -1,5 +1,6 @@
 import React from 'react/addons'
 import ReactMixin from 'react-mixin'
+import LinkedStateMixin from 'react-addons-linked-state-mixin'
 import PaymentService from '../services/PaymentService'
 import {STRIPE_PUBLISHABLE_KEY} from '../config'
 import CreditCardInput from './CreditCardInput'
@@ -29,8 +30,8 @@ export default class PaymentForm extends React.Component {
 
   submit(e) {
     e.preventDefault()
-    React.findDOMNode(this.refs.button).disabled = true;
-    React.findDOMNode(this.refs.error).style.display = "none";
+    this.refs.button.disabled = true;
+    this.refs.error.style.display = "none";
 
     Stripe.setPublishableKey(STRIPE_PUBLISHABLE_KEY);
     Stripe.card.createToken({
@@ -43,9 +44,9 @@ export default class PaymentForm extends React.Component {
 
   stripeResponseHandler(status, response) {
     if (response.error) {
-      React.findDOMNode(this.refs.errorMsg).innerText = response.error.message;
-      React.findDOMNode(this.refs.error).style.display = "block";
-      React.findDOMNode(this.refs.button).disabled = false;
+      this.refs.errorMsg.innerText = response.error.message;
+      this.refs.error.style.display = "block";
+      this.refs.button.disabled = false;
     } else {
       PaymentService.charge(this.props.user.slug, response.id)
     }
@@ -109,4 +110,4 @@ export default class PaymentForm extends React.Component {
   }
 }
 
-ReactMixin(PaymentForm.prototype, React.addons.LinkedStateMixin)
+ReactMixin(PaymentForm.prototype, LinkedStateMixin)

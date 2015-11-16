@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export default class LifeLoading extends React.Component {
   constructor(props) {
@@ -23,4 +24,4 @@ export default class LifeLoading extends React.Component {
   }
 }
 
-ReactMixin(LifeLoading.prototype, React.addons.PureRenderMixin);
+ReactMixin(LifeLoading.prototype, PureRenderMixin);

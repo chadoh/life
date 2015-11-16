@@ -4,6 +4,7 @@ import { Map } from 'immutable'
 import UserActions from '../actions/UserActions'
 import UserService from '../services/UserService';
 import RouterContainer from '../services/RouterContainer'
+import history from '../lib/history';
 
 var _blankUser = Map({id: '', name: '', email: '', slug: '', born: ''})
 
@@ -30,10 +31,9 @@ class UserStore {
     this.setState(this.state.set('user', Map(user)))
   }
 
-  requestUpdate(params) {
-    UserService.update(...params).then(() => {
-      var nextPath = '/' + params[1]
-      RouterContainer.get().transitionTo(nextPath)
+  requestUpdate({id, slug, name, born}) {
+    UserService.update(arguments[0]).then(() => {
+      history.pushState(null, `/${slug}`)
     })
   }
 

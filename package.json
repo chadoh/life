@@ -44,11 +44,15 @@
   },
   "dependencies": {
     "alt": "^0.17.3",
+    "history": "^1.13.1",
     "jwt-decode": "^1.1.0",
-    "react": "^0.13.3",
+    "react": "^0.14.2",
+    "react-addons-linked-state-mixin": "^0.14.2",
+    "react-addons-pure-render-mixin": "^0.14.2",
+    "react-dom": "^0.14.2",
     "react-emoji": "^0.3.3",
     "react-mixin": "^1.1.0",
-    "react-router": "^0.13.3",
+    "react-router": "^1.0.0",
     "react-user-tour": "^2.0.1",
     "reqwest": "^1.1.5"
   }

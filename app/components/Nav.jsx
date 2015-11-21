@@ -35,7 +35,7 @@ export default class Nav extends React.Component {
     if (!this.state.user || !this.state.user.slug) {
       return <Link to={"/signin"} className="button">Sign in</Link>
     } else {
-      return <SignedInNav user={this.state.user}/>
+      return <SignedInNav user={this.state.user} giveTour={this.props.giveTour}/>
     }
   }
 

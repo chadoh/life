@@ -19,6 +19,7 @@ export default class User extends React.Component {
     this._onChange = this._onChange.bind(this);
     this.addSteps = this.addSteps.bind(this);
     this.addTooltip = this.addTooltip.bind(this);
+    this.startTour = this.startTour.bind(this);
   }
 
   componentDidMount() {
@@ -36,7 +37,7 @@ export default class User extends React.Component {
       selector: '.year:first-child',
       position: 'bottom',
     }, {
-      title: 'One hundred trips around the sun!',
+      title: '100 trips around the sun!',
       text: "You can make it to 100 years old, right? It'll be awesome!",
       selector: '.year:last-child a:first-child',
       position: 'top',
@@ -87,6 +88,11 @@ export default class User extends React.Component {
 
   addTooltip(data) {
     this.refs.joyride.addTooltip(data);
+  }
+
+  startTour(e) {
+    e.preventDefault()
+    this.refs.joyride.start(true)
   }
 
   render() {

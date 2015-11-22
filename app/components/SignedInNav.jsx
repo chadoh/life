@@ -8,7 +8,6 @@ export default class AuthenticatedApp extends React.Component {
   constructor(props) {
     super(props)
     this.toggleFocus = this.toggleFocus.bind(this)
-    this.giveTour = this.giveTour.bind(this)
     this.logout = this.logout.bind(this)
     this.state = {
       focused: false,
@@ -27,11 +26,6 @@ export default class AuthenticatedApp extends React.Component {
     this.setState({focused: !this.state.focused})
   }
 
-  giveTour(e) {
-    e.preventDefault()
-    alert('now build a tour!')
-  }
-
   renderDropdown() {
     if(this.state.focused) {
       return (
@@ -47,7 +41,7 @@ export default class AuthenticatedApp extends React.Component {
   renderHelp() {
     if(window.location.pathname === `/${this.props.user.slug}`) {
       return (
-        <a href="#tour" onClick={this.giveTour} className="help-icon">?</a>
+        <a href="#tour" onClick={this.props.startTour} className="help-icon">?</a>
       )
     }
   }

@@ -4,12 +4,14 @@ import { Link } from 'react-router';
 import Avatar from '../components/Avatar';
 import UserTour from './UserTour'
 import history from '../lib/history';
+import tour from './UserTour';
 
 export default class AuthenticatedApp extends React.Component {
   constructor(props) {
     super(props)
     this.toggleFocus = this.toggleFocus.bind(this)
     this.logout = this.logout.bind(this)
+    this.startTour = this.startTour.bind(this)
     this.state = {
       focused: false,
     }
@@ -42,9 +44,15 @@ export default class AuthenticatedApp extends React.Component {
   renderHelp() {
     if(window.location.pathname === `/${this.props.user.slug}`) {
       return (
-        <a href="#tour" onClick={this.props.giveTour} className="help-icon">?</a>
+        <a href="#tour" onClick={this.startTour} className="help-icon">?</a>
       )
     }
+  }
+
+  startTour(e) {
+    e.preventDefault()
+    tour.reset()
+    tour.start({cb: () => {}})
   }
 
   render() {

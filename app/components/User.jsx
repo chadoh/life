@@ -17,8 +17,6 @@ export default class User extends React.Component {
     super(props);
     this.state = this.getState();
     this._onChange = this._onChange.bind(this);
-    this.giveTour = this.giveTour.bind(this);
-    this.stopTour = this.stopTour.bind(this);
   }
 
   componentDidMount() {
@@ -54,26 +52,16 @@ export default class User extends React.Component {
     }
   }
 
-  giveTour(e) {
-    e.preventDefault()
-    this.setState({showTour: true})
-  }
-
-  stopTour() {
-    this.setState({showTour: false})
-  }
-
   render() {
     var cal = !this.state.events.get('0') || !this.state.user.get('born') ?
       <LifeLoading /> : <Life events={this.state.events} />
 
     return (
       <div>
-        <UserTour show={this.state.showTour} onCancel={this.stopTour}/>
         <div className="container-wide">
-          <Nav giveTour={this.giveTour}>
+          <Nav>
             <h1 className="brand">
-              <Link to="home" className="logo-small">
+              <Link to="/" className="logo-small" ref="whatever">
                 <img src={`/${spoon}`} alt="Home" />
               </Link>
               {this.state.user.get('name') + ':'} <small>A life</small>

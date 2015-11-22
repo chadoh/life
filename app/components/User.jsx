@@ -91,7 +91,7 @@ export default class User extends React.Component {
 
     return (
       <div className="container-wide">
-        <Joyride ref="joyride" steps={this.state.steps} type="guided" locale={{back: 'Back', close: 'Close', last: 'Done', next: 'Next', skip: 'Skip'}}
+        <Joyride ref="joyride" steps={this.state.steps} type="guided" locale={{back: 'Back', close: 'Close', last: 'Okay!', next: 'Next', skip: 'Skip'}}
           completeCallback={this.endTour} showSkipButton={true}
         />
         <Nav startTour={this.startTour}>

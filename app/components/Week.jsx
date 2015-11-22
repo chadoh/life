@@ -7,8 +7,14 @@ import { Link } from 'react-router';
 
 export default class Week extends React.Component {
   render() {
-    let start = UserStore.dateOf(this.props.weekno);
-    let klass = new Date() > start ? 'past' : '';
+    const start = UserStore.dateOf(this.props.weekno);
+    const currentWeek = UserStore.getState().getIn(['user', 'current_week'])
+    let klass;
+
+    if(currentWeek - 1 === this.props.weekno) klass = 'past last-week';
+    else if(currentWeek > this.props.weekno) klass = 'past';
+    else if(currentWeek === this.props.weekno) klass = 'now';
+
     return (
       <Link to={`/${UserStore.getState().getIn(['user', 'slug'])}/week/${this.props.weekno}`}
         className={klass} data-tooltip={this.tooltip(start.toDateString())}>

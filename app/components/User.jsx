@@ -26,22 +26,6 @@ export default class User extends React.Component {
     UserStore.listen(this._onChange);
     EventStore.listen(this._onChange);
     this.maybeFetchNewUser(this.state.user.get('slug'))
-    this.addSteps([{
-      title: 'Welcome to the world!',
-      text: 'This baby emoji represents the week you were born. Once this tour is over, you can mouse over it to see the date.',
-      selector: '.year:first-child a:first-child',
-      position: 'bottom',
-    }, {
-      title: 'Your first year',
-      text: 'Each row represents one year of your life. For this whole first row, you were 0 years old, just... squirming & watching & learning.',
-      selector: '.year:first-child',
-      position: 'bottom',
-    }, {
-      title: '100 trips around the sun!',
-      text: "You can make it to 100 years old, right? It'll be awesome!",
-      selector: '.year:last-child a:first-child',
-      position: 'top',
-    }], true)
   }
 
   componentWillUnmount() {
@@ -92,17 +76,18 @@ export default class User extends React.Component {
 
   startTour(e) {
     e.preventDefault()
+    this.refs.joyride.reset()
     this.refs.joyride.start(true)
   }
 
   render() {
     var cal = !this.state.events.get('0') || !this.state.user.get('born') ?
-      <LifeLoading /> : <Life events={this.state.events} />
+      <LifeLoading /> : <Life events={this.state.events} addSteps={this.addSteps} />
 
     return (
       <div className="container-wide">
-        <Joyride ref="joyride" steps={this.state.steps} debug={true} type="guided" />
-        <Nav>
+        <Joyride ref="joyride" steps={this.state.steps} type="guided" locale={{back: 'Back', close: 'Close', last: 'Done', next: 'Next', skip: 'Skip'}} />
+        <Nav startTour={this.startTour}>
           <h1 className="brand">
             <Link to="home" className="logo-small">
               <img src={`/${spoon}`} alt="Home" />

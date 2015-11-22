@@ -1,27 +1,27 @@
 import React from 'react';
-import ReactMixin from 'react-mixin';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-export default class LifeLoading extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { dots: 5252 }
+const weeks = () => {
+  let weeks = [];
+  for(var i = 0; i < 52; i++) {
+    weeks.push(<span key={i}/>)
   }
-
-  render() {
-    var dots = [];
-    for(var i = 0; i < this.state.dots; i++) {
-      dots.push(<span key={i}>●</span>)
-    }
-    return (
-      <div style={{clear: 'both'}}>
-        <p>Each dot represents a week. Wait for it... (faster loading coming soon!)</p>
-        <div className="life">
-          {dots}
-        </div>
-      </div>
-    );
-  }
+  return weeks;
 }
 
-ReactMixin(LifeLoading.prototype, PureRenderMixin);
+const years = () => {
+  let years = []
+  for(var i = 0; i < 20; i++) {
+    years.push(<div className="year" key={i}>{weeks()}</div>)
+  }
+  return years;
+}
+
+export default () => {
+  return (
+    <div>
+      <div className="life">
+        {years()}
+      </div>
+    </div>
+  );
+}

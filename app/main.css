@@ -124,24 +124,18 @@ button.brand {
  */
 .life {
   width: 100%;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-  -moz-flex-flow: row wrap;
-  flex-flow: row wrap;
+  clear: both;
   padding-bottom: 5rem;
 }
-.life > *, .life > a {
+.year > *, .year > a {
   text-decoration: none;
   color: #fef8fc;
   width: 1.923076923%; /* 100/52 */
-  display: block;
+  display: inline-block;
   text-align: center;
   box-shadow: none;
 }
-.life > a.past {
+.year > a.past {
   color: #fae3e3;
 }
 img.emoji {

@@ -33,7 +33,7 @@ export default class Life extends React.Component {
       text: "You can make it to 100 years old, right? It'll be awesome!",
       selector: '.year:last-child a:first-child',
       position: 'top',
-    }])
+    }], this.props.showTour)
   }
 
   render() {

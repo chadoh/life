@@ -10,34 +10,12 @@ class SigningUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      born: '1950-12-25',
+      born: LoginStore.getState().user.born || '1950-12-25',
       slug: LoginStore.getState().user.slug,
       user: LoginStore.getState().user,
       changingSlug: false
     }
     this.changeSlug = this.changeSlug.bind(this)
-  }
-
-  render() {
-    return (
-      <div className="hero sunset-cliffs">
-        <div className="vertical-centering container">
-          <form role="form" onSubmit={this.submit.bind(this)} className="bg-tint">
-            <h2 className="brand">Almost done, {this.state.user.name}!</h2>
-            <p ref="error" className="text" style={{display: 'none'}}><span ref="errorMsg"/><span className="label error">oops</span></p>
-            <p>
-              <label htmlFor="born">When were you born? This will be the first date on your calendar!</label>
-              <input type="date" required className="form-control" id="born"
-                autoFocus valueLink={this.linkState('born')}
-                autoComplete='off'
-              />
-            </p>
-            {this.renderSlug()}
-            <button ref="button" type="submit" className="brand">Looks good !</button>
-          </form>
-        </div>
-      </div>
-    )
   }
 
   renderSlug() {
@@ -82,7 +60,7 @@ class SigningUp extends React.Component {
     .then(response => {
       const user = response.user;
       const nextPath = '/' + user.slug;
-      this.props.history.pushState(null, nextPath)
+      this.props.history.pushState(null, nextPath, {tour: true})
     })
 
     .fail(err => {
@@ -99,6 +77,28 @@ class SigningUp extends React.Component {
       msg.push(key + ' ' + error[key].join(', '))
     }
     return msg.join('; ').replace(/slug/g, 'URL')
+  }
+
+  render() {
+    return (
+      <div className="hero sunset-cliffs">
+        <div className="vertical-centering container">
+          <form role="form" onSubmit={this.submit.bind(this)} className="bg-tint">
+            <h2 className="brand">Almost done, {this.state.user.name}!</h2>
+            <p ref="error" className="text" style={{display: 'none'}}><span ref="errorMsg"/><span className="label error">oops</span></p>
+            <p>
+              <label htmlFor="born">When were you born? This will be the first date on your calendar!</label>
+              <input type="date" required className="form-control" id="born"
+                autoFocus valueLink={this.linkState('born')}
+                autoComplete='off'
+              />
+            </p>
+            {this.renderSlug()}
+            <button ref="button" type="submit" className="brand">Looks good !</button>
+          </form>
+        </div>
+      </div>
+    )
   }
 }
 

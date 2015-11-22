@@ -20,6 +20,7 @@ export default class User extends React.Component {
     this.addSteps = this.addSteps.bind(this);
     this.addTooltip = this.addTooltip.bind(this);
     this.startTour = this.startTour.bind(this);
+    this.endTour = this.endTour.bind(this);
   }
 
   componentDidMount() {
@@ -80,13 +81,19 @@ export default class User extends React.Component {
     this.refs.joyride.start(true)
   }
 
+  endTour() {
+    this.props.history.replaceState(null, this.props.location.pathname)
+  }
+
   render() {
     var cal = !this.state.events.get('0') || !this.state.user.get('born') ?
-      <LifeLoading /> : <Life events={this.state.events} addSteps={this.addSteps} />
+      <LifeLoading /> : <Life events={this.state.events} addSteps={this.addSteps} showTour={this.props.location.query.tour} />
 
     return (
       <div className="container-wide">
-        <Joyride ref="joyride" steps={this.state.steps} type="guided" locale={{back: 'Back', close: 'Close', last: 'Done', next: 'Next', skip: 'Skip'}} />
+        <Joyride ref="joyride" steps={this.state.steps} type="guided" locale={{back: 'Back', close: 'Close', last: 'Done', next: 'Next', skip: 'Skip'}}
+          completeCallback={this.endTour} showSkipButton={true}
+        />
         <Nav startTour={this.startTour}>
           <h1 className="brand">
             <Link to="home" className="logo-small">

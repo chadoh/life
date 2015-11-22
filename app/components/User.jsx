@@ -8,6 +8,7 @@ import EventActions from '../actions/EventActions';
 import Life from './Life';
 import LifeLoading from './LifeLoading';
 import Nav from './Nav';
+import Joyride from 'react-joyride';
 import { Link } from 'react-router';
 import spoon from '../images/spoon-of-diamonds.png';
 
@@ -57,6 +58,7 @@ export default class User extends React.Component {
 
     return (
       <div className="container-wide">
+        <Joyride ref="joyride" steps={this.state.steps} debug={true} />
         <Nav>
           <h1 className="brand">
             <Link to="home" className="logo-small">

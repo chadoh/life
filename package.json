@@ -51,6 +51,7 @@
     "react-addons-pure-render-mixin": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-emoji": "^0.3.3",
+    "react-joyride": "^1.0.2",
     "react-mixin": "^1.1.0",
     "react-router": "^1.0.0",
     "react-user-tour": "^2.0.1",

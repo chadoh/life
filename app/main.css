@@ -1,3 +1,4 @@
+@import "../node_modules/react-joyride/lib/styles/react-joyride.css";
 @import "./styles/basics.css";
 @import "./styles/vertical-centering.css";
 @import "./styles/nav.css";

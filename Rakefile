@@ -27,7 +27,8 @@ namespace :aws do
 
     Dir["**/*"].each do |file|
       next if File.directory?(file)
-      mime_type = MIME::Types.type_for(file).first.simplified
+      mime_type = MIME::Types.type_for(file).first
+      mime_type = mime_type ? mime_type.simplified : '*/*'
       log.debug("Uploading #{file} with Content-Type: #{mime_type}")
       headers = {'content-type' => mime_type}
       bucket.put(file,File.read(file),{},'public-read',headers)
@@ -61,7 +62,7 @@ namespace :aws do
   end
 
   desc "Deploy files to S3"# and invalidate Cloudfront distribution"
-  task :deploy => [:s3, :invalidate]
+  task :deploy => [:s3]
 
   task :default => :deploy
 end

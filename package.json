@@ -54,7 +54,6 @@
     "react-joyride": "^1.0.2",
     "react-mixin": "^1.1.0",
     "react-router": "^1.0.0",
-    "react-user-tour": "^2.0.1",
     "reqwest": "^1.1.5"
   }
 }

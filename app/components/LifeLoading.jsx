@@ -3,14 +3,14 @@ import React from 'react';
 const weeks = () => {
   let weeks = [];
   for(var i = 0; i < 52; i++) {
-    weeks.push(<span key={i}/>)
+    weeks.push(<span key={i}>●</span>)
   }
   return weeks;
 }
 
 const years = () => {
   let years = []
-  for(var i = 0; i < 20; i++) {
+  for(var i = 0; i < 101; i++) {
     years.push(<div className="year" key={i}>{weeks()}</div>)
   }
   return years;

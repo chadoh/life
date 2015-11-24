@@ -1,6 +1,8 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #20221F;
+  height: auto;
+  min-height: 100%;
 }
 body[class*=noscroll] {
   overflow: hidden;

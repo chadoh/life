@@ -663,8 +663,6 @@ export default [
 
   { name: "keycap_ten", alternatives: "10", category: "symbols" },
   { name: "1234", alternatives: "", category: "symbols" },
-  { name: "zero", alternatives: "", category: "symbols" },
-  { name: "hash", alternatives: "", category: "symbols" },
   { name: "symbols", alternatives: "", category: "symbols" },
   { name: "arrow_backward", alternatives: "left", category: "symbols" },
   { name: "arrow_down", alternatives: "", category: "symbols" },
@@ -810,8 +808,6 @@ export default [
   { name: "clock9", alternatives: "time", category: "symbols" },
   { name: "clock930", alternatives: "time", category: "symbols" },
   { name: "heavy_dollar_sign", alternatives: "", category: "symbols" },
-  { name: "copyright", alternatives: "", category: "symbols" },
-  { name: "registered", alternatives: "", category: "symbols" },
   { name: "tm", alternatives: "", category: "symbols" },
   { name: "x", alternatives: "", category: "symbols" },
   { name: "heavy_exclamation_mark", alternatives: "", category: "symbols" },

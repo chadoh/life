@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactMixin from 'react-mixin'
 import ReactEmoji from 'react-emoji'
-import emojiMap from 'emoji-annotation-to-unicode'
+import emojiMap from '../lib/emojiMap'
 
 const emojis = query => {
   query = query.replace(/:/g, '').replace(/([\+\-])/g, "\\$&")
 
-  return Object.keys(emojiMap).
-    filter(key => key.match(`^(?:${query})`)).
+  return emojiMap.
+    filter(e => e.name.match(`${query}`) || e.alternatives.match(`${query}`)).
     slice(0,68)
 }
 
@@ -37,13 +37,14 @@ export default class EmojiPicker extends React.Component {
 
   render() {
     let emojiLinks = emojis(this.props.query).map(emoji => {
+      emoji = emoji.name;
       const yay = `:${emoji}:`
       return (
         <a key={emoji} className="emoji-picker-emoji"
           onClick={this.props.onSelect.bind(null, yay)}
           onMouseEnter={this.hovered.bind(this, yay)}
           onMouseLeave={this.blurred}
-          style={{padding: '0.3rem', cursor: 'pointer'}}>
+          style={{padding: '0.2rem', cursor: 'pointer'}}>
           {this.emojify(yay, {singleEmoji: true})}
         </a>
       )

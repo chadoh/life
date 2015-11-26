@@ -56,7 +56,11 @@ export default class NewEventForm extends React.Component {
     while (date < this.end()) {
       dates.push(
         <label key={date}>
-          <br/><input type="radio" name="date" value={date.toISOString().replace(/T.+/, '')} onChange={this.selectDate}/>
+          <br/>
+          <input ref={date === this.props.start ? 'date' : ''}
+            type="radio" name="date"
+            value={date.toISOString().replace(/T.+/, '')}
+            onChange={this.selectDate}/>
           <span className="checkable">{date.toDateString()}</span>
         </label>
       )
@@ -78,13 +82,17 @@ export default class NewEventForm extends React.Component {
   emojiPicker() {
     if(this.state.showEmojiPicker) {
       return (
-        <EmojiPicker style={emojiPickerStyles} onSelect={this.pickedEmoji}/>
+        <EmojiPicker
+          style={emojiPickerStyles} onSelect={this.pickedEmoji}
+          query={this.state.emoji}
+          />
       )
     }
   }
 
   pickedEmoji(emoji) {
     this.setState({emoji})
+    this.refs.date.focus()
   }
 
   render() {
@@ -106,7 +114,7 @@ export default class NewEventForm extends React.Component {
           {this.emojiPicker()}
         </p>
         <p>
-          <label htmlFor="date" ref="date">Date</label>
+          <label htmlFor="date">Date</label>
           {this.dates()}
         </p>
         <button type="submit" className="btn btn-default">Save</button>

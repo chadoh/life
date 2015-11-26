@@ -331,6 +331,14 @@ input[disabled] {
   opacity: .7;
 }
 
+input[type=search] {
+  background-image: url(/images/icon-magnifying-glass.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 5px;
+  padding-left: 30px;
+}
+
 /* Payment form */
 .input{
   position: absolute;

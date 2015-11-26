@@ -76,7 +76,7 @@ export default class NewEventForm extends React.Component {
   hideEmojiPicker() {
     setTimeout(() => {
       this.setState({showEmojiPicker: false})
-    }, 250)
+    }, 200)
   }
 
   emojiPicker() {
@@ -107,7 +107,8 @@ export default class NewEventForm extends React.Component {
         </p>
         <p style={{position: 'relative'}}>
           <label htmlFor="emoji">Emoji</label>
-          <input id="emoji" name="emoji" ref="emoji" type="text" autoComplete="off"
+          <input id="emoji" name="emoji" ref="emoji" autoComplete="off"
+            type={this.state.showEmojiPicker ? "search" : "text"}
             required onFocus={this.showEmojiPicker} onBlur={this.hideEmojiPicker}
             valueLink={this.linkState('emoji')}
           />

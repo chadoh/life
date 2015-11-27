@@ -43,7 +43,8 @@ export default class Life extends React.Component {
       text: "Anything cool? Anything that will make ripples across your entire future? Probably! Click on a week to add events (and emojis) to your life calendar. Get started by adding the best day of your life!",
       selector: 'a.last-week',
       position: 'top',
-    }], this.props.showTour)
+    }])
+    if(this.props.showTour) this.props.startTour();
   }
 
   render() {

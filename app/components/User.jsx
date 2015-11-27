@@ -74,7 +74,7 @@ export default class User extends React.Component {
   }
 
   startTour(e) {
-    e.preventDefault()
+    if(e) e.preventDefault();
     this.refs.joyride.reset()
     this.refs.joyride.start(true)
   }
@@ -84,12 +84,16 @@ export default class User extends React.Component {
   }
 
   render() {
-    var cal = !this.state.events.get('0') || !this.state.user.get('born') ?
-      <LifeLoading /> : <Life events={this.state.events} addSteps={this.addSteps} showTour={this.props.location.query.tour} />
+    var cal = !this.state.events.get('0') || !this.state.user.get('born')
+      ? <LifeLoading />
+      : <Life events={this.state.events} addSteps={this.addSteps}
+          startTour={this.startTour}
+          showTour={this.props.location.query.tour} />
 
     return (
       <div className="container-wide">
-        <Joyride ref="joyride" steps={this.state.steps} type="guided" locale={{back: 'Back', close: 'Close', last: 'Okay!', next: 'Next', skip: 'Skip'}}
+        <Joyride ref="joyride" steps={this.state.steps} type="guided"
+          locale={{back: 'Back', close: 'Close', last: 'Okay!', next: 'Next', skip: 'Skip'}}
           completeCallback={this.endTour} showSkipButton={true}
         />
         <Nav startTour={this.startTour}>

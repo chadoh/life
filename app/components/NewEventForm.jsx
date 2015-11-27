@@ -4,6 +4,7 @@ import LinkedStateMixin from 'react-addons-linked-state-mixin'
 import EmojiPicker from './EmojiPicker'
 import UserStore from '../stores/UserStore'
 import EventService from '../services/EventService'
+import emojiMap from '../lib/emojiMap'
 
 const emojiPickerStyles = {
   position: 'absolute',
@@ -27,6 +28,7 @@ export default class NewEventForm extends React.Component {
     this.selectDate = this.selectDate.bind(this)
     this.pickedEmoji = this.pickedEmoji.bind(this)
     this.toggleEmojiPicker = this.toggleEmojiPicker.bind(this)
+    this.validateEmoji = this.validateEmoji.bind(this)
   }
 
   componentDidMount() {
@@ -94,10 +96,22 @@ export default class NewEventForm extends React.Component {
   }
 
   toggleEmojiPicker(e) {
-    if(this.refs.emoji.contains(e.target))
+    if(this.refs.emoji.contains(e.target)) {
       this.setState({showEmojiPicker: true});
-    else
+    } else {
+      this.validateEmoji();
       this.setState({showEmojiPicker: false});
+    }
+  }
+
+  validateEmoji() {
+    const matched = emojiMap.filter(emoji => {
+      return `:${emoji.name}:` === this.state.emoji
+    })
+
+    if(matched.length === 0) {
+      this.setState({emoji: null})
+    }
   }
 
   grabKeyPress(e) {

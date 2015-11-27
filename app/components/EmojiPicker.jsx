@@ -52,7 +52,9 @@ export default class EmojiPicker extends React.Component {
   }
 
   selectFirst() {
-    this.props.onSelect(`:${this.emojis()[0].name}:`)
+    if(this.emojis()[0]) {
+      this.props.onSelect(`:${this.emojis()[0].name}:`)
+    }
   }
 
   emojis() {

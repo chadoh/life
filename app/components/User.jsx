@@ -26,7 +26,9 @@ export default class User extends React.Component {
   componentDidMount() {
     UserStore.listen(this._onChange);
     EventStore.listen(this._onChange);
-    this.maybeFetchNewUser(this.state.user.get('slug'))
+
+    UserActions.requestUser(this.props.params.slug)
+    EventActions.requestEventsForUser(this.props.params.slug)
   }
 
   componentWillUnmount() {
@@ -35,7 +37,10 @@ export default class User extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    this.maybeFetchNewUser(prevProps.params.slug)
+    if (prevProps.params.slug !== this.props.params.slug) {
+      UserActions.requestUser(this.props.params.slug)
+      EventActions.requestEventsForUser(this.props.params.slug)
+    }
   }
 
   _onChange() {
@@ -48,13 +53,6 @@ export default class User extends React.Component {
       events: EventStore.getState().get('events'),
       steps: this.state ? (this.state.steps || []) : [],
     };
-  }
-
-  maybeFetchNewUser(slug) {
-    if (slug !== this.props.params.slug) {
-      UserActions.requestUser(this.props.params.slug)
-      EventActions.requestEventsForUser(this.props.params.slug)
-    }
   }
 
   addSteps(steps, start) {

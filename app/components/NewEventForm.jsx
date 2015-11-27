@@ -3,6 +3,7 @@ import ReactMixin from 'react-mixin'
 import LinkedStateMixin from 'react-addons-linked-state-mixin'
 import EmojiPicker from './EmojiPicker'
 import UserStore from '../stores/UserStore'
+import EventService from '../services/EventService'
 
 const emojiPickerStyles = {
   position: 'absolute',

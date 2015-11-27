@@ -27,8 +27,15 @@ export default class User extends React.Component {
     UserStore.listen(this._onChange);
     EventStore.listen(this._onChange);
 
-    UserActions.requestUser(this.props.params.slug)
-    EventActions.requestEventsForUser(this.props.params.slug)
+    // transitioning to this route after sign in occurs through dispatcher
+    // need to delay this call to avoid errors
+    // does Redux avoid this crap?
+    setTimeout(() => {
+      if (this.props.params.slug !== UserStore.getState().getIn(['user', 'slug'])) {
+        UserActions.requestUser(this.props.params.slug)
+        EventActions.requestEventsForUser(this.props.params.slug)
+      }
+    }, 20)
   }
 
   componentWillUnmount() {

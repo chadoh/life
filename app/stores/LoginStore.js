@@ -1,6 +1,7 @@
 import alt from '../lib/alt'
 import LoginActions from '../actions/LoginActions'
 import UserActions from '../actions/UserActions'
+import EventActions from '../actions/EventActions'
 import AuthService from '../services/AuthService'
 import merge from 'webpack-merge'
 
@@ -27,6 +28,12 @@ class LoginStore {
       user: null,
       idToken: null
     })
+
+    // friggin' "dispatch in the middle of a dispatch"
+    setTimeout(() => {
+      UserActions.clear()
+      EventActions.clear()
+    }, 10)
   }
 
   gotUser(user) {

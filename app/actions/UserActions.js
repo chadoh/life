@@ -2,7 +2,7 @@ import alt from '../lib/alt';
 
 class UserActions {
   constructor() {
-    this.generateActions('requestUser', 'gotUser', 'requestUpdate')
+    this.generateActions('requestUser', 'gotUser', 'requestUpdate', 'clear')
   }
 }
 

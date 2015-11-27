@@ -14,7 +14,8 @@ class UserStore {
     this.bindListeners({
       requestUser: UserActions.requestUser,
       receiveUser: UserActions.gotUser,
-      requestUpdate: UserActions.requestUpdate
+      requestUpdate: UserActions.requestUpdate,
+      clear: UserActions.clear
     })
     this.state = Map({
       user: _blankUser
@@ -34,6 +35,10 @@ class UserStore {
     UserService.update(arguments[0]).then(() => {
       history.pushState(null, `/${slug}`)
     })
+  }
+
+  clear() {
+    this.setState(this.state.set('user', _blankUser))
   }
 
   static dateOf(weekno) {

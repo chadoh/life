@@ -43,6 +43,10 @@ class EventStore {
       this.state.getIn(['events', ''+event.weekno]).filter(e => e.get('id') !== event.id)
     ))
   }
+
+  clear() {
+    this.setState(this.state.set('events', Immutable.Map()))
+  }
 }
 
 export default alt.createStore(EventStore, 'EventStore')

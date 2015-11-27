@@ -20,7 +20,6 @@ class EventStore {
   }
 
   requestEventsForUser(slug) {
-    this.setState(this.state.set('events', Immutable.Map()))
     EventService.fetchEventsForUser(slug)
   }
 

@@ -8,6 +8,7 @@ class EventService {
   fetchEventsForUser(slug) {
     return reqwest({
       url: API_URL + 'users/' + slug + '/events',
+      data: { time: new Date() },
       method: 'GET',
       crossOrigin: true
     })

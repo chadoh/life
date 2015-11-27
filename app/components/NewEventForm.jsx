@@ -113,7 +113,7 @@ export default class NewEventForm extends React.Component {
         <p>
           <label htmlFor="summary">Title</label>
           <input id="summary" name="summary" ref="summary" type="text"
-            required valueLink={this.linkState('summary')}
+            required autoComplete="off" valueLink={this.linkState('summary')}
           />
         </p>
         <p style={{position: 'relative'}} ref="emoji">

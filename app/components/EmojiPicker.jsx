@@ -21,14 +21,6 @@ const filterByCategory = ({emoji, category}) => {
   return emoji.category === category
 }
 
-const emojis = ({query, category}) => {
-  query = (query || '').replace(/:/g, '').replace(/([\+\-])/g, "\\$&")
-
-  return emojiMap.filter(emoji => {
-    return query ? filterByName({emoji, query}) : filterByCategory({emoji, category})
-  })
-}
-
 export default class EmojiPicker extends React.Component {
   constructor(props) {
     super(props)
@@ -39,6 +31,37 @@ export default class EmojiPicker extends React.Component {
 
     this.blurred = this.blurred.bind(this)
     this.setCategory = this.setCategory.bind(this)
+    this.grabKeyPress = this.grabKeyPress.bind(this)
+    this.emojis = this.emojis.bind(this)
+    this.selectFirst = this.selectFirst.bind(this)
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.grabKeyPress, false)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.grabKeyPress, false)
+  }
+
+  grabKeyPress(e) {
+    if(e.keyCode === 13 || e.keyCode === 9) {
+      e.preventDefault()
+      this.selectFirst()
+    }
+  }
+
+  selectFirst() {
+    this.props.onSelect(`:${this.emojis()[0].name}:`)
+  }
+
+  emojis() {
+    const query = (this.props.query || '').replace(/:/g, '').replace(/([\+\-])/g, "\\$&");
+    const category = this.state.category;
+
+    return emojiMap.filter(emoji => {
+      return query ? filterByName({emoji, query}) : filterByCategory({emoji, category})
+    })
   }
 
   setCategory(category) {
@@ -90,7 +113,7 @@ export default class EmojiPicker extends React.Component {
   }
 
   render() {
-    let emojiLinks = emojis({query: this.props.query, category: this.state.category}).map(emoji => {
+    let emojiLinks = this.emojis().map(emoji => {
       emoji = `:${emoji.name}:`
       return (
         <a key={emoji} className="emoji-picker-emoji"

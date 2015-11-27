@@ -100,6 +100,12 @@ export default class NewEventForm extends React.Component {
       this.setState({showEmojiPicker: false});
   }
 
+  grabKeyPress(e) {
+    if(e.keyCode === 13) {
+      e.preventDefault()
+    }
+  }
+
   render() {
     return (
       <form role="form" onSubmit={this.addEvent.bind(this)} style={{position: 'relative'}} onFocus={this.toggleEmojiPicker}>
@@ -114,7 +120,7 @@ export default class NewEventForm extends React.Component {
           <label htmlFor="emoji">Single-symbol summary</label>
           <input id="emoji" name="emoji" autoComplete="off"
             type={this.state.showEmojiPicker ? "search" : "text"}
-            required
+            required onKeyDown={this.grabKeyPress}
             valueLink={this.linkState('emoji')}
           />
           {this.emojiPicker()}

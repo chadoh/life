@@ -7,7 +7,7 @@ import EventService from '../services/EventService'
 
 const emojiPickerStyles = {
   position: 'absolute',
-  left: 0, top: '100%',
+  left: 0, top: '3.9rem',
   backgroundColor: 'white',
   width: '100%',
   padding: '.3em .6em',
@@ -105,19 +105,20 @@ export default class NewEventForm extends React.Component {
       <form role="form" onSubmit={this.addEvent.bind(this)} style={{position: 'relative'}} onFocus={this.toggleEmojiPicker}>
         <h2>Add a new event</h2>
         <p>
-          <label htmlFor="summary">Summary</label>
+          <label htmlFor="summary">Title</label>
           <input id="summary" name="summary" ref="summary" type="text"
             required valueLink={this.linkState('summary')}
           />
         </p>
         <p style={{position: 'relative'}} ref="emoji">
-          <label htmlFor="emoji">Emoji</label>
+          <label htmlFor="emoji">Single-symbol summary</label>
           <input id="emoji" name="emoji" autoComplete="off"
             type={this.state.showEmojiPicker ? "search" : "text"}
             required
             valueLink={this.linkState('emoji')}
           />
           {this.emojiPicker()}
+          <small>Describe it with one small picture</small>
         </p>
         <p>
           <label htmlFor="date">Date</label>

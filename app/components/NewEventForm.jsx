@@ -99,7 +99,7 @@ export default class NewEventForm extends React.Component {
     if(this.refs.emoji.contains(e.target)) {
       this.setState({showEmojiPicker: true});
     } else {
-      this.validateEmoji();
+      setTimeout(this.validateEmoji, 10)
       this.setState({showEmojiPicker: false});
     }
   }

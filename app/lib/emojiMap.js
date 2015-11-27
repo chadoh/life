@@ -429,7 +429,6 @@ export default [
   { name: "soccer", alternatives: "sport", category: "objects" },
   { name: "baseball", alternatives: "sport", category: "objects" },
   { name: "tennis", alternatives: "sport", category: "objects" },
-  { name: "8ball", alternatives: "sport", category: "objects" },
   { name: "8ball", alternatives: "magic_ball", category: "objects" },
   { name: "rugby_football", alternatives: "sport", category: "objects" },
   { name: "bowling", alternatives: "sport", category: "objects" },

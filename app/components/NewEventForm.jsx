@@ -25,9 +25,16 @@ export default class NewEventForm extends React.Component {
       date: '',
     }
     this.selectDate = this.selectDate.bind(this)
-    this.showEmojiPicker = this.showEmojiPicker.bind(this)
-    this.hideEmojiPicker = this.hideEmojiPicker.bind(this)
     this.pickedEmoji = this.pickedEmoji.bind(this)
+    this.toggleEmojiPicker = this.toggleEmojiPicker.bind(this)
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this.toggleEmojiPicker, false)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.toggleEmojiPicker, false)
   }
 
   addEvent(e) {
@@ -70,16 +77,6 @@ export default class NewEventForm extends React.Component {
     return dates
   }
 
-  showEmojiPicker() {
-    this.setState({showEmojiPicker: true})
-  }
-
-  hideEmojiPicker() {
-    setTimeout(() => {
-      this.setState({showEmojiPicker: false})
-    }, 200)
-  }
-
   emojiPicker() {
     if(this.state.showEmojiPicker) {
       return (
@@ -96,9 +93,16 @@ export default class NewEventForm extends React.Component {
     this.refs.date.focus()
   }
 
+  toggleEmojiPicker(e) {
+    if(this.refs.emoji.contains(e.target))
+      this.setState({showEmojiPicker: true});
+    else
+      this.setState({showEmojiPicker: false});
+  }
+
   render() {
     return (
-      <form role="form" onSubmit={this.addEvent.bind(this)} style={{position: 'relative'}}>
+      <form role="form" onSubmit={this.addEvent.bind(this)} style={{position: 'relative'}} onFocus={this.toggleEmojiPicker}>
         <h2>Add a new event</h2>
         <p>
           <label htmlFor="summary">Summary</label>
@@ -106,11 +110,11 @@ export default class NewEventForm extends React.Component {
             required valueLink={this.linkState('summary')}
           />
         </p>
-        <p style={{position: 'relative'}}>
+        <p style={{position: 'relative'}} ref="emoji">
           <label htmlFor="emoji">Emoji</label>
-          <input id="emoji" name="emoji" ref="emoji" autoComplete="off"
+          <input id="emoji" name="emoji" autoComplete="off"
             type={this.state.showEmojiPicker ? "search" : "text"}
-            required onFocus={this.showEmojiPicker} onBlur={this.hideEmojiPicker}
+            required
             valueLink={this.linkState('emoji')}
           />
           {this.emojiPicker()}

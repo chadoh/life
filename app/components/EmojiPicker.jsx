@@ -50,23 +50,23 @@ export default class EmojiPicker extends React.Component {
       return (
         <span>
           <a style={tabStyle} className="emoji-picker-emoji"
-            onMouseEnter={this.setCategory.bind(null, 'people')}>
+            onClick={this.setCategory.bind(this, 'people')}>
             {this.emojify(':smiley:', {singleEmoji: true})}
           </a>
           <a style={tabStyle} className="emoji-picker-emoji"
-            onMouseEnter={this.setCategory.bind(null, 'nature')}>
+            onClick={this.setCategory.bind(this, 'nature')}>
             {this.emojify(':seedling:', {singleEmoji: true})}
           </a>
           <a style={tabStyle} className="emoji-picker-emoji"
-            onMouseEnter={this.setCategory.bind(null, 'objects')}>
+            onClick={this.setCategory.bind(this, 'objects')}>
             {this.emojify(':telescope:', {singleEmoji: true})}
           </a>
           <a style={tabStyle} className="emoji-picker-emoji"
-            onMouseEnter={this.setCategory.bind(null, 'places')}>
+            onClick={this.setCategory.bind(this, 'places')}>
             {this.emojify(':bike:', {singleEmoji: true})}
           </a>
           <a style={tabStyle} className="emoji-picker-emoji"
-            onMouseEnter={this.setCategory.bind(null, 'symbols')}>
+            onClick={this.setCategory.bind(this, 'symbols')}>
             {this.emojify(':1234:', {singleEmoji: true})}
           </a>
           <br/>

@@ -12,6 +12,7 @@ class EventStore {
       requestEventsForUser: EventActions.requestEventsForUser,
       receiveEvents: EventActions.gotEvents,
       createEvent: EventActions.createdEvent,
+      updateEvent: EventActions.updatedEvent,
       destroyEvent: EventActions.destroyedEvent
     })
     this.state = Immutable.Map({
@@ -35,6 +36,16 @@ class EventStore {
         this.state.getIn(['events', weekno]).push(immutableEvent) :
         Immutable.List([immutableEvent])
     ))
+  }
+
+  updateEvent(event) {
+    let weekno = ''+event.weekno;
+    let immutableEvent = Immutable.Map(event);
+
+    const list = this.state.getIn(['events', weekno])
+    let old = list.find(el => el.get('id') === event.id)
+
+    this.setState(this.state.setIn(['events', weekno, list.indexOf(old)], immutableEvent))
   }
 
   destroyEvent(event) {

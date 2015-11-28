@@ -17,19 +17,23 @@ const emojiPickerStyles = {
   zIndex: '2'
 }
 
-export default class NewEventForm extends React.Component {
+export default class EventForm extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
+      id: null,
       title: '',
       emoji: '',
       date: '',
       description: '',
     }
+
     this.selectDate = this.selectDate.bind(this)
     this.pickedEmoji = this.pickedEmoji.bind(this)
     this.toggleEmojiPicker = this.toggleEmojiPicker.bind(this)
     this.validateEmoji = this.validateEmoji.bind(this)
+    this.saveEvent = this.saveEvent.bind(this)
   }
 
   componentDidMount() {
@@ -40,9 +44,35 @@ export default class NewEventForm extends React.Component {
     document.removeEventListener('click', this.toggleEmojiPicker, false)
   }
 
-  addEvent(e) {
+  componentDidUpdate(prevProps) {
+    if(this.props.eventUnderEdit !== prevProps.eventUnderEdit) {
+      const event = this.props.eventUnderEdit;
+      if(event) {
+        this.setState({
+          id: event.get('id'),
+          title: event.get('title'),
+          emoji: event.get('emoji'),
+          date: event.get('date'),
+          description: event.get('description'),
+        })
+      } else {
+        this.setState({
+          id: null, title: '', emoji: '', date: '', description: '',
+        })
+      }
+    }
+  }
+
+  saveEvent(e) {
     e.preventDefault()
-    EventService.create(this.props.slug, this.state.title, this.state.emoji, this.state.date)
+    EventService.save({
+      slug: this.props.slug,
+      id: this.state.id,
+      title: this.state.title,
+      emoji: this.state.emoji,
+      date: this.state.date,
+      description: this.state.description,
+    })
       .then(() => {
         this.setState({title: '', emoji: '', description: ''})
         this.refs.title.focus()
@@ -64,13 +94,13 @@ export default class NewEventForm extends React.Component {
     let dates = []
     let date = this.props.start;
     while (date < this.end()) {
+      const dateString = date.toISOString().replace(/T.+/, '')
       dates.push(
         <label key={date}>
           <br/>
-          <input ref={date === this.props.start ? 'date' : ''}
-            type="radio" name="date"
-            value={date.toISOString().replace(/T.+/, '')}
-            onChange={this.selectDate}/>
+          <input type="radio" name="date"
+            value={dateString}
+            onChange={this.selectDate} checked={this.state.date === dateString}/>
           <span className="checkable">{date.toDateString()}</span>
         </label>
       )
@@ -92,7 +122,7 @@ export default class NewEventForm extends React.Component {
 
   pickedEmoji(emoji) {
     this.setState({emoji})
-    this.refs.date.focus()
+    this.refs.description.focus()
   }
 
   toggleEmojiPicker(e) {
@@ -122,8 +152,8 @@ export default class NewEventForm extends React.Component {
 
   render() {
     return (
-      <form role="form" onSubmit={this.addEvent.bind(this)} style={{position: 'relative'}} onFocus={this.toggleEmojiPicker}>
-        <h2>Add a new event</h2>
+      <form role="form" onSubmit={this.saveEvent} style={{position: 'relative'}} onFocus={this.toggleEmojiPicker}>
+        <h2>{this.props.eventUnderEdit ? 'Edit' : 'Add a new'} event:</h2>
         <p>
           <label htmlFor="title">Title</label>
           <input id="title" name="title" ref="title" type="text"
@@ -142,7 +172,7 @@ export default class NewEventForm extends React.Component {
         </p>
         <p>
           <label htmlFor="description">Description</label>
-          <textarea valueLink={this.linkState('description')}/>
+          <textarea ref="description" valueLink={this.linkState('description')}/>
         </p>
         <p>
           <label htmlFor="date">Date</label>
@@ -154,4 +184,4 @@ export default class NewEventForm extends React.Component {
   }
 }
 
-ReactMixin(NewEventForm.prototype, LinkedStateMixin);
+ReactMixin(EventForm.prototype, LinkedStateMixin);

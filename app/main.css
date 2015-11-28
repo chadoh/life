@@ -218,6 +218,11 @@ img.emoji {
   top: auto !important;
 }
 
+.action-link {
+  padding: 0 0.2rem;
+  cursor: pointer;
+}
+
 /*
  * Images
  */

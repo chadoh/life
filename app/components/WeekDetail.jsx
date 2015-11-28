@@ -30,7 +30,7 @@ class Event extends React.Component {
     return (
       <tr>
         <td>{this.emojify(this.props.event.get('emoji'), {attributes: {className: 'emoji'}})}</td>
-        <td>{this.props.event.get('summary')}</td>
+        <td>{this.props.event.get('title')}</td>
         <td className="text-muted">{this.props.event.get('date')}</td>
         {this.props.event.get('id') ? deleteButton : null}
       </tr>

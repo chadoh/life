@@ -21,9 +21,10 @@ export default class NewEventForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      summary: '',
+      title: '',
       emoji: '',
       date: '',
+      description: '',
     }
     this.selectDate = this.selectDate.bind(this)
     this.pickedEmoji = this.pickedEmoji.bind(this)
@@ -41,11 +42,10 @@ export default class NewEventForm extends React.Component {
 
   addEvent(e) {
     e.preventDefault()
-    EventService.create(this.props.slug, this.state.summary, this.state.emoji, this.state.date)
+    EventService.create(this.props.slug, this.state.title, this.state.emoji, this.state.date)
       .then(() => {
-        this.setState({summary: '', emoji: ''})
-        this.refs.emoji.value = ''
-        this.refs.summary.focus()
+        this.setState({title: '', emoji: '', description: ''})
+        this.refs.title.focus()
       })
       .catch((err) => {
         console.log("Error creating event", err)
@@ -125,9 +125,9 @@ export default class NewEventForm extends React.Component {
       <form role="form" onSubmit={this.addEvent.bind(this)} style={{position: 'relative'}} onFocus={this.toggleEmojiPicker}>
         <h2>Add a new event</h2>
         <p>
-          <label htmlFor="summary">Title</label>
-          <input id="summary" name="summary" ref="summary" type="text"
-            required autoComplete="off" valueLink={this.linkState('summary')}
+          <label htmlFor="title">Title</label>
+          <input id="title" name="title" ref="title" type="text"
+            required autoComplete="off" valueLink={this.linkState('title')}
           />
         </p>
         <p style={{position: 'relative'}} ref="emoji">
@@ -139,6 +139,10 @@ export default class NewEventForm extends React.Component {
           />
           {this.emojiPicker()}
           <small>Describe it with one small picture</small>
+        </p>
+        <p>
+          <label htmlFor="description">Description</label>
+          <textarea valueLink={this.linkState('description')}/>
         </p>
         <p>
           <label htmlFor="date">Date</label>

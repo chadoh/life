@@ -32,7 +32,7 @@ export default class Week extends React.Component {
   tooltip(date) {
     let append = '';
     if (this.props.events && this.props.events.first())
-      append = `: ${this.props.events.first().get('summary')}`;
+      append = `: ${this.props.events.first().get('title')}`;
     return `Week of ${date}` + append;
   }
 }

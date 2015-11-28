@@ -17,12 +17,12 @@ class EventService {
     });
   }
 
-  create(slug, summary, emoji, date) {
+  create(slug, title, emoji, date) {
     return reqwest({
       url: API_URL + 'users/' + slug + '/events',
       method: 'POST',
       data: { event: {
-        summary: summary,
+        title: title,
         emoji: emoji,
         date: date
       }},

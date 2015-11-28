@@ -54,20 +54,18 @@ export default class WeekDetail extends React.Component {
 
   renderEvents() {
     if(this.state.events) {
-      return <table>
-        <tbody>
-          {this.state.events.map(event => {
-            return <Event
-              key={event.get('date') + event.get('id')}
-              slug={this.props.params.slug}
-              weekno={this.props.params.weekno}
-              event={event}
-              authed={this.authed()}
-              onEdit={this.editEvent.bind(this, event)}
-            />
-          })}
-        </tbody>
-      </table>
+      return <ul className="events">
+        {this.state.events.map(event => {
+          return <Event
+            key={event.get('date') + event.get('id')}
+            slug={this.props.params.slug}
+            weekno={this.props.params.weekno}
+            event={event}
+            authed={this.authed()}
+            onEdit={this.editEvent.bind(this, event)}
+          />
+        })}
+      </ul>
     } else {
       return "No recorded events"
     }

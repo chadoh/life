@@ -33,7 +33,7 @@ class EventStore {
     let immutableEvent = Immutable.Map(event);
     this.setState(this.state.setIn(['events', weekno],
       this.state.getIn(['events', weekno]) ?
-        this.state.getIn(['events', weekno]).push(immutableEvent) :
+        this.state.getIn(['events', weekno]).push(immutableEvent).sortBy(event => event.get('date')) :
         Immutable.List([immutableEvent])
     ))
   }

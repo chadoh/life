@@ -81,7 +81,7 @@ button.brand {
  * Logo
  */
 .logo-small img {
-  height: 2.5rem;
+  width: 60px;
   vertical-align: middle;
 }
 .logo-small:hover {

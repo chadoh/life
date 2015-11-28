@@ -1,11 +1,16 @@
 import React from 'react';
 import LoginActions from '../actions/LoginActions';
 import LoginStore from '../stores/LoginStore';
+import spinner from '../images/icon-loading-spinner.gif';
 
 export default class Signin extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      loading: false
+    }
     this.signin = this.signin.bind(this)
+    this.onSignIn = this.onSignIn.bind(this)
     this.afterSignIn = this.afterSignIn.bind(this)
   }
 
@@ -37,8 +42,13 @@ export default class Signin extends React.Component {
       longtitle: true,
       width: 220,
       height: 50,
-      onsuccess: LoginActions.onSignIn,
+      onsuccess: this.onSignIn,
     })
+  }
+
+  onSignIn(googleUser) {
+    this.setState({loading: true})
+    LoginActions.onSignIn(googleUser)
   }
 
   afterSignIn() {
@@ -52,7 +62,10 @@ export default class Signin extends React.Component {
   render() {
     return (
       <div {...this.props}>
-        <div id="signin" ref="signin"/>
+        {this.state.loading
+          ? <img src={`/${spinner}`} width="100px" height="100px" alt="loading" style={{marginTop: '1.5rem'}}/>
+          : <div id="signin" ref="signin"/>
+        }
       </div>
     )
   }

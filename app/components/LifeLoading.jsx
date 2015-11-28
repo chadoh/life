@@ -1,27 +1,10 @@
 import React from 'react';
-
-const weeks = () => {
-  let weeks = [];
-  for(var i = 0; i < 52; i++) {
-    weeks.push(<span key={i}>●</span>)
-  }
-  return weeks;
-}
-
-const years = () => {
-  let years = []
-  for(var i = 0; i < 101; i++) {
-    years.push(<div className="year" key={i}>{weeks()}</div>)
-  }
-  return years;
-}
+import spinner from '../images/icon-loading-spinner.gif';
 
 export default () => {
   return (
-    <div>
-      <div className="life">
-        {years()}
-      </div>
+    <div className="life" style={{textAlign: 'center'}}>
+      <img src={`/${spinner}`} alt="loading" style={{width: '100px', marginTop: '100px'}}/>
     </div>
   );
 }

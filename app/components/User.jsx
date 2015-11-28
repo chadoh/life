@@ -11,6 +11,7 @@ import Nav from './Nav';
 import Joyride from 'react-joyride';
 import { Link } from 'react-router';
 import spoon from '../images/spoon-of-diamonds.png';
+import spinner from '../images/icon-loading-spinner.gif';
 
 export default class User extends React.Component {
   constructor(props) {
@@ -106,7 +107,10 @@ export default class User extends React.Component {
             <Link to="home" className="logo-small">
               <img src={`/${spoon}`} alt="Home" />
             </Link>
-            {this.state.user.get('name') + ':'} <small>A life</small>
+            {this.state.user.get('name')
+              ? `${this.state.user.get('name')}:`
+              : <img src={`/${spinner}`} alt="loading" style={{height: '3rem', verticalAlign: 'bottom'}}/>
+            } <small>A life</small>
           </h1>
         </Nav>
         {this.props.children}

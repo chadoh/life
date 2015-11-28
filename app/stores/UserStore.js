@@ -23,7 +23,6 @@ class UserStore {
   }
 
   requestUser(slug) {
-    this.setState(this.state.set('user', _blankUser))
     UserService.getUser(slug)
   }
 

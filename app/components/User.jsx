@@ -31,10 +31,8 @@ export default class User extends React.Component {
     // need to delay this call to avoid errors
     // does Redux avoid this crap?
     setTimeout(() => {
-      if (this.props.params.slug !== UserStore.getState().getIn(['user', 'slug'])) {
-        UserActions.requestUser(this.props.params.slug)
-        EventActions.requestEventsForUser(this.props.params.slug)
-      }
+      UserActions.requestUser(this.props.params.slug)
+      EventActions.requestEventsForUser(this.props.params.slug)
     }, 20)
   }
 

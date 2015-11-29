@@ -3,6 +3,7 @@
 @import "./styles/vertical-centering.css";
 @import "./styles/nav.css";
 @import "./styles/emoji-picker.css";
+@import "./styles/checkbox-private-public.css";
 
 /*
  * Hero
@@ -63,6 +64,9 @@ button.brand {
 .bg-tint {
   padding: 1.5rem;
   border-radius: .4rem;
+}
+.bg-tint p:first-child {
+  margin-top: 0;
 }
 .hook-description p {
   margin-top: 0;

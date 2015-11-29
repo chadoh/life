@@ -5,11 +5,13 @@ import UserStore from '../stores/UserStore';
 import LoginStore from '../stores/LoginStore';
 import UserActions from '../actions/UserActions';
 import Nav from './Nav';
+import CheckboxPrivatePublic from './CheckboxPrivatePublic'
 
 class UserEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.getState();
+    this.toggleIsPrivate = this.toggleIsPrivate.bind(this)
   }
 
   getState() {
@@ -20,6 +22,7 @@ class UserEdit extends React.Component {
       name: user.name,
       email: user.email,
       born: user.born,
+      is_private: user.is_private,
     };
   }
 
@@ -30,7 +33,12 @@ class UserEdit extends React.Component {
       slug: this.state.slug,
       name: this.state.name,
       born: this.state.born,
+      is_private: this.state.is_private,
     })
+  }
+
+  toggleIsPrivate() {
+    this.setState({is_private: !this.state.is_private})
   }
 
   render() {
@@ -42,7 +50,7 @@ class UserEdit extends React.Component {
               <h1 className="brand">Edit Account Details</h1>
             </Nav>
           </div>
-          <div className="container">
+          <div className="container bg-tint">
             <p>
               <label htmlFor="slug">Username (entire.life/{this.state.slug})</label>
               <input type="text" required valueLink={this.linkState('slug')} className="form-control" id="slug" autofocus />
@@ -55,6 +63,7 @@ class UserEdit extends React.Component {
               <label htmlFor="born">Birth Date</label>
               <input type="date" required valueLink={this.linkState('born')} className="form-control" id="born" />
             </p>
+            <CheckboxPrivatePublic isPrivate={this.state.is_private} whenClicked={this.toggleIsPrivate}/>
             <button type="submit" className="brand">Save Changes</button>
           </div>
         </div>

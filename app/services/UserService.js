@@ -19,7 +19,7 @@ class UserService {
     });
   }
 
-  update({id, slug, name, born}) {
+  update({id, slug, name, born, is_private}) {
     let params = {};
     return reqwest({
       url: API_URL + 'users/' + id,

@@ -9,6 +9,9 @@ class LoginStore {
 
   constructor() {
     this.bindActions(LoginActions)
+    this.bindListeners({
+      gotUser: UserActions.gotUser
+    })
 
     this.state = {
       user: null,
@@ -71,12 +74,19 @@ class LoginStore {
       born: response.user.born,
       paid: response.user.paid,
       payment_frequency: response.user.payment_frequency,
+      is_private: response.user.is_private,
     })
     this.setState({user})
   }
 
   static isLoggedIn() {
     return !!this.getState().user;
+  }
+
+  static canView(user) {
+    return !user || !user.get('is_private') || (
+      this.getState().user && user.get('email') === this.getState().user.email
+    )
   }
 }
 

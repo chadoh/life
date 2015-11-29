@@ -5,17 +5,21 @@ import AuthService from '../services/AuthService'
 import LoginStore from '../stores/LoginStore'
 import { Link } from 'react-router'
 import UserService from '../services/UserService';
+import CheckboxPrivatePublic from './CheckboxPrivatePublic'
 
 class SigningUp extends React.Component {
   constructor(props) {
     super(props);
+    const user = LoginStore.getState().user;
     this.state = {
-      born: LoginStore.getState().user.born || '1950-12-25',
-      slug: LoginStore.getState().user.slug,
-      user: LoginStore.getState().user,
-      changingSlug: false
+      born: user.born || '1950-12-25',
+      slug: user.slug,
+      is_private: user.is_private,
+      user: user,
+      changingSlug: false,
     }
     this.changeSlug = this.changeSlug.bind(this)
+    this.toggleIsPrivate = this.toggleIsPrivate.bind(this)
   }
 
   renderSlug() {
@@ -56,6 +60,7 @@ class SigningUp extends React.Component {
       id: this.state.user.id,
       slug: this.state.slug,
       born: this.state.born,
+      is_private: this.state.is_private,
     })
     .then(response => {
       const user = response.user;
@@ -79,6 +84,10 @@ class SigningUp extends React.Component {
     return msg.join('; ').replace(/slug/g, 'URL')
   }
 
+  toggleIsPrivate() {
+    this.setState({is_private: !this.state.is_private})
+  }
+
   render() {
     return (
       <div className="hero sunset-cliffs">
@@ -93,6 +102,7 @@ class SigningUp extends React.Component {
                 autoComplete='off'
               />
             </p>
+            <CheckboxPrivatePublic isPrivate={this.state.is_private} whenClicked={this.toggleIsPrivate}/>
             {this.renderSlug()}
             <button ref="button" type="submit" className="brand">Looks good !</button>
           </form>

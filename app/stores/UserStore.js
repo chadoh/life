@@ -30,7 +30,7 @@ class UserStore {
     this.setState(this.state.set('user', Map(user)))
   }
 
-  requestUpdate({id, slug, name, born}) {
+  requestUpdate({id, slug, name, born, is_private}) {
     UserService.update(arguments[0]).then(() => {
       history.pushState(null, `/${slug}`)
     })

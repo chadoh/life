@@ -10,7 +10,10 @@ class EventService {
       url: API_URL + 'users/' + slug + '/events',
       data: { time: new Date() },
       method: 'GET',
-      crossOrigin: true
+      crossOrigin: true,
+      headers: {
+        'Authorization': 'Bearer ' + LoginStore.getState().idToken
+      }
     })
     .then(function(response) {
       EventActions.gotEvents(response);

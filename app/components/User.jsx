@@ -2,6 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import UserStore from '../stores/UserStore';
+import LoginStore from '../stores/LoginStore';
 import EventStore from '../stores/EventStore';
 import UserActions from '../actions/UserActions';
 import EventActions from '../actions/EventActions';
@@ -22,6 +23,8 @@ export default class User extends React.Component {
     this.addTooltip = this.addTooltip.bind(this);
     this.startTour = this.startTour.bind(this);
     this.endTour = this.endTour.bind(this);
+    this.renderCalendar = this.renderCalendar.bind(this);
+    this.renderName = this.renderName.bind(this);
   }
 
   componentDidMount() {
@@ -89,13 +92,39 @@ export default class User extends React.Component {
     this.props.history.replaceState(null, this.props.location.pathname)
   }
 
-  render() {
-    var cal = !this.state.events.get('0') || !this.state.user.get('born')
-      ? <LifeLoading />
-      : <Life events={this.state.events} addSteps={this.addSteps}
+  renderCalendar() {
+    const user = this.state.user;
+    if(!LoginStore.canView(user)) {
+      const name = this.state.user.get('name').split(' ')[0]
+      return <div className="life">
+        <p>There are things we're not meant to know. Amongst them, the detail's of {name}'s life!</p>
+        <p>If this is your calendar, <Link to="/signin">sign in again</Link> to see it.</p>
+      </div>
+    } else if(!this.state.events.get('0') || !this.state.user.get('born')) {
+      return <LifeLoading />
+    } else {
+      return (
+        <Life events={this.state.events} addSteps={this.addSteps}
           startTour={this.startTour}
           showTour={this.props.location.query.tour} />
+      )
+    }
+  }
 
+  renderName() {
+    if(this.state.user) {
+      if(!LoginStore.canView(this.state.user)) {
+        const name = this.state.user.get('name').split(' ')[0]
+        return `${name}'s life is ${name}'s business!`
+      } else {
+        return <span>{this.state.user.get('name')}: <small>A life</small></span>
+      }
+    } else {
+      return <img src={`/${spinner}`} alt="loading" style={{height: '3rem', verticalAlign: 'bottom'}}/>
+    }
+  }
+
+  render() {
     return (
       <div className="container-wide">
         <Joyride ref="joyride" steps={this.state.steps} type="guided"
@@ -107,14 +136,11 @@ export default class User extends React.Component {
             <Link to="home" className="logo-small">
               <img src={`/${spoon}`} alt="Home" />
             </Link>
-            {this.state.user.get('name')
-              ? `${this.state.user.get('name')}:`
-              : <img src={`/${spinner}`} alt="loading" style={{height: '3rem', verticalAlign: 'bottom'}}/>
-            } <small>A life</small>
+            {this.renderName()}
           </h1>
         </Nav>
         {this.props.children}
-        {cal}
+        {this.renderCalendar()}
       </div>
     );
   }

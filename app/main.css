@@ -71,6 +71,16 @@ button.brand {
 .hook-description p {
   margin-top: 0;
 }
+.trailing {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  text-align: center;
+}
+.trailing .logo {
+  width: 180px;
+  margin-top: -56px;
+}
 
 /*
  * Signin

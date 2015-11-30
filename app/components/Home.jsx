@@ -77,6 +77,13 @@ export default class Home extends React.Component {
               <dt className="brand">Lifetime</dt>
               <dd>$50, one time. No need to worry about future payments.</dd>
             </dl>
+            <p>
+              These seem like very reasonable prices to us, by American
+              standards. However, we understand that they might still seem high
+              for some people. If you want a life calendar, but can't afford to
+              pay, <a href="mailto:your+homepage@entire.life">email us</a> and
+              we'll work something out.
+            </p>
           </div>
         </div>
         <div className="bg-light">

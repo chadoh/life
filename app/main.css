@@ -33,6 +33,9 @@ button.brand {
   font-size: 1.5rem;
 }
 
+.hook-wrap {
+  padding-bottom: 4rem;
+}
 .hook {
   margin: 0 auto;
   width: 90%;

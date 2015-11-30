@@ -132,7 +132,7 @@ export default class User extends React.Component {
           completeCallback={this.endTour} showSkipButton={true}
         />
         <Nav startTour={this.startTour}>
-          <Link to="home" className="logo-small">
+          <Link to="/" className="logo-small">
             <img src={`/${spoon}`} alt="Home" />
           </Link>
           <h1 className="brand">

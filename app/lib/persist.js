@@ -12,7 +12,7 @@ export default (alt, storage, storeName) => {
 
   finalStore.listen(() => {
     if (!storage.get('debug')) {
-      storage.set(storeName, alt.takeSnapshot())
+      storage.set(storeName, alt.takeSnapshot('LoginStore', 'UserStore', 'EventStore'))
     }
   })
 }

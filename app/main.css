@@ -94,9 +94,12 @@ button.brand {
 /*
  * Logo
  */
+.logo-small {
+  float: left;
+  top: 1.7rem;
+}
 .logo-small img {
   width: 60px;
-  vertical-align: middle;
 }
 .logo-small:hover {
   box-shadow: none;

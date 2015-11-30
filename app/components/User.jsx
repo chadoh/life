@@ -117,7 +117,7 @@ export default class User extends React.Component {
         const name = this.state.user.get('name').split(' ')[0]
         return `${name}'s life is ${name}'s business!`
       } else {
-        return <span>{this.state.user.get('name')}: <small>A life</small></span>
+        return <span>{this.state.user.get('name')}: <nobr><small>A life</small></nobr></span>
       }
     } else {
       return <img src={`/${spinner}`} alt="loading" style={{height: '3rem', verticalAlign: 'bottom'}}/>
@@ -132,10 +132,10 @@ export default class User extends React.Component {
           completeCallback={this.endTour} showSkipButton={true}
         />
         <Nav startTour={this.startTour}>
+          <Link to="home" className="logo-small">
+            <img src={`/${spoon}`} alt="Home" />
+          </Link>
           <h1 className="brand">
-            <Link to="home" className="logo-small">
-              <img src={`/${spoon}`} alt="Home" />
-            </Link>
             {this.renderName()}
           </h1>
         </Nav>

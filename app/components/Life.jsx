@@ -20,7 +20,7 @@ export default class Life extends React.Component {
     this.props.addSteps([{
       title: 'Welcome to the world!',
       text: 'This baby emoji represents the week you were born. Once this tour is over, you can mouse over it to see the date.',
-      selector: '.year:first-child a:first-child',
+      selector: '.year:first-child a:first-of-type',
       position: 'bottom',
     }, {
       title: 'Your first year',
@@ -30,7 +30,7 @@ export default class Life extends React.Component {
     }, {
       title: '100 trips around the sun!',
       text: "You can make it to 100 years old, right? It'll be awesome!",
-      selector: '.year:last-child a:first-child',
+      selector: '.year:last-child a:first-of-type',
       position: 'top',
     }, {
       title: "You're here now",
@@ -43,7 +43,7 @@ export default class Life extends React.Component {
       selector: 'a.previous',
       position: 'top',
     }])
-    if(this.props.showTour) this.props.startTour();
+    if(this.props.showTour) setTimeout(this.props.startTour, 100)
   }
 
   monthsFor({age, events}) {

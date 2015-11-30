@@ -6,9 +6,22 @@ import UserStore from '../stores/UserStore';
 import { Link } from 'react-router';
 
 export default class Month extends React.Component {
+  emoji() {
+    return this.props.events && this.props.events.first() ?
+      this.emojify(this.props.events.first().get('emoji'), {attributes: {className: 'emoji'}}) :
+      "●"
+  }
+
+  tooltip(date) {
+    let append = '';
+    if (this.props.events && this.props.events.first())
+      append = `: ${this.props.events.first().get('title')}`;
+    return `Month of ${date}` + append;
+  }
+
   render() {
     const start = UserStore.dateOf(this.props.monthno * 4);
-    const currentMonth = UserStore.getState().getIn(['user', 'current_week']) / 4;
+    const currentMonth = Math.floor(UserStore.getState().getIn(['user', 'current_week']) / 4);
     let klass;
 
     if(currentMonth - 1 === this.props.monthno) klass = 'past previous';
@@ -21,19 +34,6 @@ export default class Month extends React.Component {
         {this.emoji()}
       </Link>
     )
-  }
-
-  emoji() {
-    return this.props.events && this.props.events.first() ?
-      this.emojify(this.props.events.first().get('emoji'), {attributes: {className: 'emoji'}}) :
-      "●"
-  }
-
-  tooltip(date) {
-    let append = '';
-    if (this.props.events && this.props.events.first())
-      append = `: ${this.props.events.first().get('title')}`;
-    return `Month of ${date}` + append;
   }
 }
 

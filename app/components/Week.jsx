@@ -11,7 +11,7 @@ export default class Week extends React.Component {
     const currentWeek = UserStore.getState().getIn(['user', 'current_week'])
     let klass;
 
-    if(currentWeek - 1 === this.props.weekno) klass = 'past last-week';
+    if(currentWeek - 1 === this.props.weekno) klass = 'past previous';
     else if(currentWeek > this.props.weekno) klass = 'past';
     else if(currentWeek === this.props.weekno) klass = 'now';
 

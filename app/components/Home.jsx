@@ -2,6 +2,7 @@ import React from 'react';
 import placeholderImg from '../images/video-placeholder.jpg';
 import Nav from './Nav';
 import { FREE_EVENTS } from '../config';
+import spoon from '../images/spoon-of-diamonds.png';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -45,7 +46,7 @@ export default class Home extends React.Component {
             </div>
           </div>
           <div className="trailing">
-            <img src="/images/spoon-of-diamonds.png" className="logo" alt="logo: a spoonful of diamonds" />
+            <img src={`/${spoon}`} className="logo" alt="logo: a spoonful of diamonds" />
           </div>
         </div>
         <div className="bg-dark" id="pricing">

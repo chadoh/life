@@ -142,6 +142,9 @@ button.brand {
   clear: both;
   padding-bottom: 5rem;
 }
+.year {
+  position: relative;
+}
 .year > *, .year > a {
   text-decoration: none;
   color: #fef8fc;
@@ -152,6 +155,14 @@ button.brand {
 }
 .year > a.past {
   color: #fae3e3;
+}
+.year .age {
+  color: silver;
+  position: absolute;
+  text-align: right;
+  width: 25px;
+  left: -30px;
+  top: 3.5px;
 }
 img.emoji {
   vertical-align: middle;

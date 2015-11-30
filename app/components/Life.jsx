@@ -12,7 +12,10 @@ const weeksFor = ({age, events}) => {
 
 const Year = ({age, events}) => {
   return (
-    <div className="year">{weeksFor({age, events})}</div>
+    <div className="year">
+      <small className="age">{!(age % 5) && age !== 100 ? age : null }</small>
+      {weeksFor({age, events})}
+    </div>
   )
 }
 

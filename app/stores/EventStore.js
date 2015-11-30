@@ -57,6 +57,15 @@ class EventStore {
   clear() {
     this.setState(this.state.set('events', Immutable.Map()))
   }
+
+  static eventsForMonth(monthno) {
+    const events = this.state.get('events')
+
+    return (events.get(`${monthno*4}`) || new Immutable.List()).
+      concat(events.get(`${monthno*4 + 1}`) || new Immutable.List()).
+      concat(events.get(`${monthno*4 + 2}`) || new Immutable.List()).
+      concat(events.get(`${monthno*4 + 3}`) || new Immutable.List())
+  }
 }
 
 export default alt.createStore(EventStore, 'EventStore')

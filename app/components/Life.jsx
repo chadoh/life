@@ -1,25 +1,21 @@
 import React from 'react';
 import Week from './Week';
+import Month from './Month';
+import IsMobileStore from '../stores/IsMobileStore';
+import EventStore from '../stores/EventStore';
+import connectToStores from 'alt/utils/connectToStores';
+import Immutable from 'immutable';
 
-const weeksFor = ({age, events}) => {
-  let weeks = [];
-  for(var i = 0; i < 52; i++) {
-    const weekno = age * 52 + i;
-    weeks.push(<Week key={weekno} weekno={weekno} events={events.get(''+weekno)} />)
-  }
-  return weeks;
-}
-
-const Year = ({age, events}) => {
-  return (
-    <div className="year">
-      <small className="age">{!(age % 5) && age !== 100 ? age : null }</small>
-      {weeksFor({age, events})}
-    </div>
-  )
-}
-
+@connectToStores
 export default class Life extends React.Component {
+  static getStores() {
+    return [IsMobileStore];
+  }
+
+  static getPropsFromStores() {
+    return IsMobileStore.getState();
+  }
+
   componentDidMount() {
     this.props.addSteps([{
       title: 'Welcome to the world!',
@@ -44,16 +40,53 @@ export default class Life extends React.Component {
     }, {
       title: "What happened last week?",
       text: "Anything cool? Anything that will make ripples across your entire future? Probably! Click on a week to add events (and emojis) to your life calendar. Get started by adding the best day of your life!",
-      selector: 'a.last-week',
+      selector: 'a.previous',
       position: 'top',
     }])
     if(this.props.showTour) this.props.startTour();
   }
 
+  monthsFor({age, events}) {
+    let months = [];
+    for(var i = 0; i < 13; i++) {
+      const monthno = age * 13 + i;
+
+      months.push(
+        <Month key={monthno} monthno={monthno} events={EventStore.eventsForMonth(monthno)} />
+      )
+    }
+    return months;
+  }
+
+  weeksFor({age, events}) {
+    let weeks = [];
+    for(var i = 0; i < 52; i++) {
+      const weekno = age * 52 + i;
+      weeks.push(<Week key={weekno} weekno={weekno} events={events.get(''+weekno)} />)
+    }
+    return weeks;
+  }
+
+  renderDots({age, events}) {
+    if(this.props.isMobile)
+      return this.monthsFor({age, events})
+    else
+      return this.weeksFor({age, events})
+  }
+
+  year(age, events) {
+    return (
+      <div key={age} className={`year${!this.props.isMobile ? ' in-weeks' : ''}`}>
+        <small className="age">{!(age % 5) && age !== 100 ? age : null }</small>
+        {this.renderDots({age, events})}
+      </div>
+    )
+  }
+
   render() {
     let years = []
     for(var i = 0; i < 101; i++) {
-      years.push(<Year key={i} events={this.props.events} age={i}/>)
+      years.push(this.year(i, this.props.events))
     }
     return (
       <div className="life">

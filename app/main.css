@@ -145,13 +145,16 @@ button.brand {
 .year {
   position: relative;
 }
-.year > *, .year > a {
+.year > a {
   text-decoration: none;
   color: #fef8fc;
-  width: 1.923076923%; /* 100/52 */
+  width: 7.692307692%; /* 100/13 */
   display: inline-block;
   text-align: center;
   box-shadow: none;
+}
+.year.in-weeks > a {
+  width: 1.923076923%; /* 100/52 */
 }
 .year > a.past {
   color: #fae3e3;

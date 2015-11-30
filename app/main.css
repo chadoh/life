@@ -173,6 +173,17 @@ button.brand {
 img.emoji {
   vertical-align: middle;
 }
+ol.weeks {
+  list-style: none;
+  padding: 0;
+  margin-left: -1.3rem;
+}
+ol.weeks a:first-child {
+  display: inline-block;
+  margin-right: 0.3rem;
+  width: 0.9rem;
+  text-align: center;
+}
 
 /*
  * tooltips
@@ -260,11 +271,11 @@ img.emoji {
   margin-bottom: 1.5rem;
 }
 .events tr:first-child td:first-child {
-  width: 80px;
+  width: 85px;
   padding: 0;
 }
 .events tr:first-child td:last-child {
-  width: 50px;
+  width: 20px;
   padding: 0;
 }
 .action-link {

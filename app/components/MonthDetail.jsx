@@ -1,10 +1,7 @@
 import React from 'react'
-import ReactMixin from 'react-mixin'
 import UserStore from '../stores/UserStore'
-import LoginStore from '../stores/LoginStore'
 import EventStore from '../stores/EventStore'
-import Event from './Event'
-import { Range } from 'immutable'
+import Week from './Week'
 import { Link } from 'react-router'
 
 export default class MonthDetail extends React.Component {
@@ -36,7 +33,18 @@ export default class MonthDetail extends React.Component {
   }
 
   renderWeeks() {
-    return null
+    let weeks = [];
+    for(let i=0; i < 4; i++) {
+      const weekno = +this.props.params.monthno*4 + i
+      const start = UserStore.dateOf(weekno);
+      weeks.push(<li key={i}>
+        <Week weekno={weekno} events={EventStore.getState().getIn(['events', ''+weekno])}/>
+        <Link to={`/${UserStore.getState().getIn(['user', 'slug'])}/week/${weekno}`}>
+          Week of {start.toDateString()}
+        </Link>
+      </li>)
+    }
+    return weeks;
   }
 
   start() {
@@ -50,10 +58,12 @@ export default class MonthDetail extends React.Component {
         {!UserStore.getState().getIn(['user', 'born']) ? '' :
           <aside className="week-detail">
             <h1 className="brand">
-              Month of {this.start().toDateString()}<br/>
+              "Month" of {this.start().toDateString().substr(4)}<br/>
               <small>{Math.floor(+this.props.params.monthno/13)} years old</small>
             </h1>
-            {this.renderWeeks()}
+            <ol className="weeks">
+              {this.renderWeeks()}
+            </ol>
           </aside>
         }
       </div>

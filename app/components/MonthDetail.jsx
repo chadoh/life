@@ -1,35 +1,23 @@
 import React from 'react'
+import LoginStore from '../stores/LoginStore'
 import UserStore from '../stores/UserStore'
 import EventStore from '../stores/EventStore'
 import Week from './Week'
+import Events from './Events'
 import { Link } from 'react-router'
 
 export default class MonthDetail extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      events: null,
-    }
-    this._onChange = this._onChange.bind(this)
     this.renderWeeks = this.renderWeeks.bind(this)
   }
 
-  componentWillMount() {
-    EventStore.listen(this._onChange)
-  }
-
   componentDidMount() {
-    if (!this.state.events) this._onChange()
     document.body.className = document.body.className + ' noscroll-monthdetail'
   }
 
   componentWillUnmount() {
-    EventStore.unlisten(this._onChange)
     document.body.className = document.body.className.replace(/ noscroll-monthdetail/, '')
-  }
-
-  _onChange() {
-    this.setState({events: EventStore.eventsForMonth(+this.props.params.monthno)})
   }
 
   renderWeeks() {
@@ -37,11 +25,14 @@ export default class MonthDetail extends React.Component {
     for(let i=0; i < 4; i++) {
       const weekno = +this.props.params.monthno*4 + i
       const start = UserStore.dateOf(weekno);
+      const events = EventStore.getState().getIn(['events', ''+weekno]);
       weeks.push(<li key={i}>
-        <Week weekno={weekno} events={EventStore.getState().getIn(['events', ''+weekno])}/>
         <Link to={`/${UserStore.getState().getIn(['user', 'slug'])}/week/${weekno}`}>
           Week of {start.toDateString()}
         </Link>
+        <Events events={events} slug={this.props.slug} weekno={weekno}
+          authed={LoginStore.canEdit(UserStore.getState().get('user'))}
+        />
       </li>)
     }
     return weeks;

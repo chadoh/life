@@ -37,9 +37,11 @@ export default class Event extends React.Component {
     if(this.props.authed) {
       return (
         <span>
-          <a onClick={this.props.onEdit} className="action-link">
-            {this.emojify(':pencil2:', {attributes: {height: '10px', width: '10px'}})}
-          </a>
+          {!this.props.onEdit ? null :
+            <a onClick={this.props.onEdit} className="action-link">
+              {this.emojify(':pencil2:', {attributes: {height: '10px', width: '10px'}})}
+            </a>
+          }
           <a className="action-link" onClick={this.deleteEvent.bind(this, this.props.event.get('id'), this.props.weekno)}>
             {this.emojify(':x:', {attributes: {height: '10px', width: '10px'}})}
           </a>

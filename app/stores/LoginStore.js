@@ -85,8 +85,13 @@ class LoginStore {
 
   static canView(user) {
     return !user || !user.get('is_private') || (
-      this.getState().user && user.get('email') === this.getState().user.email
+      this.getState().user && user.get('id') === this.getState().user.id
     )
+  }
+
+  static canEdit(user) {
+    return user && this.getState().user &&
+      user.get('id') === this.getState().user.id
   }
 }
 

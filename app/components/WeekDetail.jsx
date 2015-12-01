@@ -3,7 +3,7 @@ import ReactMixin from 'react-mixin'
 import UserStore from '../stores/UserStore'
 import LoginStore from '../stores/LoginStore'
 import EventStore from '../stores/EventStore'
-import Event from './Event'
+import Events from './Events'
 import EventForm from './EventForm'
 import { Range } from 'immutable'
 import { Link } from 'react-router'
@@ -16,7 +16,7 @@ export default class WeekDetail extends React.Component {
       eventUnderEdit: null
     }
     this._onChange = this._onChange.bind(this)
-    this.renderEvents = this.renderEvents.bind(this)
+    this.editEvent = this.editEvent.bind(this)
   }
 
   componentWillMount() {
@@ -38,8 +38,7 @@ export default class WeekDetail extends React.Component {
   }
 
   authed() {
-    return LoginStore.getState().user &&
-      LoginStore.getState().user.id === UserStore.getState().getIn(['user', 'id'])
+    return LoginStore.canEdit(UserStore.getState().get('user'))
   }
 
   editEvent(event) {
@@ -50,25 +49,6 @@ export default class WeekDetail extends React.Component {
     if(this.authed()) return "your";
     else
       return `${UserStore.getState().getIn(['user', 'name']).split(' ')[0]}'s`
-  }
-
-  renderEvents() {
-    if(this.state.events) {
-      return <ul className="events">
-        {this.state.events.map(event => {
-          return <Event
-            key={event.get('date') + event.get('id')}
-            slug={this.props.params.slug}
-            weekno={this.props.params.weekno}
-            event={event}
-            authed={this.authed()}
-            onEdit={this.editEvent.bind(this, event)}
-          />
-        })}
-      </ul>
-    } else {
-      return "No recorded events"
-    }
   }
 
   render() {
@@ -85,7 +65,10 @@ export default class WeekDetail extends React.Component {
               <small>{Math.floor(+this.props.params.weekno/52)} years old</small>
             </h1>
             <h2>This week in {this.whose()} life:</h2>
-            {this.renderEvents()}
+            <Events events={this.state.events} slug={this.props.slug}
+              weekno={this.props.params.weekno}
+              authed={this.authed()} onEdit={this.editEvent}
+            />
             {form}
           </aside>
         }

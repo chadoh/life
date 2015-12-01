@@ -179,13 +179,9 @@ img.emoji {
 ol.weeks {
   list-style: none;
   padding: 0;
-  margin-left: -1.3rem;
 }
-ol.weeks a:first-child {
-  display: inline-block;
-  margin-right: 0.3rem;
-  width: 0.9rem;
-  text-align: center;
+ol.weeks > li {
+  margin-bottom: 1.5rem;
 }
 
 /*
@@ -269,9 +265,6 @@ ol.weeks a:first-child {
 }
 .events table {
   width: 100%;
-}
-.events li {
-  margin-bottom: 1.5rem;
 }
 .events tr:first-child td:first-child {
   width: 85px;

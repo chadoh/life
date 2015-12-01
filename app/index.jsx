@@ -3,6 +3,7 @@ import './main.css'
 
 import './lib/googleAuth'
 import './lib/resizeSpy'
+import './lib/detectTouch'
 
 import React from 'react'
 import ReactDOM from 'react-dom'

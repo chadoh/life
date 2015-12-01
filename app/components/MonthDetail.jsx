@@ -27,9 +27,11 @@ export default class MonthDetail extends React.Component {
       const start = UserStore.dateOf(weekno);
       const events = EventStore.getState().getIn(['events', ''+weekno]);
       weeks.push(<li key={i}>
-        <Link to={`/${UserStore.getState().getIn(['user', 'slug'])}/week/${weekno}`}>
-          Week of {start.toDateString()}
-        </Link>
+        <h3>
+          <Link to={`/${UserStore.getState().getIn(['user', 'slug'])}/week/${weekno}`}>
+            Week of {start.toDateString()}
+          </Link>
+        </h3>
         <Events events={events} slug={this.props.slug} weekno={weekno}
           authed={LoginStore.canEdit(UserStore.getState().get('user'))}
         />
@@ -48,10 +50,8 @@ export default class MonthDetail extends React.Component {
         <Link to={`/${this.props.params.slug}`} className="close-week-detail">close</Link>
         {!UserStore.getState().getIn(['user', 'born']) ? '' :
           <aside className="week-detail">
-            <h1 className="brand">
-              "Month" of {this.start().toDateString().substr(4)}<br/>
-              <small>{Math.floor(+this.props.params.monthno/13)} years old</small>
-            </h1>
+            <h1 className="brand">Month of {this.start().toDateString().substr(4)}</h1>
+            {Math.floor(+this.props.params.monthno/13)} years old
             <ol className="weeks">
               {this.renderWeeks()}
             </ol>

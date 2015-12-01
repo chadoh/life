@@ -34,14 +34,12 @@ export default class Event extends React.Component {
   }
 
   renderActions() {
-    if(this.props.authed) {
+    if(this.props.authed && this.props.onEdit) {
       return (
         <span>
-          {!this.props.onEdit ? null :
-            <a onClick={this.props.onEdit} className="action-link">
-              {this.emojify(':pencil2:', {attributes: {height: '10px', width: '10px'}})}
-            </a>
-          }
+          <a onClick={this.props.onEdit} className="action-link">
+            {this.emojify(':pencil2:', {attributes: {height: '10px', width: '10px'}})}
+          </a>
           <a className="action-link" onClick={this.deleteEvent.bind(this, this.props.event.get('id'), this.props.weekno)}>
             {this.emojify(':x:', {attributes: {height: '10px', width: '10px'}})}
           </a>
@@ -61,20 +59,14 @@ export default class Event extends React.Component {
   render() {
     return (
       <li>
-        <table>
-          <tbody>
-            <tr>
-              <td rowSpan="2" className="text-muted">{this.emojify(this.props.event.get('emoji'), {attributes: {className: 'emoji'}})} {this.date()}</td>
-              <td><h5>{this.props.event.get('title')}</h5></td>
-              <td>{this.props.event.get('id') ? this.renderActions() : null}</td>
-            </tr>
-            {!this.props.event.get('description') ? null :
-              <tr>
-                <td colSpan="2" className="description">{this.props.event.get('description')}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
+        <h4>
+          {this.emojify(this.props.event.get('emoji'), {attributes: {className: 'emoji'}})}
+          &nbsp;{this.props.event.get('title')}
+        </h4>
+        <small className="text-muted">{this.date()}</small>
+        <span className="pull-right">{this.props.event.get('id') ? this.renderActions() : null}</span>
+        <br/>
+        <small>{this.props.event.get('description')}</small>
       </li>
     )
   }

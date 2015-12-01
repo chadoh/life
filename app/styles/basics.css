@@ -44,3 +44,6 @@ a:focus, a:hover {
 .flex-row > * {
   flex: 1;
 }
+.pull-right {
+  float: right;
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import Event from './Event'
 
 export default ({events, slug, weekno, authed, onEdit}) => {
-  return <ul className="events">
+  return <ol className="events">
     {!events ? "No recorded events" : events.map(event => {
       return <Event
         key={event.get('date') + event.get('id')}
@@ -13,5 +13,5 @@ export default ({events, slug, weekno, authed, onEdit}) => {
         onEdit={onEdit ? onEdit.bind(this, event) : null}
       />
     })}
-  </ul>
+  </ol>
 }

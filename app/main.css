@@ -176,11 +176,11 @@ button.brand {
 img.emoji {
   vertical-align: middle;
 }
-ol.weeks {
+.weeks {
   list-style: none;
   padding: 0;
 }
-ol.weeks > li {
+.weeks > li {
   margin-bottom: 1.5rem;
 }
 
@@ -244,6 +244,9 @@ ol.weeks > li {
   padding: 0 2rem;
   overflow-y: scroll;
 }
+.week-detail h1 {
+  padding-bottom: 0;
+}
 .close-week-detail {
   position: fixed;
   display: block;
@@ -263,23 +266,15 @@ ol.weeks > li {
   list-style: none;
   padding: 0;
 }
-.events table {
-  width: 100%;
+.events li {
+  margin-bottom: 1rem;
 }
-.events tr:first-child td:first-child {
-  width: 85px;
-  padding: 0;
-}
-.events tr:first-child td:last-child {
-  width: 20px;
+.events h4 {
   padding: 0;
 }
 .action-link {
   padding: 0 0.2rem;
   cursor: pointer;
-}
-.description {
-  padding-left: 1.5rem;
 }
 
 /*

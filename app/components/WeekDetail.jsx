@@ -60,10 +60,8 @@ export default class WeekDetail extends React.Component {
         <Link to={`/${this.props.params.slug}`} className="close-week-detail">close</Link>
         {!UserStore.getState().getIn(['user', 'born']) ? '' :
           <aside className="week-detail">
-            <h1 className="brand">
-              Week of {this.start().toDateString()}<br/>
-              <small>{Math.floor(+this.props.params.weekno/52)} years old</small>
-            </h1>
+            <h1 className="brand">Week of {this.start().toDateString()}</h1>
+            {Math.floor(+this.props.params.weekno/52)} years old
             <h2>This week in {this.whose()} life:</h2>
             <Events events={this.state.events} slug={this.props.slug}
               weekno={this.props.params.weekno}

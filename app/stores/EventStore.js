@@ -45,7 +45,10 @@ class EventStore {
     const list = this.state.getIn(['events', weekno])
     let old = list.find(el => el.get('id') === event.id)
 
-    this.setState(this.state.setIn(['events', weekno, list.indexOf(old)], immutableEvent))
+    const newState = this.state.setIn(['events', weekno, list.indexOf(old)], immutableEvent)
+    this.setState(this.state.setIn(['events', weekno],
+      newState.getIn(['events', weekno]).sortBy(event => event.get('date'))
+    ))
   }
 
   destroyEvent(event) {

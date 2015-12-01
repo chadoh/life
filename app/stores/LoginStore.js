@@ -41,7 +41,7 @@ class LoginStore {
 
   gotUser(user) {
     if (this.state.user && this.state.user.id === user.id) {
-      this.setState({user: user})
+      this.setState({user: merge(this.state.user, user)})
     }
   }
 

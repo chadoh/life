@@ -94,6 +94,6 @@ export default class WeekDetail extends React.Component {
   }
 
   start() {
-    return UserStore.dateOf(+this.props.params.weekno);
+    return UserStore.startOf(+this.props.params.weekno);
   }
 }

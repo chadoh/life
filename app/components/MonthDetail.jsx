@@ -24,7 +24,7 @@ export default class MonthDetail extends React.Component {
     let weeks = [];
     for(let i=0; i < 4; i++) {
       const weekno = +this.props.params.monthno*4 + i
-      const start = UserStore.dateOf(weekno);
+      const start = UserStore.startOf(weekno);
       const events = EventStore.getState().getIn(['events', ''+weekno]);
       weeks.push(<li key={i}>
         <h3>
@@ -41,7 +41,7 @@ export default class MonthDetail extends React.Component {
   }
 
   start() {
-    return UserStore.dateOf(+this.props.params.monthno * 4);
+    return UserStore.startOf(+this.props.params.monthno * 4);
   }
 
   render() {

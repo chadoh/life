@@ -40,7 +40,7 @@ class UserStore {
     this.setState(this.state.set('user', _blankUser))
   }
 
-  static dateOf(weekno) {
+  static startOf(weekno) {
     let born = this.getState().getIn(['user', 'born']);
     if (!born) throw Error("User has no birth date set yet!");
 
@@ -48,6 +48,10 @@ class UserStore {
     born = new Date(year, month - 1, day)
 
     return new Date(born.getFullYear() + Math.floor(weekno/52), born.getMonth(), born.getDate() + (weekno%52)*7)
+  }
+
+  static endOf(weekno) {
+    return this.startOf(+weekno + 1)
   }
 }
 

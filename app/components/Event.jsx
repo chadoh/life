@@ -56,12 +56,18 @@ export default class Event extends React.Component {
     return `${day} ${month}`
   }
 
+  isGoal() {
+    const event = this.props.event;
+    return event.get('date') > event.get('created_at')
+  }
+
   render() {
     return (
       <li>
         <h4>
           {this.emojify(this.props.event.get('emoji'), {attributes: {className: 'emoji'}})}
-          &nbsp;{this.props.event.get('title')}
+          {this.isGoal() ? " Goal: " : " "}
+          {this.props.event.get('title')}
         </h4>
         <small className="text-muted">{this.date()}</small>
         <span className="pull-right">{this.props.event.get('id') ? this.renderActions() : null}</span>

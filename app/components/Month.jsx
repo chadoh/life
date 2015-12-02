@@ -20,7 +20,7 @@ export default class Month extends React.Component {
   }
 
   render() {
-    const start = UserStore.dateOf(this.props.monthno * 4);
+    const start = UserStore.startOf(this.props.monthno * 4);
     const currentMonth = Math.floor(UserStore.getState().getIn(['user', 'current_week']) / 4);
     let klass;
 

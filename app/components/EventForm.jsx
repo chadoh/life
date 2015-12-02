@@ -36,6 +36,7 @@ export default class EventForm extends React.Component {
     this.toggleEmojiPicker = this.toggleEmojiPicker.bind(this)
     this.validateEmoji = this.validateEmoji.bind(this)
     this.saveEvent = this.saveEvent.bind(this)
+    this.eventOrGoal = this.eventOrGoal.bind(this)
   }
 
   componentDidMount() {
@@ -85,7 +86,7 @@ export default class EventForm extends React.Component {
   }
 
   end() {
-    return UserStore.dateOf(+this.props.weekno + 1)
+    return UserStore.endOf(this.props.weekno)
   }
 
   selectDate(e) {
@@ -164,10 +165,20 @@ export default class EventForm extends React.Component {
     }
   }
 
+  eventOrGoal() {
+    const now = new Date()
+    if(this.end() < now) return 'event';
+    else if (this.props.start > now) return 'goal';
+    else return 'event/goal';
+  }
+
   render() {
     return (
       <form role="form" onSubmit={this.saveEvent} style={{position: 'relative'}} onFocus={this.toggleEmojiPicker}>
-        <h2>{this.props.eventUnderEdit ? 'Edit' : 'Add a new'} event:</h2>
+        <h2>
+          {this.props.eventUnderEdit ? 'Edit ' : 'Add a new '}
+          {this.eventOrGoal()}:
+        </h2>
         {this.remainingEvents()}
         <p>
           <label htmlFor="title">Title</label>

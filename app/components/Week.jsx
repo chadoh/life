@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 
 export default class Week extends React.Component {
   render() {
-    const start = UserStore.dateOf(this.props.weekno);
+    const start = UserStore.startOf(this.props.weekno);
     const currentWeek = UserStore.getState().getIn(['user', 'current_week'])
     let klass;
 

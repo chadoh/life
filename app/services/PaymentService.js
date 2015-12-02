@@ -5,15 +5,13 @@ import LoginStore from '../stores/LoginStore';
 
 class AuthService {
 
-  charge(user, token) {
+  charge({user, token, payment_frequency}) {
     return reqwest({
       url: API_URL + 'users/' + user + '/charge',
       method: 'POST',
       crossOrigin: true,
       type: 'json',
-      data: {
-        token: token
-      },
+      data: {token, payment_frequency},
       headers: {
         'Authorization': 'Bearer ' + LoginStore.getState().idToken
       }

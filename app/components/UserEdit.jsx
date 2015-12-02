@@ -14,9 +14,15 @@ class UserEdit extends React.Component {
     this.toggleIsPrivate = this.toggleIsPrivate.bind(this)
   }
 
+  componentDidMount() {
+    if(!this.state.id) {
+      this.props.history.replaceState(null, "/")
+    }
+  }
+
   getState() {
     let user = LoginStore.getState().user;
-    return {
+    return !user ? {} : {
       id: user.id,
       slug: user.slug,
       name: user.name,

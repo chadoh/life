@@ -1,7 +1,6 @@
 import React from 'react';
 import placeholderImg from '../images/video-placeholder.jpg';
 import Nav from './Nav';
-import { FREE_EVENTS } from '../config';
 import spoon from '../images/spoon-of-diamonds.png';
 
 export default class Home extends React.Component {
@@ -47,43 +46,6 @@ export default class Home extends React.Component {
           </div>
           <div className="trailing">
             <img src={`/${spoon}`} className="logo" alt="logo: a spoonful of diamonds" />
-          </div>
-        </div>
-        <div className="bg-dark" id="pricing">
-          <div className="container">
-            <h2 className="brand">Your life is not for sale</h2>
-            <p>
-              A life calendar is a fantastic way to remember and plan your
-              life. It ends up holding all sorts of personal information.
-              We <em>could</em> sell that personal information to advertisers,
-              and deliver targeted ads to you.
-            </p>
-            <p>But we hate that.</p>
-            <p>So we're hoping to find a better way.</p>
-            <p>
-              We'll let you get started with your life calendar for free. You
-              can start visualizing and planning your life, and
-              add {FREE_EVENTS} events on our dime.
-            </p>
-            <p>
-              After that, we believe you'll find it valuable enough to pay a
-              small amount for it.
-            </p>
-            <p>Your options:</p>
-            <dl>
-              <dt className="brand">Annual</dt>
-              <dd>$10 per year. Three fancy coffee drinks cost more!</dd>
-
-              <dt className="brand">Lifetime</dt>
-              <dd>$50, one time. No need to worry about future payments.</dd>
-            </dl>
-            <p>
-              These seem like very reasonable prices to us, by American
-              standards. However, we understand that they might still seem high
-              for some people. If you want a life calendar, but can't afford to
-              pay, <a href="mailto:your+homepage@entire.life">email us</a> and
-              we'll work something out.
-            </p>
           </div>
         </div>
         <div className="bg-light">

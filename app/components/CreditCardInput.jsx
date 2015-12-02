@@ -1,4 +1,4 @@
-import React from 'react/addons'
+import React from 'react'
 
 let visaPattern = /^(....)(....)?(....)?(....)?(.+)?$/
 let amexPattern = /^(...)(....)?(.....)?(....)?(.+)?$/
@@ -48,6 +48,14 @@ export default class CreditCardInput extends React.Component {
     this.props.onBlur(e)
   }
 
+  _setAutocompleteType(component) {
+    if(component) {
+      component.setAttribute('x-autocompletetype', 'cc-number')
+      component.setAttribute('autocompletetype', 'cc-number')
+      component.setAttribute('autocomplete', 'cc-number')
+    }
+  }
+
   render() {
     return (
       <input
@@ -67,12 +75,5 @@ export default class CreditCardInput extends React.Component {
         autoFocus
       />
     )
-  }
-
-  _setAutocompleteType(component) {
-    let element = component.getDOMNode()
-    element.setAttribute('x-autocompletetype', 'cc-number')
-    element.setAttribute('autocompletetype', 'cc-number')
-    element.setAttribute('autocomplete', 'cc-number')
   }
 }

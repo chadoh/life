@@ -2,6 +2,7 @@ import reqwest from 'reqwest';
 import {API_URL} from '../config';
 import EventActions from '../actions/EventActions';
 import LoginStore from '../stores/LoginStore';
+import LoginActions from '../actions/LoginActions';
 
 class EventService {
 
@@ -32,6 +33,7 @@ class EventService {
     })
     .then(response => {
       EventActions.createdEvent(response.event)
+      LoginActions.incrementEventCount()
     })
   }
 
@@ -67,6 +69,7 @@ class EventService {
     })
     .then(response => {
       EventActions.destroyedEvent({id: id, weekno: weekno})
+      LoginActions.decrementEventCount()
     })
   }
 

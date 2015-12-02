@@ -9,6 +9,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router, Route, IndexRoute} from 'react-router'
 import Home from './components/Home'
+import Pricing from './components/Pricing'
+import Payment from './components/Payment'
 import Signin from './components/Signin'
 import Workit from './components/Workit'
 import SigningUp from './components/SigningUp'
@@ -32,6 +34,8 @@ let router = (
       <IndexRoute component={Workit}/>
       <Route path="signin" component={Signin}/>
     </Route>
+    <Route path="/pricing" component={Pricing}/>
+    <Route path="/payment" component={Payment}/>
 
     <Route path="/signing-up" component={SigningUp}/>
 

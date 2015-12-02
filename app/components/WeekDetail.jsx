@@ -5,36 +5,46 @@ import LoginStore from '../stores/LoginStore'
 import EventStore from '../stores/EventStore'
 import Events from './Events'
 import EventForm from './EventForm'
+import PaymentForm from './PaymentForm'
 import { Range } from 'immutable'
 import { Link } from 'react-router'
+import { FREE_EVENTS } from '../config'
 
 export default class WeekDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      signedInUser: LoginStore.getState().user,
       events: null,
       eventUnderEdit: null
     }
-    this._onChange = this._onChange.bind(this)
+    this.updateEvents = this.updateEvents.bind(this)
+    this.updateUser = this.updateUser.bind(this)
     this.editEvent = this.editEvent.bind(this)
   }
 
   componentWillMount() {
-    EventStore.listen(this._onChange)
+    EventStore.listen(this.updateEvents)
+    LoginStore.listen(this.updateUser)
   }
 
   componentDidMount() {
-    if (!this.state.events) this._onChange()
+    if (!this.state.events) this.updateEvents()
     document.body.className = document.body.className + ' noscroll-weekdetail'
   }
 
   componentWillUnmount() {
-    EventStore.unlisten(this._onChange)
+    EventStore.unlisten(this.updateEvents)
+    LoginStore.unlisten(this.updateUser)
     document.body.className = document.body.className.replace(/ noscroll-weekdetail/, '')
   }
 
-  _onChange() {
+  updateEvents() {
     this.setState({events: EventStore.getState().getIn(['events', this.props.params.weekno]), eventUnderEdit: null})
+  }
+
+  updateUser() {
+    this.setState({signedInUser: LoginStore.getState().user})
   }
 
   authed() {
@@ -51,10 +61,19 @@ export default class WeekDetail extends React.Component {
       return `${UserStore.getState().getIn(['user', 'name']).split(' ')[0]}'s`
   }
 
-  render() {
-    let form = !this.authed() ? '' :
-      <EventForm weekno={this.props.params.weekno} start={this.start()} slug={this.props.params.slug} eventUnderEdit={this.state.eventUnderEdit}/>
+  form() {
+    if(this.authed()) {
+      if(this.state.signedInUser.event_count < FREE_EVENTS || this.state.signedInUser.paid === true) {
+        return <EventForm weekno={this.props.params.weekno} start={this.start()}
+          slug={this.props.params.slug} signedInUser={this.state.signedInUser}
+          eventUnderEdit={this.state.eventUnderEdit}/>
+      } else {
+        return <PaymentForm user={this.state.signedInUser} />
+      }
+    }
+  }
 
+  render() {
     return (
       <div className="week-detail-wrap">
         <Link to={`/${this.props.params.slug}`} className="close-week-detail">close</Link>
@@ -63,11 +82,11 @@ export default class WeekDetail extends React.Component {
             <h1 className="brand">Week of {this.start().toDateString()}</h1>
             {Math.floor(+this.props.params.weekno/52)} years old
             <h2>This week in {this.whose()} life:</h2>
-            <Events events={this.state.events} slug={this.props.slug}
+            <Events events={this.state.events} slug={this.props.params.slug}
               weekno={this.props.params.weekno}
               authed={this.authed()} onEdit={this.editEvent}
             />
-            {form}
+            {this.form()}
           </aside>
         }
       </div>

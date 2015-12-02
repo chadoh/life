@@ -79,6 +79,18 @@ class LoginStore {
     this.setState({user})
   }
 
+  incrementEventCount() {
+    let user = this.state.user;
+    user.event_count = user.event_count + 1;
+    this.setState({user})
+  }
+
+  decrementEventCount() {
+    let user = this.state.user;
+    user.event_count = user.event_count - 1;
+    this.setState({user})
+  }
+
   static isLoggedIn() {
     return !!this.getState().user;
   }

@@ -5,6 +5,8 @@ import EmojiPicker from './EmojiPicker'
 import UserStore from '../stores/UserStore'
 import EventService from '../services/EventService'
 import emojiMap from '../lib/emojiMap'
+import { Link } from 'react-router'
+import { FREE_EVENTS } from '../config'
 
 const emojiPickerStyles = {
   position: 'absolute',
@@ -75,7 +77,7 @@ export default class EventForm extends React.Component {
     })
       .then(() => {
         this.setState({title: '', emoji: '', description: ''})
-        this.refs.title.focus()
+        if(this.refs.title) this.refs.title.focus();
       })
       .catch((err) => {
         console.log("Error creating event", err)
@@ -150,10 +152,23 @@ export default class EventForm extends React.Component {
     }
   }
 
+  remainingEvents() {
+    if(!this.props.signedInUser.paid) {
+      const remaining = FREE_EVENTS - this.props.signedInUser.event_count;
+      return (
+        <small>
+          {remaining} free event{remaining === 1 ? ' ' : 's '}
+          remaining – <Link to="/pricing">why?</Link>
+        </small>
+      )
+    }
+  }
+
   render() {
     return (
       <form role="form" onSubmit={this.saveEvent} style={{position: 'relative'}} onFocus={this.toggleEmojiPicker}>
         <h2>{this.props.eventUnderEdit ? 'Edit' : 'Add a new'} event:</h2>
+        {this.remainingEvents()}
         <p>
           <label htmlFor="title">Title</label>
           <input id="title" name="title" ref="title" type="text"

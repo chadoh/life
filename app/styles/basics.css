@@ -47,3 +47,8 @@ a:focus, a:hover {
 .pull-right {
   float: right;
 }
+
+.pad-top {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}

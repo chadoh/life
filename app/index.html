@@ -46,6 +46,6 @@
   {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
     <script src="/{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
   {% } %}
-  <!-- <script type="text/javascript" src="https://js.stripe.com/v2/" async></script> -->
+  <script type="text/javascript" src="https://js.stripe.com/v2/" async></script>
 </body>
 </html>

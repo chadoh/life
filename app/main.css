@@ -15,7 +15,7 @@
   background-color: #373a3c;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: left center;
+  background-position: center;
   position: relative;
 }
 @media (min-width: 1025px) {
@@ -24,7 +24,7 @@
   }
 }
 .sunset-cliffs {
-  background-image: url(images/sunset-cliffs-large.jpeg);
+  background-image: url(/images/sunset-cliffs-large.jpeg);
 }
 .sunset-cliffs .brand, .sunset-cliffs label, .sunset-cliffs .text {
   color: white;
@@ -62,7 +62,7 @@ button.brand {
   color: white;
   padding: 0 1.5rem 1.5rem;
 }
-.bg-tint input {
+.bg-tint input, .bg-tint select {
   color: #20221F;
 }
 .bg-tint {
@@ -546,41 +546,41 @@ input[type=search] {
 }
 
 .control.amex {
-  background-image: url(images/cards/amex.png)
+  background-image: url(/images/cards/amex.png)
 }
 .control.diners {
-  background-image: url(images/cards/diners.png)
+  background-image: url(/images/cards/diners.png)
 }
 .control.discover {
-  background-image: url(images/cards/discover.png)
+  background-image: url(/images/cards/discover.png)
 }
 .control.jcb {
-  background-image: url(images/cards/jcb.png)
+  background-image: url(/images/cards/jcb.png)
 }
 .control.mastercard {
-  background-image: url(images/cards/mastercard.png)
+  background-image: url(/images/cards/mastercard.png)
 }
 .control.visa {
-  background-image: url(images/cards/visa.png)
+  background-image: url(/images/cards/visa.png)
 }
 @media only screen and (-webkit-min-device-pixel-ratio:1.5),only screen and (min--moz-device-pixel-ratio:1.5),only screen and (min-device-pixel-ratio:1.5) {
   .control.amex {
-    background-image: url(images/cards/amex@2x.png)
+    background-image: url(/images/cards/amex@2x.png)
   }
   .control.diners {
-    background-image: url(images/cards/diners@2x.png)
+    background-image: url(/images/cards/diners@2x.png)
   }
   .control.discover {
-    background-image: url(images/cards/discover@2x.png)
+    background-image: url(/images/cards/discover@2x.png)
   }
   .control.jcb {
-    background-image: url(images/cards/jcb@2x.png)
+    background-image: url(/images/cards/jcb@2x.png)
   }
   .control.mastercard {
-    background-image: url(images/cards/mastercard@2x.png)
+    background-image: url(/images/cards/mastercard@2x.png)
   }
   .control.visa {
-    background-image: url(images/cards/visa@2x.png)
+    background-image: url(/images/cards/visa@2x.png)
   }
 }
 .control.amex,.control.diners,.control.discover,.control.jcb,.control.mastercard,.control.visa {

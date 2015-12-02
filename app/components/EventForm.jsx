@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactMixin from 'react-mixin'
 import LinkedStateMixin from 'react-addons-linked-state-mixin'
-import EmojiPicker from './EmojiPicker'
 import UserStore from '../stores/UserStore'
 import EventService from '../services/EventService'
-import emojiMap from '../lib/emojiMap'
+import emojiMap from 'react-emoji-picker/lib/emojiMap'
+import EmojiPicker from 'react-emoji-picker'
 import { Link } from 'react-router'
 import { FREE_EVENTS } from '../config'
 

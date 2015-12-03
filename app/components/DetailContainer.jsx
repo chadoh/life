@@ -11,6 +11,7 @@ export default class DetailContainer extends React.Component {
 
   componentDidMount () {
     this.animate()
+    this.scrollTo()
   }
 
   componentWillReceiveProps () {
@@ -22,6 +23,12 @@ export default class DetailContainer extends React.Component {
       this.animate()
       this.setState({animate: false})
     }
+  }
+
+  scrollTo() {
+    setTimeout(() => {
+      window.scroll(0, this.refs.top.offsetTop - 140)
+    },10)
   }
 
   animate () {
@@ -40,7 +47,7 @@ export default class DetailContainer extends React.Component {
       overflow: 'hidden',
     }
     return (
-      <div className="detail" style={styles}>
+      <div className="detail" style={styles} ref="top">
         {React.cloneElement(this.props.children, {ref: "container"})}
       </div>
     )

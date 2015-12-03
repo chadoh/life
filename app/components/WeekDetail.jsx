@@ -79,15 +79,17 @@ export default class WeekDetail extends React.Component {
             <h2 className="brand">Week of {this.start().toDateString()}</h2>
             <span className="age">{`${Math.floor(+this.props.params.weekno/52)} years old`}</span>
           </header>
-          <div className="two-col">
-            <h3>This week in {this.whose()} life:</h3>
-            <Events events={this.props.events.get(this.props.params.weekno)}
-              slug={this.props.params.slug} weekno={this.props.params.weekno}
-              authed={this.authed()} onEdit={this.editEvent}
-            />
-          </div>
-          <div className="two-col">
-            {this.form()}
+          <div className={this.authed() ? "two-col" : ""}>
+            <div>
+              <h3>This week in {this.whose()} life:</h3>
+              <Events events={this.props.events.get(this.props.params.weekno)}
+                slug={this.props.params.slug} weekno={this.props.params.weekno}
+                authed={this.authed()} onEdit={this.editEvent}
+              />
+            </div>
+            <div>
+              {this.form()}
+            </div>
           </div>
         </div>
       )

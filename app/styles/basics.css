@@ -49,10 +49,12 @@ a:focus, a:hover {
 
 @media(min-width: 700px) {
   .two-col {
-    width: 48%;
-    float: left;
+    display: flex;
   }
-  .two-col:first-of-type {
+  .two-col > * {
+    width: 48%;
+  }
+  .two-col > *:first-child {
     margin-right: 4%;
   }
 }

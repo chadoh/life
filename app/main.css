@@ -200,7 +200,8 @@ img.emoji {
   box-shadow: 0 0 10px rgba(0,0,0,0.2) inset;
 }
 .detail-inner {
-  padding: 1rem 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .detail h2 {
   padding: 0;

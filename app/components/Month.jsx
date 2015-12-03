@@ -20,7 +20,7 @@ export default class Month extends React.Component {
   }
 
   linkTo() {
-    if(this.props.monthno === this.props.selectedMonth)
+    if(this.props.selected)
       return `/${UserStore.getState().getIn(['user', 'slug'])}`;
     else
       return `/${UserStore.getState().getIn(['user', 'slug'])}/month/${this.props.monthno}`;
@@ -39,8 +39,7 @@ export default class Month extends React.Component {
       <Link to={this.linkTo()}
         className={klass} data-tooltip={this.tooltip(start.toDateString())}>
         {this.emoji()}
-        {this.props.monthno === this.props.selectedMonth ? <div className="arrow"/> : null}
-        {this.props.monthno === Math.floor(this.props.selectedWeek/4) ? <div className="arrow"/> : null}
+        {this.props.selected ? <div className="arrow"/> : null}
       </Link>
     )
   }

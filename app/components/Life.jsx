@@ -1,6 +1,7 @@
 import React from 'react';
 import Week from './Week';
 import Month from './Month';
+import DetailContainer from './DetailContainer';
 import IsMobileStore from '../stores/IsMobileStore';
 import EventStore from '../stores/EventStore';
 import connectToStores from 'alt/utils/connectToStores';
@@ -14,6 +15,14 @@ export default class Life extends React.Component {
 
   static getPropsFromStores() {
     return IsMobileStore.getState();
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      oldWeekno: null,
+      oldMonthno: null,
+    }
   }
 
   componentDidMount() {
@@ -46,16 +55,26 @@ export default class Life extends React.Component {
     if(this.props.showTour) setTimeout(this.props.startTour, 100)
   }
 
+  componentWillReceiveProps (newProps) {
+    var oldWeekno = this.props.weekno;
+    var oldMonthno = this.props.monthno;
+    if (oldWeekno && newProps.weekno !== oldWeekno)
+      this.setState({oldWeekno: oldWeekno})
+    if (oldMonthno && newProps.monthno !== oldMonthno)
+        this.setState({oldMonthno: oldMonthno})
+  }
+
   monthsFor({age, events}) {
     let months = [];
     for(var i = 0; i < 13; i++) {
       const monthno = age * 13 + i;
 
+      const selected = +this.props.monthno === monthno ||
+        Math.floor(+this.props.weekno/4) === monthno;
       months.push(
         <Month key={monthno} monthno={monthno}
           events={EventStore.eventsForMonth(monthno)}
-          selectedMonth={+this.props.monthno}
-          selectedWeek={+this.props.weekno}
+          selected={selected}
         />
       )
     }
@@ -66,9 +85,11 @@ export default class Life extends React.Component {
     let weeks = [];
     for(var i = 0; i < 52; i++) {
       const weekno = age * 52 + i;
+      const selected = +this.props.weekno === weekno ||
+        +this.props.monthno*4 === weekno;
       weeks.push(
         <Week key={weekno} weekno={weekno} events={events.get(''+weekno)}
-          selectedWeek={+this.props.weekno}
+          selected={selected}
         />
       )
     }
@@ -82,9 +103,7 @@ export default class Life extends React.Component {
       return this.weeksFor({age, events})
   }
 
-  isSelected(age) {
-    const weekno = this.props.weekno;
-    const monthno = this.props.monthno;
+  selected({age, weekno, monthno}) {
     if(!weekno && !monthno) return false;
 
     if(weekno) return (weekno >= age*52) && (weekno < (age+1)*52);
@@ -92,8 +111,30 @@ export default class Life extends React.Component {
   }
 
   renderDetail(age) {
-    if(this.isSelected(age)) {
-      return this.props.detail;
+    if(!this.props.detail) return null;
+
+    const hasCurrent = this.selected({age, weekno: this.props.weekno, monthno: this.props.monthno})
+    const hadCurrent = this.selected({age, weekno: this.state.oldWeekno, monthno: this.state.oldMonthno})
+    const sameRow = hasCurrent && hadCurrent;
+
+    if(hasCurrent) {
+      return <DetailContainer>
+        {React.cloneElement(
+          this.props.detail, { params: {
+            slug: this.props.slug,
+            weekno: this.props.weekno,
+            monthno: this.props.monthno,
+        }})}
+      </DetailContainer>
+    } else if(hadCurrent && !sameRow) {
+      return <DetailContainer old={true}>
+        {React.cloneElement(
+          this.props.detail, { params: {
+            slug: this.props.slug,
+            weekno: this.state.oldWeekno,
+            monthno: this.state.oldMonthno,
+        }})}
+      </DetailContainer>
     }
   }
 

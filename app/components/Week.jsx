@@ -20,7 +20,7 @@ export default class Week extends React.Component {
   }
 
   linkTo() {
-    if(this.props.weekno === this.props.selectedWeek)
+    if(this.props.selected)
       return `/${UserStore.getState().getIn(['user', 'slug'])}`;
     else
       return `/${UserStore.getState().getIn(['user', 'slug'])}/week/${this.props.weekno}`;
@@ -43,7 +43,7 @@ export default class Week extends React.Component {
       <Link to={this.linkTo()} className={this.klass()}
         data-tooltip={this.tooltip(start.toDateString())}>
         {this.emoji()}
-        {this.props.weekno === this.props.selectedWeek ? <div className="arrow"/> : null}
+        {this.props.selected ? <div className="arrow"/> : null}
       </Link>
     )
   }

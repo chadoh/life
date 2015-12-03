@@ -52,7 +52,10 @@ export default class Life extends React.Component {
       const monthno = age * 13 + i;
 
       months.push(
-        <Month key={monthno} monthno={monthno} events={EventStore.eventsForMonth(monthno)} />
+        <Month key={monthno} monthno={monthno}
+          events={EventStore.eventsForMonth(monthno)}
+          selectedMonth={+this.props.monthno}
+        />
       )
     }
     return months;
@@ -62,7 +65,11 @@ export default class Life extends React.Component {
     let weeks = [];
     for(var i = 0; i < 52; i++) {
       const weekno = age * 52 + i;
-      weeks.push(<Week key={weekno} weekno={weekno} events={events.get(''+weekno)} />)
+      weeks.push(
+        <Week key={weekno} weekno={weekno} events={events.get(''+weekno)}
+          selectedWeek={+this.props.weekno}
+        />
+      )
     }
     return weeks;
   }
@@ -74,11 +81,29 @@ export default class Life extends React.Component {
       return this.weeksFor({age, events})
   }
 
+  isSelected(age) {
+    const weekno = this.props.weekno;
+    const monthno = this.props.monthno;
+    if(!weekno && !monthno) return false;
+
+    if(weekno) return (weekno >= age*52) && (weekno < (age+1)*52);
+    else return (monthno >= age*13) && (monthno < (age+1)*13);
+  }
+
+  renderDetail(age) {
+    if(this.isSelected(age)) {
+      return this.props.detail;
+    }
+  }
+
   year(age, events) {
     return (
-      <div key={age} className={`year${!this.props.isMobile ? ' in-weeks' : ''}`}>
-        <small className="age">{!(age % 5) && age !== 100 ? age : null }</small>
-        {this.renderDots({age, events})}
+      <div key={age}>
+        <div className={`container-wide year${!this.props.isMobile ? ' in-weeks' : ''}`}>
+          <small className="age">{!(age % 5) && age !== 100 ? age : null }</small>
+          {this.renderDots({age, events})}
+        </div>
+        {this.renderDetail(age)}
       </div>
     )
   }

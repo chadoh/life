@@ -106,7 +106,10 @@ export default class User extends React.Component {
       return (
         <Life events={this.state.events} addSteps={this.addSteps}
           startTour={this.startTour}
-          showTour={this.props.location.query.tour} />
+          showTour={this.props.location.query.tour}
+          detail={this.props.children} weekno={this.props.params.weekno}
+          monthno={this.props.params.monthno}
+        />
       )
     }
   }
@@ -126,20 +129,21 @@ export default class User extends React.Component {
 
   render() {
     return (
-      <div className="container-wide">
-        <Joyride ref="joyride" steps={this.state.steps} type="guided"
-          locale={{back: 'Back', close: 'Close', last: 'Okay!', next: 'Next', skip: 'Skip'}}
-          completeCallback={this.endTour} showSkipButton={true}
-        />
-        <Nav startTour={this.startTour}>
-          <Link to="/" className="logo-small">
-            <img src={`/${spoon}`} alt="Home" />
-          </Link>
-          <h1 className="brand">
-            {this.renderName()}
-          </h1>
-        </Nav>
-        {this.props.children}
+      <div>
+        <div className="container-wide">
+          <Joyride ref="joyride" steps={this.state.steps} type="guided"
+            locale={{back: 'Back', close: 'Close', last: 'Okay!', next: 'Next', skip: 'Skip'}}
+            completeCallback={this.endTour} showSkipButton={true}
+          />
+          <Nav startTour={this.startTour}>
+            <Link to="/" className="logo-small">
+              <img src={`/${spoon}`} alt="Home" />
+            </Link>
+            <h1 className="brand">
+              {this.renderName()}
+            </h1>
+          </Nav>
+        </div>
         {this.renderCalendar()}
       </div>
     );

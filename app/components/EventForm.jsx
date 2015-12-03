@@ -175,10 +175,10 @@ export default class EventForm extends React.Component {
   render() {
     return (
       <form role="form" onSubmit={this.saveEvent} style={{position: 'relative'}} onFocus={this.toggleEmojiPicker}>
-        <h2>
+        <h3>
           {this.props.eventUnderEdit ? 'Edit ' : 'Add a new '}
           {this.eventOrGoal()}:
-        </h2>
+        </h3>
         {this.remainingEvents()}
         <p>
           <label htmlFor="title">Title</label>

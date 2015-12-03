@@ -1,50 +1,49 @@
 import React from 'react'
-import ReactMixin from 'react-mixin'
 import UserStore from '../stores/UserStore'
 import LoginStore from '../stores/LoginStore'
 import EventStore from '../stores/EventStore'
 import Events from './Events'
 import EventForm from './EventForm'
 import PaymentForm from './PaymentForm'
-import { Range } from 'immutable'
-import { Link } from 'react-router'
 import { FREE_EVENTS } from '../config'
+import connectToStores from 'alt/utils/connectToStores';
 
+window.count = 1;
+
+@connectToStores
 export default class WeekDetail extends React.Component {
+  static getStores() {
+    return [EventStore, LoginStore];
+  }
+
+  static getPropsFromStores(transition) {
+    return {
+      events: EventStore.getState().get('events'),
+      signedInUser: LoginStore.getState().user,
+    }
+  }
+
   constructor(props) {
     super(props)
     this.state = {
-      signedInUser: LoginStore.getState().user,
-      events: null,
       eventUnderEdit: null
     }
-    this.updateEvents = this.updateEvents.bind(this)
-    this.updateUser = this.updateUser.bind(this)
     this.editEvent = this.editEvent.bind(this)
   }
 
-  componentWillMount() {
-    EventStore.listen(this.updateEvents)
-    LoginStore.listen(this.updateUser)
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.params.weekno !== nextProps.params.weekno || // navigated to different week
+      this.props.params.slug !== nextProps.params.slug || // navigated to different user (not sure if possible)
+      this.props.events !== nextProps.events || // updated an event
+      (!this.props.signedInUser && this.props.signedInUser) || // user logged in
+      (this.props.signedInUser && !this.props.signedInUser) || // user logged out
+      (this.props.signedInUser && nextProps.signedInUser && // current user's event count changed
+        this.props.signedInUser.event_count !== nextProps.signedInUser.event_count) ||
+      nextState.eventUnderEdit
   }
 
-  componentDidMount() {
-    if (!this.state.events) this.updateEvents()
-    document.body.className = document.body.className + ' noscroll-weekdetail'
-  }
-
-  componentWillUnmount() {
-    EventStore.unlisten(this.updateEvents)
-    LoginStore.unlisten(this.updateUser)
-    document.body.className = document.body.className.replace(/ noscroll-weekdetail/, '')
-  }
-
-  updateEvents() {
-    this.setState({events: EventStore.getState().getIn(['events', this.props.params.weekno]), eventUnderEdit: null})
-  }
-
-  updateUser() {
-    this.setState({signedInUser: LoginStore.getState().user})
+  componentDidUpdate() {
+    this.setState({eventUnderEdit: null})
   }
 
   authed() {
@@ -63,34 +62,35 @@ export default class WeekDetail extends React.Component {
 
   form() {
     if(this.authed()) {
-      if(this.state.signedInUser.event_count < FREE_EVENTS || this.state.signedInUser.paid === true) {
+      if(this.props.signedInUser.event_count < FREE_EVENTS || this.props.signedInUser.paid === true) {
         return <EventForm weekno={this.props.params.weekno} start={this.start()}
-          slug={this.props.params.slug} signedInUser={this.state.signedInUser}
-          eventUnderEdit={this.state.eventUnderEdit}/>
+          slug={this.props.params.slug} signedInUser={this.props.signedInUser}
+          eventUnderEdit={this.state.eventUnderEdit}
+        />
       } else {
-        return <PaymentForm user={this.state.signedInUser} />
+        return <PaymentForm user={this.props.signedInUser} />
       }
     }
   }
 
   render() {
-    return (
-      <div className="week-detail-wrap">
-        <Link to={`/${this.props.params.slug}`} className="close-week-detail">close</Link>
-        {!UserStore.getState().getIn(['user', 'born']) ? '' :
-          <aside className="week-detail">
-            <h1 className="brand">Week of {this.start().toDateString()}</h1>
+    if(UserStore.getState().getIn(['user', 'born'])) {
+      console.log(count++)
+      return (
+        <div className="week-detail">
+          <div className="container-wide">
+            <h2 className="brand">Week of {this.start().toDateString()}</h2>
             {Math.floor(+this.props.params.weekno/52)} years old
-            <h2>This week in {this.whose()} life:</h2>
-            <Events events={this.state.events} slug={this.props.params.slug}
-              weekno={this.props.params.weekno}
+            <h3>This week in {this.whose()} life:</h3>
+            <Events events={this.props.events.get(this.props.params.weekno)}
+              slug={this.props.params.slug} weekno={this.props.params.weekno}
               authed={this.authed()} onEdit={this.editEvent}
             />
             {this.form()}
-          </aside>
-        }
-      </div>
-    )
+          </div>
+        </div>
+      )
+    }
   }
 
   start() {

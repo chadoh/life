@@ -6,18 +6,12 @@ import Week from './Week'
 import Events from './Events'
 import { Link } from 'react-router'
 
+window.count = 1;
+
 export default class MonthDetail extends React.Component {
   constructor(props) {
     super(props)
     this.renderWeeks = this.renderWeeks.bind(this)
-  }
-
-  componentDidMount() {
-    document.body.className = document.body.className + ' noscroll-monthdetail'
-  }
-
-  componentWillUnmount() {
-    document.body.className = document.body.className.replace(/ noscroll-monthdetail/, '')
   }
 
   renderWeeks() {
@@ -45,19 +39,19 @@ export default class MonthDetail extends React.Component {
   }
 
   render() {
-    return (
-      <div className="week-detail-wrap">
-        <Link to={`/${this.props.params.slug}`} className="close-week-detail">close</Link>
-        {!UserStore.getState().getIn(['user', 'born']) ? '' :
-          <aside className="week-detail">
+    if(UserStore.getState().getIn(['user', 'born'])) {
+      console.log(count++)
+      return (
+        <div className="week-detail">
+          <div className="container-wide">
             <h1 className="brand">Month of {this.start().toDateString().substr(4)}</h1>
             {Math.floor(+this.props.params.monthno/13)} years old
             <ol className="weeks">
               {this.renderWeeks()}
             </ol>
-          </aside>
-        }
-      </div>
-    )
+          </div>
+        </div>
+      )
+    }
   }
 }

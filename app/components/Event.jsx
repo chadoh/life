@@ -64,11 +64,11 @@ export default class Event extends React.Component {
   render() {
     return (
       <li>
-        <h4>
+        <h5>
           {this.emojify(this.props.event.get('emoji'), {attributes: {className: 'emoji'}})}
           {this.isGoal() ? " Goal: " : " "}
           {this.props.event.get('title')}
-        </h4>
+        </h5>
         <small className="text-muted">{this.date()}</small>
         <span className="pull-right">{this.props.event.get('id') ? this.renderActions() : null}</span>
         <br/>

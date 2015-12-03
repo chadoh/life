@@ -171,7 +171,7 @@ button.brand {
   position: absolute;
   text-align: right;
   width: 25px;
-  left: -30px;
+  left: -15px;
   top: 3.5px;
 }
 img.emoji {
@@ -188,35 +188,34 @@ img.emoji {
 /*
  * Week Detail panel
  */
-.week-detail-wrap {
-  position: fixed;
-  top: 0; right: 0; bottom: 0; left: 0;
-  background-color: rgba(255,255,255,0.6);
-  z-index: 3;
+.arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid rgba(0,0,0,0.15);
+  width: 0;
+  margin: 0 auto;
 }
 .week-detail {
-  position: absolute;
-  top: 0; right: 0; bottom: 0;
-  width: 90%;
-  max-width: 35rem;
-  background-color: white;
-  box-shadow: 0 0 25px rgba(0,0,0,0.2);
-  padding: 0 2rem;
-  overflow-y: scroll;
+  background-color: #eee;
+  padding: 0.5rem 0 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2) inset;
 }
-.week-detail h1 {
+.week-detail h2 {
+  padding: 0;
+}
+.week-detail h3 {
   padding-bottom: 0;
 }
-.close-week-detail {
-  position: fixed;
-  display: block;
-  top: 0; right: 0; bottom: 0; left: 0;
-  color: transparent;
-}
-.close-week-detail:hover {
-  color: transparent;
-}
-
+/* .close-week-detail { */
+/*   position: fixed; */
+/*   display: block; */
+/*   top: 0; right: 0; bottom: 0; left: 0; */
+/*   color: transparent; */
+/* } */
+/* .close-week-detail:hover { */
+/*   color: transparent; */
+/* } */
+/*  */
 .emojiPicker {
   left: auto !important;
   top: auto !important;
@@ -225,9 +224,13 @@ img.emoji {
 .events {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 .events li {
   margin-bottom: 1rem;
+}
+.events li:last-child {
+  margin-bottom: 0;
 }
 .events h4 {
   padding: 0;

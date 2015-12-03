@@ -8,8 +8,6 @@ import PaymentForm from './PaymentForm'
 import { FREE_EVENTS } from '../config'
 import connectToStores from 'alt/utils/connectToStores';
 
-window.count = 1;
-
 @connectToStores
 export default class WeekDetail extends React.Component {
   static getStores() {
@@ -75,7 +73,6 @@ export default class WeekDetail extends React.Component {
 
   render() {
     if(UserStore.getState().getIn(['user', 'born'])) {
-      console.log(count++)
       return (
         <div className="week-detail">
           <div className="container-wide">

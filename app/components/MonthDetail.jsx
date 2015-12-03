@@ -6,8 +6,6 @@ import Week from './Week'
 import Events from './Events'
 import { Link } from 'react-router'
 
-window.count = 1;
-
 export default class MonthDetail extends React.Component {
   constructor(props) {
     super(props)
@@ -40,7 +38,6 @@ export default class MonthDetail extends React.Component {
 
   render() {
     if(UserStore.getState().getIn(['user', 'born'])) {
-      console.log(count++)
       return (
         <div className="week-detail">
           <div className="container-wide">

@@ -11,7 +11,7 @@ export default class DetailContainer extends React.Component {
 
   componentDidMount () {
     this.animate()
-    this.scrollTo()
+    this.scrollToTop()
   }
 
   componentWillReceiveProps () {
@@ -23,11 +23,36 @@ export default class DetailContainer extends React.Component {
       this.animate()
       this.setState({animate: false})
     }
+    this.scrollToTop()
   }
 
-  scrollTo() {
+  scrollTo(y, n, ms, ease) {
+    let offset = window.scrollY,
+      steps = n || 7,
+      i = steps,
+      time = ms || 250,
+      ydiff = y - offset,
+      fx = ease ? ease : (i, steps) => {
+        return Math.pow(2, i);
+      };
+
+    let scrollInterval = setInterval(() => {
+      i -= 1;
+      var divisor = fx(i, steps);
+
+      window.scroll(0, ydiff / divisor + offset);
+
+      // last step
+      if (0 === i) {
+        clearInterval(scrollInterval);
+        window.scroll(0, y);
+      }
+    }, time / steps);
+  }
+
+  scrollToTop() {
     setTimeout(() => {
-      window.scroll(0, this.refs.top.offsetTop - 140)
+      this.scrollTo(this.refs.top.offsetTop - 140)
     },10)
   }
 

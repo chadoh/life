@@ -29,17 +29,17 @@ export default class Life extends React.Component {
     this.props.addSteps([{
       title: 'Welcome to the world!',
       text: 'This baby emoji represents the week you were born. Once this tour is over, you can mouse over it to see the date.',
-      selector: '.year:first-child a:first-of-type',
+      selector: '.year-wrap:first-child a:first-of-type',
       position: 'bottom',
     }, {
       title: 'Your first year',
       text: 'Each row represents one year of your life. For this whole first row, you were 0 years old. Cute little you, just squirming & watching & learning.',
-      selector: '.year:first-child',
+      selector: '.year-wrap:first-child .year',
       position: 'bottom',
     }, {
       title: '100 trips around the sun!',
       text: "You can make it to 100 years old, right? It'll be awesome!",
-      selector: '.year:last-child a:first-of-type',
+      selector: '.year-wrap:last-child a:first-of-type',
       position: 'top',
     }, {
       title: "You're here now",
@@ -140,7 +140,7 @@ export default class Life extends React.Component {
 
   year(age, events) {
     return (
-      <div key={age}>
+      <div key={age} className="year-wrap">
         <div className={`container-wide year${!this.props.isMobile ? ' in-weeks' : ''}`}>
           <small className="age">{!(age % 5) && age !== 100 ? age : null }</small>
           {this.renderDots({age, events})}

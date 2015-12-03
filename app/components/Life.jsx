@@ -55,6 +55,7 @@ export default class Life extends React.Component {
         <Month key={monthno} monthno={monthno}
           events={EventStore.eventsForMonth(monthno)}
           selectedMonth={+this.props.monthno}
+          selectedWeek={+this.props.weekno}
         />
       )
     }

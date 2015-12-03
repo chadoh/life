@@ -5,6 +5,7 @@ import EventStore from '../stores/EventStore'
 import Events from './Events'
 import EventForm from './EventForm'
 import PaymentForm from './PaymentForm'
+import DetailContainer from './DetailContainer'
 import { FREE_EVENTS } from '../config'
 import connectToStores from 'alt/utils/connectToStores';
 
@@ -24,7 +25,7 @@ export default class WeekDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      eventUnderEdit: null
+      eventUnderEdit: null,
     }
     this.editEvent = this.editEvent.bind(this)
   }
@@ -74,8 +75,8 @@ export default class WeekDetail extends React.Component {
   render() {
     if(UserStore.getState().getIn(['user', 'born'])) {
       return (
-        <div className="week-detail">
-          <div className="container-wide">
+        <DetailContainer>
+          <div ref="container" className="container-wide detail-inner">
             <h2 className="brand">Week of {this.start().toDateString()}</h2>
             {Math.floor(+this.props.params.weekno/52)} years old
             <h3>This week in {this.whose()} life:</h3>
@@ -85,7 +86,7 @@ export default class WeekDetail extends React.Component {
             />
             {this.form()}
           </div>
-        </div>
+        </DetailContainer>
       )
     }
   }

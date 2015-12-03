@@ -195,27 +195,20 @@ img.emoji {
   width: 0;
   margin: 0 auto;
 }
-.week-detail {
+.detail {
   background-color: #eee;
-  padding: 0.5rem 0 1rem;
   box-shadow: 0 0 10px rgba(0,0,0,0.2) inset;
 }
-.week-detail h2 {
+.detail-inner {
+  padding: 1rem 0;
+}
+.detail h2 {
   padding: 0;
 }
-.week-detail h3 {
+.detail h3 {
   padding-bottom: 0;
 }
-/* .close-week-detail { */
-/*   position: fixed; */
-/*   display: block; */
-/*   top: 0; right: 0; bottom: 0; left: 0; */
-/*   color: transparent; */
-/* } */
-/* .close-week-detail:hover { */
-/*   color: transparent; */
-/* } */
-/*  */
+
 .emojiPicker {
   left: auto !important;
   top: auto !important;

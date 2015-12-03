@@ -4,6 +4,7 @@ import UserStore from '../stores/UserStore'
 import EventStore from '../stores/EventStore'
 import Week from './Week'
 import Events from './Events'
+import DetailContainer from './DetailContainer'
 import { Link } from 'react-router'
 
 export default class MonthDetail extends React.Component {
@@ -39,15 +40,15 @@ export default class MonthDetail extends React.Component {
   render() {
     if(UserStore.getState().getIn(['user', 'born'])) {
       return (
-        <div className="week-detail">
-          <div className="container-wide">
+        <DetailContainer>
+          <div className="container-wide detail-inner">
             <h1 className="brand">Month of {this.start().toDateString().substr(4)}</h1>
             {Math.floor(+this.props.params.monthno/13)} years old
             <ol className="weeks">
               {this.renderWeeks()}
             </ol>
           </div>
-        </div>
+        </DetailContainer>
       )
     }
   }

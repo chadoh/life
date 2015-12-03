@@ -40,6 +40,7 @@ export default class Month extends React.Component {
         className={klass} data-tooltip={this.tooltip(start.toDateString())}>
         {this.emoji()}
         {this.props.monthno === this.props.selectedMonth ? <div className="arrow"/> : null}
+        {this.props.monthno === Math.floor(this.props.selectedWeek/4) ? <div className="arrow"/> : null}
       </Link>
     )
   }

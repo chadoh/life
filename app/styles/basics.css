@@ -46,3 +46,13 @@ a:focus, a:hover {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
+
+@media(min-width: 700px) {
+  .two-col {
+    width: 48%;
+    float: left;
+  }
+  .two-col:first-of-type {
+    margin-right: 4%;
+  }
+}

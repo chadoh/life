@@ -2,6 +2,7 @@ import React from 'react'
 import ReactMixin from 'react-mixin'
 import ReactEmoji from 'react-emoji'
 import EventService from '../services/EventService'
+import Linkify from 'react-linkify'
 
 const months = {
   '01': 'Jan',
@@ -72,7 +73,9 @@ export default class Event extends React.Component {
         <small className="text-muted">{this.date()}</small>
         <span className="pull-right">{this.props.event.get('id') ? this.renderActions() : null}</span>
         <br/>
-        <small>{this.props.event.get('description')}</small>
+        <small className="description">
+          <Linkify>{this.props.event.get('description')}</Linkify>
+        </small>
       </li>
     )
   }

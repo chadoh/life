@@ -204,9 +204,20 @@ img.emoji {
 }
 .detail h2 {
   padding: 0;
+  display: inline;
+  margin-right: 1rem;
+}
+.detail .age {
+  vertical-align: bottom;
 }
 .detail h3 {
   padding-bottom: 0;
+}
+.detail header {
+  clear: both;
+}
+.description {
+  word-wrap: break-word;
 }
 
 .emojiPicker {

@@ -13,6 +13,7 @@ import Joyride from 'react-joyride';
 import { Link } from 'react-router';
 import spoon from '../images/spoon-of-diamonds.png';
 import spinner from '../images/icon-loading-spinner.gif';
+import { tourCallbacks } from '../lib/tourSteps';
 
 export default class User extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ export default class User extends React.Component {
     this.endTour = this.endTour.bind(this);
     this.renderCalendar = this.renderCalendar.bind(this);
     this.renderName = this.renderName.bind(this);
+    this.stepCallback = this.stepCallback.bind(this);
   }
 
   componentDidMount() {
@@ -127,13 +129,19 @@ export default class User extends React.Component {
     }
   }
 
+  stepCallback(step) {
+    if(tourCallbacks[step.selector]) {
+      tourCallbacks[step.selector](this.props.params.slug, this.state.user);
+    }
+  }
+
   render() {
     return (
       <div>
         <div className="container-wide">
           <Joyride ref="joyride" steps={this.state.steps} type="guided"
             locale={{back: 'Back', close: 'Close', last: 'Okay!', next: 'Next', skip: 'Skip'}}
-            completeCallback={this.endTour} showSkipButton={true}
+            completeCallback={this.endTour} showSkipButton={true} stepCallback={this.stepCallback}
           />
           <Nav startTour={this.startTour}>
             <Link to="/" className="logo-small">

@@ -6,6 +6,7 @@ import IsMobileStore from '../stores/IsMobileStore';
 import EventStore from '../stores/EventStore';
 import connectToStores from 'alt/utils/connectToStores';
 import Immutable from 'immutable';
+import tourSteps from '../lib/tourSteps';
 
 @connectToStores
 export default class Life extends React.Component {
@@ -26,32 +27,7 @@ export default class Life extends React.Component {
   }
 
   componentDidMount() {
-    this.props.addSteps([{
-      title: 'Welcome to the world!',
-      text: 'This baby emoji represents the week you were born. Once this tour is over, you can mouse over it to see the date.',
-      selector: '.year-wrap:first-child a:first-of-type',
-      position: 'bottom',
-    }, {
-      title: 'Your first year',
-      text: 'Each row represents one year of your life. For this whole first row, you were 0 years old. Cute little you, just squirming & watching & learning.',
-      selector: '.year-wrap:first-child .year',
-      position: 'bottom',
-    }, {
-      title: '100 trips around the sun!',
-      text: "You can make it to 100 years old, right? It'll be awesome!",
-      selector: '.year-wrap:last-child a:first-of-type',
-      position: 'top',
-    }, {
-      title: "You're here now",
-      text: "Welcome! This is a good place to be.",
-      selector: 'a.now',
-      position: 'top',
-    }, {
-      title: "What happened last week?",
-      text: "Anything cool? Anything that will make ripples across your entire future? Probably! Click on a week to add events (and emojis) to your life calendar. Get started by adding the best day of your life!",
-      selector: 'a.previous',
-      position: 'top',
-    }])
+    this.props.addSteps(tourSteps)
     if(this.props.showTour) setTimeout(this.props.startTour, 100)
   }
 

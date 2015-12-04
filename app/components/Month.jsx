@@ -32,6 +32,7 @@ export default class Month extends React.Component {
     let klass;
 
     if(currentMonth - 1 === this.props.monthno) klass = 'past previous';
+    else if(currentMonth + 1 === this.props.monthno) klass = 'next';
     else if(currentMonth > this.props.monthno) klass = 'past';
     else if(currentMonth === this.props.monthno) klass = 'now';
 

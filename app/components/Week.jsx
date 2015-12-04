@@ -31,6 +31,7 @@ export default class Week extends React.Component {
     let klass;
 
     if(currentWeek - 1 === this.props.weekno) klass = 'past previous';
+    else if(currentWeek + 1 === this.props.weekno) klass = 'next';
     else if(currentWeek > this.props.weekno) klass = 'past';
     else if(currentWeek === this.props.weekno) klass = 'now';
 

@@ -1,5 +1,7 @@
 import React from 'react'
 
+let scrollTimers = [];
+
 export default class DetailContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -11,7 +13,6 @@ export default class DetailContainer extends React.Component {
 
   componentDidMount () {
     this.animate()
-    this.scrollToTop()
   }
 
   componentWillReceiveProps () {
@@ -26,34 +27,24 @@ export default class DetailContainer extends React.Component {
     this.scrollToTop()
   }
 
-  scrollTo(y, n, ms, ease) {
-    let offset = window.scrollY,
-      steps = n || 7,
-      i = steps,
-      time = ms || 250,
-      ydiff = y - offset,
-      fx = ease ? ease : (i, steps) => {
-        return Math.pow(2, i);
-      };
+  scrollToTop() {
+    if(this.props.old) return;
+    if(scrollTimers[0]) clearTimeout(scrollTimers[0]);
 
-    let scrollInterval = setInterval(() => {
-      i -= 1;
-      var divisor = fx(i, steps);
-
-      window.scroll(0, ydiff / divisor + offset);
-
-      // last step
-      if (0 === i) {
-        clearInterval(scrollInterval);
-        window.scroll(0, y);
-      }
-    }, time / steps);
+    scrollTimers.push(
+      setTimeout(() => this.scrollTo(this.refs.top.offsetTop - 115), 100)
+    )
   }
 
-  scrollToTop() {
-    setTimeout(() => {
-      this.scrollTo(this.refs.top.offsetTop - 140)
-    },10)
+  scrollTo(to) {
+    if(this.alreadyVisible()) return;
+
+    window.scroll(0, to)
+  }
+
+  alreadyVisible() {
+    return this.refs.top.offsetTop > document.body.scrollTop &&
+      this.refs.top.offsetTop < document.body.scrollTop + window.innerHeight
   }
 
   animate () {

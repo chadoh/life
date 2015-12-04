@@ -41,7 +41,7 @@ export default class Week extends React.Component {
     const start = UserStore.startOf(this.props.weekno);
     return (
       <Link to={this.linkTo()} className={this.klass()}
-        data-tooltip={this.tooltip(start.toDateString())}>
+        title={this.tooltip(start.toDateString())}>
         {this.emoji()}
         {this.props.selected ? <div className="arrow"/> : null}
       </Link>

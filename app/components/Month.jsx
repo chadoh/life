@@ -37,7 +37,7 @@ export default class Month extends React.Component {
 
     return (
       <Link to={this.linkTo()}
-        className={klass} data-tooltip={this.tooltip(start.toDateString())}>
+        className={klass} title={this.tooltip(start.toDateString())}>
         {this.emoji()}
         {this.props.selected ? <div className="arrow"/> : null}
       </Link>

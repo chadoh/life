@@ -5,6 +5,9 @@ import { Link } from 'react-router'
 import PaymentService from '../services/PaymentService'
 import {STRIPE_PUBLISHABLE_KEY} from '../config'
 import CreditCardInput from './CreditCardInput'
+import calendarIcon from '../images/icon-calendar.svg'
+import creditCardIcon from '../images/icon-credit-card.svg'
+import lockIcon from '../images/icon-lock.svg'
 
 export default class PaymentForm extends React.Component {
   constructor(props) {
@@ -93,19 +96,19 @@ export default class PaymentForm extends React.Component {
             <div className="cardNumberInput input top">
               <CreditCardInput valueLink={this.linkState('cc')} onFocus={this.focusParentDiv} onBlur={this.blurParentDiv}/>
               <div className="svg icon" style={{ width: "30px", height: "30px" }}>
-                <img src="/images/icon-credit-card.svg" alt=""/>
+                <img src={creditCardIcon} alt=""/>
               </div>
             </div>
             <div className="cardExpiresInput input left bottom">
               <input valueLink={this.linkState('exp')} onFocus={this.focusParentDiv} onBlur={this.blurParentDiv} className="control" id="cc-exp" type="month" name="card_exp" ref={this._setExpAutocompleteType} autoCorrect="off" spellCheck="off" autoCapitalize="off" placeholder="YYYY-MM"/>
               <div className="svg icon" style={{ width: "30px", height: "30px" }}>
-                <img src="/images/icon-calendar.svg" alt=""/>
+                <img src={calendarIcon} alt=""/>
               </div>
             </div>
             <div className="cardCVCInput input right bottom">
               <input valueLink={this.linkState('cvc')} onFocus={this.focusParentDiv} onBlur={this.blurParentDiv} className="control" id="cc-csc" type="tel" name="card_csc" ref={this._setCSCAutocompleteType} spellCheck="off" autoCapitalize="off" placeholder="CVC" maxLength="4"/>
               <div className="svg icon" style={{ width: "30px", height: "30px" }}>
-                <img src="/images/icon-lock.svg" alt=""/>
+                <img src={lockIcon} alt=""/>
               </div>
             </div>
           </div>

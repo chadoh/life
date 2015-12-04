@@ -45,7 +45,7 @@ export default class Home extends React.Component {
             </div>
           </div>
           <div className="trailing">
-            <img src={`/${spoon}`} className="logo" alt="logo: a spoonful of diamonds" />
+            <img src={spoon} className="logo" alt="logo: a spoonful of diamonds" />
           </div>
         </div>
         <div className="bg-light">

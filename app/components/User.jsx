@@ -125,7 +125,7 @@ export default class User extends React.Component {
         return <span>{this.state.user.get('name')}: <nobr><small>A life</small></nobr></span>
       }
     } else {
-      return <img src={`/${spinner}`} alt="loading" style={{height: '3rem', verticalAlign: 'bottom'}}/>
+      return <img src={spinner} alt="loading" style={{height: '3rem', verticalAlign: 'bottom'}}/>
     }
   }
 
@@ -145,7 +145,7 @@ export default class User extends React.Component {
           />
           <Nav startTour={this.startTour}>
             <Link to="/" className="logo-small">
-              <img src={`/${spoon}`} alt="Home" />
+              <img src={spoon} alt="Home" />
             </Link>
             <h1 className="brand">
               {this.renderName()}

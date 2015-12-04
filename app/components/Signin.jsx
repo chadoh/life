@@ -63,7 +63,7 @@ export default class Signin extends React.Component {
     return (
       <div {...this.props}>
         {this.state.loading
-          ? <img src={`/${spinner}`} width="100px" height="100px" alt="loading" style={{marginTop: '1.5rem'}}/>
+          ? <img src={spinner} width="100px" height="100px" alt="loading" style={{marginTop: '1.5rem'}}/>
           : <div id="signin" ref="signin"/>
         }
       </div>

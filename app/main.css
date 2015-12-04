@@ -24,7 +24,7 @@
   }
 }
 .sunset-cliffs {
-  background-image: url(/images/sunset-cliffs-large.jpeg);
+  background-image: url(./images/sunset-cliffs-large.jpeg);
 }
 .sunset-cliffs .brand, .sunset-cliffs label, .sunset-cliffs .text {
   color: white;
@@ -192,114 +192,13 @@ img {
   max-width: 100%
 }
 
-.life-calendar-image img {
-  border-radius: .2em;
-}
-.centered {
-  text-align: center;
-}
-.shrink img {
-  width: 50%;
-}
-
-/*
- * Payment Options
- */
-.payment-options {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  margin-top: 4rem;
-  -webkit-flex-flow: row wrap;
-  -moz-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-.payment-option {
-  width: 100%;
-  text-align: center;
-  border: 3px solid white;
-  border-radius: 1.5rem;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-}
-@media(min-width: 500px) {
-  .payment-option {
-    width: 47%;
-  }
-}
-@media(min-width: 700px) {
-  .payment-option {
-    width: 30%;
-  }
-}
-.payment-option:hover {
-  box-shadow: 0 0 15px white;
-}
-.payment-option h2 {
-  position: relative;
-  padding-bottom: 90%;
-  height: 0;
-}
-@media(min-width: 400px) {
-  .payment-option h2 {
-    padding-bottom: 45%;
-    width: 50%;
-    float: right;
-  }
-  .payment-option .price {
-    width: 50%;
-  }
-}
-@media(min-width: 500px) {
-  .payment-option h2 {
-    padding-bottom: 90%;
-    width: 100%;
-    float: none;
-  }
-  .payment-option .price {
-    width: 100%;
-  }
-}
-.payment-option h2 > div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  background-color: #373a3c;
-  background-image: url(images/sunset-cliffs-large.jpeg);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  border: 5px solid white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3) inset;
-  border-radius: 100%;
-  text-shadow: 0 0 5px rgba(0,0,0,0.3);
-}
-.currency-marker {
-  vertical-align: super;
-  font-size: 1.5rem;
-}
-.amount {
-  font-size: 4rem;
-}
-
-
 /* Inputs */
 input[disabled] {
   opacity: .7;
 }
 
 input[type=search] {
-  background-image: url(/images/icon-magnifying-glass.svg);
+  background-image: url(./images/icon-magnifying-glass.svg);
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: 5px;
@@ -494,41 +393,41 @@ input[type=search] {
 }
 
 .control.amex {
-  background-image: url(/images/cards/amex.png)
+  background-image: url(./images/cards/amex.png)
 }
 .control.diners {
-  background-image: url(/images/cards/diners.png)
+  background-image: url(./images/cards/diners.png)
 }
 .control.discover {
-  background-image: url(/images/cards/discover.png)
+  background-image: url(./images/cards/discover.png)
 }
 .control.jcb {
-  background-image: url(/images/cards/jcb.png)
+  background-image: url(./images/cards/jcb.png)
 }
 .control.mastercard {
-  background-image: url(/images/cards/mastercard.png)
+  background-image: url(./images/cards/mastercard.png)
 }
 .control.visa {
-  background-image: url(/images/cards/visa.png)
+  background-image: url(./images/cards/visa.png)
 }
 @media only screen and (-webkit-min-device-pixel-ratio:1.5),only screen and (min--moz-device-pixel-ratio:1.5),only screen and (min-device-pixel-ratio:1.5) {
   .control.amex {
-    background-image: url(/images/cards/amex@2x.png)
+    background-image: url(./images/cards/amex@2x.png)
   }
   .control.diners {
-    background-image: url(/images/cards/diners@2x.png)
+    background-image: url(./images/cards/diners@2x.png)
   }
   .control.discover {
-    background-image: url(/images/cards/discover@2x.png)
+    background-image: url(./images/cards/discover@2x.png)
   }
   .control.jcb {
-    background-image: url(/images/cards/jcb@2x.png)
+    background-image: url(./images/cards/jcb@2x.png)
   }
   .control.mastercard {
-    background-image: url(/images/cards/mastercard@2x.png)
+    background-image: url(./images/cards/mastercard@2x.png)
   }
   .control.visa {
-    background-image: url(/images/cards/visa@2x.png)
+    background-image: url(./images/cards/visa@2x.png)
   }
 }
 .control.amex,.control.diners,.control.discover,.control.jcb,.control.mastercard,.control.visa {

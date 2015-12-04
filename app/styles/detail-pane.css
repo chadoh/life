@@ -1,0 +1,90 @@
+/*
+ * Week Detail panel
+ */
+.arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid rgba(0,0,0,0.15);
+  width: 0;
+  margin: 0 auto;
+}
+.detail {
+  background-color: #eee;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2) inset;
+}
+.detail-inner {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.detail h2 {
+  padding: 0;
+  display: inline;
+  margin-right: 1rem;
+}
+.detail .age {
+  vertical-align: bottom;
+}
+.detail h3 {
+  padding-bottom: 0;
+}
+.detail header {
+  clear: both;
+}
+.description {
+  word-wrap: break-word;
+}
+
+.emojiPicker {
+  left: auto !important;
+  top: auto !important;
+}
+
+.events {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.events li {
+  margin-bottom: 1rem;
+}
+.events li:last-child {
+  margin-bottom: 0;
+}
+.events h4 {
+  padding: 0;
+}
+.action-link {
+  padding: 0 0.2rem;
+  cursor: pointer;
+}
+
+.expired-plan {
+  border: 1px solid #B36A30;
+  border-radius: 3px;
+  padding: 1rem;
+  position: relative;
+}
+
+.button-group {
+  border-radius: 3px;
+  height: 2rem;
+}
+.button-group button {
+  border-radius: 0;
+  margin: 0;
+  height: 100%;
+  vertical-align: top;
+  line-height: 0;
+}
+.button-group button:first-child {
+  border-radius: 2px 0 0 2px;
+}
+.button-group button:last-child {
+  border-radius: 0 2px 2px 0;
+}
+
+.expired-plan .button-group {
+  position: absolute;
+  border: 1px solid #B36A30;
+  right: 50px;
+}

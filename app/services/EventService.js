@@ -22,10 +22,14 @@ class EventService {
   }
 
   create({slug, title, emoji, date, description}) {
+    if(!slug) {
+      console.error(new Error('Need user slug to create event'))
+      return false;
+    }
     return reqwest({
       url: API_URL + 'users/' + slug + '/events',
       method: 'POST',
-      data: { event: { title, emoji, date, description }},
+      data: { event: arguments[0]},
       crossOrigin: true,
       headers: {
         'Authorization': 'Bearer ' + LoginStore.getState().idToken
@@ -37,27 +41,36 @@ class EventService {
     })
   }
 
-  update({slug, id, title, emoji, date, description}) {
+  update({slug, id, title, emoji, date, description, weekno}) {
+    if(!slug && !id && !weekno) {
+      console.error(new Error('Need user slug, event id, and event weekno to update event'))
+      return false;
+    }
+    EventActions.destroyedEvent({id, weekno})
     return reqwest({
       url: API_URL + 'users/' + slug + '/events/' + id,
       method: 'PATCH',
-      data: { event: { title, emoji, date, description }},
+      data: { event: arguments[0]},
       crossOrigin: true,
       headers: {
         'Authorization': 'Bearer ' + LoginStore.getState().idToken
       }
     })
     .then(response => {
-      EventActions.updatedEvent(response.event)
+      EventActions.createdEvent(response.event)
     })
   }
 
-  save({slug, id, title, emoji, date, description}) {
+  save({slug, id, title, emoji, date, description, weekno}) {
     if(id) return this.update(arguments[0]);
     else return this.create(arguments[0]);
   }
 
   destroy(slug, id, weekno) {
+    if(!slug && !id) {
+      console.error(new Error('Need user slug and event id to destroy event'))
+      return false;
+    }
     return reqwest({
       url: API_URL + 'users/' + slug + '/events/' + id,
       method: 'DELETE',
@@ -68,7 +81,7 @@ class EventService {
       }
     })
     .then(response => {
-      EventActions.destroyedEvent({id: id, weekno: weekno})
+      EventActions.destroyedEvent({id, weekno})
       LoginActions.decrementEventCount()
     })
   }

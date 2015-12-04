@@ -25,13 +25,13 @@ export default class Event extends React.Component {
     this.renderActions = this.renderActions.bind(this)
     this.deleteEvent = this.deleteEvent.bind(this)
     this.date = this.date.bind(this)
+    this.markDone = this.markDone.bind(this)
+    this.createEvent = this.createEvent.bind(this)
+    this.snooze = this.snooze.bind(this)
   }
 
-  deleteEvent(id, weekno) {
-    EventService.destroy(this.props.slug, id, weekno)
-      .catch((err) => {
-        console.log("Error destroying event", err);
-      });
+  deleteEvent() {
+    EventService.destroy(this.props.slug, this.props.event.get('id'), this.props.weekno)
   }
 
   renderActions() {
@@ -41,7 +41,7 @@ export default class Event extends React.Component {
           <a onClick={this.props.onEdit} className="action-link">
             {this.emojify(':pencil2:', {attributes: {height: '10px', width: '10px'}})}
           </a>
-          <a className="action-link" onClick={this.deleteEvent.bind(this, this.props.event.get('id'), this.props.weekno)}>
+          <a className="action-link" onClick={this.deleteEvent}>
             {this.emojify(':x:', {attributes: {height: '10px', width: '10px'}})}
           </a>
         </span>
@@ -62,9 +62,57 @@ export default class Event extends React.Component {
     return event.get('date') > event.get('created_at')
   }
 
+  expiredPlan() {
+    return this.props.authed && this.isPlan() &&
+      this.props.event.get('date') < (new Date()).toISOString()
+  }
+
+  createEvent() {
+    const event = this.props.event;
+    EventService.create({
+      slug: this.props.slug,
+      title: event.get('title'),
+      emoji: event.get('emoji'),
+      date: event.get('date'),
+      description: event.get('description'),
+    })
+  }
+
+  markDone() {
+    this.createEvent()
+    this.deleteEvent()
+  }
+
+  snooze() {
+    const event = this.props.event;
+    const nextWeek = new Date(604800000 + (new Date()).getTime())
+    EventService.update({
+      slug: this.props.slug,
+      id: event.get('id'),
+      date: nextWeek.toISOString(),
+      weekno: this.props.weekno,
+    })
+  }
+
+  renderExpiredPlanActions() {
+    if(this.expiredPlan()) {
+      return <div className="button-group">
+        <button className="success" onClick={this.markDone}>
+          {this.emojify(':checkered_flag:', {singleEmoji: true})}
+        </button>
+        <button className="warning" onClick={this.snooze}>
+          {this.emojify(':sleeping:', {singleEmoji: true})}
+        </button>
+        <button className="error" onClick={this.deleteEvent}>
+          {this.emojify(':boom:', {singleEmoji: true})}
+        </button>
+      </div>
+    }
+  }
+
   render() {
     return (
-      <li>
+      <li className={this.expiredPlan() ? "expired-plan" : ""}>
         <h5>
           {this.emojify(this.props.event.get('emoji'), {attributes: {className: 'emoji'}})}
           {this.isPlan() ? " Plan: " : " "}
@@ -76,6 +124,7 @@ export default class Event extends React.Component {
         <small className="description">
           <Linkify>{this.props.event.get('description')}</Linkify>
         </small>
+        {this.renderExpiredPlanActions()}
       </li>
     )
   }

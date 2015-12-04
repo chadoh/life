@@ -24,7 +24,7 @@ export default class MonthDetail extends React.Component {
             Week of {start.toDateString()}
           </Link>
         </h3>
-        <Events events={events} slug={this.props.slug} weekno={weekno}
+        <Events events={events} slug={this.props.params.slug} weekno={weekno}
           authed={LoginStore.canEdit(UserStore.getState().get('user'))}
         />
       </li>)

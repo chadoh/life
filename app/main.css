@@ -4,6 +4,7 @@
 @import "./styles/nav.css";
 @import "./styles/emoji-picker.css";
 @import "./styles/checkbox-private-public.css";
+@import "./styles/detail-pane.css";
 
 /*
  * Hero
@@ -182,66 +183,6 @@ img.emoji {
 }
 .weeks > li {
   margin-bottom: 1.5rem;
-}
-
-/*
- * Week Detail panel
- */
-.arrow {
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid rgba(0,0,0,0.15);
-  width: 0;
-  margin: 0 auto;
-}
-.detail {
-  background-color: #eee;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2) inset;
-}
-.detail-inner {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-.detail h2 {
-  padding: 0;
-  display: inline;
-  margin-right: 1rem;
-}
-.detail .age {
-  vertical-align: bottom;
-}
-.detail h3 {
-  padding-bottom: 0;
-}
-.detail header {
-  clear: both;
-}
-.description {
-  word-wrap: break-word;
-}
-
-.emojiPicker {
-  left: auto !important;
-  top: auto !important;
-}
-
-.events {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.events li {
-  margin-bottom: 1rem;
-}
-.events li:last-child {
-  margin-bottom: 0;
-}
-.events h4 {
-  padding: 0;
-}
-.action-link {
-  padding: 0 0.2rem;
-  cursor: pointer;
 }
 
 /*

@@ -77,6 +77,7 @@ export default class EventForm extends React.Component {
       emoji: this.state.emoji,
       date: this.state.date,
       description: this.state.description,
+      weekno: this.props.weekno,
     })
       .then(() => {
         this.setState({title: '', emoji: '', description: ''})

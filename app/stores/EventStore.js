@@ -12,7 +12,6 @@ class EventStore {
       requestEventsForUser: EventActions.requestEventsForUser,
       receiveEvents: EventActions.gotEvents,
       createEvent: EventActions.createdEvent,
-      updateEvent: EventActions.updatedEvent,
       destroyEvent: EventActions.destroyedEvent
     })
     this.state = Immutable.Map({
@@ -32,22 +31,9 @@ class EventStore {
     let weekno = ''+event.weekno;
     let immutableEvent = Immutable.Map(event);
     this.setState(this.state.setIn(['events', weekno],
-      this.state.getIn(['events', weekno]) ?
-        this.state.getIn(['events', weekno]).push(immutableEvent).sortBy(event => event.get('date')) :
-        Immutable.List([immutableEvent])
-    ))
-  }
-
-  updateEvent(event) {
-    let weekno = ''+event.weekno;
-    let immutableEvent = Immutable.Map(event);
-
-    const list = this.state.getIn(['events', weekno])
-    let old = list.find(el => el.get('id') === event.id)
-
-    const newState = this.state.setIn(['events', weekno, list.indexOf(old)], immutableEvent)
-    this.setState(this.state.setIn(['events', weekno],
-      newState.getIn(['events', weekno]).sortBy(event => event.get('date'))
+      this.state.getIn(['events', weekno])
+        ? this.state.getIn(['events', weekno]).push(immutableEvent).sortBy(event => event.get('date'))
+        : Immutable.List([immutableEvent])
     ))
   }
 
@@ -55,6 +41,9 @@ class EventStore {
     this.setState(this.state.setIn(['events', ''+event.weekno],
       this.state.getIn(['events', ''+event.weekno]).filter(e => e.get('id') !== event.id)
     ))
+    if(this.state.getIn(['events', ''+event.weekno]).size === 0) {
+      this.setState(this.state.deleteIn(['events', ''+event.weekno]))
+    }
   }
 
   clear() {

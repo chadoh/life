@@ -57,7 +57,7 @@ export default class Event extends React.Component {
     return `${day} ${month}`
   }
 
-  isGoal() {
+  isPlan() {
     const event = this.props.event;
     return event.get('date') > event.get('created_at')
   }
@@ -67,7 +67,7 @@ export default class Event extends React.Component {
       <li>
         <h5>
           {this.emojify(this.props.event.get('emoji'), {attributes: {className: 'emoji'}})}
-          {this.isGoal() ? " Goal: " : " "}
+          {this.isPlan() ? " Plan: " : " "}
           {this.props.event.get('title')}
         </h5>
         <small className="text-muted">{this.date()}</small>

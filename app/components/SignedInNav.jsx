@@ -1,6 +1,5 @@
 import React from 'react';
 import LoginActions from '../actions/LoginActions'
-import LoginStore from '../stores/LoginStore'
 import { Link } from 'react-router';
 import Avatar from '../components/Avatar';
 import history from '../lib/history';
@@ -40,7 +39,7 @@ export default class AuthenticatedApp extends React.Component {
   }
 
   renderHelp() {
-    if(LoginStore.getState().user.slug === this.props.user.slug) {
+    if(window.location.pathname.match(this.props.user.slug)) {
       return (
         <a href="#tour" onClick={this.props.startTour} className="help-icon">?</a>
       )

@@ -44,7 +44,7 @@ button.brand {
   height: auto;
 }
 .landing .nav-items {
-  position: static;
+  top: 0.5rem;
 }
 .hero-header {
   font-size: 1.3em;

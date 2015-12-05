@@ -61,12 +61,14 @@
 .nav-buttons h1 a, .nav-buttons h2 a {
   top: 0;
 }
+.dropdown-link {
+  margin-right: 1.1rem;
+}
 .nav-buttons .help-icon {
   display: inline-block;
   border-radius: 50%;
   background-color: silver;
   color: white;
-  margin-left: 1.1rem;
   width: 1.5rem;
   text-align: center;
   line-height: 1.5rem;

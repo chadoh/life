@@ -3,7 +3,7 @@ import {Link} from 'react-router'
 
 import Nav from './Nav'
 import screenshots from '../images/entire.life-screenshots.png'
-import logo from '../images/logo-white.png'
+import logo from '../images/logo-white.svg'
 
 export default class Home extends React.Component {
   render() {

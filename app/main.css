@@ -96,10 +96,11 @@ button.brand {
 }
 .logo-small {
   float: left;
-  top: 1.7rem;
+  top: 2rem;
 }
 .logo-small img {
   width: 60px;
+  margin-right: 1rem;
 }
 .logo-small:hover {
   box-shadow: none;

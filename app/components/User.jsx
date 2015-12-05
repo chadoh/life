@@ -11,7 +11,7 @@ import LifeLoading from './LifeLoading';
 import Nav from './Nav';
 import Joyride from 'react-joyride';
 import { Link } from 'react-router';
-import spoon from '../images/spoon-of-diamonds.png';
+import logo from '../images/logo-a-life.svg';
 import spinner from '../images/icon-loading-spinner.gif';
 import { tourCallbacks } from '../lib/tourSteps';
 
@@ -122,7 +122,7 @@ export default class User extends React.Component {
         const name = this.state.user.get('name').split(' ')[0]
         return `${name}'s life is ${name}'s business!`
       } else {
-        return <span>{this.state.user.get('name')}: <nobr><small>A life</small></nobr></span>
+        return <span>{this.state.user.get('name')}</span>
       }
     } else {
       return <img src={spinner} alt="loading" style={{height: '3rem', verticalAlign: 'bottom'}}/>
@@ -145,7 +145,7 @@ export default class User extends React.Component {
           />
           <Nav startTour={this.startTour}>
             <Link to="/" className="logo-small">
-              <img src={spoon} alt="Home" />
+              <img src={logo} alt="a life" />
             </Link>
             <h1 className="brand">
               {this.renderName()}

@@ -5,7 +5,7 @@ import LoginActions from '../actions/LoginActions'
 import LoginStore from '../stores/LoginStore'
 import Nav from './Nav'
 
-import logo from '../images/logo-white.png'
+import logo from '../images/logo-white.svg'
 import spinner from '../images/icon-loading-spinner.gif'
 import screenshots from '../images/entire.life-screenshots.png'
 

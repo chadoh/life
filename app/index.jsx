@@ -12,7 +12,6 @@ import Home from './components/Home'
 import Pricing from './components/Pricing'
 import Payment from './components/Payment'
 import Signin from './components/Signin'
-import Workit from './components/Workit'
 import SigningUp from './components/SigningUp'
 import User from './components/User'
 import MonthDetail from './components/MonthDetail'
@@ -30,10 +29,9 @@ LoginActions.recordLoginFromSavedSession();
 
 let router = (
   <Router history={history}>
-    <Route path="/" component={Home}>
-      <IndexRoute component={Workit}/>
-      <Route path="signin" component={Signin}/>
-    </Route>
+    <Route path="/" component={Home}/>
+    <Route path="signin" component={Signin}/>
+
     <Route path="/pricing" component={Pricing}/>
     <Route path="/payment" component={Payment}/>
 

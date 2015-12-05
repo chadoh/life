@@ -38,7 +38,7 @@ export default class Pricing extends React.Component {
         </div>
         <div id="top" className="hero sunset-cliffs">
           <div className="container pad-top">
-            <div className="bg-tint">
+            <div className="bg-tint light-links">
               <h1 className="brand">Your life is not for sale</h1>
               <p>
                 A life calendar is a fantastic way to remember and plan your

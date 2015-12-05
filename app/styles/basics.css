@@ -23,6 +23,12 @@ a {
 a:focus, a:hover {
   box-shadow: 0 2px 0 0 #B36A30;
 }
+.light-links a {
+  color: #E3B998;
+}
+.light-links a:hover, .light-links a:focus {
+  box-shadow: 0 2px 0 0 #E3B998;
+}
 .button, [type=submit], button {
   background-color: #B36A30;
 }

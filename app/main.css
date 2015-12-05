@@ -36,7 +36,7 @@ button.brand {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0,0,0,0.16);
   color: white;
   text-align: center;
 }
@@ -84,7 +84,7 @@ button.brand {
 #signin {
   width: 220px;
   margin: 0 auto;
-  padding-top: 1.5rem;
+  height: 50px;
 }
 
 /*
@@ -108,9 +108,25 @@ button.brand {
 /*
  * Sections
  */
+.bg-tint {
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 0 0 .4rem .4rem;
+  color: white;
+  padding: 0 1.5rem 1.5rem;
+}
+.bg-tint input, .bg-tint select {
+  color: #20221F;
+}
+.bg-tint {
+  padding: 1.5rem;
+  border-radius: .4rem;
+}
+.bg-tint p:first-child {
+  margin-top: 0;
+ }
 .bg-dark, .bg-light {
   font-size: 1.5rem;
-  padding: 8rem 0;
+  padding: 3rem 0;
 }
 .bg-dark blockquote {
   box-shadow: inset 5px 0;

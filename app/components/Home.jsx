@@ -21,10 +21,10 @@ export default class Home extends React.Component {
               <div className="brand">Plan. Remember.</div>
               <div>Live a Meaningful Life.</div>
             </h1>
-            <div className="container">
+            <div className="container-wide">
               <p>
                 Entire.Life is a symbolic life calendar that helps you
-                remember the good and plan for the best.
+                remember the good and plan for the better.
               </p>
             </div>
             <p style={{marginTop: 0}}>
@@ -37,17 +37,15 @@ export default class Home extends React.Component {
             </div>
           </div>
         </div>
-        <div className="bg-light">
+        <div className="bg-dark">
           <div className="container">
-            <h2 className="brand">Credits</h2>
-            <p>Entire.Life would not exist without these awesome people:</p>
-            <ul id="draft_check_box_list_0">
-              <li>Tim Urban at <a href="http://waitbutwhy.com/2014/05/life-weeks.html">Wait But Why</a>, who came up with the whole idea in the first place</li>
-              <li><a href="http://brittanyforks.com/life/">Brittany Forks</a>, who came up with the idea to use an emoji for each event, and who largely inspired the design of Entire.Life</li>
-              <li><a href="http://busterbenson.com/">Buster Benson</a>, for being the first person I know of to digitize such a Life In Weeks calendar</li>
-            </ul>
-            <p>We all want to see you make the most of your diamonds.</p>
-            <h1 className="brand"><a href="#top">Go for it →</a></h1>
+            <small>
+              Entire.Life thanks Tim Urban at&nbsp;
+              <a href="http://waitbutwhy.com/2014/05/life-weeks.html">Wait But Why</a>,&nbsp;
+              for inventing the idea of the life calendar, and&nbsp;
+              <a href="http://brittanyforks.com/life/">Brittany Forks</a>, who
+              first put emojis on one.
+            </small>
           </div>
         </div>
       </div>

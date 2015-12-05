@@ -26,64 +26,56 @@
 .sunset-cliffs {
   background-image: url(./images/sunset-cliffs-large.jpeg);
 }
-.sunset-cliffs .brand, .sunset-cliffs label, .sunset-cliffs .text {
-  color: white;
-  text-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
 button.brand {
   font-size: 1.5rem;
 }
 
-.hook-wrap {
-  padding-bottom: 4rem;
-}
-.hook {
-  margin: 0 auto;
-  width: 90%;
+.landing {
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(0,0,0,0.2);
+  color: white;
   text-align: center;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  border-radius: .4rem;
 }
-@media(min-width: 750px) {
-  .hook {
-    width: 50%;
+.landing .nav-buttons {
+  height: auto;
+}
+.landing .nav-items {
+  position: static;
+}
+.hero-header {
+  font-size: 1.3em;
+}
+.hero-header .brand {
+  font-size: 1.5em;
+}
+@media(min-width: 700px) {
+  .hero-header {
+    font-size: 2em;
   }
 }
-.embed-container {
-  border-radius: .4rem .4rem 0 0;
-  position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;
-}
-.embed-container iframe, .embed-container object, .embed-container embed, .embed-container a {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-}
-.hook-description, .bg-tint {
-  background-color: rgba(0,0,0,0.7);
-  border-radius: 0 0 .4rem .4rem;
-  color: white;
-  padding: 0 1.5rem 1.5rem;
-}
-.bg-tint input, .bg-tint select {
-  color: #20221F;
-}
-.bg-tint {
-  padding: 1.5rem;
-  border-radius: .4rem;
-}
-.bg-tint p:first-child {
-  margin-top: 0;
-}
-.hook-description p {
-  margin-top: 0;
-}
-.trailing {
-  position: absolute;
-  top: 100%;
+
+.devices-photo {
   width: 100%;
   text-align: center;
+  overflow: hidden;
 }
-.trailing .logo {
-  width: 180px;
-  margin-top: -56px;
+.devices-photo img {
+  width: 100%;
+  vertical-align: bottom;
+}
+@media(min-width: 600px) {
+  .devices-photo img {
+    width: 75%;
+  }
+}
+@media(min-width: 1000px) {
+  .devices-photo img {
+    width: 50%;
+  }
 }
 
 /*
@@ -98,6 +90,10 @@ button.brand {
 /*
  * Logo
  */
+.logo {
+  width: 130px;
+  float: left;
+}
 .logo-small {
   float: left;
   top: 1.7rem;

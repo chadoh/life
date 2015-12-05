@@ -1,51 +1,40 @@
-import React from 'react';
-import placeholderImg from '../images/video-placeholder.jpg';
-import Nav from './Nav';
-import spoon from '../images/spoon-of-diamonds.png';
+import React from 'react'
+import {Link} from 'react-router'
+
+import Nav from './Nav'
+import screenshots from '../images/entire.life-screenshots.png'
+import logo from '../images/logo-white.png'
 
 export default class Home extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      playing: false,
-    }
-
-    this.videoElement = this.videoElement.bind(this)
-    this.playVideo = this.playVideo.bind(this)
-  }
-
-  videoElement() {
-    if (this.state.playing)
-      return <iframe src='https://player.vimeo.com/video/132391869?autoplay=1' frameBorder='0' webkitAllowFullScreen mozAllowFullScreen allowFullScreen></iframe>;
-    else
-      return <a href="#play-video" onClick={this.playVideo}><img src={placeholderImg} alt="play video"/></a>;
-  }
-
-  playVideo(e) {
-    e.preventDefault();
-    this.setState({playing: true})
-  }
-
   render() {
     return (
       <div>
-        <div className="container-wide">
-          <Nav/>
-        </div>
         <div id="top" className="hero sunset-cliffs">
-          <div className="vertical-centering">
-            <div className="hook-wrap">
-              <div className="hook">
-                <div className="video-container">
-                  <div className='embed-container'>{this.videoElement()}</div>
-                </div>
-                {React.cloneElement(this.props.children, {className: 'hook-description'})}
-              </div>
+          <div className="landing">
+            <Nav>
+              <Link to="/">
+                <img src={logo} alt="Entire.Life" className="logo"/>
+              </Link>
+              {/* put Entire.Life logo here */}
+            </Nav>
+            <h1 className="hero-header container">
+              <div className="brand">Plan. Remember.</div>
+              <div>Live a Meaningful Life.</div>
+            </h1>
+            <div className="container">
+              <p>
+                Entire.Life is a symbolic life calendar that helps you
+                remember the good and plan for the best.
+              </p>
             </div>
-          </div>
-          <div className="trailing">
-            <img src={spoon} className="logo" alt="logo: a spoonful of diamonds" />
+            <p style={{marginTop: 0}}>
+              <Link to="/signin" className="button" style={{boxShadow: '-1px 1px 8px rgba(255,255,255,0.5)'}}>
+                Claim my free life calendar now
+              </Link>
+            </p>
+            <div className="devices-photo">
+              <img src={screenshots} alt="Entire.Life works on all devices"/>
+            </div>
           </div>
         </div>
         <div className="bg-light">

@@ -80,7 +80,7 @@ export default class Signin extends React.Component {
             <div>Live a Meaningful Life.</div>
           </h1>
             {this.state.loading
-              ? <img src={spinner} width="100px" height="100px" alt="loading" style={{marginTop: '1.5rem'}}/>
+              ? <img src={spinner} width="50px" height="50px" alt="loading" style={{margin: '0 auto'}}/>
               : <div id="signin" ref="signin"/>
             }
           <div className="container-wide">

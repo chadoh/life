@@ -33,16 +33,16 @@ const steps = [{
 }]
 
 const tourCallbacks = {
-  "a.now": (slug, user) => {
-    setTimeout(() => {
-      history.pushState(null, `/${slug}/week/${user.get('current_week')}`)
-    }, 500)
-  },
-  "a.previous": (slug, user) => {
-    setTimeout(() => {
-      history.pushState(null, `/${slug}/week/${user.get('current_week') - 1}`)
-    }, 500)
-  },
+  // "a.now": (slug, user) => {
+  //   setTimeout(() => {
+  //     history.pushState(null, `/${slug}/week/${user.get('current_week')}`)
+  //   }, 500)
+  // },
+  // "a.previous": (slug, user) => {
+  //   setTimeout(() => {
+  //     history.pushState(null, `/${slug}/week/${user.get('current_week') - 1}`)
+  //   }, 500)
+  // },
   "a.next": (slug, user) => {
     setTimeout(() => {
       history.pushState(null, `/${slug}/week/${user.get('current_week') + 1}`)

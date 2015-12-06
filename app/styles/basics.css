@@ -54,10 +54,19 @@ a:focus, a:hover {
   .two-col > *:first-child {
     margin-right: 4%;
   }
+}
 
+.row {
+  margin-bottom: 7rem;
+}
+@media(min-width: 525px) {
   .row {
+    margin-bottom: 0;
     display: flex;
     justify-content: space-between;
+  }
+  .row.reverse {
+    flex-direction: row-reverse;
   }
   [class^=col] {
     display: inline-block;
@@ -71,6 +80,10 @@ a:focus, a:hover {
   .col-sm-8 {
     width: 64.6666666%;
   }
+}
+
+.centered {
+  text-align: center;
 }
 
 .circle {

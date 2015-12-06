@@ -42,7 +42,7 @@ export default class Home extends React.Component {
         <div className="bg-light">
           <div className="container">
             <div className="row">
-              <div className="col-sm-4">
+              <div className="col-sm-4 centered">
                 <img src={plotPoints} className="circle" alt="section of a life calendar showing ages 20 to 30, with a kissy emoji and a bride emoji showing"/>
               </div>
               <div className="col-sm-8">
@@ -55,7 +55,10 @@ export default class Home extends React.Component {
                 </p>
               </div>
             </div>
-            <div className="row">
+            <div className="row reverse">
+              <div className="col-sm-4 centered">
+                <img src={payOffDebt} className="circle" alt="a goal to pay of student loans by a date that's now in the past, with buttons to mark complete, snooze, or delete it"/>
+              </div>
               <div className="col-sm-8">
                 <h2 className="brand">Plan Ahead</h2>
                 <p>
@@ -65,13 +68,10 @@ export default class Home extends React.Component {
                   all about it.
                 </p>
               </div>
-              <div className="col-sm-4">
-                <img src={payOffDebt} className="circle" alt="a goal to pay of student loans by a date that's now in the past, with buttons to mark complete, snooze, or delete it"/>
-              </div>
             </div>
             <div className="row">
-              <div className="col-sm-4">
-                <img src={spoon} className="circle" alt="a spoon"/>
+              <div className="col-sm-4 centered">
+                <img src={spoon} alt="a spoon"/>
               </div>
               <div className="col-sm-8">
                 <h2 className="brand">Stay Motivated</h2>

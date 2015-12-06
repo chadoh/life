@@ -35,15 +35,6 @@ a:focus, a:hover {
 .text-muted {
   color: gray;
 }
-.flex-row {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-.flex-row > * {
-  flex: 1;
-}
 .pull-right {
   float: right;
 }
@@ -63,4 +54,25 @@ a:focus, a:hover {
   .two-col > *:first-child {
     margin-right: 4%;
   }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  [class^=col] {
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .col-sm-4 {
+    width: 31.3333333%;
+  }
+  .col-sm-8 {
+    width: 64.6666666%;
+  }
+}
+
+.circle {
+  border-radius: 50%;
 }

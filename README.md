@@ -1,4 +1,4 @@
-# Life
+# Entire.Life
 
 A service to quickly make an inspiring chart of your entire life, similar to [Brittany Fork's](http://brittanyforks.com/life/).
 

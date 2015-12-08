@@ -23,6 +23,9 @@ a {
 a:focus, a:hover {
   box-shadow: 0 2px 0 0 #B36A30;
 }
+a:active {
+  background: #E3B998;
+}
 .light-links a {
   color: #E3B998;
 }
@@ -31,6 +34,15 @@ a:focus, a:hover {
 }
 .button, [type=submit], button {
   background-color: #B36A30;
+}
+a.close-link {
+  color: gray;
+}
+a.close-link:focus, a.close-link:hover {
+  box-shadow: none;
+}
+a.close-link:active {
+  background: transparent;
 }
 .text-muted {
   color: gray;

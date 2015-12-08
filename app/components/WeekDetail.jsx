@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import UserStore from '../stores/UserStore'
 import LoginStore from '../stores/LoginStore'
 import EventStore from '../stores/EventStore'
@@ -78,6 +79,9 @@ export default class WeekDetail extends React.Component {
           <header>
             <h2 className="brand">Week of {this.start().toDateString()}</h2>
             <span className="age">{`${Math.floor(+this.props.params.weekno/52)} years old`}</span>
+            <Link to={`/${this.props.params.slug}`} className="pull-right close-link">
+              &times;
+            </Link>
           </header>
           <div className={this.authed() ? "two-col" : ""}>
             <div>

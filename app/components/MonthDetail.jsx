@@ -40,8 +40,13 @@ export default class MonthDetail extends React.Component {
     if(UserStore.getState().getIn(['user', 'born'])) {
       return (
         <div className="container-wide detail-inner">
-          <h2 className="brand">Month of {this.start().toDateString().substr(4)}</h2>
-          {Math.floor(+this.props.params.monthno/13)} years old
+          <header>
+            <h2 className="brand">Month of {this.start().toDateString().substr(4)}</h2>
+            <span className="age">{`${Math.floor(+this.props.params.monthno/13)} years old`}</span>
+            <Link to={`/${this.props.params.slug}`} className="pull-right close-link">
+              &times;
+            </Link>
+          </header>
           <ol className="weeks">
             {this.renderWeeks()}
           </ol>

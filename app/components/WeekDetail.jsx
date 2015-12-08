@@ -5,7 +5,6 @@ import LoginStore from '../stores/LoginStore'
 import EventStore from '../stores/EventStore'
 import Events from './Events'
 import EventForm from './EventForm'
-import PaymentForm from './PaymentForm'
 import { FREE_EVENTS } from '../config'
 import connectToStores from 'alt/utils/connectToStores';
 
@@ -34,10 +33,8 @@ export default class WeekDetail extends React.Component {
     return this.props.params.weekno !== nextProps.params.weekno || // navigated to different week
       this.props.params.slug !== nextProps.params.slug || // navigated to different user (not sure if possible)
       this.props.events !== nextProps.events || // updated an event
-      (!this.props.signedInUser && this.props.signedInUser) || // user logged in
-      (this.props.signedInUser && !this.props.signedInUser) || // user logged out
-      (this.props.signedInUser && nextProps.signedInUser && // current user's event count changed
-        this.props.signedInUser.event_count !== nextProps.signedInUser.event_count) ||
+      (!this.props.signedInUser && nextProps.signedInUser) || // user logged in
+      (this.props.signedInUser && !nextProps.signedInUser) || // user logged out
       nextState.eventUnderEdit
   }
 
@@ -61,14 +58,9 @@ export default class WeekDetail extends React.Component {
 
   form() {
     if(this.authed()) {
-      if(this.props.signedInUser.event_count < FREE_EVENTS || this.props.signedInUser.paid === true) {
-        return <EventForm weekno={+this.props.params.weekno} start={this.start()}
-          slug={this.props.params.slug} signedInUser={this.props.signedInUser}
-          eventUnderEdit={this.state.eventUnderEdit}
-        />
-      } else {
-        return <PaymentForm user={this.props.signedInUser} />
-      }
+      return <EventForm weekno={+this.props.params.weekno} start={this.start()}
+        slug={this.props.params.slug} eventUnderEdit={this.state.eventUnderEdit}
+      />
     }
   }
 

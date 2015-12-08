@@ -157,18 +157,6 @@ class EventForm extends React.Component {
     }
   }
 
-  remainingEvents() {
-    if(!this.props.signedInUser.paid) {
-      const remaining = FREE_EVENTS - this.props.signedInUser.event_count;
-      return (
-        <small>
-          {remaining} free event{remaining === 1 ? ' ' : 's '}
-          remaining – <Link to="/pricing">why?</Link>
-        </small>
-      )
-    }
-  }
-
   tense() {
     const now = new Date()
     if(this.end() < now) return -1;
@@ -196,7 +184,6 @@ class EventForm extends React.Component {
           {this.props.eventUnderEdit ? 'Edit ' : this.newText()}
           {this.typeText()}:
         </h3>
-        {this.remainingEvents()}
         <p>
           <label htmlFor="title">Title</label>
           <input id="title" name="title" ref="title" type="text"
@@ -234,10 +221,6 @@ EventForm.propTypes = {
     if(props.event && !Immutable.Map.isMap(props.event))
       return new Error("Expected event to be an Immutable.Map!")
   },
-  signedInUser: React.PropTypes.shape({
-    paid: React.PropTypes.bool.isRequired,
-    event_count: React.PropTypes.number.isRequired,
-  }).isRequired,
 }
 
 ReactMixin(EventForm.prototype, LinkedStateMixin);

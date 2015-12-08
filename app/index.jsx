@@ -8,8 +8,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router, Route, IndexRoute} from 'react-router'
 import Home from './components/Home'
-import Pricing from './components/Pricing'
-import Payment from './components/Payment'
 import Signin from './components/Signin'
 import SigningUp from './components/SigningUp'
 import User from './components/User'
@@ -30,9 +28,6 @@ let router = (
   <Router history={history}>
     <Route path="/" component={Home}/>
     <Route path="signin" component={Signin}/>
-
-    <Route path="/pricing" component={Pricing}/>
-    <Route path="/payment" component={Payment}/>
 
     <Route path="/signing-up" component={SigningUp}/>
 

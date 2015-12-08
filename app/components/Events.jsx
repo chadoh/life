@@ -1,6 +1,7 @@
 import React from 'react'
 import Event from './Event'
 import UserStore from '../stores/UserStore'
+import Immutable from 'immutable'
 
 const eventsOrPlans = ({weekno}) => {
   const now = new Date()
@@ -12,7 +13,7 @@ const eventsOrPlans = ({weekno}) => {
   else return 'events or plans';
 }
 
-export default ({events, slug, weekno, authed, onEdit}) => {
+const Events = ({events, slug, weekno, authed, onEdit}) => {
   return <ol className="events">
     {!events ? `No ${eventsOrPlans({weekno})}` : events.map(event => {
       return <Event
@@ -26,3 +27,16 @@ export default ({events, slug, weekno, authed, onEdit}) => {
     })}
   </ol>
 }
+
+Events.propTypes = {
+  events: (props) => {
+    if(!Immutable.List.isList(props.events))
+      return new Error("Expected events to be an Immutable.List!")
+  },
+  slug: React.PropTypes.string.isRequired,
+  weekno: React.PropTypes.number.isRequired,
+  authed: React.PropTypes.bool.isRequired,
+  onEdit: React.PropTypes.func,
+}
+
+export default Events

@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import AuthService from '../services/AuthService'
 import SignedInNav from './SignedInNav'
 
-export default class Nav extends React.Component {
+class Nav extends React.Component {
   constructor(props) {
     super(props)
     this.state = this._getLoginState()
@@ -50,3 +50,9 @@ export default class Nav extends React.Component {
     )
   }
 }
+
+Nav.propTypes = {
+  startTour: React.PropTypes.func,
+}
+
+export default Nav

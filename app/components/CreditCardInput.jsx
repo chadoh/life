@@ -3,7 +3,7 @@ import React from 'react'
 let visaPattern = /^(....)(....)?(....)?(....)?(.+)?$/
 let amexPattern = /^(...)(....)?(.....)?(....)?(.+)?$/
 
-export default class CreditCardInput extends React.Component {
+class CreditCardInput extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -77,3 +77,19 @@ export default class CreditCardInput extends React.Component {
     )
   }
 }
+
+CreditCardInput.propTypes = {
+  valueLink: React.PropTypes.shape({
+    value: React.PropTypes.string,
+    requestChange: React.PropTypes.func,
+  }).isRequired,
+  onBlur: React.PropTypes.func,
+  onFocus: React.PropTypes.func,
+}
+
+CreditCardInput.defaultProps = {
+  onBlur: () => {},
+  onFocus: () => {},
+}
+
+export default CreditCardInput

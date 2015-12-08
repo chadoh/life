@@ -3,6 +3,7 @@ import ReactMixin from 'react-mixin'
 import ReactEmoji from 'react-emoji'
 import EventService from '../services/EventService'
 import Linkify from 'react-linkify'
+import Immutable from 'immutable'
 
 const months = {
   '01': 'Jan',
@@ -19,7 +20,7 @@ const months = {
   '12': 'Dec',
 }
 
-export default class Event extends React.Component {
+class Event extends React.Component {
   constructor(props) {
     super(props)
     this.renderActions = this.renderActions.bind(this)
@@ -129,5 +130,18 @@ export default class Event extends React.Component {
     )
   }
 }
+
 ReactMixin(Event.prototype, ReactEmoji);
 
+Event.propTypes = {
+  slug: React.PropTypes.string.isRequired,
+  event: (props) => {
+    if(!Immutable.Map.isMap(props.event))
+      return new Error("Expected event to be an Immutable.Map!")
+  },
+  weekno: React.PropTypes.number.isRequired,
+  authed: React.PropTypes.bool.isRequired,
+  onEdit: React.PropTypes.func,
+}
+
+export default Event;

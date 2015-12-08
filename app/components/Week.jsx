@@ -2,10 +2,11 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactMixin from 'react-mixin';
 import ReactEmoji from 'react-emoji';
+import Immutable from 'immutable'
 import UserStore from '../stores/UserStore';
 import { Link } from 'react-router';
 
-export default class Week extends React.Component {
+class Week extends React.Component {
   emoji() {
     return this.props.events && this.props.events.first() ?
       this.emojify(this.props.events.first().get('emoji'), {attributes: {className: 'emoji'}}) :
@@ -50,5 +51,16 @@ export default class Week extends React.Component {
   }
 }
 
+Week.propTypes = {
+  events: (props, propName, componentName) => {
+    if(props.events && !Immutable.List.isList(props.events))
+      return new Error(`${componentName} component expected '${propName}' prop to be an Immutable.List!`)
+  },
+  weekno: React.PropTypes.number.isRequired,
+  selected: React.PropTypes.bool.isRequired,
+}
+
 ReactMixin(Week.prototype, ReactEmoji);
 ReactMixin(Week.prototype, PureRenderMixin);
+
+export default Week

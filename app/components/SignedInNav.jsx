@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import Avatar from '../components/Avatar';
 import history from '../lib/history';
 
-export default class AuthenticatedApp extends React.Component {
+class SignedInNav extends React.Component {
   constructor(props) {
     super(props)
     this.toggleFocus = this.toggleFocus.bind(this)
@@ -59,3 +59,12 @@ export default class AuthenticatedApp extends React.Component {
     )
   }
 }
+
+SignedInNav.propTypes = {
+  user: React.PropTypes.shape({
+    slug: React.PropTypes.string.isRequired,
+  }).isRequired,
+  startTour: React.PropTypes.func,
+}
+
+export default SignedInNav

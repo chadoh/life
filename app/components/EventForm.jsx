@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactMixin from 'react-mixin'
 import LinkedStateMixin from 'react-addons-linked-state-mixin'
+import Immutable from 'immutable'
 import UserStore from '../stores/UserStore'
 import EventService from '../services/EventService'
 import emojiMap from 'react-emoji-picker/lib/emojiMap'
@@ -19,7 +20,7 @@ const emojiPickerStyles = {
   zIndex: '2'
 }
 
-export default class EventForm extends React.Component {
+class EventForm extends React.Component {
   constructor(props) {
     super(props)
 
@@ -226,4 +227,19 @@ export default class EventForm extends React.Component {
   }
 }
 
+EventForm.propTypes = {
+  slug: React.PropTypes.string.isRequired,
+  weekno: React.PropTypes.number.isRequired,
+  eventUnderEdit: (props) => {
+    if(props.event && !Immutable.Map.isMap(props.event))
+      return new Error("Expected event to be an Immutable.Map!")
+  },
+  signedInUser: React.PropTypes.shape({
+    paid: React.PropTypes.bool.isRequired,
+    event_count: React.PropTypes.number.isRequired,
+  }).isRequired,
+}
+
 ReactMixin(EventForm.prototype, LinkedStateMixin);
+
+export default EventForm

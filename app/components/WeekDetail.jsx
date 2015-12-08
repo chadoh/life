@@ -61,7 +61,7 @@ export default class WeekDetail extends React.Component {
   form() {
     if(this.authed()) {
       if(this.props.signedInUser.event_count < FREE_EVENTS || this.props.signedInUser.paid === true) {
-        return <EventForm weekno={this.props.params.weekno} start={this.start()}
+        return <EventForm weekno={+this.props.params.weekno} start={this.start()}
           slug={this.props.params.slug} signedInUser={this.props.signedInUser}
           eventUnderEdit={this.state.eventUnderEdit}
         />
@@ -83,7 +83,7 @@ export default class WeekDetail extends React.Component {
             <div>
               <h3>This week in {this.whose()} life:</h3>
               <Events events={this.props.events.get(this.props.params.weekno)}
-                slug={this.props.params.slug} weekno={this.props.params.weekno}
+                slug={this.props.params.slug} weekno={+this.props.params.weekno}
                 authed={this.authed()} onEdit={this.editEvent}
               />
             </div>

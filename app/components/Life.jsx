@@ -9,7 +9,7 @@ import Immutable from 'immutable';
 import tourSteps from '../lib/tourSteps';
 
 @connectToStores
-export default class Life extends React.Component {
+class Life extends React.Component {
   static getStores() {
     return [IsMobileStore];
   }
@@ -138,3 +138,17 @@ export default class Life extends React.Component {
     );
   }
 }
+
+Life.propTypes = {
+  events: (props) => {
+    if(!Immutable.Map.isMap(props.events))
+      return new Error("Expected events to be an Immutable.Map!")
+  },
+  addSteps: React.PropTypes.func,
+  showTour: React.PropTypes.func,
+  weekno: React.PropTypes.string,
+  monthno: React.PropTypes.string,
+  detail: React.PropTypes.element,
+}
+
+export default Life

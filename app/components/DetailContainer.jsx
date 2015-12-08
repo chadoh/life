@@ -2,7 +2,7 @@ import React from 'react'
 
 let scrollTimers = [];
 
-export default class DetailContainer extends React.Component {
+class DetailContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -69,3 +69,14 @@ export default class DetailContainer extends React.Component {
     )
   }
 }
+
+DetailContainer.propTypes = {
+  old: React.PropTypes.bool,
+  children: React.PropTypes.element.isRequired,
+}
+
+DetailContainer.defaultProps = {
+  old: false,
+}
+
+export default DetailContainer

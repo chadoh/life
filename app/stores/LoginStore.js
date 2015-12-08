@@ -102,7 +102,7 @@ class LoginStore {
   }
 
   static canEdit(user) {
-    return user && this.getState().user &&
+    return !!user && !!this.getState().user &&
       user.get('id') === this.getState().user.id
   }
 }

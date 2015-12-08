@@ -1,11 +1,12 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import ReactMixin from 'react-mixin';
-import ReactEmoji from 'react-emoji';
-import UserStore from '../stores/UserStore';
-import { Link } from 'react-router';
+import React from 'react'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
+import ReactMixin from 'react-mixin'
+import ReactEmoji from 'react-emoji'
+import Immutable from 'immutable'
+import UserStore from '../stores/UserStore'
+import { Link } from 'react-router'
 
-export default class Month extends React.Component {
+class Month extends React.Component {
   emoji() {
     return this.props.events && this.props.events.first() ?
       this.emojify(this.props.events.first().get('emoji'), {attributes: {className: 'emoji'}}) :
@@ -48,3 +49,14 @@ export default class Month extends React.Component {
 
 ReactMixin(Month.prototype, ReactEmoji);
 ReactMixin(Month.prototype, PureRenderMixin);
+
+Month.propTypes = {
+  events: (props, propName, componentName) => {
+    if(!Immutable.List.isList(props.events))
+      return new Error(`${componentName} component expected '${propName}' prop to be an Immutable.List!`)
+  },
+  monthno: React.PropTypes.number.isRequired,
+  selected: React.PropTypes.bool.isRequired,
+}
+
+export default Month

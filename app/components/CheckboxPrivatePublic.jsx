@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({isPrivate, whenClicked}) => {
+const Checkbox = ({isPrivate, whenClicked}) => {
   return (
     <p>
       <span className="checkbox-private-public">
@@ -19,3 +19,14 @@ export default ({isPrivate, whenClicked}) => {
     </p>
   )
 }
+
+Checkbox.propTypes = {
+  isPrivate: React.PropTypes.bool.isRequired,
+  whenClicked: React.PropTypes.func,
+}
+
+Checkbox.defaultProps = {
+  whenClicked: () => {},
+}
+
+export default Checkbox

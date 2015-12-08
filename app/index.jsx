@@ -1,4 +1,3 @@
-import './vendor/picnic.min.css'
 import './main.css'
 
 import './lib/googleAuth'

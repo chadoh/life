@@ -5,6 +5,7 @@ import connectToStores from 'alt/utils/connectToStores'
 
 import Question1 from './quiz/Question1'
 import Question2 from './quiz/Question2'
+import Question3 from './quiz/Question3'
 import LifeLoading from './LifeLoading'
 import LoginStore from '../stores/LoginStore'
 import EventService from '../services/EventService'
@@ -23,7 +24,7 @@ class Quiz extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      answers: [],
+      answers: {},
     }
 
     this.save = this.save.bind(this)
@@ -45,21 +46,22 @@ class Quiz extends React.Component {
     return +this.props.location.query.n || 0;
   }
 
-  updateAnswers({questionNumber, id, emoji, title, date, weekno}) {
+  updateAnswers({questionNumber, ...opts}) {
     let answers = this.state.answers;
-
-    if(answers[questionNumber])
-      answers[questionNumber] = {id, emoji, title, date, weekno};
-    else
-      answers.push({id, emoji, title, date, weekno});
-
+    answers[questionNumber] = {...opts};
     this.setState({answers})
+  }
+
+  nextUnanswered() {
+    for (let i = 0; i < this.props.questions.length; i++) {
+      if(!this.state.answers[i]) return i;
+    }
   }
 
   save({emoji, title, date} = {}) {
     const questionNumber = this.currentQuestion();
     this.updateAnswers(merge(arguments[0], {questionNumber}))
-    this.props.history.pushState(null, '/quiz', {n: this.state.answers.length})
+    this.props.history.pushState(null, '/quiz', {n: this.nextUnanswered()})
 
     if(!title) return setTimeout(this.possiblyFinishQuiz.bind(this), 100);
 
@@ -72,7 +74,7 @@ class Quiz extends React.Component {
   }
 
   possiblyFinishQuiz() {
-    if(this.props.location.query.n === this.props.questions.length - 1) {
+    if(this.currentQuestion() === this.props.questions.length - 1) {
       this.props.history.pushState(null, `/${this.props.user.slug}`, {tour: true})
     }
   }
@@ -105,6 +107,7 @@ Quiz.defaultProps = {
   questions: [
     <Question1/>,
     <Question2/>,
+    <Question3/>,
     <LifeLoading/>,
   ]
 }

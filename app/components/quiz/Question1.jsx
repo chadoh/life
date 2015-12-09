@@ -34,6 +34,11 @@ class Question1 extends React.Component {
             onChange={this.prompt1answer2.bind(this)} checked={value === "no"}/>
           <span className="checkable">No</span>
         </label>
+        <label style={{minWidth: 200}}>
+          <input type="radio" name="prompt1" value="someday"
+            onChange={this.prompt1answer3.bind(this)} checked={value === "someday"}/>
+          <span className="checkable">No, but I plan to!</span>
+        </label>
       </p>
     ]
   }
@@ -45,6 +50,13 @@ class Question1 extends React.Component {
   prompt1answer2() {
     this.setState({prompts: [this.prompt1('no')]})
     this.props.onSave({emoji: ':x:'})
+  }
+
+  prompt1answer3() {
+    this.setState({
+      title: "Start having kids",
+      prompts: [this.prompt1('someday'), this.prompt2B()]
+    })
   }
 
   prompt2A(value) {
@@ -89,6 +101,28 @@ class Question1 extends React.Component {
         this.prompt2A(this.state.childName),
         this.prompt3A({name: this.state.childName, date: e.target.value}),
         this.saveButton()
+      ]
+    })
+  }
+
+  prompt2B(date) {
+    return [
+      <p key="prompt2B">
+        <label htmlpFor="name">When do you plan to start?</label>
+        <input type="date" required className="form-control" id="date" autoComplete='off'
+          onChange={this.prompt2Banswer.bind(this)} value={date}
+        />
+      </p>
+    ]
+  }
+
+  prompt2Banswer(e) {
+    this.setState({
+      date: e.target.value,
+      prompts: [
+        this.prompt1('someday'),
+        this.prompt2B(e.target.value),
+        this.saveButton(),
       ]
     })
   }

@@ -7,7 +7,6 @@ import EventService from '../services/EventService'
 import emojiMap from 'react-emoji-picker/lib/emojiMap'
 import EmojiPicker from 'react-emoji-picker'
 import { Link } from 'react-router'
-import { FREE_EVENTS } from '../config'
 
 const emojiPickerStyles = {
   position: 'absolute',

@@ -5,7 +5,6 @@ import LoginStore from '../stores/LoginStore'
 import EventStore from '../stores/EventStore'
 import Events from './Events'
 import EventForm from './EventForm'
-import { FREE_EVENTS } from '../config'
 import connectToStores from 'alt/utils/connectToStores';
 
 @connectToStores

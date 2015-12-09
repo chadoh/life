@@ -38,6 +38,7 @@ class EventService {
     .then(response => {
       EventActions.createdEvent(response.event)
       LoginActions.incrementEventCount()
+      return response
     })
   }
 
@@ -58,6 +59,7 @@ class EventService {
     })
     .then(response => {
       EventActions.createdEvent(response.event)
+      return response
     })
   }
 
@@ -83,6 +85,7 @@ class EventService {
     .then(response => {
       EventActions.destroyedEvent({id, weekno})
       LoginActions.decrementEventCount()
+      return response
     })
   }
 

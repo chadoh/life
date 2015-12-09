@@ -108,7 +108,7 @@ export default class User extends React.Component {
       return (
         <Life events={this.state.events} addSteps={this.addSteps}
           startTour={this.startTour} slug={this.props.params.slug}
-          showTour={this.props.location.query.tour}
+          showTour={!!this.props.location.query.tour}
           detail={this.props.children} weekno={this.props.params.weekno}
           monthno={this.props.params.monthno}
         />

@@ -145,7 +145,7 @@ Life.propTypes = {
       return new Error("Expected events to be an Immutable.Map!")
   },
   addSteps: React.PropTypes.func,
-  showTour: React.PropTypes.func,
+  showTour: React.PropTypes.bool,
   weekno: React.PropTypes.string,
   monthno: React.PropTypes.string,
   detail: React.PropTypes.element,

@@ -32,6 +32,9 @@ a:active {
 .light-links a:hover, .light-links a:focus {
   box-shadow: 0 2px 0 0 #E3B998;
 }
+.light-links a:active {
+  background: #B36A30;
+}
 .button, [type=submit], button {
   background-color: #B36A30;
 }
@@ -44,6 +47,9 @@ a.close-link:focus, a.close-link:hover {
 a.close-link:active {
   background: transparent;
 }
+[type=radio] + .checkable:hover:before, [type=checkbox] + .checkable:hover:before, [type=radio]:focus + .checkable:before, [type=checkbox]:focus + .checkable:before {
+  border: 1px solid #B36A30;
+}
 .text-muted {
   color: gray;
 }
@@ -54,6 +60,10 @@ a.close-link:active {
 .pad-top {
   padding-top: 3rem;
   padding-bottom: 3rem;
+}
+
+header h1 {
+  padding: 0;
 }
 
 @media(min-width: 700px) {
@@ -92,6 +102,13 @@ a.close-link:active {
   .col-sm-8 {
     width: 64.6666666%;
   }
+}
+
+.horizontal-spacing {
+  display: flex;
+}
+.horizontal-spacing > * {
+  flex: 1;
 }
 
 .centered {

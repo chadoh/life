@@ -10,6 +10,7 @@ import {Router, Route, IndexRoute} from 'react-router'
 import Home from './components/Home'
 import Signin from './components/Signin'
 import SigningUp from './components/SigningUp'
+import Quiz from './components/Quiz'
 import User from './components/User'
 import MonthDetail from './components/MonthDetail'
 import WeekDetail from './components/WeekDetail'
@@ -30,6 +31,7 @@ let router = (
     <Route path="signin" component={Signin}/>
 
     <Route path="/signing-up" component={SigningUp}/>
+    <Route path="/quiz" component={Quiz}/>
 
     <Route path="/account" component={UserEdit} />
     <Route path="/:slug" component={User}>

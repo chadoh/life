@@ -29,9 +29,9 @@ const Events = ({events, slug, weekno, authed, onEdit}) => {
 }
 
 Events.propTypes = {
-  events: (props) => {
-    if(!Immutable.List.isList(props.events))
-      return new Error("Expected events to be an Immutable.List!")
+  events: (props, propName, componentName) => {
+    if(props.events && !Immutable.List.isList(props.events))
+      return new Error(`${componentName} expected prop 'events' to be an Immutable.List!`)
   },
   slug: React.PropTypes.string.isRequired,
   weekno: React.PropTypes.number.isRequired,

@@ -1,7 +1,6 @@
 import React from 'react'
 import LinkedStateMixin from 'react-addons-linked-state-mixin'
 import ReactMixin from 'react-mixin'
-import AuthService from '../services/AuthService'
 import LoginStore from '../stores/LoginStore'
 import { Link } from 'react-router'
 import UserService from '../services/UserService';

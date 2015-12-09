@@ -4,6 +4,7 @@ import {Link} from 'react-router'
 import connectToStores from 'alt/utils/connectToStores'
 
 import Question1 from './quiz/Question1'
+import Question2 from './quiz/Question2'
 import LifeLoading from './LifeLoading'
 import LoginStore from '../stores/LoginStore'
 import EventService from '../services/EventService'
@@ -16,7 +17,7 @@ class Quiz extends React.Component {
   }
 
   static getPropsFromStores() {
-    return LoginStore.getState().user
+    return LoginStore.getState()
   }
 
   constructor(props) {
@@ -30,13 +31,13 @@ class Quiz extends React.Component {
   }
 
   componentDidMount() {
-    if(!this.props.slug) {
+    if(!this.props.user.slug) {
       this.props.history.replaceState(null, "/")
     }
   }
 
   componentDidUpdate() {
-    if(!this.props.slug) {
+    if(!this.props.user.slug) {
       this.props.history.replaceState(null, "/")
     }
   }
@@ -57,7 +58,7 @@ class Quiz extends React.Component {
 
     if(!title) return setTimeout(this.possiblyFinishQuiz.bind(this), 100);
 
-    EventService.create({slug: this.props.slug, emoji, title, date}).
+    EventService.create({slug: this.props.user.slug, emoji, title, date}).
       then(response => {
         let {id, emoji, title, date, weekno} = response.event;
         this.updateAnswers({questionNumber, id, emoji, title, date, weekno})
@@ -67,7 +68,7 @@ class Quiz extends React.Component {
 
   possiblyFinishQuiz() {
     if(this.state.answers.length === this.props.questions.length - 1) {
-      this.props.history.pushState(null, `/${this.props.slug}`, {tour: true})
+      this.props.history.pushState(null, `/${this.props.user.slug}`, {tour: true})
     }
   }
 
@@ -76,16 +77,12 @@ class Quiz extends React.Component {
       <div className="hero sunset-cliffs">
         <div className="vertical-centering container">
           <div className="bg-tint">
-            <header>
-              <Link to={`/${this.props.slug}`} className="pull-right close-link"><small>Skip this</small></Link>
-              <h1 className="brand">Welcome!</h1>
-              <small>Now answer a few quick questions to make your calendar more fun!</small>
-            </header>
+            <Link to={`/${this.props.user.slug}`} className="pull-right close-link"><small>Skip this</small></Link>
 
             {React.cloneElement(
               this.props.questions[this.state.answers.length], {
                 onSave: this.save,
-                user: this.props,
+                user: this.props.user,
             })}
 
           </div>
@@ -102,6 +99,7 @@ Quiz.propTypes = {
 Quiz.defaultProps = {
   questions: [
     <Question1/>,
+    <Question2/>,
     <LifeLoading/>,
   ]
 }

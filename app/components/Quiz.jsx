@@ -24,7 +24,6 @@ class Quiz extends React.Component {
     super(props);
     this.state = {
       answers: [],
-      currentQuestion: 0,
     }
 
     this.save = this.save.bind(this)
@@ -42,19 +41,25 @@ class Quiz extends React.Component {
     }
   }
 
+  currentQuestion() {
+    return +this.props.location.query.n || 0;
+  }
+
   updateAnswers({questionNumber, id, emoji, title, date, weekno}) {
     let answers = this.state.answers;
-    if(answers[questionNumber]) {
-      answers[questionNumber] = {id, emoji, title, date, weekno}
-    } else {
-      answers.push({id, emoji, title, date, weekno})
-    }
+
+    if(answers[questionNumber])
+      answers[questionNumber] = {id, emoji, title, date, weekno};
+    else
+      answers.push({id, emoji, title, date, weekno});
+
     this.setState({answers})
   }
 
   save({emoji, title, date} = {}) {
-    const questionNumber = this.state.answers.length;
-    this.updateAnswers(merge(arguments[0], {questionNumber: questionNumber}))
+    const questionNumber = this.currentQuestion();
+    this.updateAnswers(merge(arguments[0], {questionNumber}))
+    this.props.history.pushState(null, '/quiz', {n: this.state.answers.length})
 
     if(!title) return setTimeout(this.possiblyFinishQuiz.bind(this), 100);
 
@@ -67,7 +72,7 @@ class Quiz extends React.Component {
   }
 
   possiblyFinishQuiz() {
-    if(this.state.answers.length === this.props.questions.length - 1) {
+    if(this.props.location.query.n === this.props.questions.length - 1) {
       this.props.history.pushState(null, `/${this.props.user.slug}`, {tour: true})
     }
   }
@@ -80,7 +85,7 @@ class Quiz extends React.Component {
             <Link to={`/${this.props.user.slug}`} className="pull-right close-link"><small>Skip this</small></Link>
 
             {React.cloneElement(
-              this.props.questions[this.state.answers.length], {
+              this.props.questions[this.currentQuestion()], {
                 onSave: this.save,
                 user: this.props.user,
             })}

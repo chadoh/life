@@ -29,55 +29,65 @@ class Question1 extends React.Component {
             onChange={this.prompt1answer1.bind(this)} checked={value === "yes"}/>
           <span className="checkable">Yes</span>
         </label>
+        <label style={{minWidth: 200}}>
+          <input type="radio" name="prompt1" value="no"
+            onChange={this.prompt1answer2.bind(this)} checked={value === "no"}/>
+          <span className="checkable">No</span>
+        </label>
       </p>
     ]
   }
 
-  prompt1answer1(e) {
-    this.setState({prompts: [this.prompt1('yes'), this.prompt2()]})
+  prompt1answer1() {
+    this.setState({prompts: [this.prompt1('yes'), this.prompt2A()]})
   }
 
-  prompt2(value) {
+  prompt1answer2() {
+    this.setState({prompts: [this.prompt1('no')]})
+    this.props.onSave({emoji: ':x:'})
+  }
+
+  prompt2A(value) {
     return [
-      <p key="prompt2">
+      <p key="prompt2A">
         <label htmlpFor="name">What's your firstborn's name?</label>
         <input type="text" name="name" id="name"
-          onChange={this.prompt2answer.bind(this)} value={value}
+          onChange={this.prompt2Aanswer.bind(this)} value={value}
           autoComplete='off'
         />
       </p>
     ]
   }
 
-  prompt2answer(e) {
+  prompt2Aanswer(e) {
     this.setState({
       childName: e.target.value,
       prompts: [
         this.prompt1('yes'),
-        this.prompt2(e.target.value),
-        this.prompt3({name: e.target.value})
+        this.prompt2A(e.target.value),
+        this.prompt3A({name: e.target.value})
       ]
     })
   }
 
-  prompt3({name, date}) {
+  prompt3A({name, date}) {
     return [
-      <p key="prompt3">
+      <p key="prompt3A">
         <label htmlFor="date">When was {name} born?</label>
         <input type="date" required className="form-control" id="date" autoComplete='off'
-          onChange={this.prompt3answer.bind(this)} value={date}
+          onChange={this.prompt3Aanswer.bind(this)} value={date}
         />
       </p>
     ]
   }
 
-  prompt3answer(e) {
+  prompt3Aanswer(e) {
     this.setState({
       date: e.target.value,
       prompts: [
         this.prompt1('yes'),
-        this.prompt2(this.state.childName),
-        this.prompt3({name: this.state.childName, date: e.target.value}),
+        this.prompt2A(this.state.childName),
+        this.prompt3A({name: this.state.childName, date: e.target.value}),
         this.saveButton()
       ]
     })

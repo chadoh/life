@@ -51,20 +51,24 @@ class Quiz extends React.Component {
     this.setState({answers})
   }
 
-  save({emoji, title, date}) {
+  save({emoji, title, date} = {}) {
     const questionNumber = this.state.answers.length;
     this.updateAnswers(merge(arguments[0], {questionNumber: questionNumber}))
 
-    if(!title) return; // question not applicable
+    if(!title) return setTimeout(this.possiblyFinishQuiz.bind(this), 100);
 
     EventService.create({slug: this.props.slug, emoji, title, date}).
       then(response => {
         let {id, emoji, title, date, weekno} = response.event;
         this.updateAnswers({questionNumber, id, emoji, title, date, weekno})
-        if(this.state.answers.length === this.props.questions.length - 1) {
-          this.props.history.pushState(null, `/${this.props.slug}`, {tour: true})
-        }
+        this.possiblyFinishQuiz()
       })
+  }
+
+  possiblyFinishQuiz() {
+    if(this.state.answers.length === this.props.questions.length - 1) {
+      this.props.history.pushState(null, `/${this.props.slug}`, {tour: true})
+    }
   }
 
   render() {
@@ -79,7 +83,7 @@ class Quiz extends React.Component {
             </header>
 
             {React.cloneElement(
-              this.props.questions[this.state.currentQuestion], {
+              this.props.questions[this.state.answers.length], {
                 onSave: this.save,
                 user: this.props,
             })}

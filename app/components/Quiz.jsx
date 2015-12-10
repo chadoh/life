@@ -8,6 +8,7 @@ import Sibling from './questions/Sibling'
 import Vacation from './questions/Vacation'
 import Children from './questions/Children'
 import Relationship from './questions/Relationship'
+import Hundredth from './questions/Hundredth'
 import Loading from './Loading'
 import LoginStore from '../stores/LoginStore'
 import EventService from '../services/EventService'
@@ -127,6 +128,7 @@ Quiz.defaultProps = {
     <Vacation/>,
     <Children/>,
     <Relationship/>,
+    <Hundredth/>,
     <Loading/>,
   ]
 }

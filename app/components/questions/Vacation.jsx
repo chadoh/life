@@ -6,7 +6,7 @@ class Vacation extends React.Component {
     super(props)
 
     this.state = {
-      prompts: [this.prompt1(), this.cancelButton(), this.props.skip()]
+      prompts: [this.prompt1(), this.props.skip()]
     }
   }
 
@@ -27,12 +27,6 @@ class Vacation extends React.Component {
         />
       </p>
     ]
-  }
-
-  cancelButton() {
-    return <a key="cancel" onClick={this.save.bind(this)} href="#next">
-      I never have
-    </a>
   }
 
   prompt1answer(e) {

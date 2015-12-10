@@ -106,6 +106,7 @@ header h1 {
 
 .horizontal-spacing {
   display: flex;
+  flex-flow: wrap;
 }
 .horizontal-spacing > * {
   flex: 1;

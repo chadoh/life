@@ -84,6 +84,9 @@ class Move extends React.Component {
 
 Move.propTypes = {
   onSave: React.PropTypes.func,
+  user: React.PropTypes.shape({
+    slug: React.PropTypes.string,
+  }),
 }
 
 export default Move

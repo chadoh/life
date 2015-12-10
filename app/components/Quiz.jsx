@@ -3,11 +3,11 @@ import merge from 'webpack-merge'
 import {Link} from 'react-router'
 import connectToStores from 'alt/utils/connectToStores'
 
-import Question1 from './quiz/Question1'
-import Question2 from './quiz/Question2'
-import Question3 from './quiz/Question3'
-import Question4 from './quiz/Question4'
-import LifeLoading from './LifeLoading'
+import Vacation from './questions/Vacation'
+import Children from './questions/Children'
+import Relationship from './questions/Relationship'
+import Move from './questions/Move'
+import Loading from './Loading'
 import LoginStore from '../stores/LoginStore'
 import EventService from '../services/EventService'
 
@@ -121,11 +121,11 @@ Quiz.propTypes = {
 
 Quiz.defaultProps = {
   questions: [
-    <Question4/>,
-    <Question1/>,
-    <Question2/>,
-    <Question3/>,
-    <LifeLoading/>,
+    <Move/>,
+    <Vacation/>,
+    <Children/>,
+    <Relationship/>,
+    <Loading/>,
   ]
 }
 

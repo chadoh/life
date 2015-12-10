@@ -7,7 +7,7 @@ import EventStore from '../stores/EventStore';
 import UserActions from '../actions/UserActions';
 import EventActions from '../actions/EventActions';
 import Life from './Life';
-import LifeLoading from './LifeLoading';
+import Loading from './Loading';
 import Nav from './Nav';
 import Joyride from 'react-joyride';
 import { Link } from 'react-router';
@@ -103,7 +103,7 @@ export default class User extends React.Component {
         <p>If this is your calendar, <Link to="/signin">sign in again</Link> to see it.</p>
       </div>
     } else if(!this.state.events.get('0') || !this.state.user.get('born')) {
-      return <LifeLoading />
+      return <Loading/>
     } else {
       return (
         <Life events={this.state.events} addSteps={this.addSteps}

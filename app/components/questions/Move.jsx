@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router'
 
-class Question4 extends React.Component {
+class Move extends React.Component {
   constructor(props) {
     super(props)
 
@@ -82,8 +82,8 @@ class Question4 extends React.Component {
   }
 }
 
-Question4.propTypes = {
+Move.propTypes = {
   onSave: React.PropTypes.func,
 }
 
-export default Question4
+export default Move

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router'
 
-class Question1 extends React.Component {
+class Vacation extends React.Component {
   constructor(props) {
     super(props)
 
@@ -116,11 +116,11 @@ class Question1 extends React.Component {
   }
 }
 
-Question1.propTypes = {
+Vacation.propTypes = {
   onSave: React.PropTypes.func,
   user: React.PropTypes.shape({
     slug: React.PropTypes.string,
   }),
 }
 
-export default Question1
+export default Vacation

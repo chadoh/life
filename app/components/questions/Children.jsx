@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Question2 extends React.Component {
+class Children extends React.Component {
   constructor(props) {
     super(props)
 
@@ -148,8 +148,8 @@ class Question2 extends React.Component {
   }
 }
 
-Question2.propTypes = {
+Children.propTypes = {
   onSave: React.PropTypes.func,
 }
 
-export default Question2
+export default Children

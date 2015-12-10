@@ -99,6 +99,13 @@ class Quiz extends React.Component {
     </p>
   }
 
+  user101() {
+    const born = this.props.user.born;
+    if(!born) return;
+    let [year, month, day] = this.props.user.born.split('-')
+    return `${+year + 101}-${month}-${+day - 1}`
+  }
+
   render() {
     return (
       <div className="hero sunset-cliffs">
@@ -109,6 +116,7 @@ class Quiz extends React.Component {
                 onSave: this.save,
                 user: this.props.user,
                 skip: this.skipLink.bind(this),
+                user101date: this.user101(),
             })}
           </div>
         </div>

@@ -28,6 +28,7 @@ class Move extends React.Component {
       <p key="prompt1">
         <label htmlFor="date">When's the last time you moved?</label>
         <input type="date" className="form-control" id="date" autoComplete='off'
+          min={this.props.user.born} max={this.props.user101date}
           onChange={this.prompt1answer.bind(this)} value={date}
         />
       </p>
@@ -86,7 +87,9 @@ Move.propTypes = {
   onSave: React.PropTypes.func,
   user: React.PropTypes.shape({
     slug: React.PropTypes.string,
+    born: React.PropTypes.string,
   }),
+  user101date: React.PropTypes.string,
 }
 
 export default Move

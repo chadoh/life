@@ -23,13 +23,13 @@ class Hundredth extends React.Component {
       <p key="prompt1">
         What do you want to do on your 100th birthday?
       </p>,
-      <p key="answer1" className="horizontal-spacing">
+      <p key="answer1">
         {[['runner', 'Go for a run'], ['bike', 'Ride a bike'],
           ['mount_fuji', 'Climb a mountain'],
           ['tropical_fish', 'Go for a swim'],
           ['sunrise', 'Paint a sunrise'],
         ].map(([emoji, title]) => {
-          return <label key={emoji} style={{minWidth: 200}}>
+          return <label key={emoji} style={{display: 'inline-block', minWidth: 200}}>
             <input type="radio" name="prompt1" value={emoji}
               onChange={this.prompt1answer.bind(this, emoji, title)} checked={value === emoji}/>
             <span className="checkable">{title}</span>

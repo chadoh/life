@@ -74,6 +74,7 @@ class Relationship extends React.Component {
       <p key="prompt3A">
         <label htmlFor="date">When was your wedding?</label>
         <input type="date" required className="form-control" id="date" autoComplete='off'
+          min={this.props.user.born} max={this.props.user101date}
           onChange={this.prompt3Aanswer.bind(this)} value={date}
         />
       </p>
@@ -206,6 +207,10 @@ class Relationship extends React.Component {
 
 Relationship.propTypes = {
   onSave: React.PropTypes.func,
+  user: React.PropTypes.shape({
+    born: React.PropTypes.string,
+  }),
+  user101date: React.PropTypes.string,
 }
 
 export default Relationship

@@ -22,7 +22,7 @@ const steps = [{
   position: 'bottom',
 }, {
   title: "What happened last week?",
-  text: "Anything cool? Anything that will make ripples across your entire future? Probably! Click on a week to add events (and emojis) to your life calendar. Get started by adding the best day of your life!",
+  text: "Anything cool? Anything that will make ripples across your entire future? Probably! Click on a week to add events (and emojis) to your life calendar.",
   selector: 'a.previous',
   position: 'bottom',
 }, {

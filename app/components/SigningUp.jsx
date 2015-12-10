@@ -61,10 +61,8 @@ class SigningUp extends React.Component {
       born: this.state.born,
       is_private: this.state.is_private,
     })
-    .then(response => {
-      const user = response.user;
-      const nextPath = '/' + user.slug;
-      this.props.history.pushState(null, nextPath, {tour: true})
+    .then(() => {
+      this.props.history.pushState(null, '/quiz')
     })
 
     .fail(err => {

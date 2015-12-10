@@ -3,10 +3,11 @@ import merge from 'webpack-merge'
 import {Link} from 'react-router'
 import connectToStores from 'alt/utils/connectToStores'
 
+import Move from './questions/Move'
+import Sibling from './questions/Sibling'
 import Vacation from './questions/Vacation'
 import Children from './questions/Children'
 import Relationship from './questions/Relationship'
-import Move from './questions/Move'
 import Loading from './Loading'
 import LoginStore from '../stores/LoginStore'
 import EventService from '../services/EventService'
@@ -66,7 +67,7 @@ class Quiz extends React.Component {
     this.updateAnswers(merge(arguments[0], {questionNumber}))
     this.props.history.pushState(null, '/quiz', {n: this.nextUnanswered()})
 
-    if(!title) return setTimeout(this.possiblyFinishQuiz.bind(this), 100);
+    if(!date || !title) return setTimeout(this.possiblyFinishQuiz.bind(this), 100);
 
     EventService.create({slug: this.props.user.slug, emoji, title, date}).
       then(response => {
@@ -122,6 +123,7 @@ Quiz.propTypes = {
 Quiz.defaultProps = {
   questions: [
     <Move/>,
+    <Sibling/>,
     <Vacation/>,
     <Children/>,
     <Relationship/>,

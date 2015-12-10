@@ -98,7 +98,7 @@ export default class User extends React.Component {
     const user = this.state.user;
     if(!LoginStore.canView(user)) {
       const name = this.state.user.get('name').split(' ')[0]
-      return <div className="life">
+      return <div className="container-wide">
         <p>There are things we're not meant to know. Amongst them, the detail's of {name}'s life!</p>
         <p>If this is your calendar, <Link to="/signin">sign in again</Link> to see it.</p>
       </div>

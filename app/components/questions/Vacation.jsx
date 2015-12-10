@@ -50,7 +50,7 @@ class Vacation extends React.Component {
       <p key="prompt2">
         How'd you get there?
       </p>,
-      <p key="answer2">
+      <p key="answer2" className="horizontal-spacing">
         {['car', 'airplane', 'train', 'bus', 'boat'].map(mode => {
           return <label key={mode} style={{minWidth: 100}}>
             <input type="radio" name="prompt2" value={mode}

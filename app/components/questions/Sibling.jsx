@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Relationship extends React.Component {
+class Sibling extends React.Component {
   constructor(props) {
     super(props)
 
@@ -116,8 +116,8 @@ class Relationship extends React.Component {
   }
 }
 
-Relationship.propTypes = {
+Sibling.propTypes = {
   onSave: React.PropTypes.func,
 }
 
-export default Relationship
+export default Sibling

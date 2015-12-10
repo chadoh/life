@@ -6,6 +6,7 @@ import connectToStores from 'alt/utils/connectToStores'
 import Question1 from './quiz/Question1'
 import Question2 from './quiz/Question2'
 import Question3 from './quiz/Question3'
+import Question4 from './quiz/Question4'
 import LifeLoading from './LifeLoading'
 import LoginStore from '../stores/LoginStore'
 import EventService from '../services/EventService'
@@ -120,6 +121,7 @@ Quiz.propTypes = {
 
 Quiz.defaultProps = {
   questions: [
+    <Question4/>,
     <Question1/>,
     <Question2/>,
     <Question3/>,

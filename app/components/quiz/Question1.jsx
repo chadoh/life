@@ -8,7 +8,6 @@ class Question1 extends React.Component {
     this.state = {
       prompts: [this.prompt1(), this.cancelButton(), this.props.skip()]
     }
-
   }
 
   render() {
@@ -21,11 +20,6 @@ class Question1 extends React.Component {
 
   prompt1(date) {
     return [
-      <header>
-        <Link to={`/${this.props.user.slug}`} className="pull-right close-link"><small>No thanks</small></Link>
-        <h1 className="brand">Welcome!</h1>
-        <small>Answer a few quick questions to make your calendar more fun!</small>
-      </header>,
       <p key="prompt1">
         <label htmlFor="date">When's the last time you went on a big trip?</label>
         <input type="date" className="form-control" id="date" autoComplete='off'

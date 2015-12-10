@@ -18,7 +18,9 @@ class Quiz extends React.Component {
   }
 
   static getPropsFromStores() {
-    return LoginStore.getState()
+    return {
+      user: LoginStore.getState().user,
+    }
   }
 
   constructor(props) {
@@ -79,19 +81,32 @@ class Quiz extends React.Component {
     }
   }
 
+  skipQuestion(e) {
+    e.preventDefault()
+    this.save({emoji: ':x:'})
+  }
+
+  skipLink() {
+    return <p key="skip">
+      <Link to='/quiz' query={{n: this.nextUnanswered() + 1}}
+        onClick={this.skipQuestion.bind(this)} className="close-link"
+      >
+        <small>Skip this question</small>
+      </Link>
+    </p>
+  }
+
   render() {
     return (
       <div className="hero sunset-cliffs">
         <div className="vertical-centering container">
           <div className="bg-tint">
-            <Link to={`/${this.props.user.slug}`} className="pull-right close-link"><small>Skip this</small></Link>
-
             {React.cloneElement(
               this.props.questions[this.currentQuestion()], {
                 onSave: this.save,
                 user: this.props.user,
+                skip: this.skipLink.bind(this),
             })}
-
           </div>
         </div>
       </div>

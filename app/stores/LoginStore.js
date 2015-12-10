@@ -14,7 +14,7 @@ class LoginStore {
     })
 
     this.state = {
-      user: null,
+      user: {},
       idToken: null
     }
   }
@@ -28,7 +28,7 @@ class LoginStore {
     }, 30)
 
     this.setState({
-      user: null,
+      user: {},
       idToken: null
     })
 

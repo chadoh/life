@@ -5,7 +5,7 @@ class Question3 extends React.Component {
     super(props)
 
     this.state = {
-      prompts: [this.prompt1()]
+      prompts: [this.prompt1(), this.props.skip()]
     }
 
   }
@@ -206,9 +206,6 @@ class Question3 extends React.Component {
 
 Question3.propTypes = {
   onSave: React.PropTypes.func,
-  user: React.PropTypes.shape({
-    born: React.PropTypes.string
-  }),
 }
 
 export default Question3

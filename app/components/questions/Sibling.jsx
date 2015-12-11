@@ -21,7 +21,7 @@ class Sibling extends React.Component {
   prompt1(value) {
     return [
       <p key="prompt1">
-        Do you have any young siblings?
+        Do you have any younger siblings?
       </p>,
       <p key="answer1" className="horizontal-spacing">
         <label style={{minWidth: 200}}>

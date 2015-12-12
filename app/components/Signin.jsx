@@ -79,15 +79,18 @@ export default class Signin extends React.Component {
             <div className="brand">Plan. Remember.</div>
             <div>Live a Meaningful Life.</div>
           </h1>
-            {this.state.loading
-              ? <img src={spinner} width="50px" height="50px" alt="loading" style={{margin: '0 auto'}}/>
-              : <div id="signin" ref="signin"/>
-            }
-          <div className="container-wide">
-            <p className="light-links">
-              We celebrate privacy and will never sell your information – <Link to="/pricing">more info</Link>
+          <div className="container light-links">
+            <p>
+              To get started with your life calendar, you'll need to sign up
+              for an account, which is as quick &amp; easy as signing in with
+              Google. Don't worry, we celebrate privacy and will never sell
+              your <nobr>data –</nobr> <Link to="/pricing">more info</Link>
             </p>
           </div>
+          {this.state.loading
+            ? <img src={spinner} width="50px" height="50px" alt="loading" style={{margin: '0 auto'}}/>
+            : <div id="signin" ref="signin"/>
+          }
           <div className="devices-photo">
             <img src={screenshots} alt="Entire.Life works on all devices"/>
           </div>

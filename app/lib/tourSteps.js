@@ -43,9 +43,9 @@ const tourCallbacks = {
   //     history.pushState(null, `/${slug}/week/${user.get('current_week') - 1}`)
   //   }, 500)
   // },
-  "a.next": (slug, user) => {
+  "a.next": (user) => {
     setTimeout(() => {
-      history.pushState(null, `/${slug}/week/${user.get('current_week') + 1}`)
+      history.pushState(null, `/${user.get('slug')}/week/${user.get('current_week') + 1}`)
     }, 500)
   },
 }

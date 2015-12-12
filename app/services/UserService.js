@@ -14,9 +14,12 @@ class UserService {
         'Authorization': 'Bearer ' + LoginStore.getState().idToken
       }
     })
-    .then(function(response) {
-      UserActions.gotUser(response.user);
-    });
+    .then(response => {
+      UserActions.gotUser(response.user)
+    })
+    .fail(response => {
+      UserActions.clear()
+    })
   }
 
   update({id, slug, name, born, is_private}) {

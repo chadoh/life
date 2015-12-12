@@ -213,12 +213,15 @@ class EventForm extends React.Component {
   }
 }
 
+import customPropTypes from '../lib/customPropTypes'
+
 EventForm.propTypes = {
   slug: React.PropTypes.string.isRequired,
   weekno: React.PropTypes.number.isRequired,
-  eventUnderEdit: (props) => {
-    if(props.event && !Immutable.Map.isMap(props.event))
-      return new Error("Expected event to be an Immutable.Map!")
+  eventUnderEdit: customPropTypes.map,
+  eventUnderEdit: (props, propName, componentName) => {
+    if(props.event && !Immutable.Map.isMap(props[propName]))
+      return new Error(`${componentName} expected '${propName}' prop to be an Immutable.Map!`)
   },
 }
 

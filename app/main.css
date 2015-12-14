@@ -128,8 +128,13 @@ button.brand {
   border-radius: .4rem;
 }
 .bg-dark, .bg-light {
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 3rem 0;
+}
+@media(min-width: 700px) {
+  .bg-dark, .bg-light {
+    font-size: 1.5rem;
+  }
 }
 .bg-dark blockquote {
   box-shadow: inset 5px 0;
@@ -169,7 +174,7 @@ button.brand {
 }
 .year > a {
   text-decoration: none;
-  color: #fef8fc;
+  color: #fff6eb;
   width: 7.692307692%; /* 100/13 */
   display: inline-block;
   text-align: center;
@@ -178,16 +183,17 @@ button.brand {
 .year.in-weeks > a {
   width: 1.923076923%; /* 100/52 */
 }
-.year > a.past {
+.year > .past {
   color: #fae3e3;
 }
 .year .age {
+  font-size: 0.65em;
   color: silver;
   position: absolute;
   text-align: right;
   width: 25px;
-  left: -15px;
-  top: 3.5px;
+  left: -25px;
+  top: 7px;
 }
 img.emoji {
   vertical-align: middle;

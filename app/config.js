@@ -1,7 +1,6 @@
-const TARGET = process.env.npm_lifecycle_event;
 let API_URL, STRIPE_PUBLISHABLE_KEY;
 
-if(TARGET === 'local') {
+if(false) {
   API_URL = 'http://localhost:5000/'
   STRIPE_PUBLISHABLE_KEY = 'pk_4QXgq0EuigTEkoZF72kdekSBUF6gs'
 } else {

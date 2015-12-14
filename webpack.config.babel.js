@@ -45,7 +45,7 @@ const common = {
   ]
 }
 
-if (TARGET === 'start' || TARGET === 'local' || !TARGET) {
+if (TARGET === 'start' || !TARGET) {
   module.exports = merge(common, {
     devtool: 'eval-source-map',
     devServer: {

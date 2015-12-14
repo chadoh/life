@@ -17,7 +17,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "local": "webpack-dev-server",
     "build": "webpack",
     "stats": "webpack --profile --json > stats.json"
   },

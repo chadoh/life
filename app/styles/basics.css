@@ -6,7 +6,7 @@ body {
 }
 .container, .container-wide {
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0;
   width: 90%;
   max-width: 800px;
   clear: both;
@@ -118,4 +118,8 @@ header h1 {
 
 .circle {
   border-radius: 50%;
+}
+
+.rounded-images img {
+  border-radius: 3px;
 }

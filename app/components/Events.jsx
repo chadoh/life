@@ -17,7 +17,7 @@ const Events = ({events, slug, weekno, authed, onEdit}) => {
   return <ol className="events">
     {!events ? `No ${eventsOrPlans({weekno})}` : events.map(event => {
       return <Event
-        key={event.get('date') + event.get('id')}
+        key={event.get('date') + event.get('id') + event.get('title')}
         slug={slug}
         weekno={weekno}
         event={event}

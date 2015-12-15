@@ -29,6 +29,7 @@
 .nav-buttons {
   text-align: right;
   height: 0;
+  font-size: 1.1rem;
 }
 .nav-buttons a {
   z-index: 2;

@@ -108,7 +108,7 @@ class Details extends React.Component {
 export default () => {
   return (
     <div>
-      <div id="top" className="hero sunset-cliffs">
+      <div className="hero sunset-cliffs">
         <div className="landing">
           <Nav>
             <Link to="/">
@@ -199,9 +199,13 @@ export default () => {
           </div>
 
           <Details/>
+        </div>
+      </div>
 
-          <div className="container">
-            <h3 className="brand">The Forest &amp; The Branches</h3>
+      <div className="hero sunset-cliffs">
+        <div className="container" style={{display: 'flex', minHeight: '100vh', justifyContent: 'space-around', flexDirection: 'column'}}>
+          <div className="bg-tint">
+            <h2 className="brand">The Forest &amp; The Branches</h2>
             <p>It's easy to get stuck in the monotonous slog of the present.</p>
             <p>It's easy to lose awareness, and to let each week slip by without thought.</p>
             <p>It's easy to stop being intentional about how we live our lives.</p>

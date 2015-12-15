@@ -8,12 +8,12 @@ export default class Pricing extends React.Component {
   render() {
     return (
       <div>
-        <Nav>
-          <Link to="/">
-            <img src={logo} alt="Entire.Life" className="logo"/>
-          </Link>
-        </Nav>
         <div id="top" className="hero sunset-cliffs">
+          <Nav>
+            <Link to="/">
+              <img src={logo} alt="Entire.Life" className="logo"/>
+            </Link>
+          </Nav>
           <div className="container pad-top">
             <div className="bg-tint light-links">
               <h1 className="brand">Your life is not for sale</h1>

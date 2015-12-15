@@ -3,6 +3,12 @@ body {
   color: #20221F;
   height: auto;
   min-height: 100%;
+  font-size: 1rem;
+}
+@media(min-width: 700px) {
+  body {
+    font-size: 1.5rem;
+  }
 }
 .container, .container-wide {
   margin: 0 auto;

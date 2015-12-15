@@ -6,6 +6,7 @@
 @import "./styles/emoji-picker.css";
 @import "./styles/checkbox-private-public.css";
 @import "./styles/detail-pane.css";
+@import "./styles/joyride-overrides.css";
 
 /*
  * Hero
@@ -40,6 +41,7 @@ button.brand {
   background-color: rgba(0,0,0,0.3);
   color: white;
   text-align: center;
+  font-size: 1.1rem;
 }
 .landing .nav-buttons {
   height: auto;
@@ -128,13 +130,7 @@ button.brand {
   border-radius: .4rem;
 }
 .bg-dark, .bg-light {
-  font-size: 1rem;
   padding: 3rem 0;
-}
-@media(min-width: 700px) {
-  .bg-dark, .bg-light {
-    font-size: 1.5rem;
-  }
 }
 .bg-dark blockquote {
   box-shadow: inset 5px 0;
@@ -174,7 +170,7 @@ button.brand {
 }
 .year > a {
   text-decoration: none;
-  color: #fff6eb;
+  color: #fef8fc;
   width: 7.692307692%; /* 100/13 */
   display: inline-block;
   text-align: center;
@@ -187,13 +183,13 @@ button.brand {
   color: #fae3e3;
 }
 .year .age {
-  font-size: 0.65em;
+  font-size: 0.55em;
   color: silver;
   position: absolute;
   text-align: right;
-  width: 25px;
-  left: -25px;
-  top: 7px;
+  width: 2em;
+  left: -2.3em;
+  top: 0.75em;
 }
 img.emoji {
   vertical-align: middle;

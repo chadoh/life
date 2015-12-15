@@ -46,10 +46,10 @@ class Details extends React.Component {
 
     return (
       <div style={{position: 'relative', overflow: 'hidden', height: this.state.height, transition: 'height 500ms ease'}} >
-        <div ref="container">
+        <div ref="container" style={{padding: '1em 0'}}>
           {this.state.expanded ? null : expandButton}
           <div className="container">
-            <p>And instead of just adding thoughts and events about the present, you can add events for any of your past weeks.</p>
+            <p style={{marginTop: 0}}>And instead of just adding thoughts and events about the present, you can add events for any of your past weeks.</p>
           </div>
           <div className="centered">
             <img style={{width: 320}} src={eventAddExample} alt="Entire.Life event creation form, with the event Made My First Sale being added"/>
@@ -81,7 +81,7 @@ class Details extends React.Component {
             <img style={{width: 320}} src={socialSecurity} alt="Entire.Life's week detail view showing a plan: Eligible For Social Security"/>
           </div>
           <div className="container">
-            <p>Just as reflecting on the past can give us a sense of gratitude, reflecting on the future can give us a sense of urgency. </p>
+            <p style={{marginBottom: 0}}>Just as reflecting on the past can give us a sense of gratitude, reflecting on the future can give us a sense of urgency. </p>
           </div>
         </div>
       </div>

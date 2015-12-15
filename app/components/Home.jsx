@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router'
 
 import Nav from './Nav'
+import Footer from './Footer'
 import screenshots from '../images/entire.life-screenshots.png'
 import logo from '../images/logo-white.svg'
 import plotPoints from '../images/example-plot-points.png'
@@ -136,7 +137,7 @@ export default () => {
       </div>
       <div className="bg-light">
         <div className="container">
-          <div className="row">
+          <div className="row vertically-centered">
             <div className="col-sm-4 centered">
               <img src={plotPoints} className="circle" alt="section of a life calendar showing ages 20 to 30, with a kissy emoji and a bride emoji showing"/>
             </div>
@@ -150,7 +151,7 @@ export default () => {
               </p>
             </div>
           </div>
-          <div className="row reverse">
+          <div className="row reverse vertically-centered">
             <div className="col-sm-4 centered">
               <img src={payOffDebt} className="circle" alt="a goal to pay of student loans by a date that's now in the past, with buttons to mark complete, snooze, or delete it"/>
             </div>
@@ -164,7 +165,7 @@ export default () => {
               </p>
             </div>
           </div>
-          <div className="row">
+          <div className="row vertically-centered">
             <div className="col-sm-4 centered">
               <img src={spoon} alt="a spoon"/>
             </div>
@@ -214,17 +215,7 @@ export default () => {
           </div>
         </div>
       </div>
-      <div className="bg-light">
-        <div className="container">
-          <small>
-            Entire.Life thanks Tim Urban at&nbsp;
-            <a href="http://waitbutwhy.com/2014/05/life-weeks.html">Wait But Why</a>,&nbsp;
-            for inventing the idea of the life calendar, and&nbsp;
-            <a href="http://brittanyforks.com/life/">Brittany Forks</a>, who
-            first put emojis on one.
-          </small>
-        </div>
-      </div>
+      <Footer/>
     </div>
   )
 }

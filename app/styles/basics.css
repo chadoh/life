@@ -81,6 +81,9 @@ header h1 {
 .row {
   margin-bottom: 7rem;
 }
+.row:last-child {
+  margin-bottom: 0;
+}
 @media(min-width: 525px) {
   .row {
     margin-bottom: 0;
@@ -90,18 +93,15 @@ header h1 {
   .row.reverse {
     flex-direction: row-reverse;
   }
-  [class^=col] {
+  .vertically-centered [class^=col] {
     display: inline-block;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
   }
-  .col-sm-4 {
-    width: 31.3333333%;
-  }
-  .col-sm-8 {
-    width: 64.6666666%;
-  }
+  .col-sm-2 { width: 14.6666665%; }
+  .col-sm-4 { width: 31.3333333%; }
+  .col-sm-8 { width: 64.6666666%; }
 }
 
 .horizontal-spacing {

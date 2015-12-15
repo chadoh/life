@@ -1,13 +1,18 @@
-import React from 'react';
-import Nav from './Nav';
+import React from 'react'
+import {Link} from 'react-router'
+
+import Nav from './Nav'
+import logo from '../images/logo-white.svg'
 
 export default class Pricing extends React.Component {
   render() {
     return (
       <div>
-        <div className="container-wide">
-          <Nav/>
-        </div>
+        <Nav>
+          <Link to="/">
+            <img src={logo} alt="Entire.Life" className="logo"/>
+          </Link>
+        </Nav>
         <div id="top" className="hero sunset-cliffs">
           <div className="container pad-top">
             <div className="bg-tint light-links">

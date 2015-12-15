@@ -8,6 +8,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router, Route, IndexRoute} from 'react-router'
 import Home from './components/Home'
+import Team from './components/Team'
 import Pricing from './components/Pricing'
 import Signin from './components/Signin'
 import SigningUp from './components/SigningUp'
@@ -29,15 +30,16 @@ LoginActions.recordLoginFromSavedSession();
 let router = (
   <Router history={history}>
     <Route path="/" component={Home}/>
+    <Route path="team" component={Team}/>
     <Route path="signin" component={Signin}/>
 
     <Route path="pricing" component={Pricing}/>
 
-    <Route path="/signing-up" component={SigningUp}/>
-    <Route path="/quiz" component={Quiz}/>
+    <Route path="signing-up" component={SigningUp}/>
+    <Route path="quiz" component={Quiz}/>
 
-    <Route path="/account" component={UserEdit} />
-    <Route path="/:slug" component={User}>
+    <Route path="account" component={UserEdit} />
+    <Route path=":slug" component={User}>
       <Route path="month/:monthno" component={MonthDetail}/>
       <Route path="week/:weekno" component={WeekDetail}/>
     </Route>

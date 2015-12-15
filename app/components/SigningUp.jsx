@@ -21,6 +21,11 @@ class SigningUp extends React.Component {
     this.toggleIsPrivate = this.toggleIsPrivate.bind(this)
   }
 
+  setSlug(e) {
+    const newSlug = e.target.value.replace(/[^a-zA-Z0-9\-_]/g, '')
+    if(newSlug !== this.state.slug) this.setState({slug: newSlug})
+  }
+
   renderSlug() {
     return (
       <div>
@@ -29,7 +34,8 @@ class SigningUp extends React.Component {
               <p>
                 <label htmlFor="slug">Pick a URL</label>
                 <input required className="form-control" id="slug"
-                  autoFocus valueLink={this.linkState('slug')}
+                  autoFocus value={this.state.slug}
+                  onChange={this.setSlug.bind(this)}
                   autoComplete='off'
                 />
               </p>

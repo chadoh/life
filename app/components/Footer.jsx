@@ -9,7 +9,7 @@ export default () => {
           <h5 className="brand">About</h5>
           <small>
             <Link to="/team">Team</Link><br/>
-            {/* <a href="#">Press</a><br/> */}
+            <Link to="/press">Press</Link><br/>
             {/* <a href="#">Contact</a> */}
           </small>
         </div>

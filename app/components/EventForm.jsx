@@ -10,7 +10,7 @@ import { Link } from 'react-router'
 
 const emojiPickerStyles = {
   position: 'absolute',
-  left: 0, top: '3.9rem',
+  left: 0, top: '3.5em',
   backgroundColor: 'white',
   width: '100%',
   padding: '.3em .6em',

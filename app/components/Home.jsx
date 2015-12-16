@@ -18,6 +18,9 @@ import pastAndFuture from '../images/home-past-and-future.png'
 import expiredPlan from '../images/home-expired-plan.png'
 import socialSecurity from '../images/home-social-security.png'
 
+import bessieColeman from '../images/home-bessie-coleman.jpg'
+import bayardRustin from '../images/home-bayard-rustin.jpg'
+
 class Details extends React.Component {
   constructor(props) {
     super(props)
@@ -216,6 +219,44 @@ export default () => {
                 Claim my free life calendar now
               </Link>
             </p>
+          </div>
+        </div>
+      </div>
+      <div className="bg-dark">
+        <div className="container">
+          <h2 className="brand">Hall of Fame</h2>
+          <p>People we celebrate. Click through to see their life calendars.</p>
+        </div>
+        <div className="container-wide smaller">
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="row vertically-centered">
+                <div className="col-sm-4">
+                  <Link to="/bessie-coleman">
+                    <img className="circle" src={bessieColeman }alt="photo of Bessie Coleman as a young woman in aviator garb"/>
+                  </Link>
+                </div>
+                <div className="col-sm-8">
+                  <h3 className="brand">Bessie Coleman</h3>
+                  <p>Black daredevil aviatrix. When no one in racist America would teach her to fly, this badass went to flight school in France. Never got to start her own flight school.</p>
+                  <Link to="/bessie-coleman" className="button">View her Entire.Life</Link>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div className="row vertically-centered">
+                <div className="col-sm-4">
+                  <Link to="/bayard-rustin">
+                    <img className="circle" src={bayardRustin} alt="photo of Bessie Coleman as a young woman in aviator garb"/>
+                  </Link>
+                </div>
+                <div className="col-sm-8">
+                  <h3 className="brand">Bayard Rustin</h3>
+                  <p>A voice behind many of the voices of the American Civil Rights movement. Organizer of the 1963 March on Washington for Jobs and Freedom. American hero.</p>
+                  <Link to="/bayard-rustin" className="button">View his Entire.Life</Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -107,6 +107,7 @@ header h1 {
   }
   .col-sm-2 { width: 14.6666665%; }
   .col-sm-4 { width: 31.3333333%; }
+  .col-sm-6 { width: 48%; }
   .col-sm-8 { width: 64.6666666%; }
 }
 
@@ -128,4 +129,8 @@ header h1 {
 
 .rounded-images img {
   border-radius: 3px;
+}
+
+.smaller {
+  font-size: .85em;
 }

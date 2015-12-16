@@ -57,9 +57,16 @@ class Life extends React.Component {
     return months;
   }
 
+  weeksIn(age) {
+    if(this.props.user.get('died') && this.endAge() === age)
+      return this.finalWeek() % 52
+    else
+      return 51
+  }
+
   weeksFor({age, events}) {
     let weeks = [];
-    for(var i = 0; i < 52; i++) {
+    for(var i = 0; i <= this.weeksIn(age); i++) {
       const weekno = age * 52 + i;
       const selected = +this.props.weekno === weekno ||
         +this.props.monthno*4 === weekno;
@@ -126,9 +133,21 @@ class Life extends React.Component {
     )
   }
 
+  finalWeek() {
+    return this.props.events.keySeq().map(v => +v).sort().last()
+  }
+
+  endAge() {
+    if(this.props.user.get('died')) {
+      return Math.floor(this.finalWeek()/52)
+    } else {
+      return 101
+    }
+  }
+
   render() {
     let years = []
-    for(var i = 0; i < 101; i++) {
+    for(var i = 0; i <= this.endAge(); i++) {
       years.push(this.year(i, this.props.events))
     }
     return (
@@ -139,11 +158,11 @@ class Life extends React.Component {
   }
 }
 
+import customPropTypes from '../lib/customPropTypes'
+
 Life.propTypes = {
-  events: (props) => {
-    if(!Immutable.Map.isMap(props.events))
-      return new Error("Expected events to be an Immutable.Map!")
-  },
+  events: customPropTypes.requiredMap,
+  user: customPropTypes.requiredMap,
   addSteps: React.PropTypes.func,
   showTour: React.PropTypes.bool,
   weekno: React.PropTypes.string,

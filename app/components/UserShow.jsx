@@ -67,8 +67,9 @@ export default class UserShow extends React.Component {
       return <Loading/>
     } else {
       return (
-        <Life events={this.props.events} addSteps={this.addSteps}
-          startTour={this.startTour} slug={this.props.user.get('slug')}
+        <Life addSteps={this.addSteps} startTour={this.startTour}
+          events={this.props.events} user={this.props.user}
+          slug={this.props.user.get('slug')}
           showTour={!!this.props.location.query.tour}
           detail={this.props.detail} weekno={this.props.weekno}
           monthno={this.props.monthno}

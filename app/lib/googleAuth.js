@@ -23,7 +23,7 @@ const initClient = () => {
 }
 
 const onFailure = (err) => {
-  console.error(err)
+  console.error('initClient failed', err)
 }
 
 export default {};

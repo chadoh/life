@@ -16,6 +16,7 @@
 }
 .dropdown-link {
   display: inline-block;
+  margin-right: 1.1rem;
 }
 .dropdown-link:focus, .dropdown-link:hover {
   box-shadow: none;
@@ -61,9 +62,6 @@
 }
 .nav-buttons h1 a, .nav-buttons h2 a {
   top: 0;
-}
-.dropdown-link {
-  margin-right: 1.1rem;
 }
 .nav-buttons .help-icon {
   display: inline-block;

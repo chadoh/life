@@ -73,7 +73,6 @@ export default class Signin extends React.Component {
             <Link to="/">
               <img src={logo} alt="Entire.Life" className="logo"/>
             </Link>
-            {/* put Entire.Life logo here */}
           </Nav>
           <h1 className="hero-header container">
             <div className="brand">Plan. Remember.</div>

@@ -6,7 +6,6 @@ import UserStore from '../stores/UserStore'
 import EventService from '../services/EventService'
 import emojiMap from 'react-emoji-picker/lib/emojiMap'
 import EmojiPicker from 'react-emoji-picker'
-import { Link } from 'react-router'
 
 const emojiPickerStyles = {
   position: 'absolute',
@@ -217,12 +216,9 @@ import customPropTypes from '../lib/customPropTypes'
 
 EventForm.propTypes = {
   slug: React.PropTypes.string.isRequired,
+  start: React.PropTypes.object.isRequired,
   weekno: React.PropTypes.number.isRequired,
   eventUnderEdit: customPropTypes.map,
-  eventUnderEdit: (props, propName, componentName) => {
-    if(props.event && !Immutable.Map.isMap(props[propName]))
-      return new Error(`${componentName} expected '${propName}' prop to be an Immutable.Map!`)
-  },
 }
 
 ReactMixin(EventForm.prototype, LinkedStateMixin);

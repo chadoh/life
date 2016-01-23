@@ -10,7 +10,7 @@ export default () => {
           <small>
             <Link to="/team">Team</Link><br/>
             {/* <a href="#">Press</a><br/> */}
-            {/* <a href="#">Contact</a> */}
+            <Link to="/contact">Contact</Link>
           </small>
         </div>
         <div className="col-sm-2">
